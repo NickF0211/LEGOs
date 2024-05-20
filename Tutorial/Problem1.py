@@ -4,7 +4,11 @@ Problem 1:
 In this problem, we would like you to model a puzzle question in FOL*
 and solve the puzzles with FOL* satisfiability result:
 '''
+import sys
+from os.path import dirname, join
+sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
 from Analyzer.shortcut import *
+
 
 Basics = [2, 3]
 # Basics = [3, 5]
@@ -115,7 +119,8 @@ def check_target_with_abstraction(target_value):
 
 
 check_target_with_abstraction(79)
-clear()
 check_target_with_abstraction(78)
-clear()
+UNSAT_core, _ = check_and_minimize("proof.txt", "simply.txt")
+for r in UNSAT_core:
+    print(r)
 check_target_with_abstraction(129)

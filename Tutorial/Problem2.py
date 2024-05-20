@@ -1,6 +1,9 @@
 from pysmt.typing import BOOL
-
+import sys
+from os.path import dirname, join
+sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
 from Analyzer.shortcut import *
+
 
 FetherID = Int(0)
 TarID = Int(1)
