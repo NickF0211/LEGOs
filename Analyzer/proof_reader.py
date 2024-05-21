@@ -119,10 +119,10 @@ class Fact(Derivation):
         if self.deps:
             defs = self.deps[:-1]
             base = self.deps[-1]
-            if base == "link" or base == "global":
-                #TODO: handle new optimizations here, now assume they are true
-                return True
             base_content = get_content_by_id(base).content
+            if isinstance(defs, list) and defs and defs[0] == "link":
+                # TODO: handle new optimizations here, now assume they are true
+                return True
             for def_id in defs:
                 d = get_content_by_id(def_id)
                 content = d.content
@@ -247,7 +247,7 @@ class EI_Hint(Hint):
             if len(new_content) == 3:
                 head, op, body = new_content
                 if head == "{}_presence".format(self.target) and op == "&":
-                    return match(old_content.expr, body, {self.source+'_': self.target+'_'})
+                    return match(old_content.expr, body, {self.source + '_': self.target + '_'})
         return False
 
     def get_dep(self):
@@ -255,6 +255,7 @@ class EI_Hint(Hint):
 
     def __str__(self):
         return "EI {}  [{}:{}<-{}]".format(self.base, self.source, self.cls, self.target)
+
 
 def is_expanded_IFF(expr):
     if isinstance(expr, list) and len(expr) == 3:
@@ -267,6 +268,7 @@ def is_expanded_IFF(expr):
                     if NNF_check(["!", llhs], rlhs, {}) and NNF_check(["!", lrhs], rrhs, {}):
                         return True
     return False
+
 
 class UI_Hint(Hint):
     def __init__(self, base, source, target, cls):
@@ -289,11 +291,11 @@ class UI_Hint(Hint):
                 if op == "&":
                     if is_expanded_IFF(new_content):
                         head, op, body = head
-                if (op == "<->" and head == "{}_presence".format(self.target)) or\
+                if (op == "<->" and head == "{}_presence".format(self.target)) or \
                         (isinstance(head, list) and
                          len(head) == 2 and head[0] and "!" and
                          head[1] == "{}_presence".format(self.target)):
-                    return match(old_content.expr, body, {self.source+'_': self.target+'_'})
+                    return match(old_content.expr, body, {self.source + '_': self.target + '_'})
 
         return False
 
@@ -394,6 +396,10 @@ def parse_axiom(content):
     assert len(tokens) >= 2
     axiom = parse(tokens[1])
     AXIOM.append(axiom)
+
+
+def output_axiom(ax):
+    return "AXIOM || {}".format(serialize(ax))
 
 
 def parse_add_fact(content):
@@ -520,9 +526,7 @@ def check_conflict():
         print(m)
         return False
     else:
-        simplified_derivations = []
         cores = [str(i) for i in get_assumption_core(solver)]
-        print(cores)
         return cores
 
 
@@ -583,6 +587,9 @@ def check_and_minimize(input_proof, output_proof=None):
                     with open(output_proof, 'w') as out:
                         for i in simp_d:
                             out.write("{}\n".format(str(i)))
+                        # TODO, output the axiom
+                        for ax in AXIOM:
+                            out.write("{}\n".format(output_axiom(ax)))
                 else:
                     for i in simp_d:
                         print(str(i))

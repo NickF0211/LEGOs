@@ -106,6 +106,7 @@ add_constraint(unique_id_rule)
 
 solve(TRUE(), proof_mode=True, unsat_mode=True)
 UNSAT_core, _ = check_and_minimize("proof.txt", "simplified.txt")
+UNSAT_core, _ = check_and_minimize("simplified.txt", "simplified_more.txt")
 print('*' * 100)
 print("UNSAT CORE")
 for i in UNSAT_core:

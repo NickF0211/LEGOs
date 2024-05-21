@@ -113,7 +113,9 @@ class Proof_Writer():
         # here what important is that forall implies not exists
         # so the existenial object shold not be possible
         parent_def_id, p_r_id, p_is_fact = self.get_def(parent_rule)
-        self.add_fact("c{} -> {} || link".format(parent_def_id, serialize(target_expr)))
+        op_parent_def_id, _, _ = self.get_def(parent_rule.op)
+        self.add_fact("c{} -> {} || link {} {}".format(parent_def_id, serialize(target_expr), self.add_prefix(parent_rule.rid),
+                                                    self.add_prefix(parent_rule.op.rid)))
 
     def derive_forall_rule(self, parent_rule, rel_ob, new_rule):
         if rel_ob not in self.ro_origin:
