@@ -2,7 +2,7 @@ import sys
 from os.path import dirname, join
 
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
-from Analyzer.shortcut import *
+from shortcut import *
 
 # this is the example for slides 48 in SRI-3
 Data = create_action("Data", [("val", "int")])

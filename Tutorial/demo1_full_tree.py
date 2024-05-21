@@ -2,7 +2,7 @@ import sys
 from os.path import dirname, join
 
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
-from Analyzer.shortcut import *
+from shortcut import *
 
 create_type("id", lower_bound=1)
 Node = create_action("Node",

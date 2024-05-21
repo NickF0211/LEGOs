@@ -9,7 +9,7 @@ In this very first tutorial, we will illustrate for to use the python interface 
 import sys
 from os.path import dirname, join
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
-from Analyzer.shortcut import *
+from shortcut import *
 
 '''
 Section 1: FOL* modelling

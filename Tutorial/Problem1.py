@@ -7,7 +7,7 @@ and solve the puzzles with FOL* satisfiability result:
 import sys
 from os.path import dirname, join
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
-from Analyzer.shortcut import *
+from shortcut import *
 
 
 Basics = [2, 3]
