@@ -30,17 +30,20 @@ Task 2, define your rule here
 RULES = []
 
 # 1. Tar is a docotor
-Tar = User(input_subs={"id": TarID})
-add_constraint(AND(Tar.presence, Tar.isDoctor))
+# Tar = User(input_subs={"id": TarID, "isDoctor": TRUE()})
+# Fact_Tar = Tar.presence
+# add_constraint(Fact_Tar)
+C1 = exists(User, lambda Tar: AND(EQ(Tar.id, TarID), Tar.isDoctor))
+add_constraint(C1)
 
 # 2. Fether is a doctor
-Fether = User(input_subs={"id": FetherID})
-add_constraint(AND(Fether.presence, Fether.isDoctor))
+C2 = exists(User, lambda Fether: AND(EQ(Fether.id, FetherID), Fether.isDoctor))
+add_constraint(C2)
 
 #3 There are other doctors in the asylum.
 C3 = exists(User, lambda u: AND(
-    NEQ(u.id, Tar.id),
-    NEQ(u.id, Fether.id),
+    NEQ(u.id, TarID),
+    NEQ(u.id, FetherID),
     u.isDoctor
 ))
 
@@ -75,23 +78,26 @@ C7 = forall([User, User], lambda a, b: Implication(believe(a, b.isSpecial),
 add_constraint(C7)
 
 #C8 Tarr believes that every doctor is sane.
-C8 = believe(Tar, forall(User, lambda u: Implication(u.isDoctor, u.sane)))
+C8 = exists(User, lambda Tar: AND(EQ(Tar.id, TarID), believe(Tar, forall(User, lambda u: Implication(u.isDoctor, u.sane)))))
 add_constraint(C8)
 
 #C9 Tarr believes that at least one patient is insane.
-C9 = believe(Tar, exists(User, lambda u: AND(u.isPatient, NOT(u.sane))))
+C9 = exists(User, lambda Tar: AND(EQ(Tar.id, TarID), believe(Tar, exists(User, lambda u: AND(u.isPatient, NOT(u.sane))))))
 add_constraint(C9)
 
 #C10 Fether believes that every patient is insane.
-C10 = believe(Fether, forall(User, lambda u: Implication(u.isPatient, NOT(u.sane))))
+C10 = exists(User, lambda Fether: AND(EQ(Fether.id, FetherID), believe(Fether, forall(User, lambda u: Implication(u.isPatient, NOT(u.sane))))))
 add_constraint(C10)
 
 #C11  Fether believes that at least one doctor is sane
-C11 = believe(Fether, exists(User, lambda u: AND(u.isDoctor, u.sane)))
+C11 = exists(User, lambda Fether: AND(EQ(Fether.id, FetherID), believe(Fether, exists(User, lambda u: AND(u.isDoctor, u.sane)))))
 add_constraint(C11)
 
 #C12 Fether believes that Tarr is sane.
-C12 = believe(Fether, Tar.sane)
+C12 = exists(User, lambda Tar: exists(User, lambda Fether: AND(
+                            EQ(Tar.id, TarID),
+                             EQ(Fether.id, FetherID),
+                            believe(Fether, Tar.sane))))
 add_constraint(C12)
 
 # unique_ID
@@ -102,7 +108,7 @@ unique_id_rule = forall([User, User],
 add_constraint(unique_id_rule)
 
 #doctor and patient exclusive constraints
-# add_constraint(forall(User, lambda u: NOT(IFF(u.isDoctor, u.isPatient))))
+add_constraint(forall(User, lambda u: NOT(IFF(u.isDoctor, u.isPatient))))
 
 solve(TRUE(), proof_mode=True, unsat_mode=True)
 UNSAT_core, _ = check_and_minimize("proof.txt", "simplified.txt")

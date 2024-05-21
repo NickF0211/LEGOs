@@ -6,9 +6,9 @@ and solve the puzzles with FOL* satisfiability result:
 '''
 import sys
 from os.path import dirname, join
+
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
 from shortcut import *
-
 
 Basics = [2, 3]
 # Basics = [3, 5]
@@ -30,8 +30,11 @@ Task 2: encode FOL* constraint to capture the construction rules. You may assume
 '''
 Solution 2:
 '''
+
+
 def base_case(num: NUMBER):
     return OR([EQ(num.val, Int(base_item)) for base_item in Basics])
+
 
 def recursive_case(num: NUMBER):
     return exists([NUMBER, NUMBER, NUMBER], lambda num1, num2, num3, num=num:
@@ -57,15 +60,16 @@ clear()
 '''
 Solution 3:
 '''
+
+
 def check_target(target_value):
-    target_property = exists(NUMBER, lambda num, target_value = target_value:
-                                EQ(num.val, Int(target_value)))
+    target_property = exists(NUMBER, lambda num, target_value=target_value:
+    EQ(num.val, Int(target_value)))
     solve(target_property)
 
 
 check_target(1)
 clear()
-
 
 '''
 Task 4: Suppose Basics = {3, 5} are given, try to find ways to construct the following target numbers: 
@@ -109,8 +113,6 @@ def target_transformation(target):
     else:
         abstracted_goal = exists(ODD, lambda even: forall(ODD, lambda even_prime: even <= even_prime))
     return AND(goal, abstracted_goal)
-
-
 
 
 def check_target_with_abstraction(target_value):
