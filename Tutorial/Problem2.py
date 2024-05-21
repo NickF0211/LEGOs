@@ -26,7 +26,6 @@ User = create_action("User",
 '''
 Task 2, define your rule here
 '''
-
 RULES = []
 
 # 1. Tar is a docotor
@@ -67,7 +66,8 @@ add_constraint(C5)
 C6 = exists(User, lambda u: u.sane)
 add_constraint(C6)
 
-#C7 Condition C: Given any two inhabitants, A and B, if A believes that B is special, then A’s best friend believes that B is a patient.
+#C7 Condition C: Given any two inhabitants, A and B, if A believes that B is special,
+# then A’s best friend believes that B is a patient.
 C7 = forall([User, User], lambda a, b: Implication(believe(a, b.isSpecial),
                                                    exists(User, lambda u: AND(EQ(u.id, a.bf),
                                                                              believe(u, b.isPatient)))
