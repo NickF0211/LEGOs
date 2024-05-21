@@ -46,12 +46,67 @@ add_constraint(forall(Node, lambda n: OR(
            )
 )))
 
-# okay, let's take a look at a tree with height 3
-solve(exists(Node, lambda n: n > Int(4)))
+# Q1: let's take a look at a tree with height 3
+print("A tree of height at least 3")
+solve(exists(Node, lambda n: n >= Int(3)))
+
+# let's define a path
+Path = create_action("path", [("start", "id"), ("end", "id"), ("length", "nat")])
+
+# let's define the constraint for a path:
+
+# the length of a path must be consistent with the depth of the noddes
+add_constraint(forall(Path, lambda p:
+exists([Node, Node], lambda n1, n2:
+AND(
+    EQ(n1.id, p.start),
+    EQ(n2.id, p.end),
+    EQ(n2.time - n1.time, p.length)
+)
+       )))
+
+# a path either is path to a node itself
+add_constraint(forall(Path, lambda p: OR(
+    AND(EQ(p.start, p.end), EQ(p.length, Int(0))),  # a node to itself is a path
+    exists(Path, lambda p_next:
+    exists([Node, Node], lambda n1, n2:
+    AND(
+        EQ(n1.id, p.start),
+        EQ(n2.id, p_next.start),
+        EQ(n2.parent, n1.id),
+        EQ(p_next.end, p.end),
+        EQ(p_next.length, p.length - 1)
+    )
+           )
+           )
+)))
+
+# Q2 warm up:
+# first let's see a path of length at least 3
+print("A path of length at least 4")
+solve(exists(Path, lambda p: p.length > 3))
+
+# Q2:
+# now let's define the constraint that assume the existence of a cycle
+cycle_assumption = exists([Path, Path], lambda p1, p2:
+AND(
+    EQ(p1.start, p2.end),
+    EQ(p2.start, p1.end),
+    # EQ(p1.length, p2.length),
+    p1.length > 0
+)
+                          )
+
+# let's see try to look for a cycle
+print("is there a cycle in a tree?")
+solve(cycle_assumption, proof_mode=True)
+UNSAT_Core, _ = check_and_minimize("proof.txt", "cycle_proof.txt")
+for r in UNSAT_Core:
+    print(r)
 
 
-# for a given level, let's verify the maxiumn number of nodes for a given level i is <= 2^i
-
+# Q3:
+# for a given level, let's verify the maximum number of nodes for a given level i is <= 2^i
 def _constraint_helper(remain, i, nodes):
     if remain == 0:
         cur_constraint = TRUE()
@@ -78,4 +133,6 @@ def check_node_number_at_i(i):
     return constraints
 
 
-solve(check_node_number_at_i(3))
+# now let's prove this claim for depth 2
+print("prove the claim that the maximum number of nodes for a given level i is <= 2^i")
+solve(check_node_number_at_i(2))
