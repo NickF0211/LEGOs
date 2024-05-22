@@ -1507,6 +1507,7 @@ class Exists(Operator):
     check_ACTS = dict()
     new_included = OrderedSet()
     count = 0
+    pending_defs = set()
 
     def __init__(self, input_type, func, input_subs=None, reference=None):
         super().__init__()
@@ -1526,6 +1527,8 @@ class Exists(Operator):
             self.print_act = self.input_type(print_only=True, input_subs=self.input_subs)
         self.print_statement = None
         self.reference = reference
+        self.var = Symbol("exists_{}".format(Exists.count))
+        self.exclusive_reg = False
 
     def clear(self):
         super(Exists, self).clear()
@@ -1558,6 +1561,7 @@ class Exists(Operator):
         return action
 
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+
         if not include_new_act:
             if self.act_include is not None:
                 action = self.act_include
@@ -1576,7 +1580,12 @@ class Exists(Operator):
             text_ref[presence] = self.reference
         else:
             presence = action.presence
+
         application_res = AND(presence, eval_result)
+        if not self.exclusive_reg and unsat_mode:
+            Exists.pending_defs.add(Implication(Not(self.var), NOT(presence)))
+            self.exclusive_reg = True
+
         if proof_writer and not self.proof_derived:
             proof_writer.derive_exists_rule(self, action, application_res)
             self.proof_derived = True
@@ -1585,8 +1594,12 @@ class Exists(Operator):
                                  assumption=assumption, include_new_act=include_new_act, exception=exception,
                                  disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
 
+        if unsat_mode:
+            Exists.pending_defs.add(Implication(self.var, base_constraint))
+
         if include_new_act:
             Exists.new_included.add(action)
+
         elif not include_new_act and action == self.act_non_include and action != self.act_include:
             if disable:
                 constraints = []
@@ -1600,12 +1613,15 @@ class Exists(Operator):
                 result = Or(choice_constraint)
                 constraints.append(result)
                 base_constraint = And(base_constraint, And(constraints))
+                return base_constraint
             else:
                 # exist_obj = Exists.Temp_ACTs.get(action, None)
                 # assert exist_obj is None or exist_obj == self
                 Exists.Temp_ACTs[action] = self
-
-        return base_constraint
+        if unsat_mode:
+            return self.var
+        else:
+            return base_constraint
 
     def invert(self):
         if self.op is None:
@@ -1635,6 +1651,12 @@ def add_forall_defs(solver):
         # print("add pending_ {}".format(serialize(constraint)))
         solver.add_assertion(constraint)
     Forall.pending_defs.clear()
+
+def add_exist_defs(solver):
+    for constraint in Exists.pending_defs:
+        # print("add pending_ {}".format(serialize(constraint)))
+        solver.add_assertion(constraint)
+    Exists.pending_defs.clear()
 
 
 class C_Summation(Arth_Operator):
@@ -2297,12 +2319,11 @@ class Forall(Operator):
                 else:
                     presence = action.presence
 
-                # TODO, make it a paramter option
-                if unsat_mode:
-                    child_res = IFF(presence, eval_func)
-                else:
-                    child_res = Implication(presence, eval_func)
-
+                # # TODO, make it a paramter option
+                # if unsat_mode:
+                #     child_res = Implication(presence, eval_func)
+                # else:
+                child_res = Implication(presence, eval_func)
                 if not disable and proof_writer and action not in self.considered:
                     proof_writer.derive_forall_rule(self, action, child_res)
 

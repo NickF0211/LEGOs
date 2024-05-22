@@ -399,7 +399,7 @@ def parse_axiom(content):
 
 
 def output_axiom(ax):
-    return "AXIOM || {}".format(serialize(ax))
+    return "AXIOM || {}".format(serialize(simplify(ax)))
 
 
 def parse_add_fact(content):

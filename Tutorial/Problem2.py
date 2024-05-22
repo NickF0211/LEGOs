@@ -1,5 +1,8 @@
 from pysmt.typing import BOOL
+
 import sys
+sys.setrecursionlimit(1500)
+
 from os.path import dirname, join
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
 from shortcut import *
@@ -18,8 +21,7 @@ User = create_action("User",
                       ("isPatient", "bool"),
                       ("sane", "bool"),
                       ("isPeculiar","bool"),
-                      ("isSpecial","bool"),
-                      ("time", "nat")])
+                      ("isSpecial","bool")])
 
 
 
@@ -29,12 +31,12 @@ Task 2, define your rule here
 RULES = []
 
 # 1. Tar is a docotor
-Tar = User(input_subs={"id": TarID})
-add_constraint(AND(Tar.presence, Tar.isDoctor))
+Tar = User(input_subs={"presence": TRUE()})
+add_constraint(AND(EQ(Tar.id, TarID), Tar.presence, Tar.isDoctor))
 
 # 2. Fether is a doctor
-Fether = User(input_subs={"id": FetherID})
-add_constraint(AND(Fether.presence, Fether.isDoctor))
+Fether = User(input_subs={"presence": TRUE()})
+add_constraint(AND(EQ(Fether.id, FetherID), Fether.presence, Fether.isDoctor))
 
 #3 There are other doctors in the asylum.
 C3 = exists(User, lambda u: AND(
@@ -101,12 +103,9 @@ unique_id_rule = forall([User, User],
 
 add_constraint(unique_id_rule)
 
-#doctor and patient exclusive constraints
-# add_constraint(forall(User, lambda u: NOT(IFF(u.isDoctor, u.isPatient))))
 
 solve(TRUE(), proof_mode=True, unsat_mode=True)
 UNSAT_core, _ = check_and_minimize("proof.txt", "simplified.txt")
-UNSAT_core, _ = check_and_minimize("simplified.txt", "simplified_more.txt")
 print('*' * 100)
 print("UNSAT CORE")
 for i in UNSAT_core:

@@ -42,6 +42,7 @@ def clear_Exist_cache():
     Exists.Temp_ACTs.clear()
     Exists.check_ACTS.clear()
     Exists.new_included.clear()
+    Exists.pending_defs.clear()
     Exists.hint_barrier = False
 
 
@@ -212,6 +213,7 @@ def inductive_checking(property, rules, complete_rules, ACTION, state_action, mi
         print("end encoding")
         s.add_assertion(And(get_all_constraint(ACTION, full=False)))
         add_forall_defs(s)
+        add_exist_defs(s)
 
         solved = s.solve()
         if solved:
@@ -362,6 +364,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                 s.add_assertion(c)
 
         add_forall_defs(s)
+        add_exist_defs(s)
         add_predicate_constraint(s)
         all_cons = And(get_all_constraint(ACTION, full=False))
         s.add_assertion(all_cons)
@@ -375,8 +378,6 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
         if solved:
             save_model = s.get_model()
-            # print_trace(save_model, ACTION, state_action,include_temp=True, ignore_class=state_action, should_print=True)
-
             # Summation.frontier = new_frontier
             # Summation.collections = new_summation
 

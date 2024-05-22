@@ -1,5 +1,5 @@
 from pysmt.fnode import FNode
-from pysmt.shortcuts import get_free_variables, get_type,serialize
+from pysmt.shortcuts import get_free_variables, get_type, serialize, And
 
 from logic_operator import to_string, C_NOT, invert, C_AND, Operator, C_OR, text_ref, Bool_Terminal
 
@@ -109,13 +109,18 @@ class Proof_Writer():
                                                    self.add_prefix(child_r, child_is_fact),
                                                    self.add_prefix(EI_rule_id)))
 
+        self.add_fact("(! c{}) -> (! {}) || link {}".format(parent_def_id, serialize(rel_ob.presence), self.add_prefix(parent_rule.rid)))
+
+
     def add_forall_exist_link(self, parent_rule, target_expr):
         # here what important is that forall implies not exists
         # so the existenial object shold not be possible
         parent_def_id, p_r_id, p_is_fact = self.get_def(parent_rule)
-        op_parent_def_id, _, _ = self.get_def(parent_rule.op)
-        self.add_fact("c{} -> {} || link {} {}".format(parent_def_id, serialize(target_expr), self.add_prefix(parent_rule.rid),
-                                                    self.add_prefix(parent_rule.op.rid)))
+        self.declare_atoms(target_expr)
+        # op_def, _, _ = self.get_def(parent_rule.op)
+        # self.add_fact("c{} <-> (! c{}) || link {} {}".format(parent_def_id, op_def, self.add_prefix(parent_rule.rid), self.add_prefix(parent_rule.op.rid)))
+        self.add_fact("c{} -> {} || link".format(parent_def_id, serialize(target_expr)))
+
 
     def derive_forall_rule(self, parent_rule, rel_ob, new_rule):
         if rel_ob not in self.ro_origin:
@@ -241,6 +246,8 @@ class Proof_Writer():
 
     def derive_unsat(self, considered_constraints = None):
         self.print_to_proof("UNSAT || F0 - F{}".format(self.fact_ids - 1))
+        if considered_constraints is not None:
+            self.declare_atoms(And(considered_constraints))
         self.post_process()
         if considered_constraints is not None:
             self.write_type_constraints(considered_constraints)
