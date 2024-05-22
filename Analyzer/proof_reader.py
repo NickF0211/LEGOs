@@ -493,6 +493,10 @@ def parse_proof(proof_name):
     AXIOM.clear()
     Lemma.Lemmas.clear()
     ordered_rules = []
+    InputRule.Inputs.clear()
+    Lemma.Lemmas.clear()
+    Fact.Facts.clear()
+    Definition.Defs.clear()
     is_unsat = False
     with open(proof_name, 'r') as infile:
         line = infile.readline()
@@ -565,6 +569,11 @@ def add_vars(derivations):
                 for atom in variables:
                     a_type = get_type(atom)
                     records.add((str(atom), str(a_type)))
+    for a in AXIOM:
+        variables = get_free_variables(a)
+        for atom in variables:
+            a_type = get_type(atom)
+            records.add((str(atom), str(a_type)))
     derivations.append("Vars || {}".format(' '.join(["{}:{}".format(a, b) for a, b in records])))
 
 
