@@ -1,0 +1,58 @@
+// Event and measure definitions
+def_start
+    // events
+    event StartVacuum
+    event EndVacuum
+    event MemorizeMap
+    event AvoidObstacles
+    event EmptyGarbage
+    event Moves
+    event TurnedOn
+    event TurnedOff
+    event ClimbCarpet
+    event StartMoping
+    event DetectStairs
+    event MoveBackward
+    event ChargeBattery
+    event RequestMoping
+    event RequestVacuum
+    
+    // measures
+    measure turnOn: boolean
+    measure garbageFull: boolean
+    measure mapComplete: boolean
+    measure batteryLevel: numeric
+    measure mopingRequested: boolean
+    measure vacuumingRequested: boolean
+def_end
+
+// Rules
+rule_start
+    R1 when TurnedOn then StartVacuum within 1 minutes  unless {garbageFull} then EmptyGarbage
+
+    R2 when StartVacuum then MemorizeMap within 20 minutes unless {mapComplete}
+
+    R3 when StartVacuum then AvoidObstacles
+
+    R4 when StartVacuum then not StartMoping
+
+    R5 when EndVacuum then StartMoping
+
+    R6 when DetectStairs then MoveBackward
+
+    R7 when ClimbCarpet then StartVacuum within 2 minutes
+
+    R8 when StartMoping then AvoidObstacles
+
+    R9 when EndVacuum then EmptyGarbage unless ({batteryLevel} < 20) then ChargeBattery
+
+    R10 when TurnedOn and ({batteryLevel} < 20) then ChargeBattery
+
+    R11 when StartMoping then not StartVacuum
+
+    R12 when RequestMoping then StartMoping unless {garbageFull}
+
+    R13 when RequestVacuum then StartVacuum unless ({batteryLevel} < 20) then ChargeBattery
+
+    R14 when EndVacuum then TurnedOff
+rule_end

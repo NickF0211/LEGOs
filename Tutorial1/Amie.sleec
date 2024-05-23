@@ -1,0 +1,65 @@
+def_start
+
+	//events
+	event OpenDoor
+	event CloseDoor
+	event LockDoor
+	event UnlockDoor
+	event TurnOnLight
+	event TurnOffLight
+	event TurnMusicOn
+	event TurnMusicOff
+	event SwitchSong
+	event IncreaseVolume
+	event DecreaseVolume
+	event OpenCurtain
+	event CloseCurtain
+	event UserRequestLockDoor
+
+
+	//measures
+	measure doorOpened:boolean
+	measure doorLocked:boolean
+	measure curtainOpened:boolean
+	measure userAssent:boolean     //user accepts an action
+	measure userInDanger: boolean
+	measure soundlevel: scale(low, medium, loud)
+	measure weekday: boolean
+	measure timeDay: scale (morning, lunch, afternoon, evening, night)
+	measure lightLevel: scale (dark, dayLight, bright, extraBright)
+	measure userLocation: scale (kitchen, livingRoom, bedroom, bathroom, hallway)
+
+def_end
+
+
+// Rules
+rule_start
+
+	 // Social rule: Ensure that shared spaces are accessible to all authorized individuals.
+			R1 when UserRequestLockDoor and (({userLocation} = kitchen) or
+					  ({userLocation} = livingRoom)) then not LockDoor unless {userInDanger}
+
+			   // Legal rule: Adhere to local laws regulating acceptable sound levels.
+			R2 when TurnMusicOn and ({soundlevel} == loud) 
+					  then DecreaseVolume within 30 seconds unless (not {weekday})
+							
+			   // Ethical rule: Use energy-efficient lighting solutions where possible.
+			R3 when TurnOnLight and ({lightLevel} == bright) 
+					  then TurnOffLight within 20 seconds unless (not {userAssent})
+
+	 // [COMPLETE HERE - Task 1.a]
+
+rule_end
+
+concern_start
+     // When music is turned on and the sound level is already loud, increasing the volume to make it excessively loud and potentially harmful.
+     c1 when TurnMusicOn and ({soundlevel} == loud) then IncreaseVolume
+     //[Complete here - Task 1.b]
+concern_end
+
+            purpose_start
+     // Ensuring that the user can lock the door
+     p1 exists UserRequestLockDoor and (not {doorLocked})
+    //[Complete here - Task 1.c]
+purpose_end
+
