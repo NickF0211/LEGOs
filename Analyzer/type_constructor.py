@@ -277,7 +277,7 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
 
         if "presence" in input_subs:
             value = input_subs.get("presence")
-            self.constraint.append(Iff(value, self.presence))
+            setattr(self, "presence", value)
 
         for attr, attr_type in attributes:
             var_type, type_constraint = constraint_dict.get(attr_type, lambda _: TRUE())
