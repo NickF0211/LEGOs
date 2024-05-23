@@ -62,14 +62,19 @@ Solution 3:
 '''
 
 
-def check_target(target_value):
+def check_target(target_value:int):
     target_property = exists(NUMBER, lambda num, target_value=target_value:
     EQ(num.val, Int(target_value)))
     solve(target_property)
 
 
 check_target(1)
-clear()
+check_target(6)
+check_target(17)
+check_target(28)
+check_target(45)
+check_target(150)
+check_target(1501)
 
 '''
 Task 4: Suppose Basics = {3, 5} are given, try to find ways to construct the following target numbers: 
@@ -106,7 +111,7 @@ add_constraint(even_rules)
 add_constraint(odd_rules)
 
 
-def target_transformation(target):
+def target_transformation(target:int):
     goal = exists(NUMBER, lambda add: EQ(Int(target), add.val))
     if not (target % 2):
         abstracted_goal = exists(EVEN, lambda even: forall(EVEN, lambda even_prime: even <= even_prime))
@@ -119,10 +124,12 @@ def check_target_with_abstraction(target_value):
     target_property = target_transformation(target_value)
     solve(target_property, proof_mode=True)
 
-
 check_target_with_abstraction(79)
 check_target_with_abstraction(78)
+check_target_with_abstraction(129)
+check_target_with_abstraction(1100)
+# we check the proof of UNSAT for 1100
 UNSAT_core, _ = check_and_minimize("proof.txt", "simply.txt")
 for r in UNSAT_core:
     print(r)
-check_target_with_abstraction(129)
+

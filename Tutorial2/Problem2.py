@@ -28,7 +28,8 @@ User = create_action("User",
 '''
 Task 2, define your rule here
 '''
-RULES = []
+def believe(x, facts):
+    return IFF(x.sane, facts)
 
 # 1. Tar is a docotor
 Tar = User(input_subs={"presence": TRUE(), "id": TarID})
@@ -47,8 +48,7 @@ C3 = exists(User, lambda u: AND(
 
 add_constraint(C3)
 
-def believe(x, facts):
-    return IFF(x.sane, facts)
+
 
 #4 By definition, an inhabitant A is peculiar if A believes that A is a patient.
 C4  = forall(User, lambda u: IFF(u.isPeculiar, believe(u, u.isPatient)))
@@ -74,7 +74,7 @@ C7 = forall([User, User], lambda a, b: Implication(believe(a, b.isSpecial),
                                                    exists(User, lambda u: AND(EQ(u.id, a.bf),
                                                                              believe(u, b.isPatient)))
                                                    ))
-add_constraint(C7)
+# add_constraint(C7)
 
 #C8 Tarr believes that every doctor is sane.
 C8 = believe(Tar, forall(User, lambda u: Implication(u.isDoctor, u.sane)))
@@ -103,10 +103,16 @@ unique_id_rule = forall([User, User],
 
 add_constraint(unique_id_rule)
 
-
+solve(TRUE())
 solve(TRUE(), proof_mode=True, unsat_mode=True)
 UNSAT_core, _ = check_and_minimize("proof.txt", "simplified.txt")
 print('*' * 100)
 print("UNSAT CORE")
 for i in UNSAT_core:
     print(str(i))
+
+'''
+Task 4: describe your findings from the proof and UNSAT core.
+Check the solution from https://arxiv.org/pdf/2112.02142 too. The cause of UNSAT might be different, but it should
+contain at least R4,5,7,8,10,12
+'''
