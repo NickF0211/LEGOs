@@ -261,10 +261,6 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
             setattr(self, "time", value)
         '''
 
-        if "presence" in input_subs:
-            value = input_subs.get("presence")
-            setattr(self, "presence", value)
-
         self.print_name = ""
         if print_only:
             self.print_name = "p_{}_{}".format(action_name, type(self).print_only_index_map[attributes[0][0]])
@@ -278,6 +274,10 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
                                              max([type(self).index_map[attribute[0]] for attribute in attributes]))
 
         super(type(self), self).__init__(name=self.print_name)
+
+        if "presence" in input_subs:
+            value = input_subs.get("presence")
+            setattr(self, "presence", value)
 
         for attr, attr_type in attributes:
             var_type, type_constraint = constraint_dict.get(attr_type, lambda _: TRUE())
