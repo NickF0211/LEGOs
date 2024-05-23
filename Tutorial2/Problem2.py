@@ -74,7 +74,7 @@ C7 = forall([User, User], lambda a, b: Implication(believe(a, b.isSpecial),
                                                    exists(User, lambda u: AND(EQ(u.id, a.bf),
                                                                              believe(u, b.isPatient)))
                                                    ))
-# add_constraint(C7)
+add_constraint(C7)
 
 #C8 Tarr believes that every doctor is sane.
 C8 = believe(Tar, forall(User, lambda u: Implication(u.isDoctor, u.sane)))
@@ -103,7 +103,7 @@ unique_id_rule = forall([User, User],
 
 add_constraint(unique_id_rule)
 
-solve(TRUE())
+# solve(TRUE())
 solve(TRUE(), proof_mode=True, unsat_mode=True)
 UNSAT_core, _ = check_and_minimize("proof.txt", "simplified.txt")
 print('*' * 100)
