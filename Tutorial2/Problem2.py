@@ -32,12 +32,12 @@ def believe(x, facts):
     return IFF(x.sane, facts)
 
 # 1. Tar is a docotor
-Tar = User(input_subs={"presence": TRUE(), "id": TarID})
-add_constraint( Tar.isDoctor)
+Tar = User(input_subs={"id": TarID})
+add_constraint( AND(Tar.presence, Tar.isDoctor))
 
 # 2. Fether is a doctor
-Fether = User(input_subs={"presence": TRUE(), "id": FetherID})
-add_constraint(Fether.isDoctor)
+Fether = User(input_subs={ "id": FetherID})
+add_constraint(AND(Fether.presence, Fether.isDoctor))
 
 #3 There are other doctors in the asylum.
 C3 = exists(User, lambda u: AND(
@@ -100,9 +100,9 @@ add_constraint(C12)
 unique_id_rule = forall([User, User],
                         lambda u1, u2: Implication(EQ(u1.id, u2.id),
                                                    EQ(u1, u2)))
-
+# background rules
 add_constraint(unique_id_rule)
-
+#Tar and Fether exists
 # solve(TRUE())
 solve(TRUE(), proof_mode=True, unsat_mode=True)
 UNSAT_core, _ = check_and_minimize("proof.txt", "simplified.txt")
