@@ -7,7 +7,7 @@ The task here is to use FOL* to model a tree with some properties
 # First, let's import the FOL* interface
 '''
 
-sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
+sys.path.append(join(dirname(dirname(dirname(__file__))), "Analyzer"))
 from shortcut import *
 
 

@@ -1,7 +1,7 @@
 import sys
 from os.path import dirname, join
 
-sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
+sys.path.append(join(dirname(dirname(dirname(__file__))), "Analyzer"))
 from shortcut import *
 
 # this is the example for slides 48 in SRI-3

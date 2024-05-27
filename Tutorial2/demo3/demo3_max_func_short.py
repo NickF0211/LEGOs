@@ -5,7 +5,7 @@ from os.path import dirname, join
 we are going to go over the example on SRI-3 slide 48 here,
 '''
 
-sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
+sys.path.append(join(dirname(dirname(dirname(__file__))), "Analyzer"))
 from shortcut import *
 
 

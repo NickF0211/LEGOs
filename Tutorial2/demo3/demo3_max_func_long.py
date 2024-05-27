@@ -8,7 +8,7 @@ In addition, we are going to show the proof of FOL* UNSAT
 First thing, like before, we impoirt the FOL* interface
 '''
 
-sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
+sys.path.append(join(dirname(dirname(dirname(__file__))), "Analyzer"))
 from shortcut import *
 
 '''
