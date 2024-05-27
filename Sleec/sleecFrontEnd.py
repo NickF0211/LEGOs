@@ -8,6 +8,7 @@ import re
 import tkinter as tk
 from sleecParser import check_input_red, check_input_conflict, check_input_concerns, check_input_purpose
 from SleecNorm import check_situational_conflict
+import tkinter.scrolledtext as scrolledtext
 
 
 def read_model_file(file_path):
@@ -21,7 +22,7 @@ def check_concern():
     new_text.delete('1.0', 'end-1c')
     if result:
         new_text.insert(tk.INSERT, response)
-    new_text.grid()
+    new_text.pack(expand=True, fill=tk.BOTH)
 
 
 def check_situational():
@@ -39,9 +40,10 @@ def check_situational():
                 cur_index = cur_end
         if cur_index < len(response):
             new_text.insert(tk.INSERT, response[cur_index:])
+        new_text.insert(tk.INSERT, '\n')
     else:
         new_text.insert(tk.INSERT, response)
-    new_text.grid()
+    new_text.pack(expand=True, fill=tk.BOTH)
 
 
 def check_redundancy():
@@ -61,7 +63,7 @@ def check_redundancy():
             new_text.insert(tk.INSERT, response[cur_index:])
     else:
         new_text.insert(tk.INSERT, response)
-    new_text.grid()
+    new_text.pack(expand=True, fill=tk.BOTH)
 
 
 def check_conflict():
@@ -81,7 +83,7 @@ def check_conflict():
             new_text.insert(tk.INSERT, response[cur_index:])
     else:
         new_text.insert(tk.INSERT, response)
-    new_text.grid()
+    new_text.pack(expand=True, fill=tk.BOTH)
 
 
 def check_purpose():
@@ -101,7 +103,7 @@ def check_purpose():
             new_text.insert(tk.INSERT, response[cur_index:])
     else:
         new_text.insert(tk.INSERT, response)
-    new_text.grid()
+    new_text.pack(expand=True, fill=tk.BOTH)
 
 
 sample_text = read_model_file("test.sleec")
@@ -154,37 +156,38 @@ cd1.prog = re.compile(PROG, re.S | re.M)
 cd1.idprog = re.compile(IDPROG, re.S)
 cd1.tagdefs = {**cd.tagdefs, **TAGDEFS}
 
-width = lord.winfo_screenwidth()
-height = lord.winfo_screenheight()
-lord_width = width // 3 * 2
-lord_height = height
-lord.geometry('%sx%s' % (lord_width, lord_height))
+# width = lord.winfo_screenwidth()
+# height = lord.winfo_screenheight()
+# lord_width = width // 3 * 2
+# lord_height = height
+# lord.geometry('%sx%s' % (lord_width, lord_height))
 
-aText = tk.Text(lord, font=("Georgia", "14"))
+scrollbar = tk.Scrollbar(lord)
+
+aText = scrolledtext.ScrolledText(font=("Georgia", "14"))
 aText.pack(expand=True, fill=tk.BOTH)
 aText.insert(tk.INSERT, sample_text)
-aText.grid()
 ip.Percolator(aText).insertfilter(cd)
 
-new_text = tk.Text(lord, font=("Georgia", "14"))
+new_text = scrolledtext.ScrolledText(font=("Georgia", "14"))
 new_text.tag_config("hl", background="yellow")
+# new_text.pack(expand=True, fill=tk.BOTH)
 ip.Percolator(new_text).insertfilter(cd1)
 
 aButton = tk.Button(lord, text="check redundancy", command=check_redundancy)
-aButton.grid()
+aButton.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
 bButton = tk.Button(lord, text="check conflicts", command=check_conflict)
-bButton.grid()
+bButton.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
 bButton = tk.Button(lord, text="check concern", command=check_concern)
-bButton.grid()
+bButton.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
 bButton = tk.Button(lord, text="check purpose", command=check_purpose)
-bButton.grid()
+bButton.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
 bButton = tk.Button(lord, text="check situational conflict", command=check_situational)
-bButton.grid()
+bButton.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
 aText.tag_config("bt", background="yellow")
-
 lord.mainloop()
