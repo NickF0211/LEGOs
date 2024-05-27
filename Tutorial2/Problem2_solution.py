@@ -112,7 +112,9 @@ for i in UNSAT_core:
     print(str(i))
 
 '''
-Task 4: describe your findings from the proof and UNSAT core.
-Check the solution from https://arxiv.org/pdf/2112.02142 too. The cause of UNSAT might be different, but it should
-contain at least R4,5,7,8,10,12
+Task 4:
+Rerun Problem2.py with the constraint removed. 
+Can you obtain a solution to the problem?  
+If so, put it at the end of Problem2.py. Explain why this solution violates the removed constraint
+
 '''
