@@ -112,9 +112,11 @@ for i in UNSAT_core:
     print(str(i))
 
 '''
-Task 4:
-Rerun Problem2.py with the constraint removed. 
-Can you obtain a solution to the problem?  
-If so, put it at the end of Problem2.py. Explain why this solution violates the removed constraint
+Task 4a: Put the UNSAT Core here.
+'''
+
 
 '''
+Task 4b: The satisfying solution goes here. Explain why the solution violates the removed constraint 
+'''
+
