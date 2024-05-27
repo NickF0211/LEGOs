@@ -13,4 +13,6 @@
 ###  Structure
     1. Analyzer contains the implementation of the FOL* satisfiability checking algorithm  
     2. Sleec contains the implemenation of the normative requirement analyzer SLEEC-LEGOS.
-    3. Tutorial contains the materials for the tutorials (and the labs)
+    3. Tutorial contains the materials for the tutorials, demos and the labs:
+        a. Tutorial1: material for lab1 and Sleec based tutorials and demos
+        b. Tutorial2: material for lab2 and FOL* based tutorials and demos
