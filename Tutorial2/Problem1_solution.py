@@ -21,7 +21,7 @@ Task 1: define the FOL* signature to capture the concept of constructed number
 Solution 1:
 '''
 # create your custom action
-#NUMBER =
+NUMBER = create_action("number", [("val", "nat"), ("time", "time")])
 
 '''
 Task 2: encode FOL* constraint to capture the construction rules. You may assume the set `Basics` is given.
@@ -32,7 +32,21 @@ Solution 2:
 '''
 
 
+def base_case(num: NUMBER):
+    return OR([EQ(num.val, Int(base_item)) for base_item in Basics])
 
+
+def recursive_case(num: NUMBER):
+    return exists([NUMBER, NUMBER, NUMBER], lambda num1, num2, num3, num=num:
+    AND([num > num1,
+         num > num2,
+         num > num3,
+         EQ(num.val, (num1.val + num2.val - num3.val)),
+         num1.val >= num2.val]))
+
+
+add_rule = forall(NUMBER, lambda num: OR(base_case(num), recursive_case(num)))
+add_constraint(add_rule)
 
 '''
 Task 3:Suppose Basics = {2, 3} are given, try to find ways to construct the 
@@ -49,7 +63,9 @@ Solution 3:
 
 
 def check_target(target_value:int):
-    pass
+    target_property = exists(NUMBER, lambda num, target_value=target_value:
+    EQ(num.val, Int(target_value)))
+    solve(target_property)
 
 
 check_target(1)
@@ -78,11 +94,30 @@ Basics = [3, 5]
 Solution 4:
 '''
 
+EVEN = create_action("Even", [("time", "time")])
+ODD = create_action("ODD", [("time", "time")])
 
+even_rules = forall(EVEN, lambda even: OR(
+    OR([TRUE() for i in Basics if not (i % 2)]),
+    exists(EVEN, lambda even_prev: even > even_prev)
+))
+
+odd_rules = forall(ODD, lambda even: OR(
+    OR([TRUE() for i in Basics if (i % 2)]),
+    exists(ODD, lambda even_prev: even > even_prev)
+))
+
+add_constraint(even_rules)
+add_constraint(odd_rules)
 
 
 def target_transformation(target:int):
-    pass
+    goal = exists(NUMBER, lambda add: EQ(Int(target), add.val))
+    if not (target % 2):
+        abstracted_goal = exists(EVEN, lambda even: forall(EVEN, lambda even_prime: even <= even_prime))
+    else:
+        abstracted_goal = exists(ODD, lambda even: forall(ODD, lambda even_prime: even <= even_prime))
+    return AND(goal, abstracted_goal)
 
 
 def check_target_with_abstraction(target_value):
