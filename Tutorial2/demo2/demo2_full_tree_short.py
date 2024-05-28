@@ -34,7 +34,7 @@ add_constraint(forall([Node, Node], lambda n1, n2: Implication(EQ(n1.id, n2.id),
 
 add_constraint(forall(Node, lambda n: OR(
     AND(forall(Node, lambda child: NEQ(child.parent, n.id)),
-        forall(Node, lambda other: other <= n)
+        # forall(Node, lambda other: other <= n)
         ),
     exists([Node, Node], lambda c1, c2:
     AND(
