@@ -1,0 +1,45 @@
+//Definitions
+def_start
+   // Events
+	event HumanOnFloor
+	event CallEmergencyServices
+	event OpenCurtainRequest
+	event OpenCurtain
+	event OpenWindows
+	event SignalOpenCurtains
+	event SmokeDetecorAlarm
+	event FireSafetyMeasures
+
+   //Measures
+	measure humanAssents:boolean
+	measure underDressed:boolean
+	measure userDisablesAlarm:boolean
+	measure userUnconscious:boolean
+def_end
+
+
+// Rules
+rule_start
+	R3 when  HumanOnFloor and (not {humanAssents}) then not CallEmergencyServices within 600 seconds
+	R5 when OpenCurtainRequest and (not {underDressed}) then OpenCurtain within 30 seconds
+	R6 when OpenCurtainRequest then SignalOpenCurtains unless {underDressed}
+	R7 when SignalOpenCurtains then OpenCurtain within 20 seconds
+	R21 when SmokeDetecorAlarm then CallEmergencyServices within 300 seconds
+	R21_1 when FireSafetyMeasures then OpenWindows
+	R21_4 when FireSafetyMeasures then not OpenWindows
+                        Rc1 when SmokeDetecorAlarm and (not {userDisablesAlarm}) then  CallEmergencyServices within 20 seconds
+rule_end
+
+
+//Concerns
+concern_start
+	c1 when SmokeDetecorAlarm and (not {userDisablesAlarm}) then not CallEmergencyServices within 120 seconds
+concern_end
+
+
+//System main purposes
+purpose_start
+ pr1 when HumanOnFloor and ({userUnconscious} and (not {humanAssents})) then CallEmergencyServices
+purpose_end
+
+
