@@ -27,7 +27,6 @@ rule_start
 	R21 when SmokeDetecorAlarm then CallEmergencyServices within 300 seconds
 	R21_1 when FireSafetyMeasures then OpenWindows
 	R21_4 when FireSafetyMeasures then not OpenWindows
-                        Rc1 when SmokeDetecorAlarm and (not {userDisablesAlarm}) then  CallEmergencyServices within 20 seconds
 rule_end
 
 
