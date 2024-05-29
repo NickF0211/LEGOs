@@ -2303,7 +2303,7 @@ class Forall(Operator):
             op_constraint = op.get_holding_obj(assumption=False, include_new_act=False, exception=None, disable=None,
                                                proof_writer=None)
             if not self.consider_op:
-                forall_exists_link = Implication(self.var, Not(op_constraint.presence))
+                forall_exists_link = IFF(self.var, Not(op_constraint.presence))
                 Forall.pending_defs.add(forall_exists_link)
                 self.consider_op = True
 
