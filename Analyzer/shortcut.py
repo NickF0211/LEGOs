@@ -27,6 +27,7 @@ def create_action(action_name, attributes):
     CLASSES.append(new_class)
     return new_class
 
+
 # logical connective
 AND = logic_operator.AND
 OR = logic_operator.OR
@@ -56,15 +57,15 @@ def solve(formulas, constraint_abstraction=False, vol_bound=500, solution_opt=Fa
         rules = []
 
     result = analyzer.check_property_refining(formulas, rules, Constraints,
-                                            CLASSES,[], vol_bound=vol_bound,
-                                            min_solution=solution_opt, record_proof=proof_mode,
-                                            unsat_mode=unsat_mode)
+                                              CLASSES, [], vol_bound=vol_bound,
+                                              min_solution=solution_opt, record_proof=proof_mode,
+                                              unsat_mode=unsat_mode)
     clear()
     analyzer.clear_rules([formulas])
     return result
 
 
-def clear(reset_signature= False):
+def clear(reset_signature=False):
     analyzer.clear_all(CLASSES, Constraints)
     if reset_signature:
         CLASSES.clear()
@@ -75,4 +76,37 @@ def clear(reset_signature= False):
         create_type("bool", var_type=BOOL)
 
 
+'''
+Define the existence of a relational object of Class
+that holds for the predicate  
+and yields the greatest value according to the valuation function
+'''
 
+
+def exists_max(Class, predicate, valuation):
+    return exists(Class, lambda o: AND(predicate(o),
+                                       forall(Class, lambda o_prime, o=o:
+                                       Implication(predicate(o_prime),
+                                                   valuation(o) >= valuation(o_prime)))))
+
+
+'''
+Define the existence of a relational object of Class
+that holds for the predicate  
+and yields the smallest value according to the valuation function
+'''
+
+
+def exists_min(Class, predicate, valuation):
+    return exists(Class, lambda o: AND(predicate(o),
+                                       forall(Class, lambda o_prime, o=o:
+                                       Implication(predicate(o_prime),
+                                                   valuation(o) <= valuation(o_prime)))))
+
+
+def exists_first(Class, predicate):
+    return exists_min(Class, predicate, lambda o: o.time)
+
+
+def exists_last(Class, predicate):
+    return exists_max(Class, predicate, lambda o: o.time)

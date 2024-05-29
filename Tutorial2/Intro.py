@@ -177,8 +177,53 @@ We can also reset the signature that were previously defined with the comamnd cl
 '''
 clear(reset_signature=True)
 
+
+'''
+Lastly, let's see two variant of exists funciton: exists_max and exists_min, which are useful to reason about
+properties with ordering.
+
+Suppose we have a storage that holds a value that changes over time. 
+'''
+Store = create_action("Store", [("val", "nat"), ("time", "time")])
+
+# the initial value is 0
+add_constraint(exists(Store, lambda s: AND(EQ(s.val, Int(0)),
+                               EQ(s.time, Int(0)))))
+
+# the rate of value change is smaller than the rate of time change
+add_constraint(forall(Store, lambda s: Implication(NEQ(s.val, Int(0)),
+                                        exists(Store, lambda s_prev:
+                                               AND(
+                                                   s_prev < s,
+                                                   (s.val - s_prev.val <= s.time - s_prev.time)
+                                               )
+                                               ))))
+
+# we want to prove that for every time, s.val <= s.time
+# we can try to check if its negation opposite is satisfiable
+
+# exists(Store, lambda s: s.val > s.time)
+
+# However, solving these constraints is not effective, we need give some help.
+# One thing we can do is providing an inductive argument: s.val <= s.time, where the
+# induction is based on time:
+# We assume up to some time 1 ... k, where s.val <= s.time, and
+# we want to show for the next s where s.time > k, s.val > s.time
+# we can realize this by showing such s does not exist, this is similar saying
+# there is not a "first" time s.val > s.time
+
+add_constraint(exists_first(Store, lambda s: s.val > s.time))
+
+# or equivalently
+# exists_min(Store, lambda s: s.val > s.time, lambda s: s.time)
+# if UNSAT, then we can establish the proof
+solve(TRUE())
+
+
 '''
 This concludes the your very first tutorial on FOL*, feel free to navigate to other sections in this folder.
 
 '''
+
+
 
