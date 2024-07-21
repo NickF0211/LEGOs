@@ -313,7 +313,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     # property and do overapproximation
     s.add_assertion(prop)  # add the property to the solver. is the assertion here like a constraint ?
     # print(serialize(prop))
-    # restart control
+    # restart control 1
 
     restart_threshold = 10
     round_without_new_rules = 0
