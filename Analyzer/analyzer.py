@@ -92,6 +92,7 @@ def clear_rules(rules):
             if rule.func.op is not None:
                 rule.func.op.result_cache.clear()
 
+
 considered_object = OrderedSet()
 considered_constraint = []
 
@@ -273,42 +274,44 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                             disable_minimization=False, min_solution=False, final_min_solution=False,
                             boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
                             axioms=None, record_proof=False, ret_model=False, scalar_mask=None, unsat_mode=False):
+    # print the configuration setting
     print("solving under config: restart {}, bcr {}, ub {}, min {}".format(restart, boundary_case, universal_blocking,
                                                                            min_solution))
-    rules = OrderedSet(rules)
+    rules = OrderedSet(rules)  # a set of rules that remember the rules order
     current_min_solution = False
     out_of_bound_warning = False
     application_rounds = 1
     opt_sol_check = False
 
-    if record_proof:
+    if record_proof:  # record the proof
         proof_writer = Proof_Writer("proof.txt")
-        proof_writer.add_input_rule(property)
+        proof_writer.add_input_rule(property)  # add the rule that we want to prove
         for rule in complete_rules:
-            proof_writer.add_input_rule(rule)
-    else:
+            proof_writer.add_input_rule(rule)  # add the background rules (finished by the user)
+    else:  # we do not record the proof
         proof_writer = None
         # for rule in complete_rules:
         #     proof_writer.add_input_rule(rule)
 
     if ignore_state_action:
-        ignore_actions = state_action
+        ignore_actions = state_action  # special funcs ? what kind of funcs are these ?
     else:
         ignore_actions = None
 
     if boundary_case:
-        inductive_assumption_table = dict()
+        inductive_assumption_table = dict()  # a dictionary that stores the inductive assumptions. for boundary cases ?
     else:
         inductive_assumption_table = None
 
     new_rules = set(rules)
     should_calibrate = True
-    s = Solver("z3", unsat_cores_mode=None, random_seed=43)
+    s = Solver("z3", unsat_cores_mode=None, random_seed=43)  # z3 solver （ oriented from SMT solver ）
     if axioms:
         s.add_assertion(axioms)
 
-    prop = encode(property, include_new_act=True, proof_writer=proof_writer, unsat_mode=unsat_mode)
-    s.add_assertion(prop)
+    prop = encode(property, include_new_act=True, proof_writer=proof_writer, unsat_mode=unsat_mode)  # ground the
+    # property and do overapproximation
+    s.add_assertion(prop)  # add the property to the solver. is the assertion here like a constraint ?
     # print(serialize(prop))
     # restart control
 
@@ -471,7 +474,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                                                                  disable_minimization=disable_minimization,
                                                                  ignore_class=ignore_actions,
                                                                  inductive_assumption_table=inductive_assumption_table,
-                                                                 relax_mode=not current_min_solution, ub=universal_blocking, over_model=save_model)
+                                                                 relax_mode=not current_min_solution,
+                                                                 ub=universal_blocking, over_model=save_model)
 
                     if new_model is None:
                         new_volume, _ = print_trace(save_model, ACTION, state_action, should_print=False,
@@ -536,11 +540,14 @@ def solver_under_eq_assumption(solver, assumption, eq_assumption):
 
 
 def solve_fol(rules, complete_rules, ACTION, state_action, minimized=False, vol_bound=500,
-                            disable_minimization=False, min_solution=False, final_min_solution=False,
-                            boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
-                            axioms=None, record_proof=False, ret_model=False, scalar_mask=None):
-
-    return check_property_refining(TRUE(), rules, complete_rules, ACTION, state_action, minimized=minimized, vol_bound=vol_bound,
-                            disable_minimization=disable_minimization, min_solution=min_solution, final_min_solution=final_min_solution,
-                            boundary_case=boundary_case, universal_blocking=universal_blocking, restart=restart, ignore_state_action=ignore_state_action,
-                            axioms=axioms, record_proof=record_proof, ret_model=ret_model, scalar_mask=scalar_mask)
+              disable_minimization=False, min_solution=False, final_min_solution=False,
+              boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
+              axioms=None, record_proof=False, ret_model=False, scalar_mask=None):
+    return check_property_refining(TRUE(), rules, complete_rules, ACTION, state_action, minimized=minimized,
+                                   vol_bound=vol_bound,
+                                   disable_minimization=disable_minimization, min_solution=min_solution,
+                                   final_min_solution=final_min_solution,
+                                   boundary_case=boundary_case, universal_blocking=universal_blocking, restart=restart,
+                                   ignore_state_action=ignore_state_action,
+                                   axioms=axioms, record_proof=record_proof, ret_model=ret_model,
+                                   scalar_mask=scalar_mask)

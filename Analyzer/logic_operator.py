@@ -1332,7 +1332,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
             return model
     # print("filtered unsuccessful")
 
-    cost, available, model = maxsat(solver, soft_constraints, round, name_space, relax_mode=False, background=vars,
+    _, available, model = maxsat(solver, soft_constraints, round, name_space, relax_mode=False, background=vars,
                                     eq_vars=eq_vars)
     # print("available {}".format(str(available)))
     if no_duplicate:
@@ -1634,7 +1634,7 @@ class Exists(Operator):
                                                           self.func.to_string(self.print_act))
 
     def generalize_encode(self):
-        action = self.input_type(temp=True)
+        _ = self.input_type(temp=True)
         return
 
     def to_DNF(self):
