@@ -1810,6 +1810,9 @@ def clean_up_action(s, assumptions, ACT):
 
 
 def summation_clean_up(s, assumptions):
+    """
+clean up the action that has been disabled
+    """
     if len(Summation.collections) > _SUMObject.threshold:
         _SUMObject.threshold = int(_SUMObject.threshold * _SUMObject.increase_ratio)
         for sum in Summation.collections:

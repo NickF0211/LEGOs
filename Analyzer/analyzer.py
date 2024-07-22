@@ -313,11 +313,11 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     # property and do overapproximation
     s.add_assertion(prop)  # add the property to the solver. is the assertion here like a constraint ?
     # print(serialize(prop))
-    # restart control 11
+    # restart control
 
-    restart_threshold = 10
-    round_without_new_rules = 0
-    eq_assumption = OrderedSet()
+    restart_threshold = 10  # the threshold for restart
+    round_without_new_rules = 0  # initialize to track the number of rounds without new rules
+    eq_assumption = OrderedSet()  # consider the set of equality assumptions
 
     while application_rounds < action_iteration_bound:
         # print(application_rounds)
@@ -333,9 +333,9 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             # we still want to add background rules
             # add_background_theories(ACTION, state_action, rules, add_actions=False)
             round_without_new_rules = 0
-            restart_threshold = int(restart_threshold * 1.5)
+            restart_threshold = int(restart_threshold * 1.5)  # increase the threshold
 
-        while (action_changed(ACTION) or should_calibrate):
+        while action_changed(ACTION) or should_calibrate:
             should_calibrate = False
             snap_shot_all(ACTION)
             encode(property, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
@@ -344,7 +344,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                     # if record_proof:
                     #     proof_writer.add_input_rule(p)
                     temp_res = encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
-                    s.add_assertion(temp_res)
+                    s.add_assertion(temp_res)  # only add the new rules
                     # print(serialize(temp_res))
                 else:
                     encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
@@ -356,7 +356,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         #     print("sus:")
         #     for act in ACt.temp_collection_set:
         #         print(act)
-        new_rules.clear()
+        new_rules.clear()  # have already added the new rules
         # print("end encoding")
 
         # now update the constraints
@@ -366,9 +366,9 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             if c != TRUE():
                 s.add_assertion(c)
 
-        add_forall_defs(s)
-        add_exist_defs(s)
-        add_predicate_constraint(s)
+        add_forall_defs(s)  # add the forall definitions
+        add_exist_defs(s)  # add the exist definitions
+        add_predicate_constraint(s)  # add the predicate constraints
         all_cons = And(get_all_constraint(ACTION, full=False))
         s.add_assertion(all_cons)
         # print(serialize(all_cons))
@@ -380,17 +380,17 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             solved = solver_under_eq_assumption(s, over_vars, eq_assumption)
 
         if solved:
-            save_model = s.get_model()
+            save_model = s.get_model()  # get the model
             # Summation.frontier = new_frontier
             # Summation.collections = new_summation
 
             constraints, vars = get_temp_act_constraints()
             for c in constraints:
-                if c != TRUE():
-                    s.add_assertion(c)
+                if c != TRUE():  # if the constraint is not true
+                    s.add_assertion(c)  # add the constraint
                     # print("add temp constraint {}".format(serialize(c)))
             # s.add_assertion(And(constraints))
-            vars = vars.union(over_vars)
+            vars = vars.union(over_vars)  # add the overapproximation variables
 
             if current_min_solution:
                 solved = True
@@ -399,21 +399,24 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                 solved = solver_under_eq_assumption(s, vars, eq_assumption)
 
             if solved:
-                model = s.get_model()
+                model = s.get_model()  # get the model
                 # print_trace(model, ACTION, state_action, ignore_class=state_action)
                 # check trace
-                res, model = check_trace(model, complete_rules, rules, stop_at_first=True)
+                res, model = check_trace(model, complete_rules, rules, stop_at_first=True)  # check the trace to see
+                # if it is valid
                 if len(res) == 0:
                     if min_solution:
                         model = mini_solve(s, get_all_actions(ACTION), vars=vars, eq_vars=eq_assumption,
-                                           ignore_class=ignore_actions)
+                                           ignore_class=ignore_actions)  # minimize the solution
                         # print("mini-trace")
                     print("find trace")
                     current_best = model
                     vol, _ = print_trace(model, ACTION, state_action, ignore_class=state_action, should_print=False)
-
+                    # diff between mini_solve and get_temp_act_constraint_minimize ? why check the same thing twice ?
                     if min_solution or (out_of_bound_warning and vol > vol_bound):
                         # s.pop()
+                        # if finding the minimum solution or the volume is out of bound,
+                        # try to minimize the solution more
                         model = get_temp_act_constraint_minimize(s, rules, over_vars, eq_assumption,
                                                                  addition_actions=get_all_actions(ACTION),
                                                                  round=application_rounds,
@@ -422,13 +425,13 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                         new_vol, _ = print_trace(model, ACTION, state_action, should_print=False,
                                                  ignore_class=state_action, check_sum=True)
                         print(new_vol, vol)
-                        if new_vol > vol_bound:
+                        if new_vol > vol_bound:  # if the new volume is out of bound
                             print("Bounded UNSAT")
                             return 2
                         if new_vol >= vol:
                             if not opt_sol_check:
                                 opt_sol_check = True
-                            else:
+                            else:  # check if the solution is optimal
                                 _, str_output = print_trace(current_best, ACTION, state_action,
                                                             ignore_class=state_action,
                                                             should_print=True, scaler_mask=scalar_mask)
@@ -439,10 +442,10 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                                     return str_output, current_best
                                 else:
                                     return str_output
-                        else:
+                        else:  # if the new volume is smaller than the previous one
                             print("A better result may exist")
                             current_min_solution = True
-                    else:
+                    else:  # did not have out of bound warning or finding the minimum solution
                         vol, str_output = print_trace(current_best, ACTION, state_action, ignore_class=state_action,
                                                       should_print=True,
                                                       scaler_mask=scalar_mask)
@@ -451,14 +454,14 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                             return str_output, current_best
                         else:
                             return str_output
-                else:
+                else:  # res is not empty
                     # print("need to add more rules")
-                    round_without_new_rules = 0
+                    round_without_new_rules = 0  # will add new rules
                     rules = rules.union(res)
                     new_rules = res
                     should_calibrate = True
                     # s.pop()
-            else:
+            else:  # not solved
                 round_without_new_rules += 1
                 # s.pop()
                 if minimized:
@@ -477,10 +480,10 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                                                                  relax_mode=not current_min_solution,
                                                                  ub=universal_blocking, over_model=save_model)
 
-                    if new_model is None:
+                    if new_model is None:  # trace save model
                         new_volume, _ = print_trace(save_model, ACTION, state_action, should_print=False,
                                                     ignore_class=state_action)
-                    else:
+                    else:  # trace new model
                         new_volume, _ = print_trace(new_model, ACTION, state_action, should_print=False,
                                                     ignore_class=state_action)
                         new_volume += 1
@@ -488,8 +491,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                     # print_trace(new_model, ACTION, state_action, should_print=True, ignore_class=[], solver=s,
                     #             assumption=over_vars)
                     # print("start cleanning")
-                    summation_clean_up(s, over_vars)
-                    for ACT in ACTION:
+                    summation_clean_up(s, over_vars)  # clean up the summation
+                    for ACT in ACTION:  # clean up the action
                         clean_up_action(s, over_vars, ACT)
                     # print("start action merging ")
                     # print("{} assumptions remained".format(len(eq_assumption)))
@@ -497,20 +500,19 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                         model_based_gc(ACTION, new_model, s, eq_assumption, over_vars, strengthen=False,
                                        value_bound_assumption=False)
                     # print("{} assumptions generated".format(len(eq_assumption)))
-                    if new_volume > vol_bound:
-                        if out_of_bound_warning:
+                    if new_volume > vol_bound:  # if the new volume is out of bound
+                        if out_of_bound_warning:  # if already have out of bound warning
                             print("bounded UNSAT")
                             return 2
-                        else:
+                        else:  # if not have out of bound warning
                             # print("entering strict min search mode")
                             out_of_bound_warning = True
-                else:
+                else:  # no need to minimize
                     model = s.get_model()
                     analyzing_temp_act(model)
 
                 # print("need to increase domain")
                 application_rounds += 1
-
 
         else:
             if record_proof:
@@ -519,7 +521,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             print("unsat")
             return 0
     # print(serialize(result))
-    print("reaching limit, bounded unsat")
+    print("reaching limit, bounded unsat")  # if reaching the limit
     return -1
 
 
