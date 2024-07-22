@@ -142,17 +142,17 @@ def _polymorph_args_to_tuple(args, should_tuple=False):
 
 
 def encode(formula, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
-           unsat_mode = False):
-    if isinstance(formula, Operator):
+           unsat_mode=False):
+    if isinstance(formula, Operator):  # goes into different encoding for different operators class
         res = formula.encode(assumption=assumption, include_new_act=include_new_act, exception=exception,
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
-        if formula.subs is not None:
+        if formula.subs is not None:  # what does subs provide?
             for target, src in formula.subs.items():
                 res = target.sym_subs(src, encode(res, assumption=assumption, include_new_act=include_new_act,
                                                   exception=exception, disable=disable, proof_writer=proof_writer,
                                                   unsat_mode=unsat_mode))
         return res
-    else:
+    else:  # base case of the recursion
         if proof_writer:
             proof_writer.add_definition(formula, derived=False)
         return formula
@@ -359,7 +359,8 @@ class Operator():
         self.proof_lit = None
         self.proof_derived = False
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         return
 
     def invert(self):
@@ -456,7 +457,8 @@ class C_NOT(Operator):
         self.op = None
         clear(self.arg)
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
 
         if self.polarity:
             result = encode(invert(self.arg), assumption=assumption, include_new_act=include_new_act,
@@ -603,7 +605,8 @@ class Bool_Terminal(Operator):
         super().clear()
         self.op = None
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         if proof_writer:
             proof_writer.add_definition(self.value, derived=False, terminal_obj=self)
         return self.value
@@ -633,7 +636,8 @@ class Arth_Expression(Arth_Operator):
         self.pos = pos
         self.neg = neg
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         left_result = encode(self.left, assumption=assumption, include_new_act=include_new_act, exception=exception,
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
         right_result = encode(self.right, assumption=assumption, include_new_act=include_new_act, exception=exception,
@@ -682,7 +686,8 @@ class Compare_Binary_Expression(Operator):
             propagate_polarity(self.left, True, True)
             propagate_polarity(self.right, True, True)
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         left_result = encode(self.left, assumption=assumption, include_new_act=include_new_act, exception=exception,
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
         right_result = encode(self.right, assumption=assumption, include_new_act=include_new_act, exception=exception,
@@ -745,7 +750,8 @@ class C_AND(Operator):
         for arg in self.arg_list:
             clear(arg)
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         result_list = []
         for arg in self.arg_list:
             result_list.append(encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
@@ -836,7 +842,8 @@ class C_OR(Operator):
         for arg in self.arg_list:
             clear(arg)
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         result_list = []
         for arg in self.arg_list:
             result_list.append(encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
@@ -1333,7 +1340,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     # print("filtered unsuccessful")
 
     _, available, model = maxsat(solver, soft_constraints, round, name_space, relax_mode=False, background=vars,
-                                    eq_vars=eq_vars)
+                                 eq_vars=eq_vars)
     # print("available {}".format(str(available)))
     if no_duplicate:
         new_cost, new_available, new_name_space, new_model = no_duplicate_filter(available, name_space, solver,
@@ -1560,29 +1567,38 @@ class Exists(Operator):
 
         return action
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
 
         if not include_new_act:
             if self.act_include is not None:
                 action = self.act_include
-            else:
+            else:  # no new act and no act include
                 if self.act_non_include is None:
                     self.act_non_include = self.input_type(temp=True, input_subs=self.input_subs)
                 action = self.act_non_include
-        else:
-            if self.act_include is None:
+        else:  # include new action
+            if self.act_include is None:  # include new action and not yet instantiated
                 self.act_include = self.input_type(temp=False, input_subs=self.input_subs)
             action = self.act_include
 
+        ############################################################
+        # former part is for the action selection
+        ############################################################
+
         eval_result = self.func.evaulate(action, assumption=assumption)
-        if self.reference:
+        if self.reference:  # what does reference mean?
             presence = Bool_Terminal(action.presence)
-            text_ref[presence] = self.reference
+            text_ref[presence] = self.reference  # connect the reference to the presence
         else:
             presence = action.presence
 
+        ############################################################
+        # former part is for the action evaluation and presence
+        ############################################################
+
         application_res = AND(presence, eval_result)
-        if not self.exclusive_reg and unsat_mode:
+        if not self.exclusive_reg and unsat_mode:  # what is exclusive_reg?
             Exists.pending_defs.add(Implication(Not(self.var), NOT(presence)))
             self.exclusive_reg = True
 
@@ -1631,7 +1647,7 @@ class Exists(Operator):
 
     def to_string(self):
         return "(exists {} {} {})".format(self.print_act.print_name, self.input_type.action_name,
-                                                          self.func.to_string(self.print_act))
+                                          self.func.to_string(self.print_act))
 
     def generalize_encode(self):
         _ = self.input_type(temp=True)
@@ -1652,6 +1668,7 @@ def add_forall_defs(solver):
         solver.add_assertion(constraint)
     Forall.pending_defs.clear()
 
+
 def add_exist_defs(solver):
     for constraint in Exists.pending_defs:
         # print("add pending_ {}".format(serialize(constraint)))
@@ -1665,7 +1682,8 @@ class C_Summation(Arth_Operator):
         self.arg_list = _polymorph_args_to_tuple(args)
         self.op = None
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         starting = Int(0)
         for arg in self.arg_list:
             starting += (encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
@@ -1905,7 +1923,7 @@ class _SUMObject(Action):
             type(self).temp_collection_set.remove(self)
 
     def under_encode(self, assumption=False, include_new_act=False, exception=None, disable=None,
-                     include_considered=False, unsat_mode= False):
+                     include_considered=False, unsat_mode=False):
         consider_exception = not exception is None
         starting = Int(0)
         under_starting = Int(0)  # the under apprix
@@ -2123,7 +2141,8 @@ class Summation(Arth_Operator):
                 # print("add assertion add_inv {}".format(serialize(Implies(Not(self.parent_info.presence), Not(self.get_action().presence)))))
             # solver.add_assertion(Implies(Not(self.get_action().presence), EQ(self.get_action().value, self.under_value)))
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         if not include_new_act:
             if self.act_include is not None:
                 action = self.act_include
@@ -2296,7 +2315,8 @@ class Forall(Operator):
         self.rid = None
         self.consider_op = False
 
-    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
         constraint = []
         # base construction
         consider_exception = not exception is None
@@ -2372,7 +2392,7 @@ class Forall(Operator):
 
     def to_string(self):
         return "(forall {} {} {})".format(self.print_act.print_name, self.input_type.action_name,
-                                                             self.func.to_string(self.print_act))
+                                          self.func.to_string(self.print_act))
         # return "(forall {} {} ( {}_presence <-> {}))".format(self.print_act.print_name, self.input_type.action_name,
         #                                                        self.print_act.print_name,
         #                                                        self.func.to_string(self.print_act))
