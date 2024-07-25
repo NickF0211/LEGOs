@@ -156,10 +156,10 @@ def action_changed(ACTION):
 
 def check_trace(model, complete_rules, rules, stop_at_first=True, axioms=None):
     solver = Solver(name="z3", random_seed=43)
-    if axioms:
+    if axioms:  # presumed rules?
         solver.add_assertion(axioms)
     # assert(len(Forall.pending_defs) == 0)
-    parital_model = [EqualsOrIff(k, v) for k, v in model]
+    parital_model = [EqualsOrIff(k, v) for k, v in model]  # what is parital_model ?
     solver.add_assertion(And(parital_model))
     result = OrderedSet()
     called = False
@@ -270,6 +270,10 @@ def prove_by_induction(property, rules, complete_rules, ACTION, state_action, mi
 import random
 
 
+# ACTION is classes
+# rules: consider for now
+# new_rules: consider later
+
 def check_property_refining(property, rules, complete_rules, ACTION, state_action, minimized=True, vol_bound=500,
                             disable_minimization=False, min_solution=False, final_min_solution=False,
                             boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
@@ -295,10 +299,11 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
     if ignore_state_action:
         ignore_actions = state_action  # special funcs ? what kind of funcs are these ?
+        #  Actions do not want take account of e.g. timepoint
     else:
         ignore_actions = None
 
-    if boundary_case:
+    if boundary_case:  # for optimization
         inductive_assumption_table = dict()  # a dictionary that stores the inductive assumptions. for boundary cases ?
     else:
         inductive_assumption_table = None
@@ -315,7 +320,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     # print(serialize(prop))
     # restart control
 
-    restart_threshold = 10  # the threshold for restart
+    restart_threshold = 10  # the threshold for restart for optimization
     round_without_new_rules = 0  # initialize to track the number of rounds without new rules
     eq_assumption = OrderedSet()  # consider the set of equality assumptions
 
@@ -335,7 +340,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             round_without_new_rules = 0
             restart_threshold = int(restart_threshold * 1.5)  # increase the threshold
 
-        while action_changed(ACTION) or should_calibrate:
+        while action_changed(ACTION) or should_calibrate:  # optimization speed up domain expansion immediately
+            # expand on specific constraints
             should_calibrate = False
             snap_shot_all(ACTION)
             encode(property, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
@@ -361,7 +367,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
         # now update the constraints
         update_underapprox(s)
-        over_constraints, over_vars = update_overapprox()
+        over_constraints, over_vars = update_overapprox()  # ignore for now
         for c in over_constraints:
             if c != TRUE():
                 s.add_assertion(c)
@@ -373,13 +379,13 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         s.add_assertion(all_cons)
         # print(serialize(all_cons))
 
-        if current_min_solution:
+        if current_min_solution:  # smaller solution, set to true if already find sol
             solved = True
         else:
             # solved = s.solve(over_vars.union(eq_assumption))
             solved = solver_under_eq_assumption(s, over_vars, eq_assumption)
 
-        if solved:
+        if solved:  # over approx is sat
             save_model = s.get_model()  # get the model
             # Summation.frontier = new_frontier
             # Summation.collections = new_summation
@@ -392,31 +398,34 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             # s.add_assertion(And(constraints))
             vars = vars.union(over_vars)  # add the overapproximation variables
 
-            if current_min_solution:
-                solved = True
+            if current_min_solution:  # know over and under sat
+                solved = True  # under is sat
             else:
                 # solved = s.solve(vars)
-                solved = solver_under_eq_assumption(s, vars, eq_assumption)
+                solved = solver_under_eq_assumption(s, vars, eq_assumption)  # under
 
-            if solved:
+            if solved:  # under is sat
                 model = s.get_model()  # get the model
                 # print_trace(model, ACTION, state_action, ignore_class=state_action)
                 # check trace
                 res, model = check_trace(model, complete_rules, rules, stop_at_first=True)  # check the trace to see
                 # if it is valid
-                if len(res) == 0:
-                    if min_solution:
+                if len(res) == 0:  # num of rules in complete rules(whole) been falsified
+                    if min_solution:  # want to minimize solution
                         model = mini_solve(s, get_all_actions(ACTION), vars=vars, eq_vars=eq_assumption,
-                                           ignore_class=ignore_actions)  # minimize the solution
+                                           ignore_class=ignore_actions)  # try t0 minimize the solution with cur domain
                         # print("mini-trace")
-                    print("find trace")
+                    print("find trace")  # we found trace ( solution )
                     current_best = model
                     vol, _ = print_trace(model, ACTION, state_action, ignore_class=state_action, should_print=False)
                     # diff between mini_solve and get_temp_act_constraint_minimize ? why check the same thing twice ?
                     if min_solution or (out_of_bound_warning and vol > vol_bound):
+                        # vol > volbound : max of vol sol have been reached
                         # s.pop()
                         # if finding the minimum solution or the volume is out of bound,
                         # try to minimize the solution more
+
+                        # try to minimize the solution more , over approx with minimum sol
                         model = get_temp_act_constraint_minimize(s, rules, over_vars, eq_assumption,
                                                                  addition_actions=get_all_actions(ACTION),
                                                                  round=application_rounds,
@@ -428,8 +437,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                         if new_vol > vol_bound:  # if the new volume is out of bound
                             print("Bounded UNSAT")
                             return 2
-                        if new_vol >= vol:
-                            if not opt_sol_check:
+                        if new_vol >= vol:  # want the minimization one, vol is under bound but not enough
+                            if not opt_sol_check:  # ignore for now
                                 opt_sol_check = True
                             else:  # check if the solution is optimal
                                 _, str_output = print_trace(current_best, ACTION, state_action,
@@ -454,9 +463,9 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                             return str_output, current_best
                         else:
                             return str_output
-                else:  # res is not empty
+                else:  # res is not empty still not sat
                     # print("need to add more rules")
-                    round_without_new_rules = 0  # will add new rules
+                    round_without_new_rules = 0  # will add new rules that falsified the cur domain
                     rules = rules.union(res)
                     new_rules = res
                     should_calibrate = True
@@ -464,13 +473,13 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             else:  # not solved
                 round_without_new_rules += 1
                 # s.pop()
-                if minimized:
+                if minimized:  # not imprtant but more performance
                     # print("start minimizing")
-                    if out_of_bound_warning:
-                        addition_actions = get_all_actions(ACTION)
-                    else:
+                    if out_of_bound_warning:  # A* search
+                        addition_actions = get_all_actions(ACTION)  # get all obejects for the spe act
+                    else:  # gbfs
                         addition_actions = None
-
+                    # expand the domain, considering mim sol( either expand domain A*, also minimizing domain expansion)
                     new_model = get_temp_act_constraint_minimize(s, complete_rules, over_vars, eq_assumption,
                                                                  addition_actions=addition_actions,
                                                                  round=application_rounds,
@@ -491,14 +500,14 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                     # print_trace(new_model, ACTION, state_action, should_print=True, ignore_class=[], solver=s,
                     #             assumption=over_vars)
                     # print("start cleanning")
-                    summation_clean_up(s, over_vars)  # clean up the summation
+                    summation_clean_up(s, over_vars)  # clean up the summation  # dont worry
                     for ACT in ACTION:  # clean up the action
-                        clean_up_action(s, over_vars, ACT)
+                        clean_up_action(s, over_vars, ACT)  # dont worry
                     # print("start action merging ")
                     # print("{} assumptions remained".format(len(eq_assumption)))
                     if new_model:
                         model_based_gc(ACTION, new_model, s, eq_assumption, over_vars, strengthen=False,
-                                       value_bound_assumption=False)
+                                       value_bound_assumption=False)  # dont worry
                     # print("{} assumptions generated".format(len(eq_assumption)))
                     if new_volume > vol_bound:  # if the new volume is out of bound
                         if out_of_bound_warning:  # if already have out of bound warning
@@ -507,7 +516,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                         else:  # if not have out of bound warning
                             # print("entering strict min search mode")
                             out_of_bound_warning = True
-                else:  # no need to minimize
+                else:  # get the sol in over approx
                     model = s.get_model()
                     analyzing_temp_act(model)
 
@@ -515,7 +524,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                 application_rounds += 1
 
         else:
-            if record_proof:
+            if record_proof:  # dont worry
                 proof_writer.derive_unsat(considered_constraint)
             print("domain size {}".format(str(len(get_all_actions(ACTION)))))
             print("unsat")

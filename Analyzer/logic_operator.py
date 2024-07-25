@@ -153,7 +153,7 @@ def encode(formula, assumption=False, include_new_act=False, exception=None, dis
                                                   unsat_mode=unsat_mode))
         return res
     else:  # base case of the recursion
-        if proof_writer:
+        if proof_writer:  # what is proof writer here?. what does add_def mean?
             proof_writer.add_definition(formula, derived=False)
         return formula
 
@@ -1194,27 +1194,30 @@ def has_shadow(lit, solver):
         return shadow_lit
 
 
+# domain expansion
 def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_assumption_table=None,
                                      addition_actions=None, round=-1, disable_minimization=False, ignore_class=None,
                                      relax_mode=True, ub=False, over_model=None):
     should_block = True
-    # short cut
-    if (relax_mode or (not addition_actions) or disable_minimization):
+    # shortcut
+    if relax_mode or (not addition_actions) or disable_minimization:
+        # what does relax_mode do?
         if len(Exists.Temp_ACTs) == 1:
             unqiue_act = []
             for act in Exists.Temp_ACTs:
                 exist_obj = Exists.Temp_ACTs.get(act)
                 unqiue_act.append((act, exist_obj))
-            include_new_actions(unqiue_act, rules, should_block, inductive_assumption_table)
+            include_new_actions(unqiue_act, rules, should_block, inductive_assumption_table)  # here new actions means
+            # class or objects?
             return
 
-        # we can also go through the the ones in over_model
+        # we can also go through the ones in over_model
         extension = []
         for act in Exists.Temp_ACTs:
             exist_obj = Exists.Temp_ACTs.get(act)
-            if over_model[act.presence] == TRUE():
+            if over_model[act.presence] == TRUE():  # what is over_model?
                 extension.append((act, exist_obj))
-                if len(extension) > 1:
+                if len(extension) > 1:  # why we need to break when we have more than one extension?
                     break
 
         if len(extension) <= 1:
@@ -1223,17 +1226,17 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
 
     intermediate = OrderedSet()
     name_space = {}
-    if addition_actions is None:
+    if addition_actions is None:  # what does addition action mean? does it contain duplicate?
         addition_actions = []
 
     no_duplicate = len(addition_actions) > 0
     temp_actions = list(Exists.Temp_ACTs)
-    soft_constraints = OrderedSet()
+    soft_constraints = OrderedSet()  # allow to falsify ( but still consider ) but less is better
     ignored_actions = OrderedSet()
     action_by_type = {}
     # these are actions in the domain
     for act in addition_actions:
-        if isinstance(act, _SUMObject):
+        if isinstance(act, _SUMObject):  # what is _SUMObject?
             continue
         if act.disabled():
             continue
@@ -1243,16 +1246,18 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
             continue
 
         act_type = type(act)
-        previous_act = action_by_type.get(act_type, [])
+        previous_act = action_by_type.get(act_type, [])  # same type of actions
         # if this action has not yet been previously constrained for minimization
-        if not act.min_var:
-            if act.under_encoded >= 0:
+        if not act.min_var:  # add constraint for doing minimization
+            if act.under_encoded >= 0:  # if this action has under_encoded,
+                # then we need to consider the previous actions
                 choice = []
                 assert act.under_encoded <= len(previous_act)
                 for more_act in previous_act[act.under_encoded:]:
-                    choice.append(act.build_eq_constraint(more_act))
+                    choice.append(act.build_eq_constraint(more_act))  # build the constraint for minimization since
+                    # there is same type of actions
                 act.min_var = FreshSymbol(template="MINFV%d")
-                if act.under_var:
+                if act.under_var:  # what is under_var?
                     constraint = Implies(act.min_var, Or(act.under_var, Implies(act.presence, Or(choice))))
                 else:
                     constraint = Implies(act.min_var, Implies(act.presence, Or(choice)))
@@ -1263,26 +1268,26 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
                 act.min_var = FreshSymbol(template="MINFV%d")
                 constraint = Implies(act.min_var, Or(choice))
             solver.add_assertion(constraint)
-        soft_constraints.add(act.min_var)
+        soft_constraints.add(act.min_var)  # for the minimization
         intermediate.add(act)
         name_space[act.min_var] = act
         previous_act.append(act)
         action_by_type[act_type] = previous_act
 
     prev_act = dict()
-    for act in temp_actions:
+    for act in temp_actions:  # what is temp actions? diff from addition actions?
         if act.disabled():
-            continue
+            continue  # skip the disabled actions
         if ignore_class is not None and type(act) in ignore_class:
             ignored_actions.add(act)
-            continue
+            continue  # skip the actions that are in the ignore class
         # update round info
         if not no_duplicate:
             if round >= 0:
                 old_round = minimize_memory.get(act, -1)
                 if old_round < 0:
                     minimize_memory[act] = round
-        if act.under_var:
+        if act.under_var:  # indicate that this action has been constrained before
             # only consider temp act that has been constrained before
             # other act are introduced from trace checking, they should not be considered at all
             # if addition_actions and isinstance(act, _SUMObject):
@@ -1294,33 +1299,37 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
 
     # filtering phase
     filtering_threshold = 5
-    filtered_soft_constraints = OrderedSet()
+    filtered_soft_constraints = OrderedSet()  # tp store the filtered soft constraints
     # print("Solver start printing")
     # for clause in solver.assertions:
     #     print(serialize(clause))
     # print("Solver end printing")
     # print("try to get assumption")
-    i_core = [f for f in get_assumption_core(solver) if f in soft_constraints]
+    i_core = [f for f in get_assumption_core(solver) if f in soft_constraints]  # important assumption
+    # that have not been satisfied
     # print("i _Core {}".format(str(i_core)))
     if len(i_core) == 1:
         act = name_space[i_core[0]]
         unqiue_act = []
-        exist_obj = Exists.Temp_ACTs.get(act)
+        exist_obj = Exists.Temp_ACTs.get(act)  # are these newly created objects for eliminating
+        # existentially quantified variables?
         unqiue_act.append((act, exist_obj))
         include_new_actions(unqiue_act, rules, should_block, inductive_assumption_table)
         return
 
-    if round >= 0 and relax_mode and not no_duplicate:
-        for act in intermediate:
+    if round >= 0 and relax_mode and not no_duplicate:  # what does relax mode mean here?
+        for act in intermediate:  # what does intermediate mean here?
             if minimize_memory.get(act, -1) >= round - filtering_threshold:
                 filtered_soft_constraints.add(act.under_var)
 
         # print("diff {} {}".format(len(soft_constraints), len(filtered_soft_constraints)))
         cost, available, model = maxsat(solver, filtered_soft_constraints, round, name_space, relax_mode=False,
-                                        background=vars, eq_vars=eq_vars)
+                                        background=vars, eq_vars=eq_vars)  # to decide the subset of constraints
+        # that can be satisfied maximally, define which constraints are most important
         unqiue_act = []
         available_ignored_act = coordinate_ignored_actions(ignored_actions, model)
-        if len(available) + len(available_ignored_act) >= 1:
+        if len(available) + len(available_ignored_act) >= 1:  # there is available action or ignored action
+            # that are now considered valid due to the relax mode
             # print("filtered successful")
             for node in available:
                 act = name_space[node]
@@ -1339,13 +1348,16 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
             return model
     # print("filtered unsuccessful")
 
+    # what does the round mean here? why it matters?
+
     _, available, model = maxsat(solver, soft_constraints, round, name_space, relax_mode=False, background=vars,
-                                 eq_vars=eq_vars)
+                                 eq_vars=eq_vars)  # what does maxsat do here?
     # print("available {}".format(str(available)))
     if no_duplicate:
         new_cost, new_available, new_name_space, new_model = no_duplicate_filter(available, name_space, solver,
                                                                                  soft_constraints, vars, eq_vars, round)
-        if new_name_space:
+        # prevent the duplicate actions
+        if new_name_space:  # updated to reflect the filtered results
             available = new_available
             name_space = new_name_space
             model = new_model
@@ -1578,7 +1590,7 @@ class Exists(Operator):
                     self.act_non_include = self.input_type(temp=True, input_subs=self.input_subs)
                 action = self.act_non_include
         else:  # include new action
-            if self.act_include is None:  # include new action and not yet instantiated
+            if self.act_include is None:  # include new action and not yet instantiated?
                 self.act_include = self.input_type(temp=False, input_subs=self.input_subs)
             action = self.act_include
 
@@ -1597,7 +1609,7 @@ class Exists(Operator):
         # former part is for the action evaluation and presence
         ############################################################
 
-        application_res = AND(presence, eval_result)
+        application_res = AND(presence, eval_result)  # what is presence and eval_res?
         if not self.exclusive_reg and unsat_mode:  # what is exclusive_reg?
             Exists.pending_defs.add(Implication(Not(self.var), NOT(presence)))
             self.exclusive_reg = True
@@ -1617,10 +1629,10 @@ class Exists(Operator):
             Exists.new_included.add(action)
 
         elif not include_new_act and action == self.act_non_include and action != self.act_include:
-            if disable:
+            if disable:  # what does disable mean?
                 constraints = []
                 if isinstance(action, _SUMObject):
-                    constraints.append(Not(action.presence))
+                    constraints.append(Not(action.presence))  # presence?
                 choice_list = []
                 act_type = type(action)
                 for t_action in act_type.collect_list:
@@ -2230,16 +2242,16 @@ def reset_underapprox(solver):
 
 
 def update_underapprox(solver):
-    Summation.under_initialized = True
-    Summation.current_under.clear()
+    Summation.under_initialized = True  # what is class Summation? Is it like a domain? Or collection of constraints?
+    Summation.current_under.clear()  # why clear here?
     new_frontier = []
     # print("frontier:  {}".format(str(Summation.frontier)))
-    for summation in Summation.frontier:
-        if summation.has_action():
-            summation.add_inv(solver)
+    for summation in Summation.frontier:  # frontier is a list of summation objects
+        if summation.has_action():  # has class
+            summation.add_inv(solver)  # add invariants
             action = summation.get_action()
-            under, over = summation.update_under()
-            if action.child_sum:
+            under, over = summation.update_under()  # update under and over approximation
+            if action.child_sum:  # if there is a child sum. what is child sum?
                 child_sum, child_action = action.child_sum
                 solver.add_assertion(over)
                 # print("update assertion  {}".format(serialize(over)))
@@ -2252,6 +2264,11 @@ def update_underapprox(solver):
                 solver.add_assertion(Implies(Not(action.presence), Not(child_sum.get_action().presence)))
                 solver.add_assertion(Implies(Not(child_action.presence), Not(child_sum.get_action().presence)))
                 solver.add_assertion(IFF(action.presence, child_action.presence))
+
+                ############################################################
+                # former part is for the child sum. Question: what is child sum? what is presence meaning?
+                # how it connects to the under approx where we check if newly added objects are in the domain?
+                ############################################################
             if not action.child_sum:
                 solver.add_assertion(under)
                 # print("update assertion  {}".format(serialize(under)))
@@ -2325,7 +2342,7 @@ class Forall(Operator):
             op = self.invert()
             op_constraint = op.get_holding_obj(assumption=False, include_new_act=False, exception=None, disable=None,
                                                proof_writer=None)
-            if not self.consider_op:
+            if not self.consider_op:  # what is consider_op ?
                 forall_exists_link = IFF(self.var, Not(op_constraint.presence))
                 Forall.pending_defs.add(forall_exists_link)
                 self.consider_op = True
@@ -2334,10 +2351,10 @@ class Forall(Operator):
                     proof_writer.add_forall_exist_link(self, Not(op_constraint.presence))
 
         for action in self.input_type.snap_shot:
-            if not action.disabled() and ((not consider_exception) or (not action in exception)):
+            if not action.disabled() and (not consider_exception or not action in exception):
                 eval_func = self.func.evaulate(action)
-                if self.reference:
-                    presence = Bool_Terminal(action.presence)
+                if self.reference:  # what is reference?
+                    presence = Bool_Terminal(action.presence)  # bool terminal ?
                     text_ref[presence] = self.reference
                 else:
                     presence = action.presence
@@ -2346,7 +2363,7 @@ class Forall(Operator):
                 # if unsat_mode:
                 #     child_res = Implication(presence, eval_func)
                 # else:
-                child_res = Implication(presence, eval_func)
+                child_res = Implication(presence, eval_func)  # what is child res?
                 if not disable and proof_writer and action not in self.considered:
                     proof_writer.derive_forall_rule(self, action, child_res)
 
@@ -2360,7 +2377,7 @@ class Forall(Operator):
                 #                          disable=disable, proof_writer=proof_writer)
 
                 if not disable:
-                    if action not in self.considered:
+                    if action not in self.considered:  # what is considered?
                         Forall.pending_defs.add(Implication(self.var, base_constraint))
                         self.considered.add(action)
                     else:
@@ -2374,7 +2391,7 @@ class Forall(Operator):
         else:
             return And(constraint)
 
-    def invert(self):
+    def invert(self):  # what is invert
         if self.op is None:
             self.op = Exists(self.input_type, invert(self.func), reference=self.reference)
             self.op.op = self
@@ -2404,6 +2421,68 @@ class Forall(Operator):
         if not self.print_statement:
             self.print_statement = self.func.evaulate(self.print_act)
         return self.print_statement
+
+
+def adder(*args):
+    """
+    do xor(arg1, xor(arg2, arg3)) with class ADDER
+    """
+    if len(args) != 3:
+        raise ValueError("ADDER must have exactly three arguments.")
+    c_args = _polymorph_args_to_tuple(args)
+    static_arg = frozenset(c_args)
+    if static_arg in ADDER.cache:
+        return ADDER.cache[static_arg]
+    return ADDER(*c_args)
+
+
+class ADDER(Operator):
+    """
+    ADDER
+    """
+    cache = {}
+
+    def __init__(self, *args):
+        super().__init__()
+        self.arg_list = _polymorph_args_to_tuple(args)
+        self.op = None
+        ADDER.cache[frozenset(self.arg_list)] = self
+
+    def clear(self):
+        super(ADDER, self).clear()
+        self.op = None
+        for arg in self.arg_list:
+            clear(arg)
+
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
+        result_list = []
+        for arg in self.arg_list:
+            result_list.append(encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
+                                      disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode))
+
+        if proof_writer and not self.proof_derived:
+            proof_writer.add_and(self)
+            self.proof_derived = True
+
+        return Xor(result_list[0], Xor(result_list[1], result_list[2]))
+
+    def invert(self):
+        if self.op is None:
+            arg_list = [invert(arg) for arg in self.arg_list]
+            self.op = ADDER(
+                *arg_list)  # Since ADDER is a XOR gate, inverting all inputs and outputs gives same behavior
+        return self.op
+
+    def to_string(self):
+        result_list = [to_string(arg) for arg in self.arg_list]
+        return "ADDER({})".format(', '.join(result_list))
+
+    def __repr__(self):
+        return "ADDER({})".format(', '.join([repr(arg) for arg in self.arg_list]))
+
+    def __hash__(self):
+        return hash(frozenset(self.arg_list))
 
 
 def create_control_variable(arg):
