@@ -2,7 +2,7 @@ from pysmt.shortcuts import *
 from pysmt.typing import BOOL, INT
 import re
 
-from s_expression_ult import s_parse, match, s_ge, NNF_check
+from Analyzer.s_expression_ult import s_parse, match, s_ge, NNF_check
 
 UNSAT = -1
 AXIOM = []

@@ -1,7 +1,7 @@
 from ordered_set import OrderedSet
 from pysmt.shortcuts import *
 
-from type_constructor import Action, UnionAction
+from Analyzer.type_constructor import Action, UnionAction
 
 import itertools
 
@@ -143,6 +143,9 @@ def _polymorph_args_to_tuple(args, should_tuple=False):
 
 def encode(formula, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
            unsat_mode=False):
+    """
+    over-approximation
+    """
     if isinstance(formula, Operator):  # goes into different encoding for different operators class
         res = formula.encode(assumption=assumption, include_new_act=include_new_act, exception=exception,
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
@@ -1198,6 +1201,9 @@ def has_shadow(lit, solver):
 def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_assumption_table=None,
                                      addition_actions=None, round=-1, disable_minimization=False, ignore_class=None,
                                      relax_mode=True, ub=False, over_model=None):
+    """
+    domain expansion
+    """
     should_block = True
     # shortcut
     if relax_mode or (not addition_actions) or disable_minimization:
@@ -2242,6 +2248,9 @@ def reset_underapprox(solver):
 
 
 def update_underapprox(solver):
+    """
+    add under approximation
+    """
     Summation.under_initialized = True  # what is class Summation? Is it like a domain? Or collection of constraints?
     Summation.current_under.clear()  # why clear here?
     new_frontier = []
@@ -2465,6 +2474,9 @@ class ADDER(Operator):
             proof_writer.add_and(self)
             self.proof_derived = True
 
+        # deal with the case when elements in the list are not boolean how to deal with not boolean type ?
+        # result_list = [self.to_boolean(arg) for arg in result_list]
+
         return Xor(result_list[0], Xor(result_list[1], result_list[2]))
 
     def invert(self):
@@ -2483,6 +2495,24 @@ class ADDER(Operator):
 
     def __hash__(self):
         return hash(frozenset(self.arg_list))
+
+    def to_boolean(self, value):
+        if isinstance(value, bool):
+            return value
+        elif isinstance(value, (int, float)):
+            return value != 0  # non-zero numbers are True, zero is False
+        elif isinstance(value, str):
+            return value.lower() not in ['false', '0', '', 'none', 'null']  # treating some string values as False
+        elif isinstance(value, list):
+            return len(value) > 0  # non-empty lists are True
+        elif value is None:
+            return False
+        else:
+            try:
+                # Try evaluating the truthiness of more complex objects
+                return bool(value)
+            except Exception as e:
+                raise ValueError("Unsupported type for boolean conversion: {}".format(type(value))) from e
 
 
 def create_control_variable(arg):

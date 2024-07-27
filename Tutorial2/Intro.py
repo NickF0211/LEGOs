@@ -1,13 +1,24 @@
-'''
+"""
 In this very first tutorial, we will illustrate for to use the python interface to:
 1. encode FOL* constraint (focus)
 2. call LEGOS to solve constraint satisfiability
 3. Check and trim the proof of UNSAT returned by LEGOS
-'''
+"""
 
 # input the interface
 import sys
 from os.path import dirname, join
+
+from pysmt.shortcuts import Int, TRUE
+
+from Analyzer.proof_reader import check_and_minimize
+from Analyzer.shortcut import AND, Constraints, EQ, Implication, NEQ, OR, add_constraint, clear, create_action, \
+    create_type, \
+    exists, \
+    exists_first, forall, \
+    solve, \
+    ADDER
+
 sys.path.append(join(dirname(dirname(__file__)), "Analyzer"))
 from shortcut import *
 

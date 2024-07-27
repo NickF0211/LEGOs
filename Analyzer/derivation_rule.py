@@ -1,7 +1,7 @@
 from pysmt.fnode import FNode
 from pysmt.shortcuts import get_free_variables, get_type, serialize, And
 
-from logic_operator import to_string, C_NOT, invert, C_AND, Operator, C_OR, text_ref, Bool_Terminal
+from Analyzer.logic_operator import to_string, C_NOT, invert, C_AND, Operator, C_OR, text_ref, Bool_Terminal
 
 
 def reset():

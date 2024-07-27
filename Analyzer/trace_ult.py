@@ -1,6 +1,6 @@
 from ordered_set import OrderedSet
 
-from logic_operator import _SUMObject, exist, EQ, forall, Implication, OR
+from Analyzer.logic_operator import _SUMObject, exist, EQ, forall, Implication, OR
 def multisort(xs, specs):
     for key, reverse in reversed(specs):
         xs.sort(key=key, reverse=reverse)

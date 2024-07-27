@@ -1,8 +1,9 @@
 from pysmt.typing import INT, BOOL
-import type_constructor
-import logic_operator
-import analyzer
-from proof_reader import check_and_minimize
+import Analyzer.type_constructor
+import Analyzer.logic_operator
+import Analyzer.analyzer
+from Analyzer import analyzer, logic_operator, type_constructor
+from Analyzer.proof_reader import check_and_minimize
 from pysmt.shortcuts import Int, Real, Bool, Symbol, TRUE, FALSE, FreshSymbol
 
 type_dict = {}
@@ -42,6 +43,7 @@ GT = logic_operator.GT
 LT = logic_operator.LT
 GE = logic_operator.GE
 LE = logic_operator.LE
+ADDER = logic_operator.ADDER
 
 
 def add_constraint(constraint):

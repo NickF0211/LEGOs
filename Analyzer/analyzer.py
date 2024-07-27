@@ -1,8 +1,8 @@
-from logic_operator import *
-from type_constructor import snap_shot
-from trace_ult import print_trace
+from Analyzer.logic_operator import *
+from Analyzer.type_constructor import snap_shot
+from Analyzer.trace_ult import print_trace
 import copy
-from derivation_rule import Proof_Writer
+from Analyzer.derivation_rule import Proof_Writer
 
 '''
 Check the validity of a trace implied by the model from
@@ -155,6 +155,9 @@ def action_changed(ACTION):
 
 
 def check_trace(model, complete_rules, rules, stop_at_first=True, axioms=None):
+    """
+    check sat sol and refine rules ( constraint expansion )
+    """
     solver = Solver(name="z3", random_seed=43)
     if axioms:  # presumed rules?
         solver.add_assertion(axioms)
@@ -278,6 +281,9 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                             disable_minimization=False, min_solution=False, final_min_solution=False,
                             boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
                             axioms=None, record_proof=False, ret_model=False, scalar_mask=None, unsat_mode=False):
+    """
+    main function to solve the formula
+    """
     # print the configuration setting
     print("solving under config: restart {}, bcr {}, ub {}, min {}".format(restart, boundary_case, universal_blocking,
                                                                            min_solution))
