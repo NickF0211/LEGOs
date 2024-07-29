@@ -149,14 +149,14 @@ def encode(formula, assumption=False, include_new_act=False, exception=None, dis
     if isinstance(formula, Operator):  # goes into different encoding for different operators class
         res = formula.encode(assumption=assumption, include_new_act=include_new_act, exception=exception,
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
-        if formula.subs is not None:  # what does subs provide?
+        if formula.subs is not None:  # what does subs provide? not used for now substitution mostly not active
             for target, src in formula.subs.items():
                 res = target.sym_subs(src, encode(res, assumption=assumption, include_new_act=include_new_act,
                                                   exception=exception, disable=disable, proof_writer=proof_writer,
                                                   unsat_mode=unsat_mode))
         return res
     else:  # base case of the recursion
-        if proof_writer:  # what is proof writer here?. what does add_def mean?
+        if proof_writer:  # no worry
             proof_writer.add_definition(formula, derived=False)
         return formula
 
@@ -1206,31 +1206,37 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     """
     should_block = True
     # shortcut
+
+    ############################################################
+    # if not care min domain expand == relax_mode
+    ############################################################
     if relax_mode or (not addition_actions) or disable_minimization:
-        # what does relax_mode do?
-        if len(Exists.Temp_ACTs) == 1:
+        # what does relax_mode do? in relax mode we do not care minimum domain expansion
+        if len(Exists.Temp_ACTs) == 1:  # collection of objects instantiated through all this round over approx
             unqiue_act = []
             for act in Exists.Temp_ACTs:
-                exist_obj = Exists.Temp_ACTs.get(act)
+                exist_obj = Exists.Temp_ACTs.get(act)  # this is the rules for creating the new objects
                 unqiue_act.append((act, exist_obj))
             include_new_actions(unqiue_act, rules, should_block, inductive_assumption_table)  # here new actions means
-            # class or objects?
+            # how we add new objects into the domain
             return
 
-        # we can also go through the ones in over_model
+        # have more than one new creation object
         extension = []
         for act in Exists.Temp_ACTs:
             exist_obj = Exists.Temp_ACTs.get(act)
-            if over_model[act.presence] == TRUE():  # what is over_model?
+            if over_model[act.presence] == TRUE():  # over_model is the model that we have found in over approx
+                # act.presence means that ____________________
                 extension.append((act, exist_obj))
                 if len(extension) > 1:  # why we need to break when we have more than one extension?
                     break
 
-        if len(extension) <= 1:
+        if len(extension) <= 1:  # only one new object created during over approx
             include_new_actions(extension, rules, should_block, inductive_assumption_table)
             return
 
-    intermediate = OrderedSet()
+    # start to care min domain expansion ( no relax mode )
+    intermediate = OrderedSet()  # what is intermediate here?
     name_space = {}
     if addition_actions is None:  # what does addition action mean? does it contain duplicate?
         addition_actions = []
@@ -1240,6 +1246,10 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     soft_constraints = OrderedSet()  # allow to falsify ( but still consider ) but less is better
     ignored_actions = OrderedSet()
     action_by_type = {}
+
+    ##############################
+    # addition_actions
+    ##############################
     # these are actions in the domain
     for act in addition_actions:
         if isinstance(act, _SUMObject):  # what is _SUMObject?
@@ -1255,7 +1265,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
         previous_act = action_by_type.get(act_type, [])  # same type of actions
         # if this action has not yet been previously constrained for minimization
         if not act.min_var:  # add constraint for doing minimization
-            if act.under_encoded >= 0:  # if this action has under_encoded,
+            if act.under_encoded >= 0:  # if this action has under_encoded? what is under_encoded?
                 # then we need to consider the previous actions
                 choice = []
                 assert act.under_encoded <= len(previous_act)
@@ -1275,57 +1285,73 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
                 constraint = Implies(act.min_var, Or(choice))
             solver.add_assertion(constraint)
         soft_constraints.add(act.min_var)  # for the minimization
-        intermediate.add(act)
-        name_space[act.min_var] = act
+        intermediate.add(act)  # what is intermediate?
+        name_space[act.min_var] = act  # for save the rules for objects?
         previous_act.append(act)
         action_by_type[act_type] = previous_act
 
+    ##############################
+    # temp_actions
+    ##############################
     prev_act = dict()
-    for act in temp_actions:  # what is temp actions? diff from addition actions?
-        if act.disabled():
+    for act in temp_actions:  # new objects created in this round over approx
+        if act.disabled():  # some case disabled
             continue  # skip the disabled actions
         if ignore_class is not None and type(act) in ignore_class:
             ignored_actions.add(act)
             continue  # skip the actions that are in the ignore class
         # update round info
-        if not no_duplicate:
-            if round >= 0:
+        if not no_duplicate:  # when domain expansion, somtimes we have two same objects when over approx,
+            # guanrantee no same, may in same rounds or not, consider both cases
+            if round >= 0:  # another optimization
                 old_round = minimize_memory.get(act, -1)
                 if old_round < 0:
                     minimize_memory[act] = round
-        if act.under_var:  # indicate that this action has been constrained before
+
+        if act.under_var:  # basically no_new_r
+            # create through over approx, as a key for domain expansion
+            # also act created during trace checking, we dont consider those ( new rules added = res of check tracing )
+
+            # indicate that this action has been constrained before
             # only consider temp act that has been constrained before
             # other act are introduced from trace checking, they should not be considered at all
             # if addition_actions and isinstance(act, _SUMObject):
             #     shadow_lit = has_shadow(act.under_var, solver)
             #     soft_constraints.add(shadow_lit)
-            soft_constraints.add(act.under_var)
+            soft_constraints.add(act.under_var)  # gbfs: collect under approx constrs,
+            # check minmum of them to be set to false when under approx is still sat, to obtain min domain expansion
             intermediate.add(act)
             name_space[act.under_var] = act
 
+    ##############################
     # filtering phase
+    ##############################
     filtering_threshold = 5
-    filtered_soft_constraints = OrderedSet()  # tp store the filtered soft constraints
+    filtered_soft_constraints = OrderedSet()  # to store the filtered soft constraints
+    # what does filtering do?
     # print("Solver start printing")
     # for clause in solver.assertions:
     #     print(serialize(clause))
     # print("Solver end printing")
     # print("try to get assumption")
-    i_core = [f for f in get_assumption_core(solver) if f in soft_constraints]  # important assumption
+    i_core = [f for f in get_assumption_core(solver) if f in soft_constraints]  # what is icore here?
     # that have not been satisfied
     # print("i _Core {}".format(str(i_core)))
-    if len(i_core) == 1:
+    if len(i_core) == 1:  # only one new created object during over-approximation
         act = name_space[i_core[0]]
         unqiue_act = []
-        exist_obj = Exists.Temp_ACTs.get(act)  # are these newly created objects for eliminating
-        # existentially quantified variables?
+        exist_obj = Exists.Temp_ACTs.get(act)  # rules for creating the new objects during over approx
         unqiue_act.append((act, exist_obj))
         include_new_actions(unqiue_act, rules, should_block, inductive_assumption_table)
         return
 
-    if round >= 0 and relax_mode and not no_duplicate:  # what does relax mode mean here?
+    ########################################
+    # check round, relax and no_duplicate
+    ########################################
+    if round >= 0 and relax_mode and not no_duplicate:  # do not care duplicate,
+        # relaxmode: do not care min domain expansion, and rounds for optimization
         for act in intermediate:  # what does intermediate mean here?
-            if minimize_memory.get(act, -1) >= round - filtering_threshold:
+            if minimize_memory.get(act, -1) >= round - filtering_threshold:  # for optimization?
                 filtered_soft_constraints.add(act.under_var)
 
         # print("diff {} {}".format(len(soft_constraints), len(filtered_soft_constraints)))
@@ -1334,7 +1360,8 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
         # that can be satisfied maximally, define which constraints are most important
         unqiue_act = []
         available_ignored_act = coordinate_ignored_actions(ignored_actions, model)
-        if len(available) + len(available_ignored_act) >= 1:  # there is available action or ignored action
+        if len(available) + len(available_ignored_act) >= 1:  # what is available and available_ignored_act?
+            # there is available action or ignored action
             # that are now considered valid due to the relax mode
             # print("filtered successful")
             for node in available:
@@ -1356,12 +1383,17 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
 
     # what does the round mean here? why it matters?
 
+    ########################################
+    # round < 0 or no relax or no_duplicate
+    ########################################
     _, available, model = maxsat(solver, soft_constraints, round, name_space, relax_mode=False, background=vars,
-                                 eq_vars=eq_vars)  # what does maxsat do here?
+                                 eq_vars=eq_vars)  # to decide the subset of constraints
+        # that can be satisfied maximally, define which constraints are most important
     # print("available {}".format(str(available)))
     if no_duplicate:
         new_cost, new_available, new_name_space, new_model = no_duplicate_filter(available, name_space, solver,
                                                                                  soft_constraints, vars, eq_vars, round)
+        # what does no_duplicate_filter do?
         # prevent the duplicate actions
         if new_name_space:  # updated to reflect the filtered results
             available = new_available
@@ -1472,36 +1504,44 @@ def include_new_actions(unqiue_act, rules, should_block=False, inductive_assumpt
 
 
 def get_temp_act_constraints(checking=False):
+    """
+    encode under approx
+    call under constraint for getting constrs for under approx
+    """
     constraints = []
     type_constraints = {}
-    if checking:
+    if checking:  # when have sol, check if sat req
         compare_dict = Exists.check_ACTS
-    else:
+    else:  # normal purpose: encode under approx
         compare_dict = Exists.Temp_ACTs
 
     vars = OrderedSet()
     for act in compare_dict:
         if not checking:
             var, constraint = act.under_constraint()
+            # set var to be true means under approx has to be satisfied
+            # so under approx constrs still in set of constrs when no need check, set val false
             vars.add(var)
             constraints.append(constraint)
         else:
             if isinstance(act, _SUMObject):
+                # _sumobject is for summation, no worry for now
                 constraints.append(Not(act.presence))
                 continue
-            choice_list = []
+            choice_list = []  #
             act_type = type(act)
-            for t_action in act_type.collect_list:
-                choice_list.append(act.build_eq_constraint(t_action))
-            choice_constraint = Implies(act.presence, Or(choice_list))
+            for t_action in act_type.collect_list:  # all created objects of a certain class in cur domain
+                choice_list.append(act.build_eq_constraint(t_action))  # check if in domain
+            choice_constraint = Implies(act.presence,
+                                        Or(choice_list))  # if object need to be active( if act need to be sol )
             result = Or(choice_constraint)
             constraints.append(result)
             type_constraints[act_type] = (act, result)
 
-    if checking:
+    if checking:  # havs  sol . no need
         compare_dict.clear()
 
-    # constraints += undate_overapprox()
+    # constraints += update_overapprox()
     return constraints, vars
 
 
@@ -2078,7 +2118,7 @@ class _SUMObject(Action):
     def under_constraint(self):
         assert self.under_encoded >= 0
         if not self.under_var:
-            self.under_var = FreshSymbol()
+            self.under_var = FreshSymbol()  # if created during over approx, we care about when doing domain expansion
             return self.under_var, Implies(self.under_var, Not(self.presence))
         else:
             return self.under_var, TRUE()
@@ -2248,10 +2288,8 @@ def reset_underapprox(solver):
 
 
 def update_underapprox(solver):
-    """
-    add under approximation
-    """
     Summation.under_initialized = True  # what is class Summation? Is it like a domain? Or collection of constraints?
+    # no worry. sum thing up. arg1:objects for sum arg2: which of them suming? arg3: how to sum the val?
     Summation.current_under.clear()  # why clear here?
     new_frontier = []
     # print("frontier:  {}".format(str(Summation.frontier)))

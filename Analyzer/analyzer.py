@@ -165,7 +165,7 @@ def check_trace(model, complete_rules, rules, stop_at_first=True, axioms=None):
     parital_model = [EqualsOrIff(k, v) for k, v in model]  # what is parital_model ?
     solver.add_assertion(And(parital_model))
     result = OrderedSet()
-    called = False
+    called = False  # what is called here for ?
     for rule in complete_rules:
         if rule in rules:
             continue
@@ -304,7 +304,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         #     proof_writer.add_input_rule(rule)
 
     if ignore_state_action:
-        ignore_actions = state_action  # special funcs ? what kind of funcs are these ?
+        ignore_actions = state_action
         #  Actions do not want take account of e.g. timepoint
     else:
         ignore_actions = None
@@ -315,7 +315,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         inductive_assumption_table = None
 
     new_rules = set(rules)
-    should_calibrate = True
+    should_calibrate = True  # what is should_calibrate for ?
     s = Solver("z3", unsat_cores_mode=None, random_seed=43)  # z3 solver （ oriented from SMT solver ）
     if axioms:
         s.add_assertion(axioms)
@@ -378,10 +378,10 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             if c != TRUE():
                 s.add_assertion(c)
 
-        add_forall_defs(s)  # add the forall definitions
-        add_exist_defs(s)  # add the exist definitions
-        add_predicate_constraint(s)  # add the predicate constraints
-        all_cons = And(get_all_constraint(ACTION, full=False))
+        add_forall_defs(s)  # add the forall definitions in solver
+        add_exist_defs(s)  # add the exist definitions in solver
+        add_predicate_constraint(s)  # add the predicate constraints in solver
+        all_cons = And(get_all_constraint(ACTION, full=False))  # what does get_all_constraint do ?
         s.add_assertion(all_cons)
         # print(serialize(all_cons))
 
@@ -389,8 +389,11 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             solved = True
         else:
             # solved = s.solve(over_vars.union(eq_assumption))
-            solved = solver_under_eq_assumption(s, over_vars, eq_assumption)
+            solved = solver_under_eq_assumption(s, over_vars, eq_assumption)  # only care overapproximation ?
 
+        ########################################
+        # overapproximation
+        ########################################
         if solved:  # over approx is sat
             save_model = s.get_model()  # get the model
             # Summation.frontier = new_frontier
@@ -410,16 +413,23 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                 # solved = s.solve(vars)
                 solved = solver_under_eq_assumption(s, vars, eq_assumption)  # under
 
+            ########################################
+            # underapproximation
+            ########################################
             if solved:  # under is sat
                 model = s.get_model()  # get the model
                 # print_trace(model, ACTION, state_action, ignore_class=state_action)
                 # check trace
                 res, model = check_trace(model, complete_rules, rules, stop_at_first=True)  # check the trace to see
                 # if it is valid
+
+                ########################################################
+                # no more else rules to add
+                ########################################################
                 if len(res) == 0:  # num of rules in complete rules(whole) been falsified
                     if min_solution:  # want to minimize solution
                         model = mini_solve(s, get_all_actions(ACTION), vars=vars, eq_vars=eq_assumption,
-                                           ignore_class=ignore_actions)  # try t0 minimize the solution with cur domain
+                                           ignore_class=ignore_actions)  # try to minimize the solution with cur domain
                         # print("mini-trace")
                     print("find trace")  # we found trace ( solution )
                     current_best = model
@@ -453,14 +463,14 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                                 print("opt vol is {}".format(vol))
                                 print("solution is opt")
 
-                                if ret_model:
+                                if ret_model:  # what is ret_model for ? return model or not ?
                                     return str_output, current_best
                                 else:
                                     return str_output
                         else:  # if the new volume is smaller than the previous one
                             print("A better result may exist")
                             current_min_solution = True
-                    else:  # did not have out of bound warning or finding the minimum solution
+                    else:  # did not have out of bound warning or finding the minimum solution, just use the current one
                         vol, str_output = print_trace(current_best, ACTION, state_action, ignore_class=state_action,
                                                       should_print=True,
                                                       scaler_mask=scalar_mask)
@@ -501,7 +511,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                     else:  # trace new model
                         new_volume, _ = print_trace(new_model, ACTION, state_action, should_print=False,
                                                     ignore_class=state_action)
-                        new_volume += 1
+                        new_volume += 1  # why add 1 ?
 
                     # print_trace(new_model, ACTION, state_action, should_print=True, ignore_class=[], solver=s,
                     #             assumption=over_vars)

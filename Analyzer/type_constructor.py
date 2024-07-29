@@ -359,6 +359,10 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
             add_timed_obj(self.time, self)
 
     def under_constraint(self):
+        """
+        use for creating constrs for under approx
+        check same obejcts created in differnet rounds of over approximation
+        """
         assert self.under_encoded >= 0
         act_type = type(self)
         considered_len = self.under_encoded
