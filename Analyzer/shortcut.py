@@ -43,8 +43,8 @@ GT = logic_operator.GT
 LT = logic_operator.LT
 GE = logic_operator.GE
 LE = logic_operator.LE
-ADDER = logic_operator.ADDER
-
+adder = logic_operator.adder
+ITE = logic_operator.ITE
 
 def add_constraint(constraint):
     Constraints.append(constraint)

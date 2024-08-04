@@ -171,9 +171,11 @@ def check_trace(model, complete_rules, rules, stop_at_first=True, axioms=None):
             continue
         else:
             # solver.push()
-            constraint = encode(rule, include_new_act=False, disable=True)
+            constraint = encode(rule, include_new_act=False, disable=True)  # over approx for the rule not in rules
+            # but in complete rules
             solver.add_assertion(constraint)
-            constraints, vars = get_temp_act_constraints(checking=True)
+            constraints, vars = get_temp_act_constraints(checking=True)  # checking is true, this is for checking
+            # the acts of sol are in the domain ?
             solver.add_assertion(And(constraints))
             solved = solver.solve(vars)
             called = True
@@ -322,7 +324,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
     prop = encode(property, include_new_act=True, proof_writer=proof_writer, unsat_mode=unsat_mode)  # ground the
     # property and do overapproximation
-    s.add_assertion(prop)  # add the property to the solver. is the assertion here like a constraint ?
+    s.add_assertion(prop)  # add the property to the solver.
     # print(serialize(prop))
     # restart control
 
@@ -381,7 +383,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         add_forall_defs(s)  # add the forall definitions in solver
         add_exist_defs(s)  # add the exist definitions in solver
         add_predicate_constraint(s)  # add the predicate constraints in solver
-        all_cons = And(get_all_constraint(ACTION, full=False))  # what does get_all_constraint do ?
+        all_cons = And(get_all_constraint(ACTION, full=False))
         s.add_assertion(all_cons)
         # print(serialize(all_cons))
 
@@ -463,7 +465,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                                 print("opt vol is {}".format(vol))
                                 print("solution is opt")
 
-                                if ret_model:  # what is ret_model for ? return model or not ?
+                                if ret_model:
                                     return str_output, current_best
                                 else:
                                     return str_output

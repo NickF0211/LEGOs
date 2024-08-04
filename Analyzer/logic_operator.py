@@ -1226,9 +1226,9 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
         for act in Exists.Temp_ACTs:
             exist_obj = Exists.Temp_ACTs.get(act)
             if over_model[act.presence] == TRUE():  # over_model is the model that we have found in over approx
-                # act.presence means that ____________________
+                # act.presence means that act are presented in the sol to over approx
                 extension.append((act, exist_obj))
-                if len(extension) > 1:  # why we need to break when we have more than one extension?
+                if len(extension) > 1:  # why we need to break when we have more than one extension? if only 1, we just add
                     break
 
         if len(extension) <= 1:  # only one new object created during over approx
@@ -1236,7 +1236,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
             return
 
     # start to care min domain expansion ( no relax mode )
-    intermediate = OrderedSet()  # what is intermediate here?
+    intermediate = OrderedSet()
     name_space = {}
     if addition_actions is None:  # what does addition action mean? does it contain duplicate?
         addition_actions = []
@@ -1252,7 +1252,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     ##############################
     # these are actions in the domain
     for act in addition_actions:
-        if isinstance(act, _SUMObject):  # what is _SUMObject?
+        if isinstance(act, _SUMObject):
             continue
         if act.disabled():
             continue
@@ -1273,7 +1273,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
                     choice.append(act.build_eq_constraint(more_act))  # build the constraint for minimization since
                     # there is same type of actions
                 act.min_var = FreshSymbol(template="MINFV%d")
-                if act.under_var:  # what is under_var?
+                if act.under_var:  # what is under_var?  for the no new r the ones created during over approx
                     constraint = Implies(act.min_var, Or(act.under_var, Implies(act.presence, Or(choice))))
                 else:
                     constraint = Implies(act.min_var, Implies(act.presence, Or(choice)))
@@ -1285,7 +1285,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
                 constraint = Implies(act.min_var, Or(choice))
             solver.add_assertion(constraint)
         soft_constraints.add(act.min_var)  # for the minimization
-        intermediate.add(act)  # what is intermediate?
+        intermediate.add(act)  # what is intermediate? in over not in domain may need
         name_space[act.min_var] = act  # for save the rules for objects?
         previous_act.append(act)
         action_by_type[act_type] = previous_act
@@ -1328,7 +1328,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     ##############################
     filtering_threshold = 5
     filtered_soft_constraints = OrderedSet()  # to store the filtered soft constraints
-    # what does filtering do?
+    # what does filtering do?  filter soft constrs
     # print("Solver start printing")
     # for clause in solver.assertions:
     #     print(serialize(clause))
@@ -1350,9 +1350,11 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     ########################################
     if round >= 0 and relax_mode and not no_duplicate:  # do not care duplicate,
         # relaxmode: do not care min domain expansion, and rounds for optimization
-        for act in intermediate:  # what does intermediate mean here?
-            if minimize_memory.get(act, -1) >= round - filtering_threshold:  # for optimization?
-                filtered_soft_constraints.add(act.under_var)
+        for act in intermediate:  # what does intermediate mean here?  the ones considering for all the objects, they are the ones not in domain, but in the over approx, and may include for solution
+            if minimize_memory.get(act, -1) >= round - filtering_threshold:  # for optimization, determine which one include in filtering
+                filtered_soft_constraints.add(act.under_var)  # subset constraints of soft constrs,
+                # soft constrs: diff between over and under approx, violate as little aspossible
+                # filter: only consider violate in this set of constraints, so that less is violated if we find solution
 
         # print("diff {} {}".format(len(soft_constraints), len(filtered_soft_constraints)))
         cost, available, model = maxsat(solver, filtered_soft_constraints, round, name_space, relax_mode=False,
@@ -1360,7 +1362,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
         # that can be satisfied maximally, define which constraints are most important
         unqiue_act = []
         available_ignored_act = coordinate_ignored_actions(ignored_actions, model)
-        if len(available) + len(available_ignored_act) >= 1:  # what is available and available_ignored_act?
+        if len(available) + len(available_ignored_act) >= 1:  # what is available and available_ignored_act?  the ones correspond to violated soft constrs( no new r's )
             # there is available action or ignored action
             # that are now considered valid due to the relax mode
             # print("filtered successful")
@@ -1381,7 +1383,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
             return model
     # print("filtered unsuccessful")
 
-    # what does the round mean here? why it matters?
+    # what does the round mean here? why it matters?  optimization
 
     ########################################
     # round < 0 or no relax or no_duplicate
@@ -1393,7 +1395,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     if no_duplicate:
         new_cost, new_available, new_name_space, new_model = no_duplicate_filter(available, name_space, solver,
                                                                                  soft_constraints, vars, eq_vars, round)
-        # what does no_duplicate_filter do?
+        # what does no_duplicate_filter do?  ensure no duplicate
         # prevent the duplicate actions
         if new_name_space:  # updated to reflect the filtered results
             available = new_available
@@ -1523,7 +1525,7 @@ def get_temp_act_constraints(checking=False):
             # so under approx constrs still in set of constrs when no need check, set val false
             vars.add(var)
             constraints.append(constraint)
-        else:
+        else:  # check solution to see if those already in domain?
             if isinstance(act, _SUMObject):
                 # _sumobject is for summation, no worry for now
                 constraints.append(Not(act.presence))
@@ -1533,7 +1535,7 @@ def get_temp_act_constraints(checking=False):
             for t_action in act_type.collect_list:  # all created objects of a certain class in cur domain
                 choice_list.append(act.build_eq_constraint(t_action))  # check if in domain
             choice_constraint = Implies(act.presence,
-                                        Or(choice_list))  # if object need to be active( if act need to be sol )
+                                        Or(choice_list))  # if object need to be active( if act need to be in sol )
             result = Or(choice_constraint)
             constraints.append(result)
             type_constraints[act_type] = (act, result)
@@ -1570,7 +1572,7 @@ def analyzing_temp_act(model):
 class Exists(Operator):
     Temp_ACTs = dict()
     check_ACTS = dict()
-    new_included = OrderedSet()
+    new_included = OrderedSet()  # what is the new included?
     count = 0
     pending_defs = set()
 
@@ -1583,17 +1585,17 @@ class Exists(Operator):
         Exists.count += 1
         self.input_type = input_type
         self.func = func
-        self.act_include = None
-        self.act_non_include = None
+        self.act_include = None  # what is act include?
+        self.act_non_include = None  # what is act non include?
         self.op = None
         self.blocking_clause = None
         self.input_subs = input_subs
         if self.input_type != _SUMObject:
             self.print_act = self.input_type(print_only=True, input_subs=self.input_subs)
         self.print_statement = None
-        self.reference = reference
+        self.reference = reference  # what is reference?
         self.var = Symbol("exists_{}".format(Exists.count))
-        self.exclusive_reg = False
+        self.exclusive_reg = False  # what is exclusive_reg?
 
     def clear(self):
         super(Exists, self).clear()
@@ -1628,7 +1630,7 @@ class Exists(Operator):
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
                unsat_mode=False):
 
-        if not include_new_act:
+        if not include_new_act:  # inlude_new_act, act_include, act_non_include ? relations ?
             if self.act_include is not None:
                 action = self.act_include
             else:  # no new act and no act include
@@ -1641,7 +1643,7 @@ class Exists(Operator):
             action = self.act_include
 
         ############################################################
-        # former part is for the action selection
+        # former part is for the action selection, why dont just use get_holding_obj?
         ############################################################
 
         eval_result = self.func.evaulate(action, assumption=assumption)
@@ -1655,9 +1657,9 @@ class Exists(Operator):
         # former part is for the action evaluation and presence
         ############################################################
 
-        application_res = AND(presence, eval_result)  # what is presence and eval_res?
+        application_res = AND(presence, eval_result)  # what is presence and eval_res? existence and constraints?
         if not self.exclusive_reg and unsat_mode:  # what is exclusive_reg?
-            Exists.pending_defs.add(Implication(Not(self.var), NOT(presence)))
+            Exists.pending_defs.add(Implication(Not(self.var), NOT(presence)))  # what is this imply for?
             self.exclusive_reg = True
 
         if proof_writer and not self.proof_derived:
@@ -1668,7 +1670,7 @@ class Exists(Operator):
                                  assumption=assumption, include_new_act=include_new_act, exception=exception,
                                  disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
 
-        if unsat_mode:
+        if unsat_mode:  # what is unsat_mode?
             Exists.pending_defs.add(Implication(self.var, base_constraint))
 
         if include_new_act:
@@ -2119,7 +2121,7 @@ class _SUMObject(Action):
         assert self.under_encoded >= 0
         if not self.under_var:
             self.under_var = FreshSymbol()  # if created during over approx, we care about when doing domain expansion
-            return self.under_var, Implies(self.under_var, Not(self.presence))
+            return self.under_var, Implies(self.under_var, Not(self.presence))  # what does this implies mean?
         else:
             return self.under_var, TRUE()
         # act_type = type(self)
@@ -2362,7 +2364,7 @@ class Forall(Operator):
         self.considered = OrderedSet()
         Forall.count += 1
         if self.input_type != _SUMObject:
-            self.print_act = self.input_type(print_only=True)
+            self.print_act = self.input_type(print_only=True)  # what is print_act?
         self.print_statement = None
         self.reference = reference
         self.proof_hint = None
@@ -2388,10 +2390,10 @@ class Forall(Operator):
         if self.input_type != _SUMObject:
             op = self.invert()
             op_constraint = op.get_holding_obj(assumption=False, include_new_act=False, exception=None, disable=None,
-                                               proof_writer=None)
+                                               proof_writer=None)  # why use exists get holding obj?
             if not self.consider_op:  # what is consider_op ?
                 forall_exists_link = IFF(self.var, Not(op_constraint.presence))
-                Forall.pending_defs.add(forall_exists_link)
+                Forall.pending_defs.add(forall_exists_link)  # what is pending_defs? def?
                 self.consider_op = True
 
                 if proof_writer:
@@ -2434,7 +2436,7 @@ class Forall(Operator):
                 else:
                     constraint.append(base_constraint)
         if not disable:
-            return self.var
+            return self.var  # what is self.var?
         else:
             return And(constraint)
 
@@ -2474,8 +2476,8 @@ def adder(*args):
     """
     do xor(arg1, xor(arg2, arg3)) with class ADDER
     """
-    if len(args) != 3:
-        raise ValueError("ADDER must have exactly three arguments.")
+    if len(args) <=2 :
+        raise ValueError("ADDER must have more than two arguments.")
     c_args = _polymorph_args_to_tuple(args)
     static_arg = frozenset(c_args)
     if static_arg in ADDER.cache:
@@ -2505,17 +2507,26 @@ class ADDER(Operator):
                unsat_mode=False):
         result_list = []
         for arg in self.arg_list:
-            result_list.append(encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
-                                      disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode))
+            if isinstance(arg, Exists) or isinstance(arg, Forall):  # Handling quantifiers
+                result_list.append(arg.encode())
+            else:
+                result_list.append(
+                    encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
+                           disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode))
 
         if proof_writer and not self.proof_derived:
             proof_writer.add_and(self)
             self.proof_derived = True
 
-        # deal with the case when elements in the list are not boolean how to deal with not boolean type ?
-        # result_list = [self.to_boolean(arg) for arg in result_list]
+        # deal with the case there are more than 3 arguments using the associativity of XOR
+        if len(result_list) == 1:
+            raise ValueError("ADDER must have at lease 2 args.")
+        if len(result_list) == 2:
+            return Xor(result_list[0], result_list[1])
+        if len(result_list) >= 3:
+            return Xor(result_list[0], encode(ADDER(*result_list[1:]), assumption, include_new_act, exception, disable, proof_writer, unsat_mode))
 
-        return Xor(result_list[0], Xor(result_list[1], result_list[2]))
+        # return Xor(result_list[0], Xor(result_list[1], result_list[2]))
 
     def invert(self):
         if self.op is None:
@@ -2551,6 +2562,65 @@ class ADDER(Operator):
                 return bool(value)
             except Exception as e:
                 raise ValueError("Unsupported type for boolean conversion: {}".format(type(value))) from e
+
+def ITE(*args):
+    if len(args) != 3:
+        raise ValueError("ITE must have exactly 3 arguments.")
+    c_args = _polymorph_args_to_tuple(args)
+    static_arg = frozenset(c_args)
+    if static_arg in ITEoperator.cache:
+        return ITEoperator.cache[static_arg]
+    return ITEoperator(*c_args)
+
+class ITEoperator(Operator):
+    def __init__(self, *args):
+        super().__init__()
+        self.arg_list = _polymorph_args_to_tuple(args)
+        self.op = None
+        ITEoperator.cache[frozenset(self.arg_list)] = self
+
+    def clear(self):
+        super(ITEoperator, self).clear()
+        self.op = None
+        for arg in self.arg_list:
+            clear(arg)
+
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
+        result_list = []
+        # arg1 is B, arg2 is X, arg3 is Y, if B then ITE = X, if not B then ITE = Y
+        for arg in self.arg_list:
+            if isinstance(arg, Exists) or isinstance(arg, Forall):
+                result_list.append(arg.encode())
+            else:
+                result_list.append(
+                    encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
+                           disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode))
+
+        if not isinstance(result_list[1], type(result_list[2])):
+            # Log a warning or handle type incompatibility
+            print("Warning: true_expr and false_expr are of different types. Handling may be inaccurate.")
+
+        if result_list[0] == TRUE():
+            return result_list[1]
+        else:
+            return result_list[2]
+
+
+
+    def invert(self):
+        if self.op is None:
+            arg_list = [invert(arg) for arg in self.arg_list]
+            self.op = ITEoperator(
+                *arg_list)
+        return self.op
+
+    def to_string(self):
+        result_list = [to_string(arg) for arg in self.arg_list]
+        return "ITEoperator({})".format(', '.join(result_list))
+
+    def __repr__(self):
+        return "ITEoperator({})".format(', '.join([repr(arg) for arg in self.arg_list]))
 
 
 def create_control_variable(arg):
@@ -2688,7 +2758,7 @@ def EQ(left, right):
         return IFF(left, right)
     if isinstance(left, Operator):
         return IFF(left, right)
-    return Equals(left, right)
+    return EqualsOrIff(left, right)
 
 
 def NEQ(left, right):
@@ -2698,7 +2768,7 @@ def NEQ(left, right):
         return left != right
     if isinstance(right, Arth_Operator):
         return right != left
-    return NotEquals(left, right)
+    return Not(EqualsOrIff(left, right))
 
 
 def _cast_to_pysmt_type(value):
