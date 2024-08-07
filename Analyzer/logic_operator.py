@@ -1240,6 +1240,9 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     name_space = {}
     if addition_actions is None:  # what does addition action mean? does it contain duplicate?
         addition_actions = []
+    # The function allows you to pass in additional relational objects (In contrast to the ones in the temp_actions)
+    # to be considered for minimization. In case of A*, we will pass every relational objects in the domain in
+    # addition_actions so that the solution to the over-approximation will have the minimum size.
 
     no_duplicate = len(addition_actions) > 0
     temp_actions = list(Exists.Temp_ACTs)
@@ -1266,6 +1269,12 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
         # if this action has not yet been previously constrained for minimization
         if not act.min_var:  # add constraint for doing minimization
             if act.under_encoded >= 0:  # if this action has under_encoded? what is under_encoded?
+                # for each type of class (action), we keep track how many of them have been previously encoded for
+                # under-approximation (in the domain). Between two different iterations, if the number does not change,
+                # we do not need to change the under-approximation encoding for objects in the class (please check
+                # the constraint for under-approximation).  If the number changed, we only need to encode the deltas.
+                # Since the delta are disjunct, the encoding describes how we handle them incrementally
+                # (in contrast to add them as conjunction)
                 # then we need to consider the previous actions
                 choice = []
                 assert act.under_encoded <= len(previous_act)
@@ -1335,6 +1344,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     # print("Solver end printing")
     # print("try to get assumption")
     i_core = [f for f in get_assumption_core(solver) if f in soft_constraints]  # what is icore here?
+    # I_core is the set of assumption variables that are violated (the set of violated soft constraints)
     # that have not been satisfied
     # print("i _Core {}".format(str(i_core)))
     if len(i_core) == 1:  # only one new created object during over-approximation
@@ -1526,6 +1536,8 @@ def get_temp_act_constraints(checking=False):
             vars.add(var)
             constraints.append(constraint)
         else:  # check solution to see if those already in domain?
+            # Checking is true if we are running in checking mode (i.e., trying to verify if a solution to a subset
+            # of constraint is a solution to all constraints). Normally, checking is set to false.
             if isinstance(act, _SUMObject):
                 # _sumobject is for summation, no worry for now
                 constraints.append(Not(act.presence))

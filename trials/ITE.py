@@ -19,6 +19,6 @@ boolean = create_action("boolean", [("value", "bool")])
 natural = create_action("natural", [("value", "nat")])
 
 # add constraint which use ITE
-c1 = exists(boolean, lambda d1: exists(natural, lambda d2: EQ(d2.value, ITE(d1.value, d2.value, -d2.value))))
+c1 = exists(boolean, lambda d1: exists([natural, natural], lambda d2, d3: NEQ(d2.value, ITE(d1.value, d2.value, d3.value))))
 add_constraint(c1)
 solve(TRUE())

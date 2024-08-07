@@ -150,6 +150,8 @@ def action_changed(ACTION):
     changed = []
     for Act in ACTION:
         if len(Act.snap_shot) < len(Act.collect_list):
+            # these are variables and functions to check if the number of relational objects (and objects in domain)
+            # have changed or not during the encoding.
             changed.append(Act)
     return changed
 
@@ -166,6 +168,10 @@ def check_trace(model, complete_rules, rules, stop_at_first=True, axioms=None):
     solver.add_assertion(And(parital_model))
     result = OrderedSet()
     called = False  # what is called here for ?
+    # don’t worry about axiom now. It is used to capture some other global constraints. Partial_model is the equality
+    # constraints that are enforced according to the solution (model). We want to ensure each variable in the model
+    # is assigned to the value in model. It is partial because the model might not assign every variable. This function
+    # is used to check if a solution to a set of constraints is the solution to the full constraint set.
     for rule in complete_rules:
         if rule in rules:
             continue
@@ -429,6 +435,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                 # no more else rules to add
                 ########################################################
                 if len(res) == 0:  # num of rules in complete rules(whole) been falsified
+                    # the first if enforces the model to the under-approximation to be the minimum model (in the current
+                    # domain). The second if checks the minimum solution in the current domain is actually minimum.
                     if min_solution:  # want to minimize solution
                         model = mini_solve(s, get_all_actions(ACTION), vars=vars, eq_vars=eq_assumption,
                                            ignore_class=ignore_actions)  # try to minimize the solution with cur domain
@@ -514,6 +522,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                         new_volume, _ = print_trace(new_model, ACTION, state_action, should_print=False,
                                                     ignore_class=state_action)
                         new_volume += 1  # why add 1 ?
+                        # probably because new_model is a model to the over-approximation, so the full model must have
+                        # +1 size than new_model. Here, new_volume is a lower-bound.
 
                     # print_trace(new_model, ACTION, state_action, should_print=True, ignore_class=[], solver=s,
                     #             assumption=over_vars)
