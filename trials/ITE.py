@@ -54,7 +54,7 @@ c7 = EQ(Int(1), ite(AND(condition1, condition2), Int(1), Int(0)))
 condition3 = exists(natural, lambda n: n.value > 15)
 c8 = EQ(Int(1), ite(AND(condition1, condition2, condition3), Int(1), Int(0)))
 
-add_constraint(AND(c6, c7, c8))
+add_constraint(AND(c1, c4, c5))
 solve(TRUE())
 
 
