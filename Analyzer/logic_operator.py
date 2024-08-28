@@ -1,4 +1,5 @@
 from ordered_set import OrderedSet
+from pysmt.fnode import FNode
 from pysmt.shortcuts import *
 
 from Analyzer.type_constructor import Action, UnionAction
@@ -146,6 +147,7 @@ def encode(formula, assumption=False, include_new_act=False, exception=None, dis
     """
     over-approximation
     """
+    print("encode formula {}".format(formula))
     if isinstance(formula, Operator):  # goes into different encoding for different operators class
         res = formula.encode(assumption=assumption, include_new_act=include_new_act, exception=exception,
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
@@ -1276,9 +1278,13 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
                 # Since the delta are disjunct, the encoding describes how we handle them incrementally
                 # (in contrast to add them as conjunction)
                 # then we need to consider the previous actions
+                # no need to check the ones before(same type)
+                # mainly for the exists objects in the domain
                 choice = []
                 assert act.under_encoded <= len(previous_act)
-                for more_act in previous_act[act.under_encoded:]:
+                for more_act in previous_act[act.under_encoded:]:  # already encoded for equality, already in the domain
+                    # not encoded for under approximation, this situation is common when have OR or branch,check line
+                    # 13 15 in cav-long 23 algo
                     choice.append(act.build_eq_constraint(more_act))  # build the constraint for minimization since
                     # there is same type of actions
                 act.min_var = FreshSymbol(template="MINFV%d")
@@ -1361,7 +1367,8 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     if round >= 0 and relax_mode and not no_duplicate:  # do not care duplicate,
         # relaxmode: do not care min domain expansion, and rounds for optimization
         for act in intermediate:  # what does intermediate mean here?  the ones considering for all the objects, they are the ones not in domain, but in the over approx, and may include for solution
-            if minimize_memory.get(act, -1) >= round - filtering_threshold:  # for optimization, determine which one include in filtering
+            if minimize_memory.get(act,
+                                   -1) >= round - filtering_threshold:  # for optimization, determine which one include in filtering
                 filtered_soft_constraints.add(act.under_var)  # subset constraints of soft constrs,
                 # soft constrs: diff between over and under approx, violate as little aspossible
                 # filter: only consider violate in this set of constraints, so that less is violated if we find solution
@@ -1372,7 +1379,8 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
         # that can be satisfied maximally, define which constraints are most important
         unqiue_act = []
         available_ignored_act = coordinate_ignored_actions(ignored_actions, model)
-        if len(available) + len(available_ignored_act) >= 1:  # what is available and available_ignored_act?  the ones correspond to violated soft constrs( no new r's )
+        if len(available) + len(
+                available_ignored_act) >= 1:  # what is available and available_ignored_act?  the ones correspond to violated soft constrs( no new r's )
             # there is available action or ignored action
             # that are now considered valid due to the relax mode
             # print("filtered successful")
@@ -1400,7 +1408,7 @@ def get_temp_act_constraint_minimize(solver, rules, vars, eq_vars, inductive_ass
     ########################################
     _, available, model = maxsat(solver, soft_constraints, round, name_space, relax_mode=False, background=vars,
                                  eq_vars=eq_vars)  # to decide the subset of constraints
-        # that can be satisfied maximally, define which constraints are most important
+    # that can be satisfied maximally, define which constraints are most important
     # print("available {}".format(str(available)))
     if no_duplicate:
         new_cost, new_available, new_name_space, new_model = no_duplicate_filter(available, name_space, solver,
@@ -1552,6 +1560,8 @@ def get_temp_act_constraints(checking=False):
             constraints.append(result)
             type_constraints[act_type] = (act, result)
 
+            # assumption literal for snap shot of the domain if holds working with current domain
+
     if checking:  # havs  sol . no need
         compare_dict.clear()
 
@@ -1641,6 +1651,7 @@ class Exists(Operator):
 
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
                unsat_mode=False):
+        print("encode exists")
 
         if not include_new_act:  # inlude_new_act, act_include, act_non_include ? relations ?
             if self.act_include is not None:
@@ -2488,13 +2499,16 @@ def adder(*args):
     """
     do xor(arg1, xor(arg2, arg3)) with class ADDER
     """
-    if len(args) <=2 :
-        raise ValueError("ADDER must have more than two arguments.")
+    if len(args) < 2:
+        raise ValueError("ADDER must have more than one arguments.")
     c_args = _polymorph_args_to_tuple(args)
     static_arg = frozenset(c_args)
     if static_arg in ADDER.cache:
         return ADDER.cache[static_arg]
-    return ADDER(*c_args)
+
+    if (not should_use_gate(c_args)) and len(c_args) == 2:
+        return Xor(c_args[0], c_args[1])
+    return ADDER(c_args)
 
 
 class ADDER(Operator):
@@ -2536,7 +2550,9 @@ class ADDER(Operator):
         if len(result_list) == 2:
             return Xor(result_list[0], result_list[1])
         if len(result_list) >= 3:
-            return Xor(result_list[0], encode(ADDER(*result_list[1:]), assumption, include_new_act, exception, disable, proof_writer, unsat_mode))
+            return Xor(result_list[0],
+                       encode(ADDER(*result_list[1:]), assumption, include_new_act, exception, disable, proof_writer,
+                              unsat_mode))
 
         # return Xor(result_list[0], Xor(result_list[1], result_list[2]))
 
@@ -2575,64 +2591,185 @@ class ADDER(Operator):
             except Exception as e:
                 raise ValueError("Unsupported type for boolean conversion: {}".format(type(value))) from e
 
-def ITE(*args):
+
+def ite(*args):
+    """
+    arg1, arg2, arg3, if arg1 then return arg2 else return arg3
+    """
     if len(args) != 3:
         raise ValueError("ITE must have exactly 3 arguments.")
     c_args = _polymorph_args_to_tuple(args)
     static_arg = frozenset(c_args)
-    if static_arg in ITEoperator.cache:
-        return ITEoperator.cache[static_arg]
-    return ITEoperator(*c_args)
+    if static_arg in ITE.cache:
+        return ITE.cache[static_arg]
+    # if (not should_use_gate(c_args)):
+    #     return Ite(c_args[0], c_args[1], c_args[2])
+    return ITE(*c_args)
 
-class ITEoperator(Operator):
+
+class ITE(Arth_Operator):
+    """
+    mimic the way we did for Forall class
+    """
+
+    cache = {}
+    pending_defs = OrderedSet()
+    count = 0
+
     def __init__(self, *args):
         super().__init__()
-        self.arg_list = _polymorph_args_to_tuple(args)
         self.op = None
-        ITEoperator.cache[frozenset(self.arg_list)] = self
+        self.arg_list = _polymorph_args_to_tuple(args)
+        arg_type = self.arg_list[1].get_type() if not isinstance(self.arg_list[1], ITE) else self.arg_list[1].var.get_type()
+        self.var = FreshSymbol(template="ITE_var%d", typename=arg_type)
+        self.under_encoded = 0  
+        self.under_var = None   
+        ITE.count += 1
+        self.considered = OrderedSet()
+        self.print_statement = None
+        ITE.cache[frozenset(self.arg_list)] = self
+        print(f"init ITE: {self.arg_list}")  # testing
+
+    def __ge__(self, other):
+        return artop(self, other, _GE)
+
+    def __gt__(self, other):
+        return artop(self, other, _GT)
+
+    def __le__(self, other):
+        return artop(self, other, _LE)
+
+    def __lt__(self, other):
+        return artop(self, other, _LT)
+
+    def __eq__(self, other):
+        return artop(self, other, _EQ)
+
+    def __ne__(self, other):
+        return artop(self, other, _NEQ)
+
+    def __add__(self, other):
+        return artop(self, other, _Plus)
+
+    def __sub__(self, other):
+        return artop(self, other, _Minus)
 
     def clear(self):
-        super(ITEoperator, self).clear()
+        """
+        Clear the ITE object
+        """
+        super(ITE, self).clear()
         self.op = None
-        for arg in self.arg_list:
-            clear(arg)
+        self.considered = OrderedSet()
+        self.print_statement = None
 
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
                unsat_mode=False):
-        result_list = []
-        # arg1 is B, arg2 is X, arg3 is Y, if B then ITE = X, if not B then ITE = Y
-        for arg in self.arg_list:
-            if isinstance(arg, Exists) or isinstance(arg, Forall):
-                result_list.append(arg.encode())
-            else:
-                result_list.append(
-                    encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
-                           disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode))
+        """
+        Encode the ITE expression as a set of constraints
+        """
+        print(f"Encoding ITE: {self.arg_list}")  # testing
 
-        if not isinstance(result_list[1], type(result_list[2])):
-            # Log a warning or handle type incompatibility
-            print("Warning: true_expr and false_expr are of different types. Handling may be inaccurate.")
-
-        if result_list[0] == TRUE():
-            return result_list[1]
+        if isinstance(self.arg_list[0], Operator):
+            condition_constraint = encode(self.arg_list[0], assumption=assumption, include_new_act=include_new_act,
+                                          exception=exception, disable=disable, proof_writer=proof_writer,
+                                          unsat_mode=unsat_mode)
         else:
-            return result_list[2]
+            condition_constraint = self.arg_list[0]
 
+        # Handle true and false branches
+        if isinstance(self.arg_list[1], Operator):
+            true_constraint = encode(self.arg_list[1], assumption=assumption, include_new_act=include_new_act,
+                                     exception=exception, disable=disable, proof_writer=proof_writer,
+                                     unsat_mode=unsat_mode)
+        else:
+            true_constraint = self.arg_list[1]
 
+        if isinstance(self.arg_list[2], Operator):
+            false_constraint = encode(self.arg_list[2], assumption=assumption, include_new_act=include_new_act,
+                                      exception=exception, disable=disable, proof_writer=proof_writer,
+                                      unsat_mode=unsat_mode)
+        else:
+            false_constraint = self.arg_list[2]
 
-    def invert(self):
-        if self.op is None:
-            arg_list = [invert(arg) for arg in self.arg_list]
-            self.op = ITEoperator(
-                *arg_list)
-        return self.op
+        ite_expr = Ite(condition_constraint, true_constraint, false_constraint)
+
+        if disable:
+            return ite_expr
+
+        true_branch_constraint = Implies(condition_constraint, EqualsOrIff(self.var, true_constraint))
+        false_branch_constraint = Implies(Not(condition_constraint), EqualsOrIff(self.var, false_constraint))
+
+        if not disable:
+            ITE.pending_defs.add(true_branch_constraint)
+            ITE.pending_defs.add(false_branch_constraint)
+
+        # Handle under constraint similar to type_constructor.py
+        if hasattr(self, "under_encoded"):
+            if self.under_encoded >= 0:
+                considered_len = self.under_encoded
+                current_len = len(ITE.pending_defs)
+                if considered_len == current_len:
+                    return self.var
+                else:
+                    new_var = FreshSymbol()
+                    choice_list = []
+                    for t_action in list(ITE.pending_defs)[self.under_encoded:]:
+                        choice_list.append(t_action)
+
+                    choice_constraint = Or(choice_list)
+                    if self.under_encoded:
+                        constraint = Implies(new_var, Or(self.under_var, choice_constraint))
+                    else:
+                        constraint = Implies(new_var, choice_constraint)
+
+                    self.under_encoded = current_len
+                    self.under_var = new_var
+                    ITE.pending_defs.add(constraint)
+
+        return self.var
+    
+    def __repr__(self):
+        return "ITE_{}".format(self.var)
+
+    def __hash__(self):
+        return hash(self.__repr__())
 
     def to_string(self):
-        result_list = [to_string(arg) for arg in self.arg_list]
-        return "ITEoperator({})".format(', '.join(result_list))
+        return "(ITE {} {} {})".format(to_string(self.arg_list[0]), to_string(self.arg_list[1]),
+                                       to_string(self.arg_list[2]))
 
-    def __repr__(self):
-        return "ITEoperator({})".format(', '.join([repr(arg) for arg in self.arg_list]))
+    def invert(self):
+        if self.op is None: 
+            arg_list = [invert(arg) for arg in self.arg_list]
+            self.op = ITE(*arg_list)
+        return self.op
+
+    def to_boolean(self, value):
+        if isinstance(value, bool):
+            return value
+        elif isinstance(value, (int, float)):
+            return value != 0
+        elif isinstance(value, str):
+            return value.lower() not in ['false', '0', '', 'none', 'null']
+        elif isinstance(value, list):
+            return len(value) > 0
+        elif value is None:
+            return False
+        else:
+            try:
+                return bool(value)
+            except Exception as e:
+                raise ValueError("Unsupported type for boolean conversion: {}".format(type(value))) from e
+
+
+def add_ite_defs(solver):
+    """
+    Add all pending ITE definitions to the solver.
+    """
+    for constraint in ITE.pending_defs:
+        solver.add_assertion(constraint)
+    ITE.pending_defs.clear()
 
 
 def create_control_variable(arg):
@@ -2749,8 +2886,12 @@ def since(EAction, func, Faction, func1, current_time, input_subs=None):
     return circut
 
 
-def ITE(cond, left, right):
-    return Ite(cond, left, right)
+# def ITE(cond, left, right):
+#     return Ite(cond, left, right)
+
+
+def XOR(left, right):
+    return Xor(left, right)
 
 
 def IFF(left, right):
@@ -2770,6 +2911,9 @@ def EQ(left, right):
         return IFF(left, right)
     if isinstance(left, Operator):
         return IFF(left, right)
+    if isinstance(right, Operator):
+        return IFF(right, left)
+    print("going to equalsoriff")
     return EqualsOrIff(left, right)
 
 
@@ -2780,6 +2924,7 @@ def NEQ(left, right):
         return left != right
     if isinstance(right, Arth_Operator):
         return right != left
+# return right != left
     return Not(EqualsOrIff(left, right))
 
 

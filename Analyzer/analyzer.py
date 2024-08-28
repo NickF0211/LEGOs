@@ -226,6 +226,7 @@ def inductive_checking(property, rules, complete_rules, ACTION, state_action, mi
         s.add_assertion(And(get_all_constraint(ACTION, full=False)))
         add_forall_defs(s)
         add_exist_defs(s)
+        add_ite_defs(s)
 
         solved = s.solve()
         if solved:
@@ -292,6 +293,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     """
     main function to solve the formula
     """
+    print("Entered check_property_refining")
     # print the configuration setting
     print("solving under config: restart {}, bcr {}, ub {}, min {}".format(restart, boundary_case, universal_blocking,
                                                                            min_solution))
@@ -328,8 +330,11 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     if axioms:
         s.add_assertion(axioms)
 
+    print("going to encode property")
+
     prop = encode(property, include_new_act=True, proof_writer=proof_writer, unsat_mode=unsat_mode)  # ground the
     # property and do overapproximation
+    print("going to add assertion for property")
     s.add_assertion(prop)  # add the property to the solver.
     # print(serialize(prop))
     # restart control
@@ -337,6 +342,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     restart_threshold = 10  # the threshold for restart for optimization
     round_without_new_rules = 0  # initialize to track the number of rounds without new rules
     eq_assumption = OrderedSet()  # consider the set of equality assumptions
+
+    print("going to enter the while loop")
 
     while application_rounds < action_iteration_bound:
         # print(application_rounds)
@@ -354,20 +361,29 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             round_without_new_rules = 0
             restart_threshold = int(restart_threshold * 1.5)  # increase the threshold
 
+        print("analyzer line 364")
+
         while action_changed(ACTION) or should_calibrate:  # optimization speed up domain expansion immediately
             # expand on specific constraints
             should_calibrate = False
             snap_shot_all(ACTION)
             encode(property, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
+            print("analyzer line 371")
             for p in rules:
                 if p in new_rules:
                     # if record_proof:
                     #     proof_writer.add_input_rule(p)
+                    print("analyzer line 376")
+                    # print p name
+                    # print(to_string(p))
                     temp_res = encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
+                    print("analyzer line 380")
                     s.add_assertion(temp_res)  # only add the new rules
                     # print(serialize(temp_res))
                 else:
                     encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
+
+        print("analyzer line 386")
 
         # for ACt in ACTION:
         #     print(ACt)
@@ -381,13 +397,16 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
         # now update the constraints
         update_underapprox(s)
-        over_constraints, over_vars = update_overapprox()  # ignore for now
+        over_constraints, over_vars = update_overapprox()  # ignore for now # what is over_vars for ?
         for c in over_constraints:
             if c != TRUE():
                 s.add_assertion(c)
 
+        print("============saving defs=============")  # testing
+
         add_forall_defs(s)  # add the forall definitions in solver
         add_exist_defs(s)  # add the exist definitions in solver
+        add_ite_defs(s)
         add_predicate_constraint(s)  # add the predicate constraints in solver
         all_cons = And(get_all_constraint(ACTION, full=False))
         s.add_assertion(all_cons)
@@ -417,7 +436,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
             if current_min_solution:  # know over and under sat
                 solved = True  # under is sat
-            else:
+            else:  # no sol
                 # solved = s.solve(vars)
                 solved = solver_under_eq_assumption(s, vars, eq_assumption)  # under
 

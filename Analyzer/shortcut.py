@@ -44,7 +44,8 @@ LT = logic_operator.LT
 GE = logic_operator.GE
 LE = logic_operator.LE
 adder = logic_operator.adder
-ITE = logic_operator.ITE
+ite = logic_operator.ite
+XOR = logic_operator.XOR
 
 def add_constraint(constraint):
     Constraints.append(constraint)
@@ -53,10 +54,13 @@ def add_constraint(constraint):
 # solver option
 def solve(formulas, constraint_abstraction=False, vol_bound=500, solution_opt=False,
           proof_mode=False, unsat_mode=False):
+    print("begin solve")
     if not constraint_abstraction:
         rules = Constraints
     else:
         rules = []
+
+    print("going to check property refining")
 
     result = analyzer.check_property_refining(formulas, rules, Constraints,
                                               CLASSES, [], vol_bound=vol_bound,

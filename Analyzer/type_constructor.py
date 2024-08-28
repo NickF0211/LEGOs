@@ -367,10 +367,10 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
         act_type = type(self)
         considered_len = self.under_encoded
         current_len = len(act_type.collect_list)
-        if not current_len:
+        if not current_len:  # no object created for the type
             if not self.under_var:
                 self.under_var = FreshSymbol()
-            constraint = Implies(self.under_var, Not(self.presence))
+            constraint = Implies(self.under_var, Not(self.presence))  # when domain is empty, obejcts curren created not in solution
             return self.under_var, constraint
         else:
             if considered_len == current_len:
@@ -383,7 +383,7 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
 
                 choice_constraint = Implies(self.presence, Or(choice_list))
                 if self.under_encoded:
-                    constraint = Implies(new_var, Or(self.under_var, choice_constraint))
+                    constraint = Implies(new_var, Or(self.under_var, choice_constraint))  # more clarification on under var based on cav algo
                 else:
                     constraint = Implies(new_var, choice_constraint)
 
