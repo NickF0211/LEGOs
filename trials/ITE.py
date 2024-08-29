@@ -1,8 +1,9 @@
 import sys
+import time
 from os.path import dirname, join, abspath
 project_root = abspath(join(dirname(__file__), '..'))
 sys.path.append(project_root)
-from pysmt.shortcuts import Int, TRUE, FALSE
+from pysmt.shortcuts import Int, TRUE, FALSE, String, Real
 
 from Analyzer.proof_reader import check_and_minimize
 from Analyzer.shortcut import AND, Constraints, EQ, Implication, NEQ, OR, add_constraint, clear, create_action, \
@@ -54,13 +55,24 @@ c7 = EQ(Int(1), ite(AND(condition1, condition2), Int(1), Int(0)))
 condition3 = exists(natural, lambda n: n.value > 15)
 c8 = EQ(Int(1), ite(AND(condition1, condition2, condition3), Int(1), Int(0)))
 
-add_constraint(AND(c1, c4, c5))
+c9 = EQ(ite(ite(TRUE(), TRUE(), FALSE()), Int(1), Int(0)), Int(1))
+
+c11 = EQ(Real(3.14), ite(TRUE(), Real(3.14), Real(2.71)))
+
+print("going to add constraints")
+
+add_constraint(AND(c1, c3, c4, c5, c6, c7, c8, c9, c11))
+
+# test time taken 
+start = time.time()
 solve(TRUE())
+end = time.time()
+print(end - start)
 
 
-# assumer value is anything
+# assume value is anything
 # assume value is natural number, first > second special case
-# understand what to return, how to make sure value returned make sense(constraint) how to add those? which stage you want to enforece the constraint
+# understand what to return, how to make sure value returned make sense(constraint) how to add those? which stage you want to enforce the constraint
 # how to interact with other operators
 
 
