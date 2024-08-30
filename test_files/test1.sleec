@@ -1,0 +1,21 @@
+//We present the example on slides 61 for using LEGO-SLEEC to detect redundancy between rules
+//R3 is redundant because of R1 and R2
+
+def_start
+    event A
+    event B
+    event C
+
+    // measures
+    measure m1: numeric
+def_end
+
+rule_start
+    R1 when A then B within 7 seconds
+    R2 when B then C within 7 seconds
+    R3 when A and (m1 < 20) then C within 15 seconds
+    R4 when A then not C within 11 seconds
+rule_end
+
+
+
