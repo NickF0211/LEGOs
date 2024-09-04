@@ -1,0 +1,125 @@
+def_start
+	event AllowSendData
+	event SystemCollectData
+	event SystemNotifyUser
+	event ChangeSystemLanguage
+	event UserChoosePronous
+	event SystemConfig
+	event SystemInformUserAboutStorageDuration
+	event SystemInformUserAboutAccessRight
+	event UserConformIsFamilarwithTechnology
+	event SystemRecivingMessageFromClinician
+	event SystemRelayMessageToUser
+	event SystemDataBreach
+	event SystemInformUserAboutDataBreach
+	event SystemPeroidicCheck
+	event SystemDeleteMessage
+	event SystemDeleteData
+	event AlertUser
+	event SystemAccessHealthData
+	event SystemAccesstHealthSummary
+	event SystemEnsureSummaryRelevent
+	event DataAnonymised
+	event SystemInformUser
+	event SystemInformUserAboutInput
+	event SystemRelayDataToClinican
+	event SystemTurnOnSensor
+	event SystemTurnOffSensor
+	event SystemAdviseUserToSeekUrgentCare
+	event UserConsented
+	event UseUserLanguage
+	event StopSystemDataCollection
+	event UserSubmitData
+	event SystemIntendInformUser
+	event StopDataCollection
+	event UserRequestStopDataCollection
+
+
+	measure age: numeric
+	measure systemlangauge: numeric
+	measure userLanguage: numeric
+	measure userPreferredPronouns: numeric
+	measure systemUsedPronous: numeric
+	measure userComfortablewithTech:boolean
+	measure userIsPraying: boolean
+	measure userIsSleeping: boolean
+	measure clockTime: scale(midnight, morning, afternoon, evening)
+	measure userLastTimeReceiveMessage: numeric
+	measure userLastTimeActive: numeric
+	measure systemRequireID: boolean
+	measure userRequestedStopDataCollection: boolean
+	measure userConcerned: boolean
+	measure userStressed: boolean
+	measure userIsBusy: boolean
+	measure datatype: scale(oxygenSaturation, heartRate, temp, PHI, others)
+
+
+def_end
+
+rule_start
+	R1 when SystemConfig and (not ({userLanguage} = {systemlangauge})) then ChangeSystemLanguage
+			unless ({systemlangauge} = 0)
+
+	R2 	when SystemConfig and (not ({userPreferredPronouns} = {systemUsedPronous})) then UserChoosePronous
+
+	R3 when SystemCollectData then SystemInformUserAboutStorageDuration
+
+	R4 when SystemCollectData then SystemInformUserAboutAccessRight
+
+	R5 when SystemConfig and ({age} > 70) then UserConformIsFamilarwithTechnology
+
+	R6 when SystemRecivingMessageFromClinician then SystemRelayMessageToUser
+
+
+    //midnight:0-6
+    //morning: 6-12
+    //afternoon:12-18
+    //evening:18-24
+	R7 when SystemIntendInformUser and {userIsPraying} then not SystemInformUser within 5 minutes
+								   unless ({userIsSleeping} or
+								   ( ({clockTime} = midnight) or
+														 ({clockTime} = afternoon))
+														) then not SystemInformUser
+
+
+
+	R8 when SystemDataBreach then SystemInformUserAboutDataBreach
+	R9 when SystemPeroidicCheck and ({userLastTimeReceiveMessage} >= 180) then SystemDeleteMessage
+	R10 when SystemPeroidicCheck and ({userLastTimeActive} >= 180) then SystemDeleteData
+
+	R10_1 when UserConsented then SystemCollectData
+	R10_2 when SystemInformUser then UseUserLanguage
+
+	R11 when SystemCollectData then SystemInformUser
+	R12 when SystemAccessHealthData then SystemInformUser
+	R13 when SystemAccesstHealthSummary then SystemInformUser
+	R14 when SystemCollectData and (not (({datatype} = oxygenSaturation) or ({datatype} = heartRate))) then StopDataCollection
+
+	R15 when SystemCollectData then DataAnonymised unless {systemRequireID}
+	R16 when SystemCollectData then SystemInformUserAboutInput
+	R17 when UserRequestStopDataCollection then StopDataCollection
+	R18 when SystemCollectData then SystemRelayDataToClinican unless {userRequestedStopDataCollection}
+	R19 when SystemTurnOnSensor then SystemInformUser
+	R20 when SystemPeroidicCheck and {userStressed} then not SystemInformUser within 1 days
+	R21 when SystemPeroidicCheck and {userConcerned} then SystemAdviseUserToSeekUrgentCare
+	R22 when SystemIntendInformUser and {userIsBusy} then not SystemInformUser within 5 minutes
+							unless ( ({clockTime} = midnight) or
+														 ({clockTime} = afternoon))
+	R23 when SystemIntendInformUser and {userIsBusy} then SystemInformUser within 361 seconds
+							unless ( ({clockTime} = midnight) or
+														 ({clockTime} = afternoon))
+rule_end
+
+relation_start
+	witness SystemRecivingMessageFromClinician SystemRelayMessageToUser
+	mutualExclusive SystemCollectData StopSystemDataCollection
+	mutualExclusive SystemTurnOnSensor SystemTurnOffSensor
+	forbid AllowSendData {userRequestedStopDataCollection}
+	happenBefore UseUserLanguage SystemInformUser
+	happenBefore UserConsented SystemCollectData
+	happenBefore SystemDataBreach SystemInformUserAboutDataBreach
+	happenBefore UserConsented AllowSendData
+	happenBefore SystemRecivingMessageFromClinician SystemRelayMessageToUser
+	includes UserConformIsFamilarwithTechnology {userComfortablewithTech}
+	measure mutualExclusive {userIsPraying} {userIsSleeping}
+relation_end
