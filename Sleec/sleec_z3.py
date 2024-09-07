@@ -710,9 +710,13 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
     return concern_raised, output, adj_hl
 
 
-def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
+def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
                    multi_entry=False, profiling=True):
 
+    dir, name = ntpath.split((filename))
+    path = "{}/{}/{}/{}".format(os.getcwd(),dir, name, mode).replace(".sleec", "")    
+    if not os.path.isdir(path):
+        os.makedirs(path)
     Measure = Action_Mapping["Measure"]
 
     if profiling:
@@ -735,7 +739,7 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
     conflicting_set = set()
     relations_constraint = get_relational_constraints(relations)
     multi_output = []
-
+    csv_file = open("relation.csv", 'a')
     for i in range(len(rules)):
 
         if multi_entry:
@@ -817,6 +821,7 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
                 proof_generation_time = time.time() - proof_generation_start_time
 
         if isinstance(res, str):
+            sat_result = "sat"
             if to_print:
                 print("Not Conflicting")
             else:
@@ -829,6 +834,7 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
                 output += "Likely Conflicting\n"
 
         else:
+            sat_result = "unsat"
             conflict_res = True
 
         if profiling:
@@ -838,7 +844,7 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
             trimmed_proof_size = 0
             trimmed_derivation_steps = 0
 
-        if res == 0 and check_proof:
+        if res == 0 and check_proof:            
             if profiling:
                 raw_proof_size = os.path.getsize("proof.txt")
                 raw_derivation_steps = sum(1 for _ in open("proof.txt"))
@@ -927,6 +933,9 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
                 multi_output.append((output, adj_hl))
 
         if profiling:
+            print("sat_result: {}".format(sat_result))
+            print("proof_generation_time: {}".format(proof_generation_time))
+            csv_file.write("{}, {}, {}, {}, {}\n".format(filename, mode, i,  sat_result, proof_generation_time))
             profiling_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(raw_finish_time, proof_generation_time,
                                                                      proof_checking_time, raw_proof_size, raw_derivation_steps,
                                                                      trimmed_proof_size, trimmed_derivation_steps))
