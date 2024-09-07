@@ -646,7 +646,7 @@ def check_concerns(filename, mode, model, rules, concerns, relations, Action_Map
     adj_hl = []
     concern_raised = False
     relations_constraint = get_relational_constraints(relations)
-    csv_file = open("relation.csv", 'a')
+    csv_file = open("z3.csv", 'a')
     for i in range(len(concerns)):
         if to_print:
             print("check concern_{}".format(i + 1))
@@ -705,7 +705,7 @@ def check_concerns(filename, mode, model, rules, concerns, relations, Action_Map
         else:
             sat_result = "unsat"
             print("concern not raised")
-
+        csv_file.write("{}, {}, {}, {}, {}\n".format(filename, mode, i,  sat_result, duration))
         clear_relational_constraints(relations)
         clear_all(Actions)
         reset_rules(rules)
@@ -748,7 +748,7 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
     conflicting_set = set()
     relations_constraint = get_relational_constraints(relations)
     multi_output = []
-    csv_file = open("relation.csv", 'a')
+    csv_file = open("z3.csv", 'a')
     for i in range(len(rules)):
 
         if multi_entry:
@@ -1257,7 +1257,7 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
     if profiling:
         profiling_file = open("profiling_red.csv", 'w')
         profiling_file.write("raw_finish_time, proof_generation_time, proof_checking_time, raw_proof_size, raw_derivation_steps, trimmed_proof_size, trimmed_derivation_steps\n")
-    csv_file = open("relation.csv", 'a')
+    csv_file = open("z3.csv", 'a')
     for i in range(len(rules)):
         sat_result = "unknown"
         if multi_entry:

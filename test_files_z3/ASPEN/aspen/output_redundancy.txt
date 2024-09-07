@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_red at 0x7fdbdd0f1080>
+analysis_func: <function parse_and_check_red at 0x7f034c3bd080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -14,7 +14,7 @@ at time 0: Measure(sameLanguage=True, humanUnderstands=True, unrelatedActivity=F
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06565642356872559
+proof_generation_time: 0.0650177001953125
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -29,7 +29,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.033901214599609375
+proof_generation_time: 0.03432178497314453
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -46,7 +46,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03953194618225098
+proof_generation_time: 0.034644365310668945
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -61,7 +61,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.043950557708740234
+proof_generation_time: 0.04380440711975098
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -78,7 +78,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.08909726142883301
+proof_generation_time: 0.07299280166625977
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -93,11 +93,11 @@ find trace
 at time 0: DeployDrone()
 at time 0: MonitorCarbon()
 at time 0: AvoidInterference()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=True, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=True, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
 vol: 4
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.19019603729248047
+proof_generation_time: 0.17362236976623535
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -112,24 +112,24 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05474400520324707
+proof_generation_time: 0.05076193809509277
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DeployDrone()
 at time 0: MonitorCarbon()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DeployDrone()
 at time 0: MonitorCarbon()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.18639707565307617
+proof_generation_time: 0.17061877250671387
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -144,7 +144,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0379481315612793
+proof_generation_time: 0.0388643741607666
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -169,7 +169,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 7
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.5179245471954346
+proof_generation_time: 0.3721120357513428
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -177,7 +177,7 @@ find trace
 at time 0: DeployDrone()
 at time 0: MonitorCarbon()
 at time 0: AvoidInterference()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=True, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=True, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -188,14 +188,14 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 4
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.1789417266845703
+proof_generation_time: 0.20838117599487305
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DeployDrone()
 at time 0: AvoidInterference()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -205,7 +205,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.19661760330200195
+proof_generation_time: 0.17712640762329102
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -224,7 +224,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 4
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.17096710205078125
+proof_generation_time: 0.18007707595825195
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -239,7 +239,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03457307815551758
+proof_generation_time: 0.03391671180725098
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -254,7 +254,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03403186798095703
+proof_generation_time: 0.033643245697021484
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -273,7 +273,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 4
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.14634370803833008
+proof_generation_time: 0.18011188507080078
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -288,7 +288,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03377819061279297
+proof_generation_time: 0.0336458683013916
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -303,7 +303,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03404092788696289
+proof_generation_time: 0.03516507148742676
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -318,7 +318,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.07469844818115234
+proof_generation_time: 0.036006927490234375
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -335,7 +335,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06380367279052734
+proof_generation_time: 0.09748959541320801
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -345,7 +345,7 @@ at time 0: DeployDrone()
 at time 0: MonitorCarbon()
 at time 0: AvoidInterference()
 at time 0: UpdateTerritories()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
 vol: 6
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -358,7 +358,7 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 6
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.3296940326690674
+proof_generation_time: 0.340374231338501
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -368,7 +368,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
 sat_result: unsat
-proof_generation_time: 0.30016517639160156
+proof_generation_time: 0.29853248596191406
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
@@ -377,7 +377,7 @@ at time 0: InformKeeper()
 at time 0: DeployDrone()
 at time 0: MonitorCarbon()
 at time 0: AvoidInterference()
-at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=True, battery=0, store=0)
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=True, battery=0, store=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -389,5 +389,5 @@ at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity
 vol: 5
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.30080223083496094
+proof_generation_time: 0.24827170372009277
 ****************************************************************************************************

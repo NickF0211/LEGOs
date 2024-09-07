@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_red at 0x7f9ad8c99080>
+analysis_func: <function parse_and_check_red at 0x7f3119e55080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -12,7 +12,7 @@ at time 0: Measure(age=0, systemlangauge=3, userLanguage=2, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0637354850769043
+proof_generation_time: 0.05137896537780762
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -27,7 +27,7 @@ at time 0: Measure(age=0, systemlangauge=4, userLanguage=4, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04487872123718262
+proof_generation_time: 0.04688763618469238
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -36,7 +36,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
 sat_result: unsat
-proof_generation_time: 0.3262655735015869
+proof_generation_time: 0.2983357906341553
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -45,22 +45,22 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
 sat_result: unsat
-proof_generation_time: 0.3015437126159668
+proof_generation_time: 0.3034353256225586
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemConfig()
-at time 0: Measure(age=71, systemlangauge=0, userLanguage=2, userPreferredPronouns=3, systemUsedPronous=3, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=5, userLastTimeActive=4, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=71, systemlangauge=3, userLanguage=3, userPreferredPronouns=5, systemUsedPronous=5, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=4, userLastTimeActive=2, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemConfig()
-at time 0: Measure(age=71, systemlangauge=0, userLanguage=2, userPreferredPronouns=4, systemUsedPronous=4, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=3, userLastTimeActive=5, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=71, systemlangauge=0, userLanguage=5, userPreferredPronouns=3, systemUsedPronous=3, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=4, userLastTimeActive=2, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.045664072036743164
+proof_generation_time: 0.0623478889465332
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -70,7 +70,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
 sat_result: unsat
-proof_generation_time: 0.04257917404174805
+proof_generation_time: 0.04322338104248047
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -79,13 +79,13 @@ at time 0: UseUserLanguage()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
 at time 1: SystemIntendInformUser()
-at time 1: Measure(age=7, systemlangauge=8, userLanguage=9, userPreferredPronouns=10, systemUsedPronous=11, userComfortablewithTech=False, userIsPraying=True, userIsSleeping=False, clockTime=3, userLastTimeReceiveMessage=12, userLastTimeActive=13, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=14, systemlangauge=9, userLanguage=12, userPreferredPronouns=10, systemUsedPronous=8, userComfortablewithTech=False, userIsPraying=True, userIsSleeping=False, clockTime=3, userLastTimeReceiveMessage=11, userLastTimeActive=13, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
 sat_result: unsat
-proof_generation_time: 0.09832262992858887
+proof_generation_time: 0.13290715217590332
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -100,7 +100,7 @@ at time 0: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04260134696960449
+proof_generation_time: 0.04344320297241211
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -115,7 +115,7 @@ at time 0: Measure(age=2, systemlangauge=3, userLanguage=4, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06874346733093262
+proof_generation_time: 0.06500744819641113
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -130,7 +130,7 @@ at time 0: Measure(age=2, systemlangauge=3, userLanguage=4, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05131268501281738
+proof_generation_time: 0.04626727104187012
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -145,7 +145,7 @@ at time 0: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04025840759277344
+proof_generation_time: 0.04184436798095703
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -162,7 +162,7 @@ at time 1: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06867766380310059
+proof_generation_time: 0.09274530410766602
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -171,7 +171,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
 sat_result: unsat
-proof_generation_time: 0.33243489265441895
+proof_generation_time: 0.3177342414855957
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -186,7 +186,7 @@ at time 0: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04593658447265625
+proof_generation_time: 0.044275522232055664
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -201,7 +201,7 @@ at time 0: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04096722602844238
+proof_generation_time: 0.04261946678161621
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -210,7 +210,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
 sat_result: unsat
-proof_generation_time: 0.2916393280029297
+proof_generation_time: 0.2983436584472656
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -219,7 +219,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
 sat_result: unsat
-proof_generation_time: 0.3503291606903076
+proof_generation_time: 0.34308409690856934
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -228,7 +228,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
 sat_result: unsat
-proof_generation_time: 0.29512763023376465
+proof_generation_time: 0.290616512298584
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -243,7 +243,7 @@ at time 0: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0969552993774414
+proof_generation_time: 0.04236745834350586
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -252,7 +252,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
 sat_result: unsat
-proof_generation_time: 0.2874419689178467
+proof_generation_time: 0.3020787239074707
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -267,7 +267,7 @@ at time 0: Measure(age=0, systemlangauge=0, userLanguage=0, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04132437705993652
+proof_generation_time: 0.04547238349914551
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -276,13 +276,13 @@ at time 0: UseUserLanguage()
 at time 1: SystemPeroidicCheck()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=9, systemlangauge=10, userLanguage=6, userPreferredPronouns=8, systemUsedPronous=11, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=True, userIsBusy=False, datatype=0)
+at time 1: Measure(age=4, systemlangauge=10, userLanguage=5, userPreferredPronouns=7, systemUsedPronous=8, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=True, userIsBusy=False, datatype=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
 sat_result: unsat
-proof_generation_time: 0.1980760097503662
+proof_generation_time: 0.14425134658813477
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
@@ -297,7 +297,7 @@ at time 0: Measure(age=2, systemlangauge=3, userLanguage=4, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.046108245849609375
+proof_generation_time: 0.04532504081726074
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
@@ -306,13 +306,13 @@ at time 0: UseUserLanguage()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
 at time 1: SystemIntendInformUser()
-at time 1: Measure(age=11, systemlangauge=14, userLanguage=16, userPreferredPronouns=9, systemUsedPronous=13, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=3, userLastTimeReceiveMessage=10, userLastTimeActive=12, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=True, userStressed=False, userIsBusy=True, datatype=0)
+at time 1: Measure(age=12, systemlangauge=15, userLanguage=11, userPreferredPronouns=10, systemUsedPronous=16, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=3, userLastTimeReceiveMessage=8, userLastTimeActive=14, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=True, datatype=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
 sat_result: unsat
-proof_generation_time: 0.11963272094726562
+proof_generation_time: 0.11298871040344238
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -327,5 +327,5 @@ at time 0: Measure(age=2, systemlangauge=3, userLanguage=4, userPreferredPronoun
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04817056655883789
+proof_generation_time: 0.04584074020385742
 ****************************************************************************************************

@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_red at 0x7fdcee21d080>
+analysis_func: <function parse_and_check_red at 0x7ffa3fe79080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -12,7 +12,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04646921157836914
+proof_generation_time: 0.05024099349975586
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -22,7 +22,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
 sat_result: unsat
-proof_generation_time: 0.09182453155517578
+proof_generation_time: 0.09105730056762695
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -43,7 +43,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 5
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.12103390693664551
+proof_generation_time: 0.12149477005004883
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -58,7 +58,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.046942949295043945
+proof_generation_time: 0.04769730567932129
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -71,11 +71,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemReady()
 at time 0: DisplayCarInformation()
-at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=True, userSaysYes=True, peopleConsentObtained=False)
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=True, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.3383002281188965
+proof_generation_time: 0.3276522159576416
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -90,7 +90,7 @@ at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, 
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.046021223068237305
+proof_generation_time: 0.04666495323181152
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -105,7 +105,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06454038619995117
+proof_generation_time: 0.06445574760437012
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -120,7 +120,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0437467098236084
+proof_generation_time: 0.043157339096069336
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -135,7 +135,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.047098398208618164
+proof_generation_time: 0.04807686805725098
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -150,7 +150,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.049263954162597656
+proof_generation_time: 0.04567527770996094
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -165,28 +165,28 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0516209602355957
+proof_generation_time: 0.05290555953979492
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CarDriving()
-at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=True, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
 vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CarDriving()
-at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=True, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.07899594306945801
+proof_generation_time: 0.07664895057678223
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CarDriving()
-at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=True, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=True, multipleLanes=False, commandClear=False, laneExists=True, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=True, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=True, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
 vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -195,7 +195,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05126643180847168
+proof_generation_time: 0.0569303035736084
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -212,7 +212,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.07051968574523926
+proof_generation_time: 0.07148885726928711
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -227,7 +227,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.07624125480651855
+proof_generation_time: 0.07645034790039062
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -242,7 +242,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.050855159759521484
+proof_generation_time: 0.050844669342041016
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -259,7 +259,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0799093246459961
+proof_generation_time: 0.07553625106811523
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -274,7 +274,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.08559131622314453
+proof_generation_time: 0.08497166633605957
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -289,7 +289,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05294919013977051
+proof_generation_time: 0.05315542221069336
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -304,7 +304,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.049657583236694336
+proof_generation_time: 0.0494840145111084
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -319,7 +319,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04928708076477051
+proof_generation_time: 0.05132436752319336
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -334,7 +334,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04561567306518555
+proof_generation_time: 0.04560422897338867
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
@@ -357,18 +357,18 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 6
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.4237544536590576
+proof_generation_time: 0.42433595657348633
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1: SystemReady()
-at time 1: TakeUserInput()
-at time 1: CalculateShortestPath()
-at time 1: DisplayCarInformation()
-at time 1: DisplayRoute()
-at time 1: StopAutonomousAssistance()
-at time 1: Measure(destinationExists=True, pathExists=True, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=True, environmentClear=False, riskLevel=1, withinLane=True, multipleLanes=False, commandClear=True, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=True, seatBeltOn=True, userSaysYes=False, peopleConsentObtained=False)
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayCarInformation()
+at time 0: DisplayRoute()
+at time 0: StopAutonomousAssistance()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=True, ambulanceBehindCar=True, ambulanceOnOppositeSide=True, ambulanceNextToCar=True, environmentClear=True, riskLevel=1, withinLane=False, multipleLanes=True, commandClear=False, laneExists=True, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=True, previousLight=1, doorClosed=True, seatBeltOn=True, userSaysYes=False, peopleConsentObtained=True)
 vol: 7
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -377,11 +377,11 @@ at time 0: TakeUserInput()
 at time 0: DisplayCarInformation()
 at time 0: DisplayError()
 at time 0: StopAutonomousAssistance()
-at time 0: Measure(destinationExists=True, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=True, seatBeltOn=True, userSaysYes=False, peopleConsentObtained=False)
+at time 0: Measure(destinationExists=True, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=True, ambulanceBehindCar=True, ambulanceOnOppositeSide=True, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=True, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=False, yellowLight=True, greenLight=True, previousLight=0, doorClosed=True, seatBeltOn=True, userSaysYes=False, peopleConsentObtained=False)
 vol: 6
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.43708372116088867
+proof_generation_time: 0.6377918720245361
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -404,7 +404,7 @@ at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, 
 vol: 6
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.5081813335418701
+proof_generation_time: 0.4985957145690918
 ****************************************************************************************************
 check rule_26
 solving under config: restart False, bcr False, ub False, min False
@@ -419,7 +419,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.046004533767700195
+proof_generation_time: 0.044426679611206055
 ****************************************************************************************************
 check rule_27
 solving under config: restart False, bcr False, ub False, min False
@@ -434,19 +434,21 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.043424367904663086
+proof_generation_time: 0.04588913917541504
 ****************************************************************************************************
 check rule_28
 solving under config: restart False, bcr False, ub False, min False
 merged
-domain size 11
+domain size 12
 unsat
 solving under config: restart False, bcr False, ub False, min False
+merged
+merged
 merged
 domain size 12
 unsat
 sat_result: unsat
-proof_generation_time: 0.4681828022003174
+proof_generation_time: 0.476179838180542
 ****************************************************************************************************
 check rule_29
 solving under config: restart False, bcr False, ub False, min False
@@ -467,7 +469,7 @@ at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, 
 vol: 5
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.6219868659973145
+proof_generation_time: 0.613701343536377
 ****************************************************************************************************
 check rule_30
 solving under config: restart False, bcr False, ub False, min False
@@ -477,7 +479,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
 sat_result: unsat
-proof_generation_time: 0.04517340660095215
+proof_generation_time: 0.04326486587524414
 ****************************************************************************************************
 check rule_31
 solving under config: restart False, bcr False, ub False, min False
@@ -494,7 +496,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.08019709587097168
+proof_generation_time: 0.07797479629516602
 ****************************************************************************************************
 check rule_32
 solving under config: restart False, bcr False, ub False, min False
@@ -504,7 +506,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 9
 unsat
 sat_result: unsat
-proof_generation_time: 0.7302048206329346
+proof_generation_time: 0.7001955509185791
 ****************************************************************************************************
 check rule_33
 solving under config: restart False, bcr False, ub False, min False
@@ -527,7 +529,7 @@ at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, 
 vol: 6
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.43591904640197754
+proof_generation_time: 0.4047417640686035
 ****************************************************************************************************
 check rule_34
 solving under config: restart False, bcr False, ub False, min False
@@ -537,7 +539,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
 sat_result: unsat
-proof_generation_time: 0.19412493705749512
+proof_generation_time: 0.3046905994415283
 ****************************************************************************************************
 check rule_35
 solving under config: restart False, bcr False, ub False, min False
@@ -547,7 +549,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 6
 unsat
 sat_result: unsat
-proof_generation_time: 0.30352783203125
+proof_generation_time: 0.18046164512634277
 ****************************************************************************************************
 check rule_36
 solving under config: restart False, bcr False, ub False, min False
@@ -566,7 +568,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 4
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.08057928085327148
+proof_generation_time: 0.07506990432739258
 ****************************************************************************************************
 check rule_37
 solving under config: restart False, bcr False, ub False, min False
@@ -576,7 +578,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 9
 unsat
 sat_result: unsat
-proof_generation_time: 0.6156501770019531
+proof_generation_time: 0.5438854694366455
 ****************************************************************************************************
 check rule_38
 solving under config: restart False, bcr False, ub False, min False
@@ -593,7 +595,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05201220512390137
+proof_generation_time: 0.18155884742736816
 ****************************************************************************************************
 check rule_39
 solving under config: restart False, bcr False, ub False, min False
@@ -610,7 +612,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.17290472984313965
+proof_generation_time: 0.04929041862487793
 ****************************************************************************************************
 check rule_40
 solving under config: restart False, bcr False, ub False, min False
@@ -620,7 +622,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
 sat_result: unsat
-proof_generation_time: 0.19350838661193848
+proof_generation_time: 0.1831967830657959
 ****************************************************************************************************
 check rule_41
 solving under config: restart False, bcr False, ub False, min False
@@ -637,7 +639,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.049562931060791016
+proof_generation_time: 0.04903578758239746
 ****************************************************************************************************
 check rule_42
 solving under config: restart False, bcr False, ub False, min False
@@ -654,7 +656,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.047402381896972656
+proof_generation_time: 0.04639124870300293
 ****************************************************************************************************
 check rule_43
 solving under config: restart False, bcr False, ub False, min False
@@ -671,7 +673,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.045972585678100586
+proof_generation_time: 0.04477524757385254
 ****************************************************************************************************
 check rule_44
 solving under config: restart False, bcr False, ub False, min False
@@ -688,7 +690,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04636406898498535
+proof_generation_time: 0.04477334022521973
 ****************************************************************************************************
 check rule_45
 solving under config: restart False, bcr False, ub False, min False
@@ -705,7 +707,7 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05425524711608887
+proof_generation_time: 0.046930551528930664
 ****************************************************************************************************
 check rule_46
 solving under config: restart False, bcr False, ub False, min False
@@ -722,5 +724,5 @@ at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.047698259353637695
+proof_generation_time: 0.04553413391113281
 ****************************************************************************************************
