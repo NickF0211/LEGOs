@@ -1,0 +1,726 @@
+analysis_func: <function parse_and_check_red at 0x7fdcee21d080>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserTurnOnSystem()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserTurnOnSystem()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.04646921157836914
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+sat_result: unsat
+proof_generation_time: 0.09182453155517578
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserTurnOnSystem()
+at time 0: TurnOnSensors()
+at time 0: TurnOffSensors()
+at time 0: CheckSystemComponents()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=True, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserTurnOnSystem()
+at time 0: TurnOnSensors()
+at time 0: TurnOffSensors()
+at time 0: CheckSystemComponents()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 5
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.12103390693664551
+****************************************************************************************************
+check rule_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TurnOnSensors()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TurnOnSensors()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.046942949295043945
+****************************************************************************************************
+check rule_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: DisplayCarInformation()
+at time 0: Measure(destinationExists=True, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: DisplayCarInformation()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=True, userSaysYes=True, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.3383002281188965
+****************************************************************************************************
+check rule_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TakeUserInput()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TakeUserInput()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.046021223068237305
+****************************************************************************************************
+check rule_7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CalculateShortestPath()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CalculateShortestPath()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.06454038619995117
+****************************************************************************************************
+check rule_8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserRequestSpeedChange()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserRequestSpeedChange()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.0437467098236084
+****************************************************************************************************
+check rule_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserChangeRoute()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=True, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserChangeRoute()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=True, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.047098398208618164
+****************************************************************************************************
+check rule_10
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserCancelPath()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserCancelPath()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.049263954162597656
+****************************************************************************************************
+check rule_11
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CarDriving()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=True, carsBehind=True, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CarDriving()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=True, carsBehind=True, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.0516209602355957
+****************************************************************************************************
+check rule_12
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CarDriving()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CarDriving()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=True, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.07899594306945801
+****************************************************************************************************
+check rule_13
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CarDriving()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=True, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=True, multipleLanes=False, commandClear=False, laneExists=True, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CarDriving()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=True, multipleLanes=False, commandClear=False, laneExists=True, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.05126643180847168
+****************************************************************************************************
+check rule_14
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserTurnOffSystem()
+at time 0: TurnOffSensors()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserTurnOffSystem()
+at time 0: TurnOffSensors()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.07051968574523926
+****************************************************************************************************
+check rule_15
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ParkVehicle()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ParkVehicle()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.07624125480651855
+****************************************************************************************************
+check rule_16
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PriorityVehicleNearby()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PriorityVehicleNearby()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.050855159759521484
+****************************************************************************************************
+check rule_17
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DisplayAlert()
+at time 0: PriorityVehicleNearby()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=True, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DisplayAlert()
+at time 0: PriorityVehicleNearby()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=True, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.0799093246459961
+****************************************************************************************************
+check rule_18
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=True, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=True, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.08559131622314453
+****************************************************************************************************
+check rule_19
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=False, yellowLight=True, greenLight=False, previousLight=1, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=False, yellowLight=True, greenLight=False, previousLight=1, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.05294919013977051
+****************************************************************************************************
+check rule_20
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=False, yellowLight=False, greenLight=True, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=True, redLight=False, yellowLight=False, greenLight=True, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.049657583236694336
+****************************************************************************************************
+check rule_21
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SeeTrafficLight()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.04928708076477051
+****************************************************************************************************
+check rule_22
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SlowDown()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SlowDown()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=True, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.04561567306518555
+****************************************************************************************************
+check rule_23
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: DisplayCarInformation()
+at time 0: DisplayError()
+at time 0: StopAutonomousAssistance()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: DisplayCarInformation()
+at time 0: DisplayError()
+at time 0: StopAutonomousAssistance()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 6
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.4237544536590576
+****************************************************************************************************
+check rule_24
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: SystemReady()
+at time 1: TakeUserInput()
+at time 1: CalculateShortestPath()
+at time 1: DisplayCarInformation()
+at time 1: DisplayRoute()
+at time 1: StopAutonomousAssistance()
+at time 1: Measure(destinationExists=True, pathExists=True, objectInPath=True, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=True, environmentClear=False, riskLevel=1, withinLane=True, multipleLanes=False, commandClear=True, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=True, seatBeltOn=True, userSaysYes=False, peopleConsentObtained=False)
+vol: 7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: DisplayCarInformation()
+at time 0: DisplayError()
+at time 0: StopAutonomousAssistance()
+at time 0: Measure(destinationExists=True, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=True, seatBeltOn=True, userSaysYes=False, peopleConsentObtained=False)
+vol: 6
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.43708372116088867
+****************************************************************************************************
+check rule_25
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayCarInformation()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayCarInformation()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 6
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.5081813335418701
+****************************************************************************************************
+check rule_26
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AskIfUserReadyToDrive()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AskIfUserReadyToDrive()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.046004533767700195
+****************************************************************************************************
+check rule_27
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DisplayError()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DisplayError()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.043424367904663086
+****************************************************************************************************
+check rule_28
+solving under config: restart False, bcr False, ub False, min False
+merged
+domain size 11
+unsat
+solving under config: restart False, bcr False, ub False, min False
+merged
+domain size 12
+unsat
+sat_result: unsat
+proof_generation_time: 0.4681828022003174
+****************************************************************************************************
+check rule_29
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=1, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 5
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.6219868659973145
+****************************************************************************************************
+check rule_30
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+sat_result: unsat
+proof_generation_time: 0.04517340660095215
+****************************************************************************************************
+check rule_31
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CalculateShortestPath()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CalculateShortestPath()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.08019709587097168
+****************************************************************************************************
+check rule_32
+solving under config: restart False, bcr False, ub False, min False
+domain size 9
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 9
+unsat
+sat_result: unsat
+proof_generation_time: 0.7302048206329346
+****************************************************************************************************
+check rule_33
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayCarInformation()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemReady()
+at time 0: TakeUserInput()
+at time 0: CalculateShortestPath()
+at time 0: DisplayCarInformation()
+at time 0: DisplayRoute()
+at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 6
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.43591904640197754
+****************************************************************************************************
+check rule_34
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+sat_result: unsat
+proof_generation_time: 0.19412493705749512
+****************************************************************************************************
+check rule_35
+solving under config: restart False, bcr False, ub False, min False
+domain size 6
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 6
+unsat
+sat_result: unsat
+proof_generation_time: 0.30352783203125
+****************************************************************************************************
+check rule_36
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TurnOnSensors()
+at time 0: CheckSystemComponents()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TurnOnSensors()
+at time 0: CheckSystemComponents()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 4
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.08057928085327148
+****************************************************************************************************
+check rule_37
+solving under config: restart False, bcr False, ub False, min False
+domain size 9
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 9
+unsat
+sat_result: unsat
+proof_generation_time: 0.6156501770019531
+****************************************************************************************************
+check rule_38
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ReadyToDrive()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ReadyToDrive()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.05201220512390137
+****************************************************************************************************
+check rule_39
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AskIfUserReadyToDrive()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AskIfUserReadyToDrive()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=True, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.17290472984313965
+****************************************************************************************************
+check rule_40
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+sat_result: unsat
+proof_generation_time: 0.19350838661193848
+****************************************************************************************************
+check rule_41
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SlowDown()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SlowDown()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.049562931060791016
+****************************************************************************************************
+check rule_42
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeSpeed()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeSpeed()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.047402381896972656
+****************************************************************************************************
+check rule_43
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeLanes()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeLanes()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.045972585678100586
+****************************************************************************************************
+check rule_44
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeCurrentDriving()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeCurrentDriving()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.04636406898498535
+****************************************************************************************************
+check rule_45
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: MaintainEqualDistance()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: MaintainEqualDistance()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.05425524711608887
+****************************************************************************************************
+check rule_46
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: StayCenteredinLane()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: StayCenteredinLane()
+at time 0: RecordPeople()
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=0, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=0, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.047698259353637695
+****************************************************************************************************

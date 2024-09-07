@@ -1,0 +1,66 @@
+analysis_func: <function parse_and_check_concern at 0x7f0a87f8dc60>
+check concern_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserRequestInfo()
+at time 0: ProvideInfo()
+at time 0: InformUserandandReferToHumanCarer()
+at time 0: Measure(UserAge=9, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=10, stablePsychologicalState=False, timeElapsed=11, informationAvailable=True, informationDisclosureNotPermitted=True, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=True, userDirectsOtherwise=False, instructionRepeat=12, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 4
+concern case 0 solving time 0.15990853309631348
+Concern is raised
+****************************************************************************************************
+check concern_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEndSession()
+at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=0, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 2
+concern case 1 solving time 0.049111127853393555
+Concern is raised
+****************************************************************************************************
+check concern_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: MeetingPatient()
+at time 0: ExaminingPatient()
+at time 0: CanEndSession()
+at time 0: CanCallHuman()
+at time 0: Measure(UserAge=8, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=7, stablePsychologicalState=False, timeElapsed=10, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=9, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 5
+concern case 2 solving time 0.2577989101409912
+Concern is raised
+****************************************************************************************************
+check concern_4
+solving under config: restart False, bcr False, ub False, min False
+domain size 6
+unsat
+concern case 3 solving time 0.27454137802124023
+concern not raised
+****************************************************************************************************
+check concern_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: MeetingUser()
+at time 0: ExamineState()
+at time 0: IdentifyDAISYTrust()
+at time 0: determineThreshold()
+at time 0: selectDAISYProtocol()
+at time 0: informDaisyAbilities()
+at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=8, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 7
+concern case 4 solving time 0.5140829086303711
+Concern is raised
+****************************************************************************************************
+check concern_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ExaminingPatient()
+at time 0: ReferToHumanExaminer()
+at time 0: CanEndSession()
+at time 0: CanCallHuman()
+at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=7, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=9, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 5
+concern case 5 solving time 0.2660248279571533
+Concern is raised
+****************************************************************************************************

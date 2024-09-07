@@ -1,0 +1,50 @@
+analysis_func: <function parse_and_check_red at 0x7f8b8ec0d080>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: A()
+at time 0: Measure(m1=0)
+at time 10: Measure(m1=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: A()
+at time 0: Measure(m1=0)
+at time 10: Measure(m1=0)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.02294158935546875
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: C()
+at time 0: Measure(m1=0)
+at time 10: Measure(m1=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: C()
+at time 0: Measure(m1=0)
+at time 10: Measure(m1=0)
+vol: 3
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.020925283432006836
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: B()
+at time 0: Measure(m1=0)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: B()
+at time 0: Measure(m1=0)
+vol: 2
+Not Redundant
+sat_result: sat
+proof_generation_time: 0.020443439483642578
+****************************************************************************************************

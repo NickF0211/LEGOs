@@ -1,0 +1,472 @@
+analysis_func: <function parse_and_check_conflict at 0x7fa0c52b67a0>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EncounterHuman()
+at time 0: IdentifyActivity()
+at time 0: InformHuman()
+at time 0: Measure(sameLanguage=True, humanUnderstands=True, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=True, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EncounterHuman()
+at time 0: IdentifyActivity()
+at time 0: InformHuman()
+at time 0: Measure(sameLanguage=True, humanUnderstands=True, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08783078193664551
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EncounterHuman()
+at time 0: IdentifyActivity()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EncounterHuman()
+at time 0: IdentifyActivity()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08551955223083496
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: IdentifyActivity()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=True, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: IdentifyActivity()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=True, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.03843951225280762
+****************************************************************************************************
+check rule_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: HumanNearby()
+at time 0: InformHuman()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=True, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: HumanNearby()
+at time 0: InformHuman()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=True, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06183362007141113
+****************************************************************************************************
+check rule_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDrone()
+at time 0: UpdateTerritories()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=1)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDrone()
+at time 0: UpdateTerritories()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=1)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08806800842285156
+****************************************************************************************************
+check rule_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorLand()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=True, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=True, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=3, wildlifeDisturbed=False, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorLand()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=True, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2621748447418213
+****************************************************************************************************
+check rule_7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CollectSample()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CollectSample()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.07545590400695801
+****************************************************************************************************
+check rule_8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2696869373321533
+****************************************************************************************************
+check rule_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDrone()
+at time 0: UpdateTerritories()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=1)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDrone()
+at time 0: UpdateTerritories()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=1)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08304357528686523
+****************************************************************************************************
+check rule_10
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDrone()
+at time 0: UpdateTerritories()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=True, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=1)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDrone()
+at time 0: UpdateTerritories()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=True, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=1)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08492231369018555
+****************************************************************************************************
+check rule_11
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ExitArea()
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=True, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ExitArea()
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=True, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2862820625305176
+****************************************************************************************************
+check rule_12
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.28104686737060547
+****************************************************************************************************
+check rule_13
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=1, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=1, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2537345886230469
+****************************************************************************************************
+check rule_14
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TakePictures()
+at time 0: AnonymizeHuman()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=True, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: LogDroneAction()
+at time 0: InformKeeper()
+at time 0: DeletePictures()
+at time 0: TakePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=True, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=True, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.16149258613586426
+****************************************************************************************************
+check rule_15
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: LogDroneAction()
+at time 0: InformKeeper()
+at time 0: DeletePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: LogDroneAction()
+at time 0: InformKeeper()
+at time 0: DeletePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08810091018676758
+****************************************************************************************************
+check rule_16
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: LogDroneAction()
+at time 0: InformKeeper()
+at time 0: DeletePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: LogDroneAction()
+at time 0: InformKeeper()
+at time 0: DeletePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08798718452453613
+****************************************************************************************************
+check rule_17
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ImplementASPEN()
+at time 0: EnsureCompliance()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ImplementASPEN()
+at time 0: EnsureCompliance()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.0940389633178711
+****************************************************************************************************
+check rule_18
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: EnsureCompliance()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: EnsureCompliance()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06016397476196289
+****************************************************************************************************
+check rule_19
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: InformKeeper()
+at time 0: DeployDrone()
+at time 0: ReturnHome()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=True, carbonFootprint=0, benefits=1, flightCondition=1, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: InformKeeper()
+at time 0: DeployDrone()
+at time 0: ReturnHome()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=False, humanUnderstands=True, unrelatedActivity=True, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=True, relevantLand=False, privateTerritory=False, humanIdentified=True, carbonFootprint=0, benefits=1, flightCondition=1, wildlifeDisturbed=True, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=1, store=0)
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.49398255348205566
+****************************************************************************************************
+check rule_20
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ReturnHome()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ReturnHome()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.05927681922912598
+****************************************************************************************************
+check rule_21
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: GroundDrone()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: GroundDrone()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.059285640716552734
+****************************************************************************************************
+check rule_22
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ExitArea()
+at time 0: EncounterWildlife()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: BackUp()
+at time 0: EncounterWildlife()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=True, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.14647817611694336
+****************************************************************************************************
+check rule_23
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ExitArea()
+at time 0: EncounterWildlife()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: ExitArea()
+at time 0: EncounterWildlife()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=0, wildlifeDisturbed=False, wildlifeInteractswithDrone=True, unKnownObject=False, damages=True, battery=0, store=0)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.12307572364807129
+****************************************************************************************************
+check rule_24
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: DeployDrone()
+at time 0: GroundDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=True, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformKeeper()
+at time 0: DeployDrone()
+at time 0: GroundDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: Measure(sameLanguage=True, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=True, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=True, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=0, store=0)
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.44047069549560547
+****************************************************************************************************
+check rule_25
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: TakePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=True, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=1, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=True, damages=False, battery=1, store=0)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployDrone()
+at time 0: MonitorCarbon()
+at time 0: AvoidInterference()
+at time 0: TakePictures()
+at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=0, benefits=0, flightCondition=2, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=True, damages=False, battery=1, store=0)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.29257822036743164
+****************************************************************************************************

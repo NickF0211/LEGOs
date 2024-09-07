@@ -1,0 +1,92 @@
+analysis_func: <function parse_and_check_concern at 0x7f890379dc60>
+check concern_1
+solving under config: restart False, bcr False, ub False, min False
+domain size 5
+unsat
+concern case 0 solving time 0.09048080444335938
+concern not raised
+****************************************************************************************************
+check concern_2
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 1 solving time 0.1439805030822754
+concern not raised
+****************************************************************************************************
+check concern_3
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 2 solving time 0.08423376083374023
+concern not raised
+****************************************************************************************************
+check concern_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DPAUpdate()
+at time 0: EngageSubProcessor()
+at time 0: ObtainControllerConsent()
+at time 0: TakeLiabilityForSubProcessor()
+at time 0: ImposeObligationsOnSubProcessor()
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=13, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=low, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
+vol: 6
+concern case 3 solving time 0.1513528823852539
+Concern is raised
+****************************************************************************************************
+check concern_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AssistController()
+at time 0: RightsRequested()
+at time 0: RespondToRequest()
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=low, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
+vol: 4
+concern case 4 solving time 0.09760022163391113
+Concern is raised
+****************************************************************************************************
+check concern_6
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 5 solving time 0.1520552635192871
+concern not raised
+****************************************************************************************************
+check concern_7
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 6 solving time 0.21915459632873535
+concern not raised
+****************************************************************************************************
+check concern_8
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 7 solving time 0.07758402824401855
+concern not raised
+****************************************************************************************************
+check concern_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformController()
+at time 0: EvaluateSecurity()
+at time 0: PassSecurity()
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=medium, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
+vol: 4
+concern case 8 solving time 0.15129733085632324
+Concern is raised
+****************************************************************************************************
+check concern_10
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 9 solving time 0.06996893882751465
+concern not raised
+****************************************************************************************************
+check concern_11
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+concern case 10 solving time 0.041794776916503906
+concern not raised
+****************************************************************************************************

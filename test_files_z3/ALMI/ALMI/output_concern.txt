@@ -1,0 +1,83 @@
+analysis_func: <function parse_and_check_concern at 0x7fb8f2395c60>
+check concern_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: HumanOnFloor()
+at time 0: Measure(userOccupied=True, timeBetweenMeals=3, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=nlow, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=high, alarmOn=False)
+vol: 2
+concern case 0 solving time 0.05643033981323242
+Concern is raised
+****************************************************************************************************
+check concern_2
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 1 solving time 0.07706451416015625
+concern not raised
+****************************************************************************************************
+check concern_3
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 2 solving time 0.0851438045501709
+concern not raised
+****************************************************************************************************
+check concern_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SmokeDetectorAlarm()
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=nlow, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=low, alarmOn=False)
+at time 121: CallEmergencyServices()
+vol: 3
+concern case 3 solving time 0.08701038360595703
+Concern is raised
+****************************************************************************************************
+check concern_5
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+concern case 4 solving time 0.04763913154602051
+concern not raised
+****************************************************************************************************
+check concern_6
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+concern case 5 solving time 0.044509172439575195
+concern not raised
+****************************************************************************************************
+check concern_7
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+concern case 6 solving time 0.0655059814453125
+concern not raised
+****************************************************************************************************
+check concern_8
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 7 solving time 0.08366990089416504
+concern not raised
+****************************************************************************************************
+check concern_9
+solving under config: restart False, bcr False, ub False, min False
+domain size 3
+unsat
+concern case 8 solving time 0.0614473819732666
+concern not raised
+****************************************************************************************************
+check concern_10
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 9 solving time 0.2785344123840332
+concern not raised
+****************************************************************************************************
+check concern_11
+solving under config: restart False, bcr False, ub False, min False
+domain size 4
+unsat
+concern case 10 solving time 0.08614659309387207
+concern not raised
+****************************************************************************************************

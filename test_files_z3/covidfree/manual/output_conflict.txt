@@ -1,0 +1,332 @@
+analysis_func: <function parse_and_check_conflict at 0x7fe37695a7a0>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+merged
+merged
+merged
+find trace
+at time 0: UserOpenApp()
+at time 0: CheckConsentCapacity()
+at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=True, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserOpenApp()
+at time 0: CheckConsentCapacity()
+at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.12830805778503418
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserOpenApp()
+at time 0: RequestUserConsent()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserOpenApp()
+at time 0: RequestUserConsent()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08420395851135254
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserOpenApp()
+at time 0: CheckConsentCapacity()
+at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserOpenApp()
+at time 0: CheckConsentCapacity()
+at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.17892909049987793
+****************************************************************************************************
+check rule_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RequestGuardianConsent()
+at time 0: CheckConsentCapacity()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=True, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RequestGuardianConsent()
+at time 0: CheckConsentCapacity()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06384968757629395
+****************************************************************************************************
+check rule_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DisclosureRequest()
+at time 0: CheckRecipient()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DisclosureRequest()
+at time 0: CheckRecipient()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.057897090911865234
+****************************************************************************************************
+check rule_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CheckRecipient()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CheckRecipient()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.03562474250793457
+****************************************************************************************************
+check rule_7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ProcessData()
+at time 0: FollowJurisdictionRules()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ProcessData()
+at time 0: FollowJurisdictionRules()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08484816551208496
+****************************************************************************************************
+check rule_8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserUseApp()
+at time 0: ProvideInstructions()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserUseApp()
+at time 0: ProvideInstructions()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06786870956420898
+****************************************************************************************************
+check rule_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserUseApp()
+at time 0: ProvideInstructions()
+at time 0: ProvideDemonstration()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: UserUseApp()
+at time 0: ProvideInstructions()
+at time 0: ProvideDemonstration()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.14758563041687012
+****************************************************************************************************
+check rule_10
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserUseApp()
+at time 0: ShowHelpIcon()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserUseApp()
+at time 0: ShowHelpIcon()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.1421215534210205
+****************************************************************************************************
+check rule_11
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifyUser()
+at time 0: SendReport()
+at time 0: NoticeRedFlag()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifyUser()
+at time 0: SendReport()
+at time 0: NoticeRedFlag()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08272719383239746
+****************************************************************************************************
+check rule_12
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifyUser()
+at time 0: SendReport()
+at time 0: NoticeRedFlag()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifyUser()
+at time 0: SendReport()
+at time 0: NoticeRedFlag()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.07954096794128418
+****************************************************************************************************
+check rule_13
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RequestFileAccess()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=True)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RequestFileAccess()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=True)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.05499696731567383
+****************************************************************************************************
+check rule_14
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NoticeAnomaly()
+at time 0: RequestReInput()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NoticeAnomaly()
+at time 0: RequestReInput()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.057152509689331055
+****************************************************************************************************
+check rule_15
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserRequestExplanation()
+at time 0: ProvideExplanation()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=True, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserRequestExplanation()
+at time 0: ProvideExplanation()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.056852102279663086
+****************************************************************************************************
+check rule_16
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ProvidingCommunication()
+at time 0: EnsureSocialNorms()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ProvidingCommunication()
+at time 0: EnsureSocialNorms()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.078857421875
+****************************************************************************************************
+check rule_17
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifyUser()
+at time 0: NotifcationArrives()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=True, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifyUser()
+at time 0: NotifcationArrives()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=True, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.107421875
+****************************************************************************************************
+check rule_18
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifcationArrives()
+at time 0: SendAppropriateNotification()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: NotifcationArrives()
+at time 0: SendAppropriateNotification()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.0939028263092041
+****************************************************************************************************
+check rule_19
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ProvidingCommunication()
+at time 0: EnsureSocialNorms()
+at time 0: EnsureCulturalNorms()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ProvidingCommunication()
+at time 0: EnsureSocialNorms()
+at time 0: EnsureCulturalNorms()
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08745265007019043
+****************************************************************************************************
