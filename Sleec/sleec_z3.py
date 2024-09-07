@@ -1,3 +1,4 @@
+import ntpath
 import os.path
 import sys
 import time
@@ -1210,9 +1211,12 @@ def get_measure_inv(Measure, Actions):
                forall(union(pure_actions), lambda act: exist(Measure, lambda m: EQ(m.time, act.time))))
 
 
-def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
+def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
               multi_entry=False, profiling=False):
-
+    dir, name = ntpath.split((filename))
+    path = "{}/{}/{}/{}".format(os.getcwd(),dir, name, mode).replace(".sleec", "")    
+    if not os.path.isdir(path):
+        os.makedirs(path)
     Measure = Action_Mapping["Measure"]
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
@@ -1234,8 +1238,9 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
     if profiling:
         profiling_file = open("profiling_red.csv", 'w')
         profiling_file.write("raw_finish_time, proof_generation_time, proof_checking_time, raw_proof_size, raw_derivation_steps, trimmed_proof_size, trimmed_derivation_steps\n")
+    csv_file = open("relation.csv", 'a')
     for i in range(len(rules)):
-
+        sat_result = "unknown"
         if multi_entry:
             output = ""
             adj_hl = []
@@ -1309,8 +1314,9 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
                 proof_generation_time = time.time() - proof_generation_start_time
 
         if isinstance(res, str):
+            sat_result = "sat"
             if to_print:
-                print("Not Redundant")
+                print("Not Redundant")                
             else:
                 output += "Not Redundant\n"
 
@@ -1321,6 +1327,7 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
                 output += "Likely Redundant\n"
 
         else:
+            sat_result = "unsat"
             red_result = True
 
         if profiling:
@@ -1425,6 +1432,9 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
                 multi_output.append((output, adj_hl))
 
         if profiling:
+            print("sat_result: {}".format(sat_result))
+            print("proof_generation_time: {}".format(proof_generation_time))
+            csv_file.write("{}, {}, {}, {}, {}\n".format(filename, mode, i,  sat_result, proof_generation_time))
             profiling_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(raw_finish_time, proof_generation_time,
                                                                      proof_checking_time, raw_proof_size, raw_derivation_steps,
                                                                      trimmed_proof_size, trimmed_derivation_steps))
@@ -1435,11 +1445,12 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
         clear_relational_constraints(relations)
         [r.clear() for r in first_inv]
         rule.get_neg_rule().clear()
-        derivation_rule.reset()
+        derivation_rule.reset()        
         print("*" * 100)
         output += "*" * 100 + '\n'
 
     if profiling:
+        csv_file.close()
         profiling_file.close()
 
     if multi_entry:
@@ -1566,21 +1577,21 @@ from argparse import ArgumentParser
 def parse_and_check_conflict(filename):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
-    res = check_conflict(model, rules, relations, Action_Mapping, Actions, check_proof=False, profiling=True)
+    res = check_conflict(filename, "conflict", model, rules, relations, Action_Mapping, Actions, check_proof=False, profiling=True)
     return res
 
 
 def parse_and_check_red(filename):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
-    res = check_red(model, rules, relations, Action_Mapping, Actions, check_proof=False,profiling=True)
+    res = check_red(filename, "redundancy", model, rules, relations, Action_Mapping, Actions, check_proof=False,profiling=True)
     return res
 
 
 def parse_and_check_concern(filename):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
-    res = check_concerns(model, rules, concerns, relations, Action_Mapping, Actions)
+    res = check_concerns(filename, "concern", model, rules, concerns, relations, Action_Mapping, Actions)
     return res
 
 

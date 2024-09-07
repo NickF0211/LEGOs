@@ -7,7 +7,7 @@ csv_file.write("file, mode, rule, result, duration\n")
 csv_file.close()
 
 modes = ["redundancy", "conflict", "concern"]
-path = "/home/mudathir/Desktop/LEGOS/test_files"
+path = "../test_files_z3" # assuming current directory Sleec
 files = [
     os.path.join(dp, f)
     for dp, _, filenames in os.walk(path)
