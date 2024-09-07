@@ -625,8 +625,12 @@ def parse_negation(node, Action_Mapping, head, measure, is_pos):
     return NOT(parse_element(node.expr, Action_Mapping, head, measure, is_pos))
 
 
-def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, model_str="", to_print=True,
+def check_concerns(filename, mode, model, rules, concerns, relations, Action_Mapping, Actions, model_str="", to_print=True,
                    multi_entry=False):
+    dir, name = ntpath.split((filename))
+    path = "{}/{}/{}/{}".format(os.getcwd(),dir, name, mode).replace(".sleec", "")    
+    if not os.path.isdir(path):
+        os.makedirs(path)
     Measure = Action_Mapping["Measure"]
     first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
                                                exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
@@ -642,6 +646,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
     adj_hl = []
     concern_raised = False
     relations_constraint = get_relational_constraints(relations)
+    csv_file = open("relation.csv", 'a')
     for i in range(len(concerns)):
         if to_print:
             print("check concern_{}".format(i + 1))
@@ -658,7 +663,8 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
                                       universal_blocking=False, vol_bound=VOL_BOUND, scalar_mask=scalar_mask
                                       )
         end_time = time.time()
-        print("concern case {} solving time {}".format(i, end_time-start_time))
+        duration = end_time - start_time
+        print("concern case {} solving time {}".format(i, duration))
 
         if res == 2:
             concern.get_concern().clear()
@@ -680,6 +686,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
 
         if isinstance(res, str):
             concern_raised = True
+            sat_result = "sat"
             if to_print:
                 print("Concern is raised")
 
@@ -696,6 +703,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
                 output += "Likely not raised\n"
 
         else:
+            sat_result = "unsat"
             print("concern not raised")
 
         clear_relational_constraints(relations)
@@ -707,6 +715,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
         derivation_rule.reset()
         print("*" * 100)
         output += "*" * 100 + '\n'
+    csv_file.close()
     return concern_raised, output, adj_hl
 
 
@@ -947,6 +956,7 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
         [r.clear() for r in first_inv]
         print("*" * 100)
         output += "*" * 100 + '\n'
+    csv_file.close()
     if multi_entry:
         return multi_output
     else:
@@ -1457,9 +1467,8 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
         derivation_rule.reset()        
         print("*" * 100)
         output += "*" * 100 + '\n'
-
-    if profiling:
-        csv_file.close()
+    csv_file.close()
+    if profiling:        
         profiling_file.close()
 
     if multi_entry:
@@ -1616,6 +1625,7 @@ if __name__ == "__main__":
         print("unsupported analysis mode, please choice one of the analysis mode redundancy/conflict/concern")
         print("running redundancy for default")
     analysis_func = supported_mode.get(analysis, parse_and_check_red)
+    print("analysis_func: {}".format(analysis_func))
     analysis_func(args.filename)
 #
 #
