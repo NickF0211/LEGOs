@@ -705,7 +705,7 @@ def check_concerns(filename, mode, model, rules, concerns, relations, Action_Map
         else:
             sat_result = "unsat"
             print("concern not raised")
-        csv_file.write("{}, {}, {}, {}, {}\n".format(filename, mode, i,  sat_result, duration))
+        csv_file.write("{},{},{},{},{}\n".format(filename, mode, i,  sat_result, duration))
         clear_relational_constraints(relations)
         clear_all(Actions)
         reset_rules(rules)
@@ -944,7 +944,7 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
         if profiling:
             print("sat_result: {}".format(sat_result))
             print("proof_generation_time: {}".format(proof_generation_time))
-            csv_file.write("{}, {}, {}, {}, {}\n".format(filename, mode, i,  sat_result, proof_generation_time))
+            csv_file.write("{},{},{},{},{}\n".format(filename, mode, i,  sat_result, proof_generation_time))
             profiling_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(raw_finish_time, proof_generation_time,
                                                                      proof_checking_time, raw_proof_size, raw_derivation_steps,
                                                                      trimmed_proof_size, trimmed_derivation_steps))
@@ -1453,7 +1453,7 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
         if profiling:
             print("sat_result: {}".format(sat_result))
             print("proof_generation_time: {}".format(proof_generation_time))
-            csv_file.write("{}, {}, {}, {}, {}\n".format(filename, mode, i,  sat_result, proof_generation_time))
+            csv_file.write("{},{},{},{},{}\n".format(filename, mode, i,  sat_result, proof_generation_time))
             profiling_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(raw_finish_time, proof_generation_time,
                                                                      proof_checking_time, raw_proof_size, raw_derivation_steps,
                                                                      trimmed_proof_size, trimmed_derivation_steps))
