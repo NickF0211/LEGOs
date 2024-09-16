@@ -227,6 +227,8 @@ def inductive_checking(property, rules, complete_rules, ACTION, state_action, mi
         add_forall_defs(s)
         add_exist_defs(s)
         add_ite_defs(s)
+        add_max_defs(s)
+        add_min_defs(s)
 
         solved = s.solve()
         if solved:
@@ -363,7 +365,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
         print("analyzer line 364")
 
-        while action_changed(ACTION) or should_calibrate:  # optimization speed up domain expansion immediately
+        while action_changed(ACTION) or should_calibrate:  # optimization, speed up domain expansion immediately
             # expand on specific constraints
             should_calibrate = False
             snap_shot_all(ACTION)
@@ -376,7 +378,9 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                     print("analyzer line 376")
                     # print p name
                     # print(to_string(p))
-                    temp_res = encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
+                    temp_res = encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)  # here for ite or forall, did not add any new constraint, but return self.var, would add later, 
+                    # just put new rules in pending defs
+
                     print("analyzer line 380")
                     s.add_assertion(temp_res)  # only add the new rules
                     # print(serialize(temp_res))
@@ -407,6 +411,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         add_forall_defs(s)  # add the forall definitions in solver
         add_exist_defs(s)  # add the exist definitions in solver
         add_ite_defs(s)
+        add_max_defs(s)
+        add_min_defs(s)
         add_predicate_constraint(s)  # add the predicate constraints in solver
         all_cons = And(get_all_constraint(ACTION, full=False))
         s.add_assertion(all_cons)
@@ -426,14 +432,17 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             # Summation.frontier = new_frontier
             # Summation.collections = new_summation
 
-            constraints, vars = get_temp_act_constraints()
+            constraints, vars = get_temp_act_constraints()  # here the vars are the new vars added in get_temp_act_constraints, those fresh symbols
             for c in constraints:
                 if c != TRUE():  # if the constraint is not true
                     s.add_assertion(c)  # add the constraint
                     # print("add temp constraint {}".format(serialize(c)))
             # s.add_assertion(And(constraints))
             vars = vars.union(over_vars)  # add the overapproximation variables
-
+            # trial: union act_vars for ITE, activation vars is a dict of fresh symbols for two constraints each encode
+            vars = vars.union(ITE.activation_vars.values())
+            vars = vars.union(MAX.activation_vars.values())
+            vars = vars.union(MIN.activation_vars.values())
             if current_min_solution:  # know over and under sat
                 solved = True  # under is sat
             else:  # no sol
@@ -582,6 +591,10 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
 
 def solver_under_eq_assumption(solver, assumption, eq_assumption):
+    """
+    equal assum are like guesses, assume equal to some val, so simplify the problem, might be wrong.
+    unsat core is the list of guesses that are proven to be wrong. and we undo those guesses run again
+    """
     satisfying = solver.solve(assumption.union(eq_assumption))
     while not satisfying:
         assumptions = solver.z3.unsat_core()

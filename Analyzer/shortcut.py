@@ -46,6 +46,8 @@ LE = logic_operator.LE
 adder = logic_operator.adder
 ite = logic_operator.ite
 XOR = logic_operator.XOR
+max = logic_operator.max
+min = logic_operator.min
 
 def add_constraint(constraint):
     Constraints.append(constraint)

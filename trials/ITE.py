@@ -23,32 +23,14 @@ val = create_action("Val", [("val", "int")])
 
 # add constraint which use ITE
 
-c0 = EQ(Int(0), ite(TRUE(), Int(0), Int(1)))  # works well
+c0 = EQ(Int(0), ite(FALSE(), Int(0), Int(1)))  # works well
 
 c1 = exists(boolean, lambda d1: exists([natural, natural], lambda d2, d3: EQ(d2.value, ite(d1.value, d2.value, d3.value))))
 
 c3 = exists(val, lambda v: AND(EQ(v.val, ite(exists(natural, lambda n: n.value > 5), Int(0), Int(1)) ), EQ(Int(0), v.val)))  # works well
 
-# ITE structure: ITE(condition1, ITE(condition2, ITE(condition3, true_value1, false_value1), false_value2), false_value3)
-condition1 = TRUE()
-condition2 = FALSE()
-condition3 = TRUE()
-true_value1 = Int(7)
-false_value1 = Int(3)
-false_value2 = Int(8)
-false_value3 = Int(12)
-
-c4 = NEQ(Int(7), ite(condition1, ite(condition2, ite(condition3, true_value1, false_value1), false_value2), false_value3))
-
-condition1 = exists(natural, lambda n: n.value > 5)
-true_value_inner = ite(TRUE(), Int(1), Int(1))
-false_value_outer = Int(5)
-
-c5 = NEQ(Int(1), ite(condition1, true_value_inner, false_value_outer))
-
-condition1 = exists(natural, lambda n: n.value < 5)
-c6 = EQ(Int(1), ite(condition1, Int(1), Int(0)))
-
+condition1 = forall(natural, lambda n: n.value < 1)
+c6 = EQ(Int(1), ite(condition1, Int(0), Int(1)))
 condition2 = exists(natural, lambda n: n.value > 10)
 c7 = EQ(Int(1), ite(AND(condition1, condition2), Int(1), Int(0)))
 
@@ -56,12 +38,18 @@ condition3 = exists(natural, lambda n: n.value > 15)
 c8 = EQ(Int(1), ite(AND(condition1, condition2, condition3), Int(1), Int(0)))
 
 c9 = EQ(ite(ite(TRUE(), TRUE(), FALSE()), Int(1), Int(0)), Int(1))
+# for c9 should be true with empty domain
+# works well for iff on not(condition_constraint) not good for invert
+# iff does help but invert makes it worse
+
+
+# c10 = EQ(TRUE(), ite(TRUE(), TRUE(), FALSE()))  # not working, prob change EQ
 
 c11 = EQ(Real(3.14), ite(TRUE(), Real(3.14), Real(2.71)))
 
 print("going to add constraints")
 
-add_constraint(AND(c1, c3, c4, c5, c6, c7, c8, c9, c11))
+add_constraint(c6)
 
 # test time taken 
 start = time.time()

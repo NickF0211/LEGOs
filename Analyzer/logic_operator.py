@@ -2615,12 +2615,13 @@ class ITE(Arth_Operator):
     cache = {}
     pending_defs = OrderedSet()
     count = 0
+    activation_vars = {}
 
     def __init__(self, *args):
         super().__init__()
         self.op = None
         self.arg_list = _polymorph_args_to_tuple(args)
-        arg_type = self.arg_list[1].get_type() if not isinstance(self.arg_list[1], ITE) else self.arg_list[1].var.get_type()
+        arg_type = self.arg_list[1].get_type() if not isinstance(self.arg_list[1], Arth_Operator) else self.arg_list[1].var.get_type()
         self.var = FreshSymbol(template="ITE_var%d", typename=arg_type)
         self.under_encoded = 0  
         self.under_var = None   
@@ -2662,20 +2663,33 @@ class ITE(Arth_Operator):
         self.op = None
         self.considered = OrderedSet()
         self.print_statement = None
-
+    
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
                unsat_mode=False):
         """
         Encode the ITE expression as a set of constraints
         """
+
         print(f"Encoding ITE: {self.arg_list}")  # testing
 
         if isinstance(self.arg_list[0], Operator):
             condition_constraint = encode(self.arg_list[0], assumption=assumption, include_new_act=include_new_act,
                                           exception=exception, disable=disable, proof_writer=proof_writer,
                                           unsat_mode=unsat_mode)
+            print(f"negation: {self.arg_list[0].invert()}")  # testing
+            neg_condition_constraint = encode(self.arg_list[0].invert(), assumption=assumption, include_new_act=include_new_act,
+                                          exception=exception, disable=disable, proof_writer=proof_writer,
+                                          unsat_mode=unsat_mode)
         else:
             condition_constraint = self.arg_list[0]
+            neg_condition_constraint = Not(condition_constraint)
+
+        # handle special case: arglist[1] and arglist[2] are both int, and 1 > 2
+        if isinstance(self.arg_list[1], int) and isinstance(self.arg_list[2], int):
+            if self.arg_list[1] > self.arg_list[2]:
+                return self.arg_list[1]
+            else:
+                return self.arg_list[2]
 
         # Handle true and false branches
         if isinstance(self.arg_list[1], Operator):
@@ -2692,40 +2706,24 @@ class ITE(Arth_Operator):
         else:
             false_constraint = self.arg_list[2]
 
-        ite_expr = Ite(condition_constraint, true_constraint, false_constraint)
+        act_var = FreshSymbol(template="ITE_act%d")
 
-        if disable:
-            return ite_expr
+        # always create new var, domain for class might not change, no need to refresh the new var but uss the old assumption literal
 
-        true_branch_constraint = Implies(condition_constraint, EqualsOrIff(self.var, true_constraint))
-        false_branch_constraint = Implies(Not(condition_constraint), EqualsOrIff(self.var, false_constraint))
+        # reuse act var, only capture delta
 
-        if not disable:
-            ITE.pending_defs.add(true_branch_constraint)
-            ITE.pending_defs.add(false_branch_constraint)
 
-        # Handle under constraint similar to type_constructor.py
-        if hasattr(self, "under_encoded"):
-            if self.under_encoded >= 0:
-                considered_len = self.under_encoded
-                current_len = len(ITE.pending_defs)
-                if considered_len == current_len:
-                    return self.var
-                else:
-                    new_var = FreshSymbol()
-                    choice_list = []
-                    for t_action in list(ITE.pending_defs)[self.under_encoded:]:
-                        choice_list.append(t_action)
+        actvar_constr = Implies(act_var, Or(condition_constraint, neg_condition_constraint))
+        true_branch_constraint = Implies(And(act_var, condition_constraint), EqualsOrIff(self.var, true_constraint))
+        false_branch_constraint = Implies(And(act_var, neg_condition_constraint), EqualsOrIff(self.var, false_constraint))
 
-                    choice_constraint = Or(choice_list)
-                    if self.under_encoded:
-                        constraint = Implies(new_var, Or(self.under_var, choice_constraint))
-                    else:
-                        constraint = Implies(new_var, choice_constraint)
+        ITE.activation_vars[true_branch_constraint] = act_var
+        ITE.activation_vars[false_branch_constraint] = act_var
+        ITE.activation_vars[actvar_constr] = act_var
 
-                    self.under_encoded = current_len
-                    self.under_var = new_var
-                    ITE.pending_defs.add(constraint)
+        ITE.pending_defs.add(actvar_constr)
+        ITE.pending_defs.add(true_branch_constraint)
+        ITE.pending_defs.add(false_branch_constraint)
 
         return self.var
     
@@ -2740,8 +2738,11 @@ class ITE(Arth_Operator):
                                        to_string(self.arg_list[2]))
 
     def invert(self):
-        if self.op is None: 
-            arg_list = [invert(arg) for arg in self.arg_list]
+        """
+        invert the ITE expression, only swap the true and false args
+        """
+        if self.op is None:
+            arg_list = [self.arg_list[0]] + [invert(arg) for arg in self.arg_list[1:]]
             self.op = ITE(*arg_list)
         return self.op
 
@@ -2771,6 +2772,233 @@ def add_ite_defs(solver):
         solver.add_assertion(constraint)
     ITE.pending_defs.clear()
 
+def max(*args):
+    if len(args) != 4:
+        raise ValueError("max must have exactly 3 arguments.")
+    c_args = _polymorph_args_to_tuple(args)
+    static_arg = frozenset(c_args)
+    if static_arg in MAX.cache:
+        return MAX.cache[static_arg]
+    return MAX(*c_args)
+
+class MAX(Arth_Operator):
+    cache = {}
+    pending_defs = OrderedSet()
+    count = 0
+    activation_vars = {}
+
+    @staticmethod
+    def _get_pysmt_type(py_type):
+        if py_type == int:
+            return INT
+        elif py_type == float:
+            return REAL
+        elif py_type == bool:
+            return BOOL
+        else:
+            raise ValueError(f"Unsupported type: {py_type}")
+
+    def __init__(self, *args):
+        super().__init__()
+        self.arg_list = _polymorph_args_to_tuple(args)
+        pysmt_type = self._get_pysmt_type(self.arg_list[3])
+        self.var = FreshSymbol(template="MAX_var%d", typename=pysmt_type)
+        self.op = None
+        MAX.cache[frozenset(self.arg_list)] = self
+        MAX.count += 1
+
+    def clear(self):
+        super(MAX, self).clear()
+        self.op = None
+        for arg in self.arg_list:
+            clear(arg)
+
+    def __ge__(self, other):
+        return artop(self, other, _GE)
+
+    def __gt__(self, other):
+        return artop(self, other, _GT)
+
+    def __le__(self, other):
+        return artop(self, other, _LE)
+
+    def __lt__(self, other):
+        return artop(self, other, _LT)
+
+    def __eq__(self, other):
+        return artop(self, other, _EQ)
+
+    def __ne__(self, other):
+        return artop(self, other, _NEQ)
+
+    def __add__(self, other):
+        return artop(self, other, _Plus)
+
+    def __sub__(self, other):
+        return artop(self, other, _Minus)
+    
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
+        print("--------------start max encode------------------")
+        checking_class = self.arg_list[0]
+        predicate = self.arg_list[1]  # lambda x: GE(x.val, Int(0))
+        func_val = self.arg_list[2]  # lambda x: x.val + Int(1)
+        print(f"checking_class: {checking_class}")
+        print(f"predicate: {predicate}")
+        print(f"func_val: {func_val}")
+
+        max_value = FreshSymbol(template="max_func_var%d", typename=self._get_pysmt_type(self.arg_list[3]))
+    
+        cond = exist(checking_class, lambda obj: AND(
+            predicate(obj),
+            forall(checking_class, lambda obj1: Implies(
+                predicate(obj1),
+                GE(func_val(obj), func_val(obj1))
+            )),
+            EqualsOrIff(max_value, func_val(obj))
+        ))
+        print("--------------finish cond------------------")
+        
+        ite_var = ite(cond, max_value, Int(0)).encode()  # no need to check if cond contain quantifiers, directly encode, add to ite pending defs
+        act_var = FreshSymbol(template="MAX_act%d")
+
+        res_constr = Implies(act_var, EqualsOrIff(self.var, ite_var))
+        MAX.activation_vars[res_constr] = act_var
+        MAX.pending_defs.add(res_constr)
+
+        return self.var
+        
+    
+    def __repr__(self):
+        return "MAX({})".format(', '.join([repr(arg) for arg in self.arg_list]))
+    
+    def __hash__(self):
+        return hash(frozenset(self.arg_list))
+    
+    def to_string(self):
+        return "MAX({})".format(', '.join([to_string(arg) for arg in self.arg_list]))
+    
+    def invert(self):
+        return MIN(*[arg for arg in self.arg_list])
+
+def add_max_defs(solver):
+    for constraint in MAX.pending_defs:
+        solver.add_assertion(constraint)
+    MAX.pending_defs.clear()
+
+def min(*args):
+    if len(args) != 4:
+        raise ValueError("min must have exactly 4 arguments.")
+    c_args = _polymorph_args_to_tuple(args)
+    static_arg = frozenset(c_args)
+    if static_arg in MIN.cache:
+        return MIN.cache[static_arg]
+    return MIN(*c_args)
+
+class MIN(Arth_Operator):
+    cache = {}
+    pending_defs = OrderedSet()
+    count = 0
+    activation_vars = {}
+
+    @staticmethod
+    def _get_pysmt_type(py_type):
+        if py_type == int:
+            return INT
+        elif py_type == float:
+            return REAL
+        elif py_type == bool:
+            return BOOL
+        else:
+            raise ValueError(f"Unsupported type: {py_type}")
+
+    def __init__(self, *args):
+        super().__init__()
+        self.arg_list = _polymorph_args_to_tuple(args)
+        pysmt_type = self._get_pysmt_type(self.arg_list[3])
+        self.var = FreshSymbol(template="MIN_var%d", typename=pysmt_type)
+        self.op = None
+        MIN.cache[frozenset(self.arg_list)] = self
+        MIN.count += 1
+
+    def clear(self):
+        super(MIN, self).clear()
+        self.op = None
+        for arg in self.arg_list:
+            clear(arg)
+
+    def __ge__(self, other):
+        return artop(self, other, _GE)
+
+    def __gt__(self, other):
+        return artop(self, other, _GT)
+
+    def __le__(self, other):
+        return artop(self, other, _LE)
+
+    def __lt__(self, other):
+        return artop(self, other, _LT)
+
+    def __eq__(self, other):
+        return artop(self, other, _EQ)
+
+    def __ne__(self, other):
+        return artop(self, other, _NEQ)
+
+    def __add__(self, other):
+        return artop(self, other, _Plus)
+
+    def __sub__(self, other):
+        return artop(self, other, _Minus)
+    
+    def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None,
+               unsat_mode=False):
+        print("--------------start min encode------------------")
+        checking_class = self.arg_list[0]
+        predicate = self.arg_list[1]
+        func_val = self.arg_list[2]
+        print(f"checking_class: {checking_class}")
+        print(f"predicate: {predicate}")
+        print(f"func_val: {func_val}")
+
+        min_value = FreshSymbol(template="min_func_var%d", typename=self._get_pysmt_type(self.arg_list[3]))
+    
+        cond = exist(checking_class, lambda obj: AND(
+            predicate(obj),
+            forall(checking_class, lambda obj1: Implies(
+                predicate(obj1),
+                LE(func_val(obj), func_val(obj1)) 
+            )),
+            EqualsOrIff(min_value, func_val(obj))
+        ))
+        print("--------------finish cond------------------")
+        
+        ite_constr = ite(cond, min_value, Int(0)).encode() 
+        print(f"ite_constr: {ite_constr}")
+        act_var = FreshSymbol(template="MIN_act%d")
+
+        res_constr = Implies(act_var, EQ(self.var, ite_constr))
+        MIN.activation_vars[res_constr] = act_var
+        MIN.pending_defs.add(res_constr)
+
+        return self.var
+        
+    def __repr__(self):
+        return "MIN({})".format(', '.join([repr(arg) for arg in self.arg_list]))
+    
+    def __hash__(self):
+        return hash(frozenset(self.arg_list))
+    
+    def to_string(self):
+        return "MIN({})".format(', '.join([to_string(arg) for arg in self.arg_list]))
+    
+    def invert(self):
+        return MAX(*[arg for arg in self.arg_list])
+
+def add_min_defs(solver):
+    for constraint in MIN.pending_defs:
+        solver.add_assertion(constraint)
+    MIN.pending_defs.clear()
 
 def create_control_variable(arg):
     s = controll_varaible_eq.get(arg)
