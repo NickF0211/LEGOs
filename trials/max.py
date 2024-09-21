@@ -28,7 +28,7 @@ natural = create_action("natural", [("val", "nat")])
 #             ))
 #         ))
 print("--------define constraint c0--------")
-c0 = EQ(min(natural, lambda x: GE(x.val, Int(0)), lambda x: x.val + Int(3), int), Int(10))
+c0 = EQ(min(natural, lambda x: GE(x.val, Int(0)), lambda x: x.val + Int(11), int), Int(10))
 print("--------define constraint c1--------")
 c1 = exists(natural, lambda x: EQ(x.val, Int(11)))
 

@@ -380,11 +380,12 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                     # print(to_string(p))
                     temp_res = encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)  # here for ite or forall, did not add any new constraint, but return self.var, would add later, 
                     # just put new rules in pending defs
+                    print(f"temp_res: {temp_res}")
 
                     print("analyzer line 380")
-                    s.add_assertion(temp_res)  # only add the new rules
+                    s.add_assertion(temp_res)  # only add the new rules, for forall, temp_res = self.var, add to assertion so that not setting it to be false
                     # print(serialize(temp_res))
-                else:
+                else:  # old rules encoded in diff rounds in case domain change
                     encode(p, include_new_act=False, proof_writer=proof_writer, unsat_mode=unsat_mode)
 
         print("analyzer line 386")
@@ -402,6 +403,8 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         # now update the constraints
         update_underapprox(s)
         over_constraints, over_vars = update_overapprox()  # ignore for now # what is over_vars for ?
+        print(f"over_vars: {over_vars}")  # always empty
+        print(f"over_constraints: {over_constraints}")  # always empty
         for c in over_constraints:
             if c != TRUE():
                 s.add_assertion(c)
@@ -422,11 +425,14 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             solved = True
         else:
             # solved = s.solve(over_vars.union(eq_assumption))
+            # print(f"solver constraints: {s.assertions}")
             solved = solver_under_eq_assumption(s, over_vars, eq_assumption)  # only care overapproximation ?
+            print(f"solver_under_eq_assumption for over_vars: {solved}")
 
         ########################################
         # overapproximation
         ########################################
+        print("analyzer line 430")
         if solved:  # over approx is sat
             save_model = s.get_model()  # get the model
             # Summation.frontier = new_frontier
@@ -440,14 +446,16 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             # s.add_assertion(And(constraints))
             vars = vars.union(over_vars)  # add the overapproximation variables
             # trial: union act_vars for ITE, activation vars is a dict of fresh symbols for two constraints each encode
-            vars = vars.union(ITE.activation_vars.values())
+            vars = vars.union(ITE.activation_vars.values())  # lead to bounded unsat
             vars = vars.union(MAX.activation_vars.values())
             vars = vars.union(MIN.activation_vars.values())
             if current_min_solution:  # know over and under sat
                 solved = True  # under is sat
             else:  # no sol
                 # solved = s.solve(vars)
+                print("analyzer line 451")
                 solved = solver_under_eq_assumption(s, vars, eq_assumption)  # under
+                print(f"solver_under_eq_assumption: {solved}")
 
             ########################################
             # underapproximation
@@ -596,8 +604,10 @@ def solver_under_eq_assumption(solver, assumption, eq_assumption):
     unsat core is the list of guesses that are proven to be wrong. and we undo those guesses run again
     """
     satisfying = solver.solve(assumption.union(eq_assumption))
+    print(f"assumption: {assumption}")
     while not satisfying:
         assumptions = solver.z3.unsat_core()
+        print(f"assumptions in unsat core: {assumptions}")
         invalid_assumption = [solver.converter.back(t) for t in assumptions]
         invalid_assumption = set([t for t in invalid_assumption if t in eq_assumption])
         if invalid_assumption:
@@ -607,6 +617,7 @@ def solver_under_eq_assumption(solver, assumption, eq_assumption):
             satisfying = solver.solve(assumption.union(eq_assumption))
         else:
             return False
+    print(f"assumption before return true: {assumption}")
     return True
 
 

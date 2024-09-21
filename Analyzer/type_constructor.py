@@ -375,7 +375,7 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
         else:
             if considered_len == current_len:
                 return self.under_var, TRUE()
-            else:
+            else:  # some objects created but not under approx encoded yet
                 new_var = FreshSymbol()
                 choice_list = []
                 for t_action in act_type.collect_list[self.under_encoded:]:

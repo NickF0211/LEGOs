@@ -517,6 +517,15 @@ class C_NOT(Operator):
             return to_string("(! {})".format(to_string(self.arg)))
         else:
             return to_string(self.arg)
+        
+    def _get_involved_actions(self):
+        actions = []
+        if isinstance(self.arg, Operator):
+            if isinstance(self.arg, C_OR) or isinstance(self.arg, C_AND) or isinstance(self.arg, C_NOT):
+                actions.extend(self.arg._get_involved_actions())
+            else:
+                actions.append(self.arg.input_type)
+        return actions
 
 
 def should_use_gate(args):
@@ -810,6 +819,17 @@ class C_AND(Operator):
         for arg in self.arg_list:
             result_list.append(to_string(arg))
         return "({})".format(' & '.join(result_list))
+    
+    def _get_involved_actions(self):
+        actions = []
+        for arg in self.arg_list:
+            if isinstance(arg, Operator):
+                if isinstance(arg, C_OR) or isinstance(arg, C_AND) or isinstance(arg, C_NOT):
+                    actions.extend(arg._get_involved_actions())
+                else:  # forall, exists
+                    actions.append(arg.input_type)
+                    print("add input type {}".format(arg.input_type))
+        return actions
 
 
 def OR(*args):
@@ -905,6 +925,16 @@ class C_OR(Operator):
         for arg in self.arg_list:
             result_list.append(to_string(arg))
         return "({})".format(' | '.join(result_list))
+    
+    def _get_involved_actions(self):
+        actions = []
+        for arg in self.arg_list:
+            if isinstance(arg, Operator):
+                if isinstance(arg, C_OR) or isinstance(arg, C_AND) or isinstance(arg, C_NOT):
+                    actions.extend(arg._get_involved_actions())
+                else:
+                    actions.append(arg.input_type)
+        return actions
 
 
 def _predicate(predicate, key_arg):
@@ -1540,7 +1570,7 @@ def get_temp_act_constraints(checking=False):
         if not checking:
             var, constraint = act.under_constraint()
             # set var to be true means under approx has to be satisfied
-            # so under approx constrs still in set of constrs when no need check, set val false
+            # so under approx constrs still in set of constrs. When no need check, set var false
             vars.add(var)
             constraints.append(constraint)
         else:  # check solution to see if those already in domain?
@@ -2411,10 +2441,12 @@ class Forall(Operator):
         consider_exception = not exception is None
 
         if self.input_type != _SUMObject:
+            print("forall self.input_type: ", self.input_type)
             op = self.invert()
             op_constraint = op.get_holding_obj(assumption=False, include_new_act=False, exception=None, disable=None,
                                                proof_writer=None)  # why use exists get holding obj?
             if not self.consider_op:  # what is consider_op ?
+                print("going to add forall exists link")
                 forall_exists_link = IFF(self.var, Not(op_constraint.presence))
                 Forall.pending_defs.add(forall_exists_link)  # what is pending_defs? def?
                 self.consider_op = True
@@ -2450,6 +2482,7 @@ class Forall(Operator):
 
                 if not disable:
                     if action not in self.considered:  # what is considered?
+                        print(f"adding forall implication: {Implication(self.var, base_constraint)}")
                         Forall.pending_defs.add(Implication(self.var, base_constraint))
                         self.considered.add(action)
                     else:
@@ -2626,10 +2659,14 @@ class ITE(Arth_Operator):
         self.under_encoded = 0  
         self.under_var = None   
         ITE.count += 1
+        # print(f"there are {ITE.count} ITE operators")
         self.considered = OrderedSet()
         self.print_statement = None
         ITE.cache[frozenset(self.arg_list)] = self
-        print(f"init ITE: {self.arg_list}")  # testing
+        self.involved_actions = self._get_involved_actions()
+        self.previous_action_domain_size = {}
+        self.round = 1
+        # print(f"init ITE: {self.arg_list}")  # testing
 
     def __ge__(self, other):
         return artop(self, other, _GE)
@@ -2670,63 +2707,94 @@ class ITE(Arth_Operator):
         Encode the ITE expression as a set of constraints
         """
 
-        print(f"Encoding ITE: {self.arg_list}")  # testing
+        # print(f"=========Encoding ITE=============: {self.arg_list}")  # testing
 
-        if isinstance(self.arg_list[0], Operator):
-            condition_constraint = encode(self.arg_list[0], assumption=assumption, include_new_act=include_new_act,
-                                          exception=exception, disable=disable, proof_writer=proof_writer,
-                                          unsat_mode=unsat_mode)
-            print(f"negation: {self.arg_list[0].invert()}")  # testing
-            neg_condition_constraint = encode(self.arg_list[0].invert(), assumption=assumption, include_new_act=include_new_act,
-                                          exception=exception, disable=disable, proof_writer=proof_writer,
-                                          unsat_mode=unsat_mode)
-        else:
-            condition_constraint = self.arg_list[0]
-            neg_condition_constraint = Not(condition_constraint)
-
-        # handle special case: arglist[1] and arglist[2] are both int, and 1 > 2
-        if isinstance(self.arg_list[1], int) and isinstance(self.arg_list[2], int):
-            if self.arg_list[1] > self.arg_list[2]:
-                return self.arg_list[1]
+        action_changed = False
+        for action in self.involved_actions:
+            # print(f"action type: {type(action)}")
+            domain_size = len(action.snap_shot)
+            if action not in self.previous_action_domain_size:  # first round encode this ite
+                self.previous_action_domain_size[action] = domain_size
+                action_changed = True
             else:
-                return self.arg_list[2]
+                if self.previous_action_domain_size[action] != domain_size:  # since last round encode this ite, domain size changed
+                    action_changed = True
+                    self.previous_action_domain_size[action] = domain_size
 
-        # Handle true and false branches
-        if isinstance(self.arg_list[1], Operator):
-            true_constraint = encode(self.arg_list[1], assumption=assumption, include_new_act=include_new_act,
-                                     exception=exception, disable=disable, proof_writer=proof_writer,
-                                     unsat_mode=unsat_mode)
-        else:
-            true_constraint = self.arg_list[1]
+        if action_changed:
 
-        if isinstance(self.arg_list[2], Operator):
-            false_constraint = encode(self.arg_list[2], assumption=assumption, include_new_act=include_new_act,
-                                      exception=exception, disable=disable, proof_writer=proof_writer,
-                                      unsat_mode=unsat_mode)
-        else:
-            false_constraint = self.arg_list[2]
+            if isinstance(self.arg_list[0], Operator):
+                condition_constraint = encode(self.arg_list[0], assumption=assumption, include_new_act=include_new_act,
+                                            exception=exception, disable=disable, proof_writer=proof_writer,
+                                            unsat_mode=unsat_mode)
+                # print(f"negation: {self.arg_list[0].invert()}")  # testing
+                neg_condition_constraint = encode(self.arg_list[0].invert(), assumption=assumption, include_new_act=include_new_act,
+                                            exception=exception, disable=disable, proof_writer=proof_writer,
+                                            unsat_mode=unsat_mode)
+            else:
+                condition_constraint = self.arg_list[0]
+                neg_condition_constraint = Not(condition_constraint)
 
-        act_var = FreshSymbol(template="ITE_act%d")
+            # # handle special case: arglist[1] and arglist[2] are both int, and 1 > 2
+            # if isinstance(self.arg_list[1], int) and isinstance(self.arg_list[2], int):
+            #     if self.arg_list[1] > self.arg_list[2]:
+            #         return self.arg_list[1]
+            #     else:
+            #         return self.arg_list[2]
 
-        # always create new var, domain for class might not change, no need to refresh the new var but uss the old assumption literal
+            # Handle true and false branches
+            if isinstance(self.arg_list[1], Operator):
+                true_constraint = encode(self.arg_list[1], assumption=assumption, include_new_act=include_new_act,
+                                        exception=exception, disable=disable, proof_writer=proof_writer,
+                                        unsat_mode=unsat_mode)
+            else:
+                true_constraint = self.arg_list[1]
 
-        # reuse act var, only capture delta
+            if isinstance(self.arg_list[2], Operator):
+                false_constraint = encode(self.arg_list[2], assumption=assumption, include_new_act=include_new_act,
+                                        exception=exception, disable=disable, proof_writer=proof_writer,
+                                        unsat_mode=unsat_mode)
+            else:
+                false_constraint = self.arg_list[2]
 
+            act_var = Symbol("iteact_{}".format(ITE.count))
+            # print(f"create act_var : {act_var}")
 
-        actvar_constr = Implies(act_var, Or(condition_constraint, neg_condition_constraint))
-        true_branch_constraint = Implies(And(act_var, condition_constraint), EqualsOrIff(self.var, true_constraint))
-        false_branch_constraint = Implies(And(act_var, neg_condition_constraint), EqualsOrIff(self.var, false_constraint))
+            # always create new var, domain for class might not change, no need to refresh the new var but use the old assumption literal
 
-        ITE.activation_vars[true_branch_constraint] = act_var
-        ITE.activation_vars[false_branch_constraint] = act_var
-        ITE.activation_vars[actvar_constr] = act_var
+            # reuse act var, only capture delta
 
-        ITE.pending_defs.add(actvar_constr)
-        ITE.pending_defs.add(true_branch_constraint)
-        ITE.pending_defs.add(false_branch_constraint)
+            # create name : self.var + round
+            act_var_key = f"{self.var}_encode_round{self.round}"
+            # print(f"act_var_key: {act_var_key}")
 
-        return self.var
-    
+            ITE.activation_vars[act_var_key] = act_var
+
+            child_res1 = Or(condition_constraint, neg_condition_constraint)
+            child_res2 = EqualsOrIff(self.var, true_constraint)
+            child_res3 = EqualsOrIff(self.var, false_constraint)
+
+            actvar_constr = Implication(act_var, child_res1)
+            true_branch_constraint = Implication(And(act_var, condition_constraint), child_res2)
+            false_branch_constraint = Implication(And(act_var, neg_condition_constraint), child_res3)
+            # actvar_constr = Implication(act_var, Or(condition_constraint, neg_condition_constraint))
+            # true_branch_constraint = Implication(And(act_var, condition_constraint), Equals(self.var, true_constraint))
+            # false_branch_constraint = Implication(And(act_var, neg_condition_constraint), Equals(self.var, false_constraint))
+        
+            ITE.pending_defs.add(actvar_constr)
+            ITE.pending_defs.add(true_branch_constraint)
+            ITE.pending_defs.add(false_branch_constraint)
+            ITE.pending_defs.add(Or(ITE.activation_vars.values()))  # avoid (the case when act var set to false and cause vacuously true)
+
+            # print(f"ite var: {self.var}")
+            self.round += 1
+
+            return self.var
+        
+        else: # no change in action domain size, no need to encode, just return the var
+            self.round += 1
+            return self.var
+        
     def __repr__(self):
         return "ITE_{}".format(self.var)
 
@@ -2745,6 +2813,37 @@ class ITE(Arth_Operator):
             arg_list = [self.arg_list[0]] + [invert(arg) for arg in self.arg_list[1:]]
             self.op = ITE(*arg_list)
         return self.op
+    
+    def _get_involved_actions(self):
+        """
+        get all actions that involved in the ITE expression
+        """
+        involved_actions = []
+        cond = self.arg_list[0]
+        true_branch = self.arg_list[1]
+        false_branch = self.arg_list[2]
+
+        if isinstance(cond, Operator):
+            if isinstance(cond, C_OR) or isinstance(cond, C_AND) or isinstance(cond, C_NOT):
+                involved_actions.extend(cond._get_involved_actions())
+            else:
+                input_type = cond.input_type  # only consider forall and exists for now
+                involved_actions.append(input_type)
+        if isinstance(true_branch, Arth_Operator):
+            if isinstance(true_branch, ITE) or isinstance(true_branch, C_OR) or isinstance(true_branch, C_AND) or isinstance(true_branch, C_NOT):
+                involved_actions.extend(true_branch._get_involved_actions())
+            else:
+                input_type = true_branch.input_type
+                involved_actions.append(input_type)
+        if isinstance(false_branch, Arth_Operator):
+            if isinstance(false_branch, ITE) or isinstance(false_branch, C_OR) or isinstance(false_branch, C_AND) or isinstance(false_branch, C_NOT):
+                involved_actions.extend(false_branch._get_involved_actions())
+            else:
+                input_type = false_branch.input_type
+                involved_actions.append(input_type)
+        return involved_actions
+
+            
 
     def to_boolean(self, value):
         if isinstance(value, bool):
@@ -2801,6 +2900,7 @@ class MAX(Arth_Operator):
     def __init__(self, *args):
         super().__init__()
         self.arg_list = _polymorph_args_to_tuple(args)
+        self.input_type = self.arg_list[0]
         pysmt_type = self._get_pysmt_type(self.arg_list[3])
         self.var = FreshSymbol(template="MAX_var%d", typename=pysmt_type)
         self.op = None
@@ -2862,7 +2962,7 @@ class MAX(Arth_Operator):
         ite_var = ite(cond, max_value, Int(0)).encode()  # no need to check if cond contain quantifiers, directly encode, add to ite pending defs
         act_var = FreshSymbol(template="MAX_act%d")
 
-        res_constr = Implies(act_var, EqualsOrIff(self.var, ite_var))
+        res_constr = EqualsOrIff(self.var, ite_var)
         MAX.activation_vars[res_constr] = act_var
         MAX.pending_defs.add(res_constr)
 
@@ -2915,6 +3015,7 @@ class MIN(Arth_Operator):
     def __init__(self, *args):
         super().__init__()
         self.arg_list = _polymorph_args_to_tuple(args)
+        self.input_type = self.arg_list[0]
         pysmt_type = self._get_pysmt_type(self.arg_list[3])
         self.var = FreshSymbol(template="MIN_var%d", typename=pysmt_type)
         self.op = None
@@ -2973,11 +3074,11 @@ class MIN(Arth_Operator):
         ))
         print("--------------finish cond------------------")
         
-        ite_constr = ite(cond, min_value, Int(0)).encode() 
+        ite_constr = ite(cond, min_value, Int(0)).encode() # add constr of ite to pending defs
         print(f"ite_constr: {ite_constr}")
         act_var = FreshSymbol(template="MIN_act%d")
 
-        res_constr = Implies(act_var, EQ(self.var, ite_constr))
+        res_constr = EQ(self.var, ite_constr)
         MIN.activation_vars[res_constr] = act_var
         MIN.pending_defs.add(res_constr)
 
