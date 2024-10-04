@@ -471,7 +471,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
                                                                  disable_minimization=disable_minimization,
                                                                  ignore_class=ignore_actions,
                                                                  inductive_assumption_table=inductive_assumption_table,
-                                                                 relax_mode=not current_min_solution, ub=universal_blocking, over_model=save_model)
+                                                                 relax_mode=False, ub=universal_blocking, over_model=save_model)
 
                     if new_model is None:
                         new_volume, _ = print_trace(save_model, ACTION, state_action, should_print=False,
