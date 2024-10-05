@@ -1,23 +1,23 @@
-analysis_func: <function parse_and_check_concern at 0x7fb6b7ef5c60>
+analysis_func: <function parse_and_check_concern at 0x7f2365085c60>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
-concern case 0 solving time 0.39937329292297363
+concern case 0 solving time 0.4094812870025635
 concern not raised
 ****************************************************************************************************
 check concern_2
 solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
-concern case 1 solving time 0.39401745796203613
+concern case 1 solving time 0.40816259384155273
 concern not raised
 ****************************************************************************************************
 check concern_3
 solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
-concern case 2 solving time 0.32938313484191895
+concern case 2 solving time 0.33101725578308105
 concern not raised
 ****************************************************************************************************
 check concern_4
@@ -28,29 +28,29 @@ at time 0: MonitorCarbon()
 at time 0: AvoidInterference()
 at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=low, benefits=medium1, flightCondition=safe, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=low2, store=low3)
 vol: 4
-concern case 3 solving time 0.21988272666931152
+concern case 3 solving time 0.22418451309204102
 Concern is raised
 ****************************************************************************************************
 check concern_5
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: InformKeeper()
-at time 0: PreparingDrone()
-at time 0: DeployDrone()
-at time 0: GroundDrone()
-at time 0: MonitorCarbon()
-at time 0: AvoidInterference()
-at time 0: UpdateTerritories()
-at time 0: Measure(sameLanguage=True, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=low, benefits=medium1, flightCondition=dangerous, wildlifeDisturbed=True, wildlifeInteractswithDrone=True, unKnownObject=False, damages=False, battery=medium2, store=medium3)
+at time 1: InformKeeper()
+at time 1: PreparingDrone()
+at time 1: DeployDrone()
+at time 1: GroundDrone()
+at time 1: MonitorCarbon()
+at time 1: AvoidInterference()
+at time 1: UpdateTerritories()
+at time 1: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=low, benefits=medium1, flightCondition=dangerous, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=medium2, store=medium3)
 vol: 8
-concern case 4 solving time 0.6281089782714844
+concern case 4 solving time 0.643498420715332
 Concern is raised
 ****************************************************************************************************
 check concern_6
 solving under config: restart False, bcr False, ub False, min False
 domain size 6
 unsat
-concern case 5 solving time 0.21770405769348145
+concern case 5 solving time 0.22118496894836426
 concern not raised
 ****************************************************************************************************
 check concern_7
@@ -59,7 +59,7 @@ find trace
 at time 0: DeletePictures()
 at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=low, benefits=low1, flightCondition=dangerous, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=low2, store=low3)
 vol: 2
-concern case 6 solving time 0.03232550621032715
+concern case 6 solving time 0.03412508964538574
 Concern is raised
 ****************************************************************************************************
 check concern_8
@@ -68,6 +68,6 @@ find trace
 at time 0: EnsureCompliance()
 at time 0: Measure(sameLanguage=False, humanUnderstands=False, unrelatedActivity=False, environmentDangerous=False, onIndigenousLand=False, landTreatyInPlace=False, relevantLand=False, privateTerritory=False, humanIdentified=False, carbonFootprint=low, benefits=low1, flightCondition=dangerous, wildlifeDisturbed=False, wildlifeInteractswithDrone=False, unKnownObject=False, damages=False, battery=low2, store=low3)
 vol: 2
-concern case 7 solving time 0.051432132720947266
+concern case 7 solving time 0.05275130271911621
 Concern is raised
 ****************************************************************************************************

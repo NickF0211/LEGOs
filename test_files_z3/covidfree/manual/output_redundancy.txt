@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_red at 0x7f58af4d5080>
+analysis_func: <function parse_and_check_red at 0x7fc3b3285080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 merged
@@ -25,11 +25,11 @@ at time 0: UserOpenApp()
 at time 0: UserUseApp()
 at time 0: CheckConsentCapacity()
 at time 0: ShowHelpIcon()
-at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 5
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.2652585506439209
+proof_generation_time: 0.2574608325958252
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -44,7 +44,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03442978858947754
+proof_generation_time: 0.03876042366027832
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -59,7 +59,7 @@ at time 0: Measure(userConsent=True, userHasConsentCapacity=False, guardianConse
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04366421699523926
+proof_generation_time: 0.04561161994934082
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -74,7 +74,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03341412544250488
+proof_generation_time: 0.0330655574798584
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -89,7 +89,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0328826904296875
+proof_generation_time: 0.031887054443359375
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -106,7 +106,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03602337837219238
+proof_generation_time: 0.034210205078125
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -121,7 +121,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.04398918151855469
+proof_generation_time: 0.048100948333740234
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -136,7 +136,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.035893917083740234
+proof_generation_time: 0.03731727600097656
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -153,7 +153,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.11832547187805176
+proof_generation_time: 0.12508296966552734
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -168,7 +168,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03617095947265625
+proof_generation_time: 0.03623342514038086
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -185,7 +185,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05719113349914551
+proof_generation_time: 0.056465864181518555
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -202,7 +202,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.05836629867553711
+proof_generation_time: 0.057868242263793945
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -217,7 +217,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.033213138580322266
+proof_generation_time: 0.03420877456665039
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -232,7 +232,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0319666862487793
+proof_generation_time: 0.033075809478759766
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -247,7 +247,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.032999277114868164
+proof_generation_time: 0.036775827407836914
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -262,7 +262,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.036443471908569336
+proof_generation_time: 0.03525662422180176
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -277,7 +277,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.033812761306762695
+proof_generation_time: 0.036245107650756836
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -292,7 +292,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03572988510131836
+proof_generation_time: 0.034207820892333984
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -309,5 +309,5 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.07897806167602539
+proof_generation_time: 0.08061814308166504
 ****************************************************************************************************

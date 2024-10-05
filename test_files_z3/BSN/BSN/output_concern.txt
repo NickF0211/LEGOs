@@ -1,9 +1,9 @@
-analysis_func: <function parse_and_check_concern at 0x7ffb42911c60>
+analysis_func: <function parse_and_check_concern at 0x7fb84da65c60>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
-concern case 0 solving time 0.12026166915893555
+concern case 0 solving time 0.12189555168151855
 concern not raised
 ****************************************************************************************************
 check concern_2
@@ -11,44 +11,44 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=p_moderate, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=True, canDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=p_moderate, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 3
-concern case 1 solving time 0.4137754440307617
+concern case 1 solving time 0.42502880096435547
 Concern is raised
 ****************************************************************************************************
 check concern_3
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
-concern case 2 solving time 0.04361152648925781
+concern case 2 solving time 0.04406023025512695
 concern not raised
 ****************************************************************************************************
 check concern_4
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
-concern case 3 solving time 0.05708599090576172
+concern case 3 solving time 0.05978846549987793
 concern not raised
 ****************************************************************************************************
 check concern_5
 solving under config: restart False, bcr False, ub False, min False
 domain size 7
 unsat
-concern case 4 solving time 0.4712638854980469
+concern case 4 solving time 0.4767029285430908
 concern not raised
 ****************************************************************************************************
 check concern_6
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
-concern case 5 solving time 0.06814289093017578
+concern case 5 solving time 0.06776833534240723
 concern not raised
 ****************************************************************************************************
 check concern_7
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
-concern case 6 solving time 0.04798626899719238
+concern case 6 solving time 0.04829573631286621
 concern not raised
 ****************************************************************************************************
 check concern_8
@@ -56,9 +56,9 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DataCollected()
 at time 0: DeleteData()
-at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 3
-concern case 7 solving time 0.10933852195739746
+concern case 7 solving time 0.10816597938537598
 Concern is raised
 ****************************************************************************************************
 check concern_9
@@ -68,6 +68,6 @@ at time 0: InformUser()
 at time 0: UserWantsToRemoveSensors()
 at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 3
-concern case 8 solving time 0.1462233066558838
+concern case 8 solving time 0.1531813144683838
 Concern is raised
 ****************************************************************************************************

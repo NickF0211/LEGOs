@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7fd02ff6e7a0>
+analysis_func: <function parse_and_check_conflict at 0x7fba9bf2e7a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
@@ -6,33 +6,33 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
 sat_result: unsat
-proof_generation_time: 0.06533956527709961
+proof_generation_time: 0.06337571144104004
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: C()
-at time 0: Measure(m1=7)
+at time 0: Measure(m1=5)
 at time 10: B()
-at time 10: Measure(m1=6)
+at time 10: Measure(m1=0)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: C()
-at time 0: Measure(m1=6)
-at time 10: Measure(m1=0)
-at time 15: B()
+at time 10: C()
+at time 10: Measure(m1=6)
+at time 20: B()
+at time 20: Measure(m1=0)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07158374786376953
+proof_generation_time: 0.07022428512573242
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 7
+domain size 8
 unsat
 sat_result: unsat
-proof_generation_time: 0.06125187873840332
+proof_generation_time: 0.06426811218261719
 ****************************************************************************************************

@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7f880c1b67a0>
+analysis_func: <function parse_and_check_conflict at 0x7f37c4e427a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -14,7 +14,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=Fals
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07503628730773926
+proof_generation_time: 0.0743861198425293
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -35,7 +35,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=0, personAuthorized=Fals
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2785522937774658
+proof_generation_time: 0.29003429412841797
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -56,11 +56,11 @@ at time 0: InformCaregiver()
 at time 0: TrackTime()
 at time 0: GiveSuggestion()
 at time 0: ConsiderUserPractices()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=28801, personAuthorized=True, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=True, riskLevel=0, alarmOn=True)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=28801, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23634576797485352
+proof_generation_time: 0.24218344688415527
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -71,21 +71,21 @@ at time 0: InformCaregiver()
 at time 0: TrackTime()
 at time 0: GiveSuggestion()
 at time 0: ConsiderUserPractices()
-at time 0: Measure(userOccupied=True, timeBetweenMeals=28801, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=28801, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 6
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
-at time 0: InformUser()
-at time 0: InformCaregiver()
-at time 0: TrackTime()
-at time 0: GiveSuggestion()
-at time 0: ConsiderUserPractices()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=28801, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=True, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 1: InformUser()
+at time 1: InformCaregiver()
+at time 1: TrackTime()
+at time 1: GiveSuggestion()
+at time 1: ConsiderUserPractices()
+at time 1: Measure(userOccupied=False, timeBetweenMeals=28801, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23465204238891602
+proof_generation_time: 0.23841118812561035
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -100,7 +100,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=2, personAuthorized=Fals
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.042730093002319336
+proof_generation_time: 0.04494214057922363
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -115,7 +115,7 @@ at time 0: Measure(userOccupied=True, timeBetweenMeals=2, personAuthorized=False
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.060508012771606445
+proof_generation_time: 0.04264378547668457
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -123,42 +123,42 @@ find trace
 at time 0: CheckTemperature()
 at time 0: UserWantsToCook()
 at time 0: AllowUserToCook()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CheckTemperature()
 at time 0: UserWantsToCook()
 at time 0: AllowUserToCook()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.12494564056396484
+proof_generation_time: 0.15953993797302246
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InterfereSafely()
 at time 0: AllowUserToCook()
-at time 0: Measure(userOccupied=True, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=True, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=1, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InterfereSafely()
 at time 0: AllowUserToCook()
-at time 0: Measure(userOccupied=True, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=True, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1042475700378418
+proof_generation_time: 0.13947105407714844
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformUser()
 at time 0: UserHasLimitation()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -168,7 +168,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=Fals
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.08963561058044434
+proof_generation_time: 0.09557175636291504
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -187,24 +187,24 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=Fals
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.12450790405273438
+proof_generation_time: 0.12700152397155762
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformUser()
 at time 0: CheckTemperature()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=True, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=True, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformUser()
 at time 0: CheckTemperature()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=True, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.10397100448608398
+proof_generation_time: 0.12514734268188477
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -223,7 +223,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=0, personAuthorized=Fals
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.15917277336120605
+proof_generation_time: 0.16141748428344727
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -240,7 +240,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=0, personAuthorized=Fals
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.12111973762512207
+proof_generation_time: 0.1225888729095459
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -257,11 +257,11 @@ at time 0: MeetingUser()
 at time 0: InformUser()
 at time 0: AskForEmergencyContact()
 at time 0: CollectandRecordInformation()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.13601422309875488
+proof_generation_time: 0.14223790168762207
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -282,7 +282,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=0, personAuthorized=Fals
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2632486820220947
+proof_generation_time: 0.32415127754211426
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -295,11 +295,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: GiveSuggestion()
 at time 0: ConsiderUserPractices()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07236719131469727
+proof_generation_time: 0.07634615898132324
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -308,7 +308,7 @@ at time 0: MeetingUser()
 at time 0: InformUser()
 at time 0: AskForEmergencyContact()
 at time 0: CollectandRecordInformation()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -316,11 +316,11 @@ at time 0: MeetingUser()
 at time 0: InformUser()
 at time 0: AskForEmergencyContact()
 at time 0: CollectandRecordInformation()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14509201049804688
+proof_generation_time: 0.15045833587646484
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -333,11 +333,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformUser()
 at time 0: AskForEmergencyContact()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07197213172912598
+proof_generation_time: 0.11450338363647461
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -358,24 +358,24 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=0, personAuthorized=Fals
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2885289192199707
+proof_generation_time: 0.2819333076477051
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProvideDataSummaries()
 at time 0: ShowDataHistory()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=True, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=True, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=True, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=True, hazardDetected=False, kitchenSafe=True, riskLevel=0, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProvideDataSummaries()
 at time 0: ShowDataHistory()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=True, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=True, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.10611081123352051
+proof_generation_time: 0.10742926597595215
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -390,7 +390,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=2, personAuthorized=Fals
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.041416168212890625
+proof_generation_time: 0.09090638160705566
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -411,14 +411,31 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=0, personAuthorized=Fals
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.31569957733154297
+proof_generation_time: 0.2672758102416992
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: PreparingDeployment()
 at time 0: CalibrateSpeech()
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=True, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDeployment()
+at time 0: CalibrateSpeech()
 at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=True, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.10540938377380371
+****************************************************************************************************
+check rule_24
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingDeployment()
+at time 0: CalibrateSpeech()
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=True, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -428,24 +445,7 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=Fals
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.10166645050048828
-****************************************************************************************************
-check rule_24
-solving under config: restart False, bcr False, ub False, min False
-find trace
-at time 0: PreparingDeployment()
-at time 0: CalibrateSpeech()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=True, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
-vol: 3
-solving under config: restart False, bcr False, ub False, min False
-find trace
-at time 0: PreparingDeployment()
-at time 0: CalibrateSpeech()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=True, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
-vol: 3
-Not Conflicting
-sat_result: sat
-proof_generation_time: 0.10016131401062012
+proof_generation_time: 0.10921335220336914
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -453,7 +453,26 @@ find trace
 at time 0: InformUser()
 at time 0: UseFirstPersonPluralLanguage()
 at time 0: GivingCookingInstructions()
+at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: UseFirstPersonPluralLanguage()
+at time 0: GivingCookingInstructions()
 at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.10640621185302734
+****************************************************************************************************
+check rule_26
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: UseFirstPersonPluralLanguage()
+at time 0: GivingCookingInstructions()
+at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -464,33 +483,14 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=Fals
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.16315960884094238
-****************************************************************************************************
-check rule_26
-solving under config: restart False, bcr False, ub False, min False
-find trace
-at time 0: InformUser()
-at time 0: UseFirstPersonPluralLanguage()
-at time 0: GivingCookingInstructions()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
-vol: 4
-solving under config: restart False, bcr False, ub False, min False
-find trace
-at time 0: InformUser()
-at time 0: UseFirstPersonPluralLanguage()
-at time 0: GivingCookingInstructions()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
-vol: 4
-Not Conflicting
-sat_result: sat
-proof_generation_time: 0.10648298263549805
+proof_generation_time: 0.10587787628173828
 ****************************************************************************************************
 check rule_27
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AskForDetailLevelOfInstructions()
 at time 0: BeforeCookingBegins()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -500,56 +500,56 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=Fals
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07093143463134766
+proof_generation_time: 0.07645535469055176
 ****************************************************************************************************
 check rule_28
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserChangeMind()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
 vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserChangeMind()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.06810379028320312
+proof_generation_time: 0.07022905349731445
 ****************************************************************************************************
 check rule_29
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InterfereSafely()
 at time 0: UserChangeItemLocation()
-at time 0: Measure(userOccupied=True, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=True, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
+at time 0: InterfereSafely()
 at time 0: UserChangeItemLocation()
-at time 0: UpdateMap()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=7, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=1, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=True, hazardDetected=False, kitchenSafe=False, riskLevel=2, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07909345626831055
+proof_generation_time: 0.10744738578796387
 ****************************************************************************************************
 check rule_30
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CallEmergencyServices()
 at time 0: SmokeDetectorAlarm()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CallEmergencyServices()
 at time 0: SmokeDetectorAlarm()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07542681694030762
+proof_generation_time: 0.07663083076477051
 ****************************************************************************************************
 check rule_31
 solving under config: restart False, bcr False, ub False, min False
@@ -558,7 +558,7 @@ at time 0: InformCaregiver()
 at time 0: OpenWindows()
 at time 0: FireSafetyMeasures()
 at time 0: AskUserIfOK()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -566,11 +566,11 @@ at time 0: InformCaregiver()
 at time 0: OpenWindows()
 at time 0: FireSafetyMeasures()
 at time 0: AskUserIfOK()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1436324119567871
+proof_generation_time: 0.14485645294189453
 ****************************************************************************************************
 check rule_32
 solving under config: restart False, bcr False, ub False, min False
@@ -579,7 +579,7 @@ at time 0: InformCaregiver()
 at time 0: OpenWindows()
 at time 0: FireSafetyMeasures()
 at time 0: AskUserIfOK()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -587,11 +587,11 @@ at time 0: InformCaregiver()
 at time 0: OpenWindows()
 at time 0: FireSafetyMeasures()
 at time 0: AskUserIfOK()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=6, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1445930004119873
+proof_generation_time: 0.15146946907043457
 ****************************************************************************************************
 check rule_33
 solving under config: restart False, bcr False, ub False, min False
@@ -600,7 +600,7 @@ at time 0: InformCaregiver()
 at time 0: OpenWindows()
 at time 0: FireSafetyMeasures()
 at time 0: AskUserIfOK()
-at time 0: Measure(userOccupied=False, timeBetweenMeals=4, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
+at time 0: Measure(userOccupied=False, timeBetweenMeals=5, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=0, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=0, alarmOn=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -612,5 +612,5 @@ at time 0: Measure(userOccupied=False, timeBetweenMeals=8, personAuthorized=Fals
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14571690559387207
+proof_generation_time: 0.14873409271240234
 ****************************************************************************************************

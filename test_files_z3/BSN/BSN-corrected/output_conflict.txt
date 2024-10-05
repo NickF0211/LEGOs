@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7f23fe4827a0>
+analysis_func: <function parse_and_check_conflict at 0x7f383cd5e7a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -8,28 +8,29 @@ at time 0: Measure(patientDiscomfort=1, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: CaregiverCanDeactivate()
+at time 0: TrackVitals()
 at time 0: PatientAsleep()
-at time 0: Measure(patientDiscomfort=2, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=True, canPatientDeactivate=True, canCaregiverDeactivate=True, patientIsHome=True, signsImpaired=True, signsDetached=False, isWaterproof=True, hasFallAlertPendant=True, allowsBathroomTracking=True, canCommunicateRegularly=True, authorizedParties=True, emergencyDetected=True, messageOnTime=True, alternateSensorsDeployed=True, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=True, sensorMalfunction=True, sensorMisplacement=False, userResponds=True, caregiverResponds=True, dataNeededForTraining=True, userWantsToStop=True, caregiverConsent=True, seeHealthHistory=False, seeDemographics=True, seeLocation=True, accurateHealthComparison=False)
-vol: 3
+at time 0: UserCanCallEmergency()
+at time 0: Measure(patientDiscomfort=2, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.24361538887023926
+proof_generation_time: 0.48666906356811523
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: PatientDoingChores()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=True, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=True, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: PatientDoingChores()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=True, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=True, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.041810035705566406
+proof_generation_time: 0.04177594184875488
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -44,7 +45,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.04175543785095215
+proof_generation_time: 0.041970252990722656
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -59,7 +60,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.044179439544677734
+proof_generation_time: 0.054105520248413086
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -67,18 +68,18 @@ find trace
 at time 0: AdjustServiceTimerate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=True, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=True, emergencyDetected=True, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=True, userResponds=False, caregiverResponds=True, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=True, seeHealthHistory=True, seeDemographics=True, seeLocation=True, accurateHealthComparison=True)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=True, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=True, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=True, sensorMisplacement=True, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=True, seeDemographics=True, seeLocation=True, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AdjustServiceTimerate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5355331897735596
+proof_generation_time: 0.5424742698669434
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -86,18 +87,18 @@ find trace
 at time 0: AdjustServiceTimerate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=True, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AdjustServiceTimerate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.435227632522583
+proof_generation_time: 0.40941929817199707
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -105,18 +106,18 @@ find trace
 at time 0: AdjustSamplingRate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=True, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=True, canCommunicateRegularly=True, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=True, sensorMalfunction=True, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=True, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AdjustSamplingRate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=True, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=True, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5126779079437256
+proof_generation_time: 0.43891358375549316
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -124,18 +125,18 @@ find trace
 at time 0: AdjustSamplingRate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=1, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=True, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=True, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=True, seeDemographics=False, seeLocation=True, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=1, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AdjustSamplingRate()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=2, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=1, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=True, patientIsHome=True, signsImpaired=False, signsDetached=True, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=True, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=True, sensorMisplacement=False, userResponds=True, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=True, seeLocation=False, accurateHealthComparison=True)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5108869075775146
+proof_generation_time: 0.5093419551849365
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -152,7 +153,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.13207459449768066
+proof_generation_time: 0.13128089904785156
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -160,18 +161,18 @@ find trace
 at time 0: EmergencyConfirmed()
 at time 0: CallAmbulance()
 at time 0: CallCaregiver()
-at time 0: Measure(patientDiscomfort=0, riskLevel=1, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=True, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=1, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1: EmergencyConfirmed()
-at time 1: CallAmbulance()
-at time 1: CallCaregiver()
-at time 1: Measure(patientDiscomfort=0, riskLevel=1, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=True, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=True, accurateHealthComparison=False)
+at time 0: EmergencyConfirmed()
+at time 0: CallAmbulance()
+at time 0: CallCaregiver()
+at time 0: Measure(patientDiscomfort=0, riskLevel=1, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.18614697456359863
+proof_generation_time: 0.1049494743347168
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -181,19 +182,20 @@ at time 0: ConfirmSensorPlacement()
 at time 0: ConfirmUsersActivities()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=True, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=True, unusualActivity=False, sensorMalfunction=True, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
+merged
 find trace
-at time 0: ConfirmSensorPlacement()
-at time 0: ConfirmUsersActivities()
-at time 0: TrackVitals()
-at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=True, allowsBathroomTracking=True, canCommunicateRegularly=True, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=True, unusualActivity=True, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=True, seeDemographics=False, seeLocation=True, accurateHealthComparison=False)
+at time 1: ConfirmSensorPlacement()
+at time 1: ConfirmUsersActivities()
+at time 1: TrackVitals()
+at time 1: UserCanCallEmergency()
+at time 1: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=True, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.4905836582183838
+proof_generation_time: 0.5262134075164795
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -203,7 +205,7 @@ at time 0: ConfirmSensorPlacement()
 at time 0: ConfirmUsersActivities()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=True, signsDetached=False, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=True, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=True, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=True, userResponds=False, caregiverResponds=True, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=True, seeHealthHistory=True, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=False, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=True, canCommunicateRegularly=False, authorizedParties=True, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=True, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=True, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 merged
@@ -212,11 +214,11 @@ at time 0: ConfirmSensorPlacement()
 at time 0: ConfirmUsersActivities()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=True, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=True, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=True, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.538532018661499
+proof_generation_time: 0.49312376976013184
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -227,7 +229,7 @@ at time 0: ConfirmUsersActivities()
 at time 0: InformUser()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=True, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=True, signsDetached=False, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=True, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 6
 solving under config: restart False, bcr False, ub False, min False
 merged
@@ -237,18 +239,18 @@ at time 0: ConfirmUsersActivities()
 at time 0: InformUser()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=1, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=True, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=True, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=True, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.6031079292297363
+proof_generation_time: 0.5540437698364258
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformUser()
 at time 0: CallCaregiver()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=True, allowsBathroomTracking=True, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -258,14 +260,14 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.10560369491577148
+proof_generation_time: 0.1386094093322754
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CallAmbulance()
 at time 0: CallCaregiver()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=True, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=True, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=True, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=True, accurateHealthComparison=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -275,7 +277,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.10237765312194824
+proof_generation_time: 0.0722804069519043
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -300,7 +302,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2958791255950928
+proof_generation_time: 0.23177742958068848
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -325,7 +327,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2392120361328125
+proof_generation_time: 0.23540759086608887
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -350,7 +352,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23769259452819824
+proof_generation_time: 0.23077893257141113
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -369,28 +371,28 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.15643596649169922
+proof_generation_time: 0.2231581211090088
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
 at time 0: TrackVitals()
-at time 0: EnsureEasyStopping()
+at time 0: CallCaregiver()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=True, canCommunicateRegularly=False, authorizedParties=True, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=True, caregiverConsent=False, seeHealthHistory=True, seeDemographics=False, seeLocation=False, accurateHealthComparison=True)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=True, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
 at time 0: TrackVitals()
-at time 0: EnsureEasyStopping()
+at time 0: CallCaregiver()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=1, numUsersKnown=True, numSampleKnown=True, canPatientDeactivate=True, canCaregiverDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=True, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=True, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=True, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=True, dataNeededForTraining=False, userWantsToStop=True, caregiverConsent=False, seeHealthHistory=True, seeDemographics=False, seeLocation=True, accurateHealthComparison=True)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.48492431640625
+proof_generation_time: 0.4780557155609131
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -407,7 +409,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1387481689453125
+proof_generation_time: 0.22152400016784668
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -424,7 +426,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14314770698547363
+proof_generation_time: 0.14725971221923828
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
@@ -441,7 +443,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.10383868217468262
+proof_generation_time: 0.1077425479888916
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
@@ -450,7 +452,7 @@ at time 0: CalibrateBSN()
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
 at time 0: ObtainRiskLevel()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=True, seeDemographics=True, seeLocation=True, accurateHealthComparison=True)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=True, seeDemographics=True, seeLocation=True, accurateHealthComparison=True)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -462,7 +464,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.6090834140777588
+proof_generation_time: 0.6929762363433838
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -470,7 +472,7 @@ find trace
 at time 0: DataCollected()
 at time 0: DeleteData()
 at time 0: AnonymizeData()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=True, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -481,7 +483,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14900422096252441
+proof_generation_time: 0.14761877059936523
 ****************************************************************************************************
 check rule_26
 solving under config: restart False, bcr False, ub False, min False
@@ -500,7 +502,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14571285247802734
+proof_generation_time: 0.14672470092773438
 ****************************************************************************************************
 check rule_27
 solving under config: restart False, bcr False, ub False, min False
@@ -525,7 +527,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23861002922058105
+proof_generation_time: 0.33808064460754395
 ****************************************************************************************************
 check rule_28
 solving under config: restart False, bcr False, ub False, min False
@@ -550,7 +552,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23998570442199707
+proof_generation_time: 0.23976778984069824
 ****************************************************************************************************
 check rule_29
 solving under config: restart False, bcr False, ub False, min False
@@ -563,11 +565,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: TrackVitals()
 at time 0: UserCanCallEmergency()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=True, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=True, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=True, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.4175856113433838
+proof_generation_time: 0.41465258598327637
 ****************************************************************************************************
 check rule_30
 solving under config: restart False, bcr False, ub False, min False
@@ -584,14 +586,14 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1109771728515625
+proof_generation_time: 0.22834086418151855
 ****************************************************************************************************
 check rule_31
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CaregiverCanDeactivate()
 at time 0: UserRequestRemoveSensor()
-at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=False, canCaregiverDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=True, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUsersKnown=False, numSampleKnown=True, canPatientDeactivate=False, canCaregiverDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -601,7 +603,7 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07603693008422852
+proof_generation_time: 0.1068723201751709
 ****************************************************************************************************
 check rule_32
 solving under config: restart False, bcr False, ub False, min False
@@ -620,5 +622,5 @@ at time 0: Measure(patientDiscomfort=0, riskLevel=0, batteryConsumption=0, numUs
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.18613028526306152
+proof_generation_time: 0.18527936935424805
 ****************************************************************************************************

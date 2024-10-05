@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_red at 0x7eff0a061080>
+analysis_func: <function parse_and_check_red at 0x7f7ad7235080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -14,7 +14,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.15140509605407715
+proof_generation_time: 0.15604472160339355
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -24,7 +24,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
 sat_result: unsat
-proof_generation_time: 0.04771256446838379
+proof_generation_time: 0.04321622848510742
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -39,7 +39,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03484797477722168
+proof_generation_time: 0.03935599327087402
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -49,7 +49,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
 sat_result: unsat
-proof_generation_time: 0.03383803367614746
+proof_generation_time: 0.034998178482055664
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -59,7 +59,7 @@ solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
 sat_result: unsat
-proof_generation_time: 0.04774212837219238
+proof_generation_time: 0.04573702812194824
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -74,19 +74,19 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0364384651184082
+proof_generation_time: 0.03757309913635254
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1: InformUser()
-at time 1: RemindUser()
-at time 1: UserDriving()
-at time 1: EnsureAlertness()
-at time 1: TrackMetrics()
-at time 1: SensorsConnect()
-at time 1: TrackVisionField()
-at time 1: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: SensorsConnect()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 8
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -97,11 +97,11 @@ at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
 at time 0: SensorsConnect()
 at time 0: TrackVisionField()
-at time 0: Measure(hearRateVariability=1, eyeMovements=2, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=True, obtainConsent=False, needsAccomodation=True, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=2, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 8
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.7264623641967773
+proof_generation_time: 0.7250745296478271
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -126,7 +126,7 @@ at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=Fa
 vol: 7
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.3688631057739258
+proof_generation_time: 0.37468528747558594
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -141,7 +141,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03463387489318848
+proof_generation_time: 0.0353846549987793
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -156,7 +156,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03870654106140137
+proof_generation_time: 0.05521106719970703
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -171,7 +171,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03708291053771973
+proof_generation_time: 0.036592960357666016
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -188,7 +188,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.09201478958129883
+proof_generation_time: 0.09304141998291016
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -205,7 +205,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.1115427017211914
+proof_generation_time: 0.11341309547424316
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -220,7 +220,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03755307197570801
+proof_generation_time: 0.039148569107055664
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -237,7 +237,7 @@ at time 1: RemindUser()
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06164741516113281
+proof_generation_time: 0.06348967552185059
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -254,11 +254,11 @@ at time 0: UserDriving()
 at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
 at time 0: TrackVisionField()
-at time 0: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 5
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.2553262710571289
+proof_generation_time: 0.2572672367095947
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -266,18 +266,18 @@ find trace
 at time 0: UserDriving()
 at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
-at time 0: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserDriving()
 at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
-at time 0: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 4
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.11822056770324707
+proof_generation_time: 0.15019893646240234
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -292,7 +292,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06887125968933105
+proof_generation_time: 0.03875875473022461
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -307,7 +307,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.039128780364990234
+proof_generation_time: 0.03960227966308594
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -326,11 +326,11 @@ at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
 at time 0: TrackVisionField()
 at time 0: ShowConsentForm()
-at time 0: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 6
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.3361949920654297
+proof_generation_time: 0.36778783798217773
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -347,7 +347,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06926894187927246
+proof_generation_time: 0.06435179710388184
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -364,7 +364,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.1173396110534668
+proof_generation_time: 0.125091552734375
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
@@ -381,7 +381,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06302475929260254
+proof_generation_time: 0.06481361389160156
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
@@ -398,11 +398,11 @@ at time 0: UserDriving()
 at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
 at time 0: TrackVisionField()
-at time 0: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
 vol: 5
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.3804805278778076
+proof_generation_time: 0.3782341480255127
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -413,7 +413,7 @@ at time 0: UserDriving()
 at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
 at time 0: TrackVisionField()
-at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=True, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 7
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -423,11 +423,11 @@ at time 0: UserDriving()
 at time 0: EnsureAlertness()
 at time 0: TrackMetrics()
 at time 0: TrackVisionField()
-at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=True, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=True, substanceUse=True, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
 vol: 7
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.5544421672821045
+proof_generation_time: 0.5745716094970703
 ****************************************************************************************************
 check rule_26
 solving under config: restart False, bcr False, ub False, min False
@@ -442,7 +442,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 2
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.03894209861755371
+proof_generation_time: 0.037937164306640625
 ****************************************************************************************************
 check rule_27
 solving under config: restart False, bcr False, ub False, min False
@@ -459,7 +459,7 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.0676729679107666
+proof_generation_time: 0.0656898021697998
 ****************************************************************************************************
 check rule_28
 solving under config: restart False, bcr False, ub False, min False
@@ -476,5 +476,5 @@ at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=Fa
 vol: 3
 Not Redundant
 sat_result: sat
-proof_generation_time: 0.06413841247558594
+proof_generation_time: 0.06366968154907227
 ****************************************************************************************************
