@@ -623,14 +623,15 @@ def parse_negation(node, Action_Mapping, head, measure, is_pos):
 def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, model_str="", to_print=True,
                    multi_entry=False):
     Measure = Action_Mapping["Measure"]
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     output = ""
@@ -667,7 +668,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
                                           Actions, [], True,
                                           min_solution=False,
                                           final_min_solution=True, restart=False, boundary_case=False,
-                                          universal_blocking=False, vol_bound=VOL_BOUND,
+                                          universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                           record_proof=False)
 
         if isinstance(res, str):
@@ -711,14 +712,15 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
         profiling_file = open("profiling_conflict.csv", 'w')
         profiling_file.write("raw_finish_time, proof_generation_time, proof_checking_time, raw_proof_size, raw_derivation_steps, trimmed_proof_size, trimmed_derivation_steps\n")
 
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     output = ""
@@ -802,7 +804,7 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
                                           Actions, [], True,
                                           min_solution=False,
                                           final_min_solution=True, restart=False, boundary_case=False,
-                                          universal_blocking=False, vol_bound=VOL_BOUND,
+                                          universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                           record_proof=check_proof)
 
             if profiling:
@@ -940,14 +942,15 @@ def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, m
                    to_print=True,
                    multi_entry=False, profiling= True):
     Measure = Action_Mapping["Measure"]
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     output = ""
@@ -1041,7 +1044,7 @@ def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, m
                                           Actions, [], True,
                                           min_solution=False,
                                           final_min_solution=True, restart=False, boundary_case=False,
-                                          universal_blocking=False, vol_bound=VOL_BOUND,
+                                          universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                           record_proof=check_proof)
 
             if profiling:
@@ -1204,18 +1207,19 @@ def get_measure_inv(Measure, Actions):
 
 
 def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
-              multi_entry=False, profiling=True):
+              multi_entry=False, profiling=False):
 
     Measure = Action_Mapping["Measure"]
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
 
     multi_output = []
@@ -1293,7 +1297,7 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
                                           Actions, [], True,
                                           min_solution=False,
                                           final_min_solution=True, restart=False, boundary_case=False,
-                                          universal_blocking=False, vol_bound=VOL_BOUND,
+                                          universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                           record_proof=check_proof)
 
             if profiling:
@@ -1550,9 +1554,49 @@ def check_input_concerns(model_str):
     return res
 
 
+
+from argparse import ArgumentParser
+
+
+def parse_and_check_conflict(filename):
+    model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
+                                                                                       read_file=True)
+    res = check_conflict(model, rules, relations, Action_Mapping, Actions, check_proof=False, profiling=True)
+    return res
+
+
+def parse_and_check_red(filename):
+    model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
+                                                                                       read_file=True)
+    res = check_red(model, rules, relations, Action_Mapping, Actions, check_proof=False,profiling=True)
+    return res
+
+
+def parse_and_check_concern(filename):
+    model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
+                                                                                       read_file=True)
+    res = check_concerns(model, rules, concerns, relations, Action_Mapping, Actions)
+    return res
+
+
 if __name__ == "__main__":
-    model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec("covidfree/covidfree.sleec", read_file=True)
-    res = check_red(model, rules, relations, Action_Mapping, Actions, check_proof=True)
+    parser = ArgumentParser()
+    parser.add_argument('--filename', help="SLEEC file to analyze", type=str)
+    parser.add_argument('--analysis', help='What the analysis to run: redundancy/conflict/concern', type=str)
+    args = parser.parse_args()
+    supported_mode = {"redundancy": parse_and_check_red, "conflict": parse_and_check_conflict,
+                      "concern": parse_and_check_concern}
+    analysis = args.analysis
+    if analysis not in supported_mode:
+        print("unsupported analysis mode, please choice one of the analysis mode redundancy/conflict/concern")
+        print("running redundancy for default")
+    analysis_func = supported_mode.get(analysis, parse_and_check_red)
+    analysis_func(args.filename)
+#
+#
+# if __name__ == "__main__":
+#     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec("test_files/test.sleec", read_file=True)
+#     res = check_red(model, rules, relations, Action_Mapping, Actions, check_proof=False, profiling=True)
 # model, rules, Action_Mapping, Actions,_ = parse_sleec("safescade/safescade.sleec")
 
 
