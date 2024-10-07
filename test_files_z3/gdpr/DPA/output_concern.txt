@@ -1,23 +1,23 @@
-analysis_func: <function parse_and_check_concern at 0x7fe2c7f31c60>
+analysis_func: <function parse_and_check_concern at 0x7fd80288dc60>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
-concern case 0 solving time 0.09168410301208496
+concern case 0 solving time 0.0903475284576416
 concern not raised
 ****************************************************************************************************
 check concern_2
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
-concern case 1 solving time 0.13564634323120117
+concern case 1 solving time 0.13463091850280762
 concern not raised
 ****************************************************************************************************
 check concern_3
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
-concern case 2 solving time 0.0773782730102539
+concern case 2 solving time 0.07919073104858398
 concern not raised
 ****************************************************************************************************
 check concern_4
@@ -28,9 +28,9 @@ at time 0: EngageSubProcessor()
 at time 0: ObtainControllerConsent()
 at time 0: TakeLiabilityForSubProcessor()
 at time 0: ImposeObligationsOnSubProcessor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=12, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=low, typesOfRisk=dataDestruction, auditorType=mandatedAuditor, auditType=inspection, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=12, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=low, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
 vol: 6
-concern case 3 solving time 0.17606258392333984
+concern case 3 solving time 0.14400243759155273
 Concern is raised
 ****************************************************************************************************
 check concern_5
@@ -41,28 +41,28 @@ at time 0: RightsRequested()
 at time 0: RespondToRequest()
 at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=low, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
 vol: 4
-concern case 4 solving time 0.08842229843139648
+concern case 4 solving time 0.09487485885620117
 Concern is raised
 ****************************************************************************************************
 check concern_6
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
-concern case 5 solving time 0.1455857753753662
+concern case 5 solving time 0.13671040534973145
 concern not raised
 ****************************************************************************************************
 check concern_7
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
-concern case 6 solving time 0.1803135871887207
+concern case 6 solving time 0.17994451522827148
 concern not raised
 ****************************************************************************************************
 check concern_8
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
-concern case 7 solving time 0.06368064880371094
+concern case 7 solving time 0.06499481201171875
 concern not raised
 ****************************************************************************************************
 check concern_9
@@ -71,22 +71,22 @@ find trace
 at time 0: InformController()
 at time 0: EvaluateSecurity()
 at time 0: PassSecurity()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=True, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=medium, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=13, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=True, riskLevel=medium, typesOfRisk=dataDestruction, auditorType=controller, auditType=audit, art28Compliance=False)
 vol: 4
-concern case 8 solving time 0.11820125579833984
+concern case 8 solving time 0.11871552467346191
 Concern is raised
 ****************************************************************************************************
 check concern_10
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
-concern case 9 solving time 0.06475234031677246
+concern case 9 solving time 0.0677182674407959
 concern not raised
 ****************************************************************************************************
 check concern_11
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
-concern case 10 solving time 0.04306602478027344
+concern case 10 solving time 0.04061484336853027
 concern not raised
 ****************************************************************************************************

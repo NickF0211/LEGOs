@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7f7c672327a0>
+analysis_func: <function parse_and_check_conflict at 0x7fc1d73167a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -16,7 +16,7 @@ at time 0: Measure(m1=6)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.05128598213195801
+proof_generation_time: 0.05078840255737305
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -30,14 +30,14 @@ vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: C()
-at time 0: Measure(m1=7)
+at time 0: Measure(m1=8)
 at time 10: B()
 at time 10: D()
-at time 10: Measure(m1=6)
+at time 10: Measure(m1=7)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.07985615730285645
+proof_generation_time: 0.08208489418029785
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -54,5 +54,5 @@ at time 0: Measure(m1=4)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.03177356719970703
+proof_generation_time: 0.03201007843017578
 ****************************************************************************************************
