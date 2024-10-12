@@ -1,4 +1,3 @@
-analysis_func: <function parse_and_check_concern at 0x7f24ad145c60>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -8,7 +7,7 @@ at time 0: AdjustRoute()
 at time 0: InformHuman()
 at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=True, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 5
-concern case 0 solving time 0.12924766540527344
+concern case 0 solving time 0.2816157341003418
 Concern is raised
 ****************************************************************************************************
 check concern_2
@@ -21,7 +20,7 @@ at time 0: TrackHumanLocation()
 at time 0: MoveAtSafeSpeed()
 at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 6
-concern case 1 solving time 0.1764538288116455
+concern case 1 solving time 0.40834784507751465
 Concern is raised
 ****************************************************************************************************
 check concern_3
@@ -34,7 +33,7 @@ at time 0: TrackHumanLocation()
 at time 0: MoveAtSafeSpeed()
 at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 6
-concern case 2 solving time 0.1873629093170166
+concern case 2 solving time 0.4000203609466553
 Concern is raised
 ****************************************************************************************************
 check concern_4
@@ -43,7 +42,7 @@ find trace
 at time 0: ActionHumanRandom()
 at time 0: Measure(humanInRoute=False, humanInRange=True, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 2
-concern case 3 solving time 0.03262472152709961
+concern case 3 solving time 0.11821436882019043
 Concern is raised
 ****************************************************************************************************
 check concern_5
@@ -55,9 +54,9 @@ at time 0: AccountHumanRandomness()
 at time 0: TrackHumanLocation()
 at time 0: MoveAtSafeSpeed()
 at time 0: ActionHumanRandom()
-at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=True, humansPresent=False, obstaclePresent=False)
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 7
-concern case 4 solving time 0.1944730281829834
+concern case 4 solving time 0.3639259338378906
 Concern is raised
 ****************************************************************************************************
 check concern_6
@@ -66,7 +65,7 @@ find trace
 at time 0: ActionHumanRandom()
 at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 2
-concern case 5 solving time 0.03228330612182617
+concern case 5 solving time 0.10833525657653809
 Concern is raised
 ****************************************************************************************************
 check concern_7
@@ -75,13 +74,13 @@ find trace
 at time 0: TrackHumanLocation()
 at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 2
-concern case 6 solving time 0.031852006912231445
+concern case 6 solving time 0.10029220581054688
 Concern is raised
 ****************************************************************************************************
 check concern_8
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
-concern case 7 solving time 0.037354230880737305
+concern case 7 solving time 0.1212923526763916
 concern not raised
 ****************************************************************************************************
