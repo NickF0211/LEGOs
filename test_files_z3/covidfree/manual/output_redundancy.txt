@@ -1,3 +1,4 @@
+analysis_func: <function parse_and_check_red at 0x7fd7a577d080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 merged
@@ -16,17 +17,16 @@ solving under config: restart False, bcr False, ub False, min False
 merged
 merged
 merged
-merged
-merged
-merged
 find trace
 at time 0: UserOpenApp()
 at time 0: UserUseApp()
 at time 0: CheckConsentCapacity()
-at time 0: ProvideInstructions()
-at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: ShowHelpIcon()
+at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 5
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.4651145935058594
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -40,6 +40,8 @@ at time 0: UserOpenApp()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.10239171981811523
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -53,6 +55,8 @@ at time 0: UserOpenApp()
 at time 0: Measure(userConsent=True, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.09285616874694824
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -66,6 +70,8 @@ at time 0: CheckConsentCapacity()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.09272480010986328
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -79,6 +85,8 @@ at time 0: DisclosureRequest()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.08881688117980957
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -94,6 +102,8 @@ at time 0: CheckRecipient()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.09226727485656738
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -107,6 +117,8 @@ at time 0: ProcessData()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.112945556640625
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -120,6 +132,8 @@ at time 0: UserUseApp()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.0912015438079834
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -135,6 +149,8 @@ at time 0: ProvideInstructions()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.23435592651367188
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -148,6 +164,8 @@ at time 0: UserUseApp()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.12551307678222656
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -163,6 +181,8 @@ at time 0: NoticeRedFlag()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.1380319595336914
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -178,6 +198,8 @@ at time 0: NoticeRedFlag()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.1353147029876709
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -191,6 +213,8 @@ at time 0: RequestFileAccess()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.08983612060546875
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -204,6 +228,8 @@ at time 0: NoticeAnomaly()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.09085226058959961
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -217,6 +243,8 @@ at time 0: UserRequestExplanation()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.09509897232055664
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -230,6 +258,8 @@ at time 0: ProvidingCommunication()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.14597821235656738
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -243,6 +273,8 @@ at time 0: NotifcationArrives()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=True, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.09612226486206055
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -256,6 +288,8 @@ at time 0: NotifcationArrives()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.08956670761108398
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -271,4 +305,6 @@ at time 0: EnsureSocialNorms()
 at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.20258760452270508
 ****************************************************************************************************

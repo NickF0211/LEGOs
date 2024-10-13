@@ -1,3 +1,4 @@
+analysis_func: <function parse_and_check_conflict at 0x7fe9e82167a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -12,6 +13,8 @@ at time 0: B()
 at time 0: Measure(ba=False, na=21, bb=False)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06984186172485352
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -24,9 +27,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: A()
 at time 0: B()
-at time 0: Measure(ba=True, na=11, bb=False)
+at time 0: Measure(ba=True, na=10, bb=False)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06347489356994629
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -42,6 +47,8 @@ at time 0: B()
 at time 0: Measure(ba=False, na=20, bb=False)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06121182441711426
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -61,6 +68,8 @@ at time 0: E()
 at time 0: Measure(ba=False, na=51, bb=False)
 vol: 5
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.32047057151794434
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -80,6 +89,8 @@ at time 0: E()
 at time 0: Measure(ba=False, na=101, bb=False)
 vol: 5
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3637707233428955
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -89,7 +100,7 @@ at time 0: B()
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=True, na=51, bb=False)
+at time 0: Measure(ba=False, na=51, bb=False)
 vol: 6
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -101,6 +112,8 @@ at time 0: E()
 at time 0: Measure(ba=False, na=51, bb=False)
 vol: 6
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.4853055477142334
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -115,9 +128,11 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=13, bb=False)
+at time 0: Measure(ba=False, na=20, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.19895648956298828
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -132,9 +147,11 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=5, bb=False)
+at time 0: Measure(ba=False, na=17, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.20027899742126465
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -149,9 +166,11 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=7, bb=False)
+at time 0: Measure(ba=False, na=9, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.227644681930542
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -166,9 +185,11 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=11, bb=False)
+at time 0: Measure(ba=False, na=15, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.19748783111572266
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -183,9 +204,11 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=21, bb=False)
+at time 0: Measure(ba=False, na=17, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.20099854469299316
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -193,16 +216,18 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=5, bb=False)
+at time 0: Measure(ba=False, na=4, bb=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=10, bb=False)
+at time 0: Measure(ba=False, na=9, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.20440268516540527
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -217,9 +242,11 @@ find trace
 at time 0: C()
 at time 0: D()
 at time 0: E()
-at time 0: Measure(ba=False, na=18, bb=False)
+at time 0: Measure(ba=False, na=14, bb=False)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.20513176918029785
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -233,6 +260,8 @@ at time 0: E()
 at time 0: Measure(ba=False, na=4, bb=False)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.04211592674255371
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -246,6 +275,8 @@ at time 0: E()
 at time 0: Measure(ba=True, na=4, bb=False)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.04142451286315918
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -259,6 +290,8 @@ at time 0: E()
 at time 0: Measure(ba=True, na=4, bb=False)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.08012890815734863
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -272,6 +305,8 @@ at time 0: E()
 at time 0: Measure(ba=True, na=4, bb=False)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.041675567626953125
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -284,35 +319,41 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: F()
 at time 0: G()
-at time 0: Measure(ba=False, na=21, bb=False)
+at time 0: Measure(ba=False, na=15, bb=False)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06462597846984863
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: H()
-at time 0: Measure(ba=False, na=6, bb=True)
+at time 0: Measure(ba=False, na=5, bb=True)
 at time 1: F()
 at time 1: G()
-at time 1: Measure(ba=False, na=3, bb=False)
+at time 1: Measure(ba=True, na=8, bb=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 domain size 11
 unsat
+sat_result: unsat
+proof_generation_time: 0.12164020538330078
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1: H()
-at time 1: Measure(ba=True, na=7, bb=False)
-at time 3: F()
-at time 3: G()
-at time 3: Measure(ba=False, na=4, bb=False)
+at time 0: H()
+at time 0: Measure(ba=False, na=5, bb=True)
+at time 1: F()
+at time 1: G()
+at time 1: Measure(ba=False, na=2, bb=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 domain size 11
 unsat
+sat_result: unsat
+proof_generation_time: 0.12317156791687012
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -325,7 +366,9 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: F()
 at time 0: G()
-at time 0: Measure(ba=False, na=19, bb=False)
+at time 0: Measure(ba=False, na=9, bb=False)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06488537788391113
 ****************************************************************************************************

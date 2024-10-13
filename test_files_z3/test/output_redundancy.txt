@@ -1,3 +1,4 @@
+analysis_func: <function parse_and_check_red at 0x7f5ec2151080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 domain size 6
@@ -8,6 +9,8 @@ merged
 merged
 domain size 6
 unsat
+sat_result: unsat
+proof_generation_time: 0.1017153263092041
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -16,6 +19,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
+sat_result: unsat
+proof_generation_time: 0.03662514686584473
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -24,6 +29,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
+sat_result: unsat
+proof_generation_time: 0.035974740982055664
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -37,6 +44,8 @@ at time 0: B()
 at time 0: Measure(ba=False, na=51, bb=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.03908586502075195
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -45,6 +54,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 4
 unsat
+sat_result: unsat
+proof_generation_time: 0.08575773239135742
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -53,6 +64,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
+sat_result: unsat
+proof_generation_time: 0.13882780075073242
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -61,6 +74,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 10
 unsat
+sat_result: unsat
+proof_generation_time: 0.13525867462158203
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -69,6 +84,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 3
 unsat
+sat_result: unsat
+proof_generation_time: 0.03728961944580078
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -77,6 +94,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
+sat_result: unsat
+proof_generation_time: 0.04423260688781738
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -85,6 +104,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 6
 unsat
+sat_result: unsat
+proof_generation_time: 0.06414651870727539
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -93,21 +114,25 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 6
 unsat
+sat_result: unsat
+proof_generation_time: 0.04778027534484863
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: C()
 at time 0: D()
-at time 0: Measure(ba=False, na=4, bb=False)
+at time 0: Measure(ba=False, na=5, bb=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: C()
 at time 0: D()
-at time 0: Measure(ba=False, na=5, bb=False)
+at time 0: Measure(ba=False, na=17, bb=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.07150030136108398
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -116,6 +141,8 @@ unsat
 solving under config: restart False, bcr False, ub False, min False
 domain size 6
 unsat
+sat_result: unsat
+proof_generation_time: 0.07040047645568848
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -127,18 +154,22 @@ vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: E()
-at time 0: Measure(ba=False, na=0, bb=False)
-vol: 2
+at time 0: G()
+at time 0: Measure(ba=False, na=3, bb=False)
+vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.0429224967956543
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
 solving under config: restart False, bcr False, ub False, min False
-merged
 domain size 5
 unsat
+sat_result: unsat
+proof_generation_time: 0.07360029220581055
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -152,6 +183,8 @@ at time 0: E()
 at time 0: Measure(ba=True, na=3, bb=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.08682751655578613
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -167,6 +200,8 @@ at time 0: G()
 at time 0: Measure(ba=True, na=2, bb=False)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.06785464286804199
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -179,9 +214,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: F()
 at time 0: G()
-at time 0: Measure(ba=False, na=20, bb=True)
+at time 0: Measure(ba=False, na=13, bb=True)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.06556272506713867
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -195,6 +232,8 @@ at time 0: H()
 at time 0: Measure(ba=False, na=2, bb=False)
 vol: 2
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.03832745552062988
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -202,16 +241,18 @@ find trace
 at time 0: F()
 at time 0: G()
 at time 0: H()
-at time 0: Measure(ba=False, na=4, bb=False)
+at time 0: Measure(ba=False, na=6, bb=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: F()
 at time 0: G()
 at time 0: H()
-at time 0: Measure(ba=False, na=17, bb=False)
+at time 0: Measure(ba=False, na=21, bb=False)
 vol: 4
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.141218900680542
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -219,4 +260,6 @@ bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
 domain size 12
 unsat
+sat_result: unsat
+proof_generation_time: 0.10390377044677734
 ****************************************************************************************************

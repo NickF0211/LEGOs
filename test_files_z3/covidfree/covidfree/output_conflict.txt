@@ -1,3 +1,4 @@
+analysis_func: <function parse_and_check_conflict at 0x7f62cfe4e7a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -7,24 +8,28 @@ vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemConfig()
-at time 0: Measure(age=0, systemlangauge=0, userLanguage=2, userPreferredPronouns=76, systemUsedPronous=76, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=74, userLastTimeActive=77, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=0, systemlangauge=0, userLanguage=2, userPreferredPronouns=75, systemUsedPronous=75, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=77, userLastTimeActive=74, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2949542999267578
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserChoosePronous()
 at time 0: SystemConfig()
-at time 0: Measure(age=0, systemlangauge=0, userLanguage=7, userPreferredPronouns=2, systemUsedPronous=3, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=9, userLastTimeActive=10, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=0, systemlangauge=0, userLanguage=7, userPreferredPronouns=2, systemUsedPronous=3, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=8, userLastTimeActive=9, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserChoosePronous()
 at time 0: SystemConfig()
-at time 0: Measure(age=0, systemlangauge=0, userLanguage=34, userPreferredPronouns=32, systemUsedPronous=33, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=37, userLastTimeActive=36, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=0, systemlangauge=0, userLanguage=37, userPreferredPronouns=32, systemUsedPronous=33, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=38, userLastTimeActive=36, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.38309717178344727
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -32,30 +37,36 @@ bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 24
-unsat
+bounded UNSAT
+sat_result: unsat
+proof_generation_time: 1.0853197574615479
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 29
-unsat
+bounded UNSAT
+solving under config: restart False, bcr False, ub False, min False
+bounded UNSAT
+sat_result: unsat
+proof_generation_time: 0.9455158710479736
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemConfig()
 at time 0: UserConformIsFamilarwithTechnology()
-at time 0: Measure(age=71, systemlangauge=0, userLanguage=9, userPreferredPronouns=5, systemUsedPronous=5, userComfortablewithTech=True, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=7, userLastTimeActive=11, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=71, systemlangauge=0, userLanguage=10, userPreferredPronouns=9, systemUsedPronous=9, userComfortablewithTech=True, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=6, userLastTimeActive=4, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemConfig()
 at time 0: UserConformIsFamilarwithTechnology()
-at time 0: Measure(age=71, systemlangauge=9, userLanguage=9, userPreferredPronouns=5, systemUsedPronous=5, userComfortablewithTech=True, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=10, userLastTimeActive=7, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=71, systemlangauge=0, userLanguage=56, userPreferredPronouns=58, systemUsedPronous=58, userComfortablewithTech=True, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=57, userLastTimeActive=59, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.49247217178344727
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -63,6 +74,8 @@ bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
+sat_result: unsat
+proof_generation_time: 0.24393105506896973
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -76,6 +89,8 @@ at time 0: SystemIntendInformUser()
 at time 0: Measure(age=3, systemlangauge=4, userLanguage=5, userPreferredPronouns=6, systemUsedPronous=7, userComfortablewithTech=False, userIsPraying=True, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=8, userLastTimeActive=9, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.13356494903564453
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -83,43 +98,51 @@ bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
 domain size 8
 unsat
+sat_result: unsat
+proof_generation_time: 0.3523702621459961
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemPeroidicCheck()
 at time 0: SystemDeleteMessage()
-at time 0: Measure(age=6, systemlangauge=9, userLanguage=10, userPreferredPronouns=5, systemUsedPronous=11, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=180, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=12, systemlangauge=10, userLanguage=6, userPreferredPronouns=5, systemUsedPronous=11, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=180, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemPeroidicCheck()
 at time 0: SystemDeleteMessage()
-at time 0: Measure(age=51, systemlangauge=58, userLanguage=56, userPreferredPronouns=57, systemUsedPronous=52, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=180, userLastTimeActive=55, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=12, systemlangauge=14, userLanguage=16, userPreferredPronouns=18, systemUsedPronous=13, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=180, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5252823829650879
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemPeroidicCheck()
 at time 0: SystemDeleteData()
-at time 0: Measure(age=7, systemlangauge=6, userLanguage=10, userPreferredPronouns=5, systemUsedPronous=9, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=180, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=8, systemlangauge=10, userLanguage=11, userPreferredPronouns=7, systemUsedPronous=9, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=180, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemPeroidicCheck()
 at time 0: SystemDeleteData()
-at time 0: Measure(age=22, systemlangauge=21, userLanguage=20, userPreferredPronouns=15, systemUsedPronous=16, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=180, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=7, systemlangauge=9, userLanguage=8, userPreferredPronouns=14, systemUsedPronous=10, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=180, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.4435124397277832
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 18
+domain size 19
 unsat
+sat_result: unsat
+proof_generation_time: 0.9215056896209717
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -127,23 +150,28 @@ find trace
 at time 0: UseUserLanguage()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=11, systemlangauge=5, userLanguage=7, userPreferredPronouns=4, systemUsedPronous=10, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=6, userLastTimeActive=12, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=4, systemlangauge=7, userLanguage=10, userPreferredPronouns=8, systemUsedPronous=12, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=5, userLastTimeActive=9, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UseUserLanguage()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=42, systemlangauge=36, userLanguage=38, userPreferredPronouns=35, systemUsedPronous=40, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=41, userLastTimeActive=37, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=60, systemlangauge=59, userLanguage=56, userPreferredPronouns=57, systemUsedPronous=64, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=62, userLastTimeActive=63, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2503354549407959
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 98
-unsat
+bounded UNSAT
+solving under config: restart False, bcr False, ub False, min False
+bounded UNSAT
+sat_result: unsat
+proof_generation_time: 0.98555588722229
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -152,7 +180,7 @@ at time 0: UseUserLanguage()
 at time 1: SystemAccessHealthData()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=6, systemlangauge=7, userLanguage=5, userPreferredPronouns=10, systemUsedPronous=13, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=9, userLastTimeActive=8, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=10, systemlangauge=5, userLanguage=8, userPreferredPronouns=9, systemUsedPronous=7, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=12, userLastTimeActive=6, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -160,9 +188,11 @@ at time 0: UseUserLanguage()
 at time 1: SystemAccessHealthData()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=13, systemlangauge=14, userLanguage=15, userPreferredPronouns=16, systemUsedPronous=17, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=19, userLastTimeActive=20, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=34, systemlangauge=36, userLanguage=39, userPreferredPronouns=41, systemUsedPronous=33, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=35, userLastTimeActive=37, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3219172954559326
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -171,7 +201,7 @@ at time 0: UseUserLanguage()
 at time 1: SystemAccesstHealthSummary()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=11, systemlangauge=5, userLanguage=6, userPreferredPronouns=10, systemUsedPronous=4, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=9, userLastTimeActive=12, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=8, systemlangauge=11, userLanguage=9, userPreferredPronouns=13, systemUsedPronous=10, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=7, userLastTimeActive=12, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -179,23 +209,30 @@ at time 0: UseUserLanguage()
 at time 1: SystemAccesstHealthSummary()
 at time 1: SystemInformUser()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=36, systemlangauge=37, userLanguage=38, userPreferredPronouns=39, systemUsedPronous=40, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=42, userLastTimeActive=43, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=34, systemlangauge=37, userLanguage=32, userPreferredPronouns=31, systemUsedPronous=33, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=38, userLastTimeActive=36, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.582664966583252
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 81
-unsat
+bounded UNSAT
+solving under config: restart False, bcr False, ub False, min False
+bounded UNSAT
+sat_result: unsat
+proof_generation_time: 1.044140338897705
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 68
+domain size 67
 unsat
+sat_result: unsat
+proof_generation_time: 3.082338333129883
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -204,28 +241,34 @@ solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
+sat_result: unsat
+proof_generation_time: 0.9609980583190918
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StopDataCollection()
 at time 0: UserRequestStopDataCollection()
-at time 0: Measure(age=7, systemlangauge=6, userLanguage=9, userPreferredPronouns=8, systemUsedPronous=5, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=12, userLastTimeActive=11, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=11, systemlangauge=10, userLanguage=13, userPreferredPronouns=5, systemUsedPronous=12, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=8, userLastTimeActive=7, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StopDataCollection()
 at time 0: UserRequestStopDataCollection()
-at time 0: Measure(age=53, systemlangauge=54, userLanguage=55, userPreferredPronouns=56, systemUsedPronous=57, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=60, userLastTimeActive=61, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=73, systemlangauge=72, userLanguage=71, userPreferredPronouns=70, systemUsedPronous=77, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=76, userLastTimeActive=75, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.20248723030090332
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
 bounded UNSAT
 solving under config: restart False, bcr False, ub False, min False
-domain size 21
+domain size 84
 unsat
+sat_result: unsat
+proof_generation_time: 4.837873697280884
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -234,7 +277,7 @@ at time 0: UseUserLanguage()
 at time 1: SystemInformUser()
 at time 1: SystemTurnOnSensor()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=13, systemlangauge=8, userLanguage=7, userPreferredPronouns=5, systemUsedPronous=9, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=11, userLastTimeActive=6, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=10, systemlangauge=9, userLanguage=7, userPreferredPronouns=5, systemUsedPronous=4, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=12, userLastTimeActive=11, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -242,9 +285,11 @@ at time 0: UseUserLanguage()
 at time 1: SystemInformUser()
 at time 1: SystemTurnOnSensor()
 at time 1: UseUserLanguage()
-at time 1: Measure(age=5, systemlangauge=6, userLanguage=13, userPreferredPronouns=9, systemUsedPronous=8, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=11, userLastTimeActive=7, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
+at time 1: Measure(age=5, systemlangauge=4, userLanguage=6, userPreferredPronouns=7, systemUsedPronous=12, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=10, userLastTimeActive=9, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=False, datatype=0)
 vol: 5
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3378784656524658
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -258,21 +303,25 @@ at time 0: SystemPeroidicCheck()
 at time 0: Measure(age=2, systemlangauge=3, userLanguage=4, userPreferredPronouns=5, systemUsedPronous=6, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=True, userIsBusy=False, datatype=0)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.13646817207336426
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemPeroidicCheck()
 at time 0: SystemAdviseUserToSeekUrgentCare()
-at time 0: Measure(age=9, systemlangauge=6, userLanguage=11, userPreferredPronouns=7, systemUsedPronous=5, userComfortablewithTech=False, userIsPraying=True, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=True, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=11, systemlangauge=9, userLanguage=10, userPreferredPronouns=6, systemUsedPronous=7, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=True, userStressed=False, userIsBusy=True, datatype=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: SystemPeroidicCheck()
 at time 0: SystemAdviseUserToSeekUrgentCare()
-at time 0: Measure(age=28, systemlangauge=26, userLanguage=24, userPreferredPronouns=25, systemUsedPronous=27, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=True, userStressed=False, userIsBusy=False, datatype=0)
+at time 0: Measure(age=73, systemlangauge=74, userLanguage=72, userPreferredPronouns=75, systemUsedPronous=76, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=0, userLastTimeActive=0, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=True, userStressed=False, userIsBusy=False, datatype=0)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5193777084350586
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
@@ -286,6 +335,8 @@ at time 0: SystemIntendInformUser()
 at time 0: Measure(age=3, systemlangauge=4, userLanguage=5, userPreferredPronouns=6, systemUsedPronous=7, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=8, userLastTimeActive=9, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=True, datatype=0)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.14063477516174316
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -299,4 +350,6 @@ at time 0: SystemIntendInformUser()
 at time 0: Measure(age=3, systemlangauge=4, userLanguage=5, userPreferredPronouns=6, systemUsedPronous=7, userComfortablewithTech=False, userIsPraying=False, userIsSleeping=False, clockTime=0, userLastTimeReceiveMessage=8, userLastTimeActive=9, systemRequireID=False, userRequestedStopDataCollection=False, userConcerned=False, userStressed=False, userIsBusy=True, datatype=0)
 vol: 2
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.13818597793579102
 ****************************************************************************************************

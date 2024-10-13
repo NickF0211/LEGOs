@@ -1,3 +1,4 @@
+analysis_func: <function parse_and_check_conflict at 0x7f5c071467a0>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -14,6 +15,8 @@ at time 0: D()
 at time 0: Measure(m1=14)
 vol: 4
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.06495189666748047
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -27,6 +30,8 @@ vol: 5
 solving under config: restart False, bcr False, ub False, min False
 domain size 12
 unsat
+sat_result: unsat
+proof_generation_time: 0.08237361907958984
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -42,4 +47,6 @@ at time 0: D()
 at time 0: Measure(m1=12)
 vol: 3
 Not Conflicting
+sat_result: sat
+proof_generation_time: 0.03951454162597656
 ****************************************************************************************************

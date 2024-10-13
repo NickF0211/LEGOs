@@ -632,14 +632,15 @@ def check_concerns(filename, mode, model, rules, concerns, relations, Action_Map
     if not os.path.isdir(path):
         os.makedirs(path)
     Measure = Action_Mapping["Measure"]
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last = e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     output = ""
@@ -681,7 +682,7 @@ def check_concerns(filename, mode, model, rules, concerns, relations, Action_Map
                                           Actions, [], True,
                                           min_solution=False,
                                           final_min_solution=True, restart=False, boundary_case=False,
-                                          universal_blocking=False, vol_bound=VOL_BOUND,
+                                          universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                           record_proof=False)
 
         if isinstance(res, str):
@@ -732,14 +733,15 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
         profiling_file = open("profiling_conflict.csv", 'w')
         profiling_file.write("raw_finish_time, proof_generation_time, proof_checking_time, raw_proof_size, raw_derivation_steps, trimmed_proof_size, trimmed_derivation_steps\n")
 
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     output = ""
@@ -798,7 +800,7 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
                                       Actions, [], True,
                                       min_solution=False,
                                       final_min_solution=True, restart=False, boundary_case=False,
-                                      universal_blocking=False, vol_bound=VOL_BOUND,
+                                      universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                       record_proof=check_proof)
 
         if profiling:
@@ -967,14 +969,15 @@ def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, m
                    to_print=True,
                    multi_entry=False, profiling= True):
     Measure = Action_Mapping["Measure"]
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
+                                 e >= e_first
+                                                                 )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                )),
+                             )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     output = ""
@@ -1068,7 +1071,7 @@ def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, m
                                           Actions, [], True,
                                           min_solution=False,
                                           final_min_solution=True, restart=False, boundary_case=False,
-                                          universal_blocking=False, vol_bound=VOL_BOUND,
+                                          universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                           record_proof=check_proof)
 
             if profiling:
@@ -1238,14 +1241,15 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
         os.makedirs(path)
     Measure = Action_Mapping["Measure"]
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
-    first_inv = [forall(E, lambda e_c, E=E: OR(forall(E, lambda e_prime, e_c=e_c: e_prime <= e_c),
-                                               exist(E, lambda e, e_c=e_c, E=E: AND(e > e_c,
-                                                                                    forall(E, lambda e_prime1,
-                                                                                                     e=e_c: e_prime1 <= e)
-                                                                                    ))
-                                               )
-
-                        ) for E in Actions if E != Measure]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                             exist(E, lambda e_first: forall(E, lambda e, e_first = e_first:
+                                                                       e >= e_first
+                                                                       )),
+                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
+                                 e <= e_last
+                                                                 )),
+                             )) for E in Actions if E != Measure]
 
 
     multi_output = []
@@ -1303,7 +1307,7 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
                                       Actions, [], True,
                                       min_solution=False,
                                       final_min_solution=True, restart=False, boundary_case=False,
-                                      universal_blocking=False, vol_bound=VOL_BOUND,
+                                      universal_blocking=False, vol_bound=VOL_BOUND * 5,
                                       record_proof=check_proof)
         if profiling:
             proof_generation_time = time.time() - proof_generation_start_time

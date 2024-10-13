@@ -1,3 +1,4 @@
+analysis_func: <function parse_and_check_red at 0x7fbc8506d080>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -13,6 +14,8 @@ at time 10: A()
 at time 10: Measure(m1=3)
 vol: 4
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.03740859031677246
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -29,6 +32,8 @@ at time 10: C()
 at time 10: Measure(m1=0)
 vol: 4
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.026872873306274414
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -44,4 +49,6 @@ at time 0: B()
 at time 0: Measure(m1=2)
 vol: 3
 Not Redundant
+sat_result: sat
+proof_generation_time: 0.02521491050720215
 ****************************************************************************************************
