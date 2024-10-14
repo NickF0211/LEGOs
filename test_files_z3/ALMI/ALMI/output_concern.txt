@@ -1,84 +1,83 @@
-analysis_func: <function parse_and_check_concern at 0x7f07ed231c60>
+analysis_func: <function parse_and_check_concern at 0x7fe36bba5ee0>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: HumanOnFloor()
 at time 0: Measure(userOccupied=True, timeBetweenMeals=3, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=nlow, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=high, alarmOn=False)
 vol: 2
-concern case 0 solving time 0.15819787979125977
+concern case 0 solving time 0.11395764350891113
 Concern is raised
 ****************************************************************************************************
 check concern_2
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 10
 unsat
-concern case 1 solving time 0.2447218894958496
+concern case 1 solving time 0.1877601146697998
 concern not raised
 ****************************************************************************************************
 check concern_3
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 10
 unsat
-concern case 2 solving time 0.2431502342224121
+concern case 2 solving time 0.2003781795501709
 concern not raised
 ****************************************************************************************************
 check concern_4
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: CallEmergencyServices()
-at time 1: SmokeDetectorAlarm()
-at time 1: Measure(userOccupied=False, timeBetweenMeals=80, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=nlow, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=low, alarmOn=False)
-at time 122: CallEmergencyServices()
-vol: 4
-concern case 3 solving time 0.25006771087646484
+at time 0: SmokeDetectorAlarm()
+at time 0: Measure(userOccupied=False, timeBetweenMeals=11, personAuthorized=False, dataNeedsChecking=False, userAsksForAppropriateTasks=False, userNeedsSpecialAccomodations=False, userDisablesAlarm=False, alarmRestarts=False, needLevel=nlow, humanAssents=False, safePathFound=False, hazardDetected=False, kitchenSafe=False, riskLevel=low, alarmOn=False)
+at time 121: CallEmergencyServices()
+vol: 3
+concern case 3 solving time 0.19794750213623047
 Concern is raised
 ****************************************************************************************************
 check concern_5
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 4 solving time 0.1863555908203125
+concern case 4 solving time 0.13188743591308594
 concern not raised
 ****************************************************************************************************
 check concern_6
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 5 solving time 0.17810678482055664
+concern case 5 solving time 0.11109209060668945
 concern not raised
 ****************************************************************************************************
 check concern_7
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 6 solving time 0.1490800380706787
+concern case 6 solving time 0.13902664184570312
 concern not raised
 ****************************************************************************************************
 check concern_8
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 11
 unsat
-concern case 7 solving time 0.26169610023498535
+concern case 7 solving time 0.19491910934448242
 concern not raised
 ****************************************************************************************************
 check concern_9
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 8 solving time 0.1514606475830078
+concern case 8 solving time 0.14428210258483887
 concern not raised
 ****************************************************************************************************
 check concern_10
 solving under config: restart False, bcr False, ub False, min False
-domain size 7
+domain size 17
 unsat
-concern case 9 solving time 0.5934076309204102
+concern case 9 solving time 0.6776669025421143
 concern not raised
 ****************************************************************************************************
 check concern_11
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 10
 unsat
-concern case 10 solving time 0.27495384216308594
+concern case 10 solving time 0.23098254203796387
 concern not raised
 ****************************************************************************************************

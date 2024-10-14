@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7fea6f87a7a0>
+analysis_func: <function parse_and_check_conflict at 0x7f3179236a20>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -8,108 +8,142 @@ at time 1800: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportC
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: DressingStarted()
-at time 0: DressingComplete()
-at time 0: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+at time 1800: DressingStarted()
+at time 1800: DressingComplete()
+at time 1800: Measure(userUnderDressed=False, roomTemperature=16, assentToSupportCalls=True, userDistressed=0)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.12004470825195312
+proof_generation_time: 0.24684858322143555
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1800: DressingStarted()
-at time 1800: DressingComplete()
-at time 1800: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+at time 0: DressingStarted()
+at time 0: DressingComplete()
+at time 0: Measure(userUnderDressed=False, roomTemperature=14, assentToSupportCalls=False, userDistressed=0)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1800: DressingStarted()
-at time 1800: DressingComplete()
-at time 1800: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
-vol: 3
+at time 0: DressingStarted()
+at time 0: DressingComplete()
+at time 0: Measure(userUnderDressed=False, roomTemperature=16, assentToSupportCalls=False, userDistressed=0)
+at time 1: DressingComplete()
+vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.17419004440307617
+proof_generation_time: 0.26093506813049316
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
+at time 1: DressingStarted()
+at time 1: DressingComplete()
+at time 1: DressingAbandoned()
+at time 1: Measure(userUnderDressed=False, roomTemperature=16, assentToSupportCalls=False, userDistressed=3)
+at time 1801: Measure(userUnderDressed=False, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
 at time 1800: DressingStarted()
 at time 1800: DressingComplete()
 at time 1800: DressingAbandoned()
-at time 1800: Measure(userUnderDressed=False, roomTemperature=16, assentToSupportCalls=False, userDistressed=3)
+at time 1800: Measure(userUnderDressed=True, roomTemperature=11, assentToSupportCalls=False, userDistressed=3)
+at time 1801: DressingComplete()
 at time 3600: Measure(userUnderDressed=False, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
-vol: 5
-solving under config: restart False, bcr False, ub False, min False
-merged
-domain size 18
-unsat
-sat_result: unsat
-proof_generation_time: 0.34430742263793945
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3899109363555908
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
 at time 0: DressingStarted()
+at time 0: DressingComplete()
 at time 0: DressingAbandoned()
-at time 0: Measure(userUnderDressed=True, roomTemperature=14, assentToSupportCalls=False, userDistressed=3)
-at time 1800: Measure(userUnderDressed=False, roomTemperature=15, assentToSupportCalls=False, userDistressed=16)
-vol: 4
+at time 0: Measure(userUnderDressed=False, roomTemperature=16, assentToSupportCalls=False, userDistressed=3)
+at time 1800: Measure(userUnderDressed=False, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+vol: 5
 solving under config: restart False, bcr False, ub False, min False
-merged
-domain size 17
-unsat
-sat_result: unsat
-proof_generation_time: 0.4000661373138428
+find trace
+at time 1800: DressingStarted()
+at time 1800: DressingComplete()
+at time 1800: DressingAbandoned()
+at time 1800: Measure(userUnderDressed=True, roomTemperature=11, assentToSupportCalls=False, userDistressed=3)
+at time 1801: DressingComplete()
+at time 3600: Measure(userUnderDressed=False, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2864952087402344
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: RetryAgreed()
-at time 0: Measure(userUnderDressed=True, roomTemperature=6, assentToSupportCalls=True, userDistressed=3)
+at time 0: Measure(userUnderDressed=False, roomTemperature=5, assentToSupportCalls=True, userDistressed=6)
 at time 1: DressingStarted()
 at time 1: DressingComplete()
 at time 1: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
-domain size 11
-unsat
-sat_result: unsat
-proof_generation_time: 0.11165928840637207
+find trace
+at time 1: RetryAgreed()
+at time 1: Measure(userUnderDressed=False, roomTemperature=16, assentToSupportCalls=False, userDistressed=3)
+at time 31: DressingStarted()
+at time 31: DressingComplete()
+at time 31: Measure(userUnderDressed=False, roomTemperature=17, assentToSupportCalls=False, userDistressed=0)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.45069193840026855
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: RetryAgreed()
-at time 0: Measure(userUnderDressed=False, roomTemperature=5, assentToSupportCalls=False, userDistressed=6)
+at time 0: Measure(userUnderDressed=True, roomTemperature=5, assentToSupportCalls=True, userDistressed=4)
 at time 1: DressingStarted()
 at time 1: DressingComplete()
-at time 1: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=2)
+at time 1: Measure(userUnderDressed=False, roomTemperature=17, assentToSupportCalls=False, userDistressed=2)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
-domain size 10
-unsat
-sat_result: unsat
-proof_generation_time: 0.08984112739562988
+find trace
+at time 0: RetryAgreed()
+at time 0: Measure(userUnderDressed=True, roomTemperature=14, assentToSupportCalls=True, userDistressed=13)
+at time 1: DressingStarted()
+at time 1: DressingComplete()
+at time 1: Measure(userUnderDressed=False, roomTemperature=19, assentToSupportCalls=True, userDistressed=-1)
+at time 2: DressingComplete()
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.22296571731567383
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: RetryAgreed()
-at time 0: Measure(userUnderDressed=False, roomTemperature=5, assentToSupportCalls=True, userDistressed=4)
+at time 0: Measure(userUnderDressed=True, roomTemperature=5, assentToSupportCalls=False, userDistressed=6)
 at time 1: DressingStarted()
 at time 1: DressingComplete()
 at time 1: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=2)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
-domain size 11
-unsat
-sat_result: unsat
-proof_generation_time: 0.1120295524597168
+find trace
+at time 0: DressingAbandoned()
+at time 0: RetryAgreed()
+at time 0: Measure(userUnderDressed=False, roomTemperature=11, assentToSupportCalls=False, userDistressed=12)
+at time 30: DressingStarted()
+at time 30: DressingComplete()
+at time 30: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=-1)
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.4178040027618408
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -122,11 +156,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CurtainOpenRqt()
 at time 0: CurtainsOpened()
-at time 0: Measure(userUnderDressed=False, roomTemperature=23, assentToSupportCalls=False, userDistressed=3)
+at time 0: Measure(userUnderDressed=False, roomTemperature=14, assentToSupportCalls=False, userDistressed=3)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.06817841529846191
+proof_generation_time: 0.07372117042541504
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -141,20 +175,24 @@ at time 0: Measure(userUnderDressed=False, roomTemperature=2, assentToSupportCal
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.04149961471557617
+proof_generation_time: 0.0415349006652832
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 1: DressingAbandoned()
-at time 1: Measure(userUnderDressed=True, roomTemperature=8, assentToSupportCalls=True, userDistressed=7)
-at time 1801: Measure(userUnderDressed=False, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+at time 0: DressingAbandoned()
+at time 0: Measure(userUnderDressed=False, roomTemperature=8, assentToSupportCalls=True, userDistressed=6)
+at time 1800: Measure(userUnderDressed=True, roomTemperature=7, assentToSupportCalls=False, userDistressed=5)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
-domain size 10
-unsat
-sat_result: unsat
-proof_generation_time: 0.16073060035705566
+find trace
+at time 0: DressingAbandoned()
+at time 0: Measure(userUnderDressed=False, roomTemperature=11, assentToSupportCalls=False, userDistressed=12)
+at time 1800: Measure(userUnderDressed=False, roomTemperature=10, assentToSupportCalls=False, userDistressed=9)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.14371442794799805
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -165,21 +203,21 @@ at time 0: Measure(userUnderDressed=True, roomTemperature=17, assentToSupportCal
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: DressingStarted()
-at time 0: DressingComplete()
-at time 0: Measure(userUnderDressed=True, roomTemperature=0, assentToSupportCalls=False, userDistressed=0)
+at time 1800: DressingStarted()
+at time 1800: DressingComplete()
+at time 1800: Measure(userUnderDressed=True, roomTemperature=11, assentToSupportCalls=False, userDistressed=0)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.11116957664489746
+proof_generation_time: 0.2464888095855713
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
 domain size 5
 unsat
 solving under config: restart False, bcr False, ub False, min False
-domain size 5
+domain size 12
 unsat
 sat_result: unsat
-proof_generation_time: 0.09800100326538086
+proof_generation_time: 0.1139535903930664
 ****************************************************************************************************

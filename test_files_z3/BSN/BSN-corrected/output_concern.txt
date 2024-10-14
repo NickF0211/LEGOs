@@ -1,58 +1,58 @@
-analysis_func: <function parse_and_check_concern at 0x7fb52062dc60>
+analysis_func: <function parse_and_check_concern at 0x7f86bf6b1ee0>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
-domain size 5
+domain size 11
 unsat
-concern case 0 solving time 0.2908456325531006
+concern case 0 solving time 0.27338147163391113
 concern not raised
 ****************************************************************************************************
 check concern_2
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 10
 unsat
-concern case 1 solving time 0.24303412437438965
+concern case 1 solving time 0.1729426383972168
 concern not raised
 ****************************************************************************************************
 check concern_3
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 2 solving time 0.1756761074066162
+concern case 2 solving time 0.1153557300567627
 concern not raised
 ****************************************************************************************************
 check concern_4
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 3 solving time 0.15637540817260742
+concern case 3 solving time 0.11798620223999023
 concern not raised
 ****************************************************************************************************
 check concern_5
 solving under config: restart False, bcr False, ub False, min False
-domain size 7
+domain size 16
 unsat
-concern case 4 solving time 1.064682960510254
+concern case 4 solving time 1.1577160358428955
 concern not raised
 ****************************************************************************************************
 check concern_6
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 5 solving time 0.19794821739196777
+concern case 5 solving time 0.10645484924316406
 concern not raised
 ****************************************************************************************************
 check concern_7
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 6 solving time 0.1860048770904541
+concern case 6 solving time 0.1370680332183838
 concern not raised
 ****************************************************************************************************
 check concern_8
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 10
 unsat
-concern case 7 solving time 0.26459622383117676
+concern case 7 solving time 0.27208542823791504
 concern not raised
 ****************************************************************************************************
 check concern_9
@@ -61,8 +61,8 @@ find trace
 at time 0: InformUser()
 at time 0: CaregiverCanDeactivate()
 at time 0: UserWantsToRemoveSensors()
-at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=True, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
 vol: 4
-concern case 8 solving time 0.5264377593994141
+concern case 8 solving time 0.5512731075286865
 Concern is raised
 ****************************************************************************************************

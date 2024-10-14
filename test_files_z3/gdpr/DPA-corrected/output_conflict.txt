@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7fd944f2a7a0>
+analysis_func: <function parse_and_check_conflict at 0x7f26bb06aa20>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -12,7 +12,7 @@ at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, 
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.13004016876220703
+proof_generation_time: 0.0916910171508789
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
@@ -20,51 +20,56 @@ merged
 find trace
 at time 0: DPAMade()
 at time 0: DPAComplete()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=1, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=True, dpaCategories=False, dpaLength=1, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DPAMade()
-at time 0: DPAComplete()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=True, controllerInfo=True, processorID=True, processorInfo=True, dpaPurpose=True, dpaNature=False, dpaCategories=True, dpaLength=-1, dpaActive=False, dataCompliance=True, specificControllerAuth=True, genControllerAuth=True, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=True, securityEnsured=True, measureTaken=True, riskLevel=1, typesOfRisk=0, auditorType=1, auditType=1, art28Compliance=True)
+at time 1: DPAMade()
+at time 1: DPAComplete()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=True, dpaCategories=False, dpaLength=0, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=1, auditorType=0, auditType=0, art28Compliance=False)
+vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2409212589263916
+proof_generation_time: 0.26988673210144043
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DPAUpdate()
 at time 0: ObtainControllerConsent()
-at time 0: Measure(controllerID=True, controllerInfo=True, processorID=False, processorInfo=True, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=True, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=1, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=True, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=True, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DPAUpdate()
 at time 0: ObtainControllerConsent()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=11, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.30508947372436523
+proof_generation_time: 0.2142479419708252
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DPAUpdate()
 at time 0: ObtainControllerConsent()
-at time 0: Measure(controllerID=False, controllerInfo=True, processorID=True, processorInfo=False, dpaPurpose=False, dpaNature=True, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=True, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=True, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: DPAUpdate()
-at time 0: ObtainControllerConsent()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=43, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=True, controllerInfo=True, processorID=False, processorInfo=True, dpaPurpose=True, dpaNature=True, dpaCategories=True, dpaLength=15, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=True, controllerInstructions=True, rulesConform=True, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=True, securityEnsured=True, measureTaken=True, riskLevel=1, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
+at time 1: DPAUpdate()
+at time 1: ObtainControllerConsent()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=1, auditorType=1, auditType=1, art28Compliance=False)
+at time 2: ObtainControllerConsent()
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2194523811340332
+proof_generation_time: 0.2742443084716797
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -72,19 +77,23 @@ find trace
 at time 0: ChangeSubProcessor()
 at time 0: InformController()
 at time 0: CanObjectToChange()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=5, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
 at time 0: ChangeSubProcessor()
-at time 0: InformController()
-at time 0: CanObjectToChange()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=11, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 4
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=0, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=1, auditorType=0, auditType=1, art28Compliance=False)
+at time 1: ChangeSubProcessor()
+at time 1: InformController()
+at time 1: CanObjectToChange()
+at time 1: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=10, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=0, auditorType=0, auditType=1, art28Compliance=False)
+at time 2: ChangeSubProcessor()
+at time 2: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=0, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.4326169490814209
+proof_generation_time: 0.4176366329193115
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -94,32 +103,39 @@ at time 0: ProcessPersonalData()
 at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=True, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
-merged
 find trace
 at time 0: StartDPAProcess()
 at time 0: ProcessPersonalData()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=True, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=True, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=True, informingAllowed=True, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=1, typesOfRisk=0, auditorType=1, auditType=1, art28Compliance=True)
+at time 1: StartDPAProcess()
+at time 1: ProcessPersonalData()
+at time 1: Measure(controllerID=True, controllerInfo=False, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=True, dpaCategories=True, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=True, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=True, riskLevel=0, typesOfRisk=1, auditorType=0, auditType=1, art28Compliance=True)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5195105075836182
+proof_generation_time: 0.5278513431549072
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProcessPersonalData()
 at time 0: InformController()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=7, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProcessPersonalData()
 at time 0: InformController()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=57, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=20, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=True, confidentialityEnsured=True, securityEnsured=False, measureTaken=True, riskLevel=2, typesOfRisk=2, auditorType=1, auditType=1, art28Compliance=False)
+at time 1: ProcessPersonalData()
+at time 1: InformController()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=True, dpaCategories=False, dpaLength=14, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=True, securityEnsured=True, measureTaken=True, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=True)
+at time 2: InformController()
+at time 2: Measure(controllerID=False, controllerInfo=True, processorID=True, processorInfo=True, dpaPurpose=True, dpaNature=True, dpaCategories=True, dpaLength=25, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=True, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=1, typesOfRisk=1, auditorType=0, auditType=0, art28Compliance=True)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.22582173347473145
+proof_generation_time: 0.2574291229248047
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
@@ -136,11 +152,11 @@ at time 0: AssistController()
 at time 0: InformSubject()
 at time 0: RightsRequested()
 at time 0: RespondToRequest()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=52, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=10, dpaActive=False, dataCompliance=False, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=True, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2953009605407715
+proof_generation_time: 0.30255675315856934
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -149,7 +165,7 @@ at time 0: AssistController()
 at time 0: InformSubject()
 at time 0: RightsRequested()
 at time 0: RespondToRequest()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=7, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -157,45 +173,51 @@ at time 0: AssistController()
 at time 0: InformSubject()
 at time 0: RightsRequested()
 at time 0: RespondToRequest()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=22, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=14, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3318493366241455
+proof_generation_time: 0.3207743167877197
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformSubject()
 at time 0: RespondToRequest()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=5, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformSubject()
 at time 0: RespondToRequest()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=49, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=14, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.17662858963012695
+proof_generation_time: 0.13158130645751953
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StartDPAProcess()
 at time 0: AssistController()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=1, art28Compliance=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StartDPAProcess()
 at time 0: AssistController()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=True, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=False, specificControllerAuth=True, genControllerAuth=True, controllerInstructions=True, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=1, art28Compliance=True)
+at time 1: StartDPAProcess()
+at time 1: AssistController()
+at time 1: Measure(controllerID=False, controllerInfo=True, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=1, dpaActive=True, dataCompliance=False, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=1, auditorType=0, auditType=0, art28Compliance=True)
+at time 2: StartDPAProcess()
+at time 2: AssistController()
+at time 2: Measure(controllerID=True, controllerInfo=True, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=True, dpaCategories=True, dpaLength=2, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=True, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=False, securityEnsured=True, measureTaken=True, riskLevel=2, typesOfRisk=2, auditorType=1, auditType=0, art28Compliance=True)
+vol: 9
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.45650458335876465
+proof_generation_time: 0.5933668613433838
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -203,18 +225,20 @@ find trace
 at time 0: InformSubject()
 at time 0: InformSupervisor()
 at time 0: DataBreach()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: InformSubject()
 at time 0: InformSupervisor()
-at time 0: DataBreach()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=13, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 4
+at time 1: InformSubject()
+at time 1: InformSupervisor()
+at time 1: DataBreach()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=13, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 2: InformSubject()
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23376011848449707
+proof_generation_time: 0.2584497928619385
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -222,103 +246,116 @@ find trace
 at time 0: InformSubject()
 at time 0: InformSupervisor()
 at time 0: DataBreach()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=7, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=5, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformSubject()
 at time 0: InformSupervisor()
 at time 0: DataBreach()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=42, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3115222454071045
+proof_generation_time: 0.19695425033569336
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EvaluateDPAProcess()
 at time 0: InformSupervisor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=True, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=True, dataCompliance=False, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=True, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EvaluateDPAProcess()
 at time 0: InformSupervisor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=61, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=True, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=16, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=True, rulesConform=True, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=2, auditorType=1, auditType=0, art28Compliance=False)
+at time 1: EvaluateDPAProcess()
+at time 1: InformSupervisor()
+at time 1: Measure(controllerID=True, controllerInfo=True, processorID=True, processorInfo=False, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=15, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
+at time 2: EvaluateDPAProcess()
+at time 2: Measure(controllerID=True, controllerInfo=True, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=True, dpaCategories=True, dpaLength=17, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=True, informingAllowed=False, confidentialityEnsured=True, securityEnsured=False, measureTaken=True, riskLevel=2, typesOfRisk=1, auditorType=0, auditType=1, art28Compliance=True)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23013782501220703
+proof_generation_time: 0.32871198654174805
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EvaluateDPAProcess()
 at time 0: InformSupervisor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=5, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EvaluateDPAProcess()
 at time 0: InformSupervisor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=37, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=True, dpaPurpose=True, dpaNature=True, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=True, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=2, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 1: EvaluateDPAProcess()
+at time 1: InformSupervisor()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=17, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=False, lawRequires=True, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=True, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=True)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3785390853881836
+proof_generation_time: 0.26625561714172363
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StartDPAProcess()
 at time 0: RemovePersonalData()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=True, informingAllowed=True, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=0, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StartDPAProcess()
 at time 0: RemovePersonalData()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=True, processorID=False, processorInfo=True, dpaPurpose=False, dpaNature=True, dpaCategories=True, dpaLength=1, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=1, art28Compliance=True)
+at time 1: StartDPAProcess()
+at time 1: RemovePersonalData()
+at time 1: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=False, dpaCategories=True, dpaLength=0, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=True, securityEnsured=True, measureTaken=True, riskLevel=1, typesOfRisk=1, auditorType=1, auditType=0, art28Compliance=True)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.4053764343261719
+proof_generation_time: 0.5924537181854248
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: StartDPAProcess()
-at time 0: InformController()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=False, lawRequires=True, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
+at time 1: StartDPAProcess()
+at time 1: InformController()
+at time 1: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=True, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StartDPAProcess()
-at time 0: InformController()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=True)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=True, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
+at time 1: StartDPAProcess()
+at time 1: InformController()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=True, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=True)
+vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.6673576831817627
+proof_generation_time: 0.8189566135406494
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: StartDPAProcess()
 at time 0: ProvideControllerInformation()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=1, art28Compliance=False)
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=True, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: StartDPAProcess()
-at time 0: ProvideControllerInformation()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 1: StartDPAProcess()
+at time 1: ProvideControllerInformation()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=1, dpaActive=True, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.40422964096069336
+proof_generation_time: 0.520801305770874
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -326,18 +363,18 @@ find trace
 at time 0: AllowAudits()
 at time 0: HelpAuditors()
 at time 0: AuditsOccur()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=5, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=True, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=True, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AllowAudits()
 at time 0: HelpAuditors()
 at time 0: AuditsOccur()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=58, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=True, controllerInfo=True, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23133540153503418
+proof_generation_time: 0.3122849464416504
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -345,18 +382,19 @@ find trace
 at time 0: AllowAudits()
 at time 0: HelpAuditors()
 at time 0: AuditsOccur()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=True, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AllowAudits()
 at time 0: HelpAuditors()
 at time 0: AuditsOccur()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=25, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
-vol: 4
+at time 0: Measure(controllerID=True, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=True, dpaLength=11, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=1, auditType=0, art28Compliance=False)
+at time 1: AllowAudits()
+vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3607966899871826
+proof_generation_time: 0.20737838745117188
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
@@ -364,18 +402,18 @@ find trace
 at time 0: EngageSubProcessor()
 at time 0: TakeLiabilityForSubProcessor()
 at time 0: ImposeObligationsOnSubProcessor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=7, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EngageSubProcessor()
 at time 0: TakeLiabilityForSubProcessor()
 at time 0: ImposeObligationsOnSubProcessor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=26, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=12, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.24291348457336426
+proof_generation_time: 0.21143531799316406
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -383,67 +421,79 @@ find trace
 at time 0: EngageSubProcessor()
 at time 0: TakeLiabilityForSubProcessor()
 at time 0: ImposeObligationsOnSubProcessor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=8, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EngageSubProcessor()
 at time 0: TakeLiabilityForSubProcessor()
 at time 0: ImposeObligationsOnSubProcessor()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=11, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23301410675048828
+proof_generation_time: 0.21157503128051758
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformController()
 at time 0: EvaluateSecurity()
-at time 0: Measure(controllerID=True, controllerInfo=True, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=7, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=True, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=True, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: InformController()
 at time 0: EvaluateSecurity()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=44, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=True, controllerInfo=True, processorID=True, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=17, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=True, securityEnsured=True, measureTaken=False, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=0, art28Compliance=False)
+at time 1: InformController()
+at time 1: EvaluateSecurity()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=False, dpaPurpose=True, dpaNature=True, dpaCategories=True, dpaLength=16, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=True, rulesConform=True, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=True, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=1, art28Compliance=True)
+vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2960689067840576
+proof_generation_time: 0.5347576141357422
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformController()
 at time 0: EvaluateSecurity()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=9, dpaActive=False, dataCompliance=False, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=10, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: InformController()
 at time 0: EvaluateSecurity()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=45, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=3, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=True, processorInfo=False, dpaPurpose=True, dpaNature=False, dpaCategories=True, dpaLength=16, dpaActive=True, dataCompliance=True, specificControllerAuth=True, genControllerAuth=True, controllerInstructions=True, rulesConform=True, personalData=False, lawRequires=True, informingAllowed=True, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=2, auditorType=0, auditType=1, art28Compliance=True)
+at time 1: InformController()
+at time 1: EvaluateSecurity()
+at time 1: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=True, dpaNature=False, dpaCategories=False, dpaLength=15, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=False, controllerInstructions=True, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=True, measureTaken=True, riskLevel=1, typesOfRisk=1, auditorType=0, auditType=0, art28Compliance=False)
+at time 2: InformController()
+at time 2: EvaluateSecurity()
+at time 2: Measure(controllerID=True, controllerInfo=True, processorID=True, processorInfo=True, dpaPurpose=False, dpaNature=True, dpaCategories=True, dpaLength=23, dpaActive=False, dataCompliance=False, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=False, lawRequires=True, informingAllowed=True, confidentialityEnsured=True, securityEnsured=False, measureTaken=False, riskLevel=2, typesOfRisk=3, auditorType=1, auditType=1, art28Compliance=True)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2991292476654053
+proof_generation_time: 0.4271106719970703
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformController()
 at time 0: CanObjectToChange()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=True, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
+at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=6, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InformController()
-at time 0: CanObjectToChange()
-at time 0: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=10, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=0, auditorType=0, auditType=0, art28Compliance=False)
-vol: 3
+at time 0: Measure(controllerID=False, controllerInfo=True, processorID=True, processorInfo=True, dpaPurpose=True, dpaNature=False, dpaCategories=True, dpaLength=14, dpaActive=False, dataCompliance=False, specificControllerAuth=True, genControllerAuth=False, controllerInstructions=False, rulesConform=True, personalData=True, lawRequires=True, informingAllowed=True, confidentialityEnsured=True, securityEnsured=False, measureTaken=True, riskLevel=2, typesOfRisk=1, auditorType=1, auditType=1, art28Compliance=True)
+at time 1: InformController()
+at time 1: CanObjectToChange()
+at time 1: Measure(controllerID=True, controllerInfo=True, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=True, dpaCategories=True, dpaLength=12, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=True, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=0, typesOfRisk=1, auditorType=0, auditType=1, art28Compliance=False)
+at time 2: InformController()
+at time 2: CanObjectToChange()
+at time 2: Measure(controllerID=False, controllerInfo=False, processorID=False, processorInfo=False, dpaPurpose=False, dpaNature=False, dpaCategories=False, dpaLength=15, dpaActive=False, dataCompliance=False, specificControllerAuth=False, genControllerAuth=True, controllerInstructions=False, rulesConform=False, personalData=False, lawRequires=False, informingAllowed=False, confidentialityEnsured=False, securityEnsured=False, measureTaken=False, riskLevel=1, typesOfRisk=0, auditorType=1, auditType=1, art28Compliance=False)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.24792170524597168
+proof_generation_time: 0.3921351432800293
 ****************************************************************************************************

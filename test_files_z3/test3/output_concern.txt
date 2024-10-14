@@ -1,8 +1,17 @@
-analysis_func: <function parse_and_check_concern at 0x7fbd5c9a9c60>
+analysis_func: <function parse_and_check_concern at 0x7effeafb5ee0>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
-domain size 12
-unsat
-concern case 0 solving time 0.08745861053466797
-concern not raised
+find trace
+at time 0: C()
+at time 0: Measure(m1=26)
+at time 2: C()
+at time 2: Measure(m1=25)
+at time 10: A()
+at time 10: Measure(m1=24)
+at time 20: B()
+at time 20: D()
+at time 20: Measure(m1=27)
+vol: 9
+concern case 0 solving time 0.17599868774414062
+Concern is raised
 ****************************************************************************************************

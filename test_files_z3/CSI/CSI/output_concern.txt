@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_concern at 0x7f06eebcdc60>
+analysis_func: <function parse_and_check_concern at 0x7fce80e99ee0>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -6,12 +6,28 @@ at time 0: RobotWorking()
 at time 0: RobotContinueTask()
 at time 0: AdjustRoute()
 at time 0: InformHuman()
-at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=True, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=True, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 5
-concern case 0 solving time 0.23551535606384277
+concern case 0 solving time 0.24351978302001953
 Concern is raised
 ****************************************************************************************************
 check concern_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AccountHumanRandomness()
+at time 0: MoveAtSafeSpeed()
+at time 1: RobotMoving()
+at time 1: AdjustRoute()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: MoveAtSafeSpeed()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=True, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=True, obstaclePresent=False)
+at time 2: TrackHumanLocation()
+vol: 9
+concern case 1 solving time 0.4482278823852539
+Concern is raised
+****************************************************************************************************
+check concern_3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: RobotMoving()
@@ -19,22 +35,17 @@ at time 0: AdjustRoute()
 at time 0: AccountHumanRandomness()
 at time 0: TrackHumanLocation()
 at time 0: MoveAtSafeSpeed()
-at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
-vol: 6
-concern case 1 solving time 0.3569450378417969
-Concern is raised
-****************************************************************************************************
-check concern_3
-solving under config: restart False, bcr False, ub False, min False
-find trace
-at time 0: RobotMoving()
-at time 0: AvoidBumping()
-at time 0: AccountHumanRandomness()
-at time 0: TrackHumanLocation()
-at time 0: MoveAtSafeSpeed()
-at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
-vol: 6
-concern case 2 solving time 0.3811769485473633
+at time 0: IncreaseSpeed()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=True, risk=low, efficiency=emedium, isHumanTask=False, humanConsents=True, accident=False, humansPresent=True, obstaclePresent=True)
+at time 1: RobotMoving()
+at time 1: AvoidBumping()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: MoveAtSafeSpeed()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=high, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+at time 2: MoveAtSafeSpeed()
+vol: 14
+concern case 2 solving time 0.5480315685272217
 Concern is raised
 ****************************************************************************************************
 check concern_4
@@ -43,21 +54,24 @@ find trace
 at time 0: ActionHumanRandom()
 at time 0: Measure(humanInRoute=False, humanInRange=True, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 2
-concern case 3 solving time 0.11423730850219727
+concern case 3 solving time 0.08976340293884277
 Concern is raised
 ****************************************************************************************************
 check concern_5
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: RobotMoving()
-at time 0: AvoidBumping()
-at time 0: AccountHumanRandomness()
 at time 0: TrackHumanLocation()
 at time 0: MoveAtSafeSpeed()
-at time 0: ActionHumanRandom()
-at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
-vol: 7
-concern case 4 solving time 0.358004093170166
+at time 1: RobotMoving()
+at time 1: AvoidBumping()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: MoveAtSafeSpeed()
+at time 1: ActionHumanRandom()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=medium, efficiency=emedium, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 2: AvoidBumping()
+vol: 10
+concern case 4 solving time 0.4120767116546631
 Concern is raised
 ****************************************************************************************************
 check concern_6
@@ -66,7 +80,7 @@ find trace
 at time 0: ActionHumanRandom()
 at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 2
-concern case 5 solving time 0.08549952507019043
+concern case 5 solving time 0.06212925910949707
 Concern is raised
 ****************************************************************************************************
 check concern_7
@@ -75,13 +89,13 @@ find trace
 at time 0: TrackHumanLocation()
 at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=low, efficiency=elow, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
 vol: 2
-concern case 6 solving time 0.09093880653381348
+concern case 6 solving time 0.08656954765319824
 Concern is raised
 ****************************************************************************************************
 check concern_8
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 7 solving time 0.11491727828979492
+concern case 7 solving time 0.0717475414276123
 concern not raised
 ****************************************************************************************************

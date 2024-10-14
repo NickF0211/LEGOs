@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7fb31aa0e7a0>
+analysis_func: <function parse_and_check_conflict at 0x7f436c5aea20>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 merged
@@ -17,24 +17,24 @@ at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsen
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.25690698623657227
+proof_generation_time: 0.27907514572143555
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserOpenApp()
 at time 0: RequestUserConsent()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=True, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=True, dataProcessConsent=True, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserOpenApp()
 at time 0: RequestUserConsent()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.28787922859191895
+proof_generation_time: 0.283916711807251
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -51,24 +51,26 @@ at time 0: Measure(userConsent=True, userHasConsentCapacity=True, guardianConsen
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3319206237792969
+proof_generation_time: 0.2851126194000244
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: RequestGuardianConsent()
 at time 0: CheckConsentCapacity()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=True, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=True)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: RequestGuardianConsent()
 at time 0: CheckConsentCapacity()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
-vol: 3
+at time 0: Measure(userConsent=False, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 1: RequestGuardianConsent()
+at time 1: CheckConsentCapacity()
+at time 1: Measure(userConsent=True, userHasConsentCapacity=False, guardianConsent=True, approvedDataRecipient=True, appUseConsent=True, dataProcessConsent=True, isFirstTime=False, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=True, critical=False, culturalIndicatorX=True, accessRevoked=True)
+vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.20656704902648926
+proof_generation_time: 0.18537616729736328
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
@@ -85,7 +87,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14250564575195312
+proof_generation_time: 0.12233614921569824
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
@@ -100,7 +102,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1171267032623291
+proof_generation_time: 0.10078597068786621
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -117,24 +119,24 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1370525360107422
+proof_generation_time: 0.11516070365905762
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserUseApp()
 at time 0: ProvideInstructions()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserUseApp()
 at time 0: ProvideInstructions()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14118027687072754
+proof_generation_time: 0.27402424812316895
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
@@ -147,14 +149,22 @@ vol: 4
 solving under config: restart False, bcr False, ub False, min False
 merged
 find trace
-at time 0: UserUseApp()
-at time 0: ProvideInstructions()
 at time 0: ProvideDemonstration()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
-vol: 4
+at time 1: UserUseApp()
+at time 1: ProvideInstructions()
+at time 1: ProvideDemonstration()
+at time 1: Measure(userConsent=False, userHasConsentCapacity=True, guardianConsent=True, approvedDataRecipient=True, appUseConsent=True, dataProcessConsent=True, isFirstTime=True, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=True)
+at time 2: UserUseApp()
+at time 2: ProvideInstructions()
+at time 2: ProvideDemonstration()
+at time 2: Measure(userConsent=True, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 3: UserUseApp()
+at time 3: ProvideInstructions()
+at time 3: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=True, approvedDataRecipient=True, appUseConsent=True, dataProcessConsent=True, isFirstTime=True, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=True, critical=True, culturalIndicatorX=True, accessRevoked=True)
+vol: 12
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3264918327331543
+proof_generation_time: 0.3079378604888916
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -167,11 +177,14 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserUseApp()
 at time 0: ShowHelpIcon()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
-vol: 3
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=True, culturalIndicatorX=False, accessRevoked=False)
+at time 1: UserUseApp()
+at time 1: ShowHelpIcon()
+at time 1: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=True, approvedDataRecipient=True, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.22871947288513184
+proof_generation_time: 0.3043684959411621
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -190,7 +203,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.18166375160217285
+proof_generation_time: 0.2160508632659912
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
@@ -209,7 +222,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.17906880378723145
+proof_generation_time: 0.17543387413024902
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -224,7 +237,7 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.14661502838134766
+proof_generation_time: 0.07390594482421875
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -241,24 +254,26 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.13384771347045898
+proof_generation_time: 0.1661851406097412
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserRequestExplanation()
 at time 0: ProvideExplanation()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=True, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserRequestExplanation()
 at time 0: ProvideExplanation()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
-vol: 3
+at time 0: Measure(userConsent=False, userHasConsentCapacity=True, guardianConsent=True, approvedDataRecipient=False, appUseConsent=True, dataProcessConsent=True, isFirstTime=True, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=True, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 1: UserRequestExplanation()
+at time 1: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+vol: 5
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1994478702545166
+proof_generation_time: 0.16802334785461426
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -271,11 +286,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProvidingCommunication()
 at time 0: EnsureSocialNorms()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=True)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.13961410522460938
+proof_generation_time: 0.12174701690673828
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
@@ -288,11 +303,14 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: NotifyUser()
 at time 0: NotifcationArrives()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=True, culturalIndicatorX=False, accessRevoked=False)
-vol: 3
+at time 0: Measure(userConsent=True, userHasConsentCapacity=False, guardianConsent=True, approvedDataRecipient=True, appUseConsent=True, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=True, approvedDoctor=False, explanationAvailable=True, critical=True, culturalIndicatorX=False, accessRevoked=False)
+at time 1: NotifyUser()
+at time 1: NotifcationArrives()
+at time 1: Measure(userConsent=False, userHasConsentCapacity=True, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=True, explanationAvailable=False, critical=True, culturalIndicatorX=True, accessRevoked=True)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.13866329193115234
+proof_generation_time: 0.27880263328552246
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -305,11 +323,11 @@ solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: NotifcationArrives()
 at time 0: SendAppropriateNotification()
-at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=True, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=False, accessRevoked=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.1885690689086914
+proof_generation_time: 0.22079730033874512
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
@@ -317,7 +335,7 @@ find trace
 at time 0: ProvidingCommunication()
 at time 0: EnsureSocialNorms()
 at time 0: EnsureCulturalNorms()
-at time 0: Measure(userConsent=True, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=False, critical=False, culturalIndicatorX=True, accessRevoked=False)
+at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianConsent=False, approvedDataRecipient=False, appUseConsent=False, dataProcessConsent=False, isFirstTime=False, demonstrationRequired=False, approvedDoctor=False, explanationAvailable=True, critical=False, culturalIndicatorX=True, accessRevoked=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -328,5 +346,5 @@ at time 0: Measure(userConsent=False, userHasConsentCapacity=False, guardianCons
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.19315147399902344
+proof_generation_time: 0.2445206642150879
 ****************************************************************************************************

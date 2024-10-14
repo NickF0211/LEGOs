@@ -1,39 +1,38 @@
-analysis_func: <function parse_and_check_concern at 0x7f434bc8dc60>
+analysis_func: <function parse_and_check_concern at 0x7f9166645ee0>
 check concern_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: SystemReady()
-at time 0: TakeUserInput()
-at time 0: CalculateShortestPath()
-at time 0: DisplayCarInformation()
-at time 0: CarDriving()
-at time 0: DisplayError()
-at time 0: DisplayRoute()
-at time 0: StopAutonomousAssistance()
-at time 0: Measure(destinationExists=True, pathExists=True, objectInPath=False, carsInFront=False, carsBehind=True, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=True, ambulanceOnOppositeSide=False, ambulanceNextToCar=True, environmentClear=True, riskLevel=medium, withinLane=False, multipleLanes=False, commandClear=True, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=True, previousLight=red, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=True)
-vol: 9
-concern case 0 solving time 2.023735284805298
+at time 1: SystemReady()
+at time 1: TakeUserInput()
+at time 1: DisplayCarInformation()
+at time 1: CarDriving()
+at time 1: DisplayError()
+at time 1: StopAutonomousAssistance()
+at time 1: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=True, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=medium, withinLane=False, multipleLanes=True, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=red, doorClosed=True, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+at time 2: DisplayCarInformation()
+vol: 8
+concern case 0 solving time 1.7695517539978027
 Concern is raised
 ****************************************************************************************************
 check concern_2
 solving under config: restart False, bcr False, ub False, min False
-domain size 9
+domain size 22
 unsat
-concern case 1 solving time 1.223386526107788
+concern case 1 solving time 1.3926119804382324
 concern not raised
 ****************************************************************************************************
 check concern_3
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 10
 unsat
-concern case 2 solving time 0.2763247489929199
+concern case 2 solving time 0.24090147018432617
 concern not raised
 ****************************************************************************************************
 check concern_4
 solving under config: restart False, bcr False, ub False, min False
-domain size 9
+domain size 25
 unsat
-concern case 3 solving time 0.9907801151275635
+concern case 3 solving time 1.151895523071289
 concern not raised
 ****************************************************************************************************
 check concern_5
@@ -42,62 +41,63 @@ find trace
 at time 0: AskIfUserReadyToDrive()
 at time 0: CarDriving()
 at time 0: StopAutonomousAssistance()
-at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=True, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=medium, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=red, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=low, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=False, recognizeInput=False, redLight=True, yellowLight=False, greenLight=False, previousLight=red, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
 vol: 4
-concern case 4 solving time 0.839996337890625
+concern case 4 solving time 0.8775317668914795
 Concern is raised
 ****************************************************************************************************
 check concern_6
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 8
 unsat
-concern case 5 solving time 0.5219404697418213
+concern case 5 solving time 0.46758222579956055
 concern not raised
 ****************************************************************************************************
 check concern_7
 solving under config: restart False, bcr False, ub False, min False
-domain size 6
+domain size 16
 unsat
-concern case 6 solving time 0.29175615310668945
+concern case 6 solving time 0.4118969440460205
 concern not raised
 ****************************************************************************************************
 check concern_8
 solving under config: restart False, bcr False, ub False, min False
-domain size 5
+domain size 13
 unsat
-concern case 7 solving time 0.3722515106201172
+concern case 7 solving time 0.4051027297973633
 concern not raised
 ****************************************************************************************************
 check concern_9
 solving under config: restart False, bcr False, ub False, min False
-domain size 2
+domain size 4
 unsat
-concern case 8 solving time 0.07840847969055176
+concern case 8 solving time 0.04476785659790039
 concern not raised
 ****************************************************************************************************
 check concern_10
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: UserTurnOnSystem()
-at time 0: TurnOnSensors()
-at time 0: TurnOffSensors()
-at time 0: CheckSystemComponents()
-at time 0: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=low, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=red, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
-vol: 5
-concern case 9 solving time 0.41188859939575195
+at time 1: UserTurnOnSystem()
+at time 1: TurnOnSensors()
+at time 1: TurnOffSensors()
+at time 1: CheckSystemComponents()
+at time 1: Measure(destinationExists=False, pathExists=False, objectInPath=False, carsInFront=False, carsBehind=False, actionIsLegal=False, userRequestedLaneChange=False, ambulanceBehindCar=False, ambulanceOnOppositeSide=False, ambulanceNextToCar=False, environmentClear=False, riskLevel=low, withinLane=False, multipleLanes=False, commandClear=False, laneExists=False, userTurnedOffSystem=True, recognizeInput=False, redLight=False, yellowLight=False, greenLight=False, previousLight=red, doorClosed=False, seatBeltOn=False, userSaysYes=False, peopleConsentObtained=False)
+at time 2: TurnOffSensors()
+vol: 6
+concern case 9 solving time 0.3117687702178955
 Concern is raised
 ****************************************************************************************************
 check concern_11
 solving under config: restart False, bcr False, ub False, min False
-domain size 3
+domain size 7
 unsat
-concern case 10 solving time 0.1494765281677246
+concern case 10 solving time 0.16960883140563965
 concern not raised
 ****************************************************************************************************
 check concern_12
 solving under config: restart False, bcr False, ub False, min False
-domain size 4
+domain size 8
 unsat
-concern case 11 solving time 0.21387457847595215
+concern case 11 solving time 0.16532039642333984
 concern not raised
 ****************************************************************************************************

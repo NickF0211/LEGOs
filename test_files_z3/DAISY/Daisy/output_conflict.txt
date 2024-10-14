@@ -1,4 +1,4 @@
-analysis_func: <function parse_and_check_conflict at 0x7f3684a3e7a0>
+analysis_func: <function parse_and_check_conflict at 0x7fde6cee6a20>
 check rule_1
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -8,26 +8,26 @@ vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AddressUserName()
-at time 0: Measure(UserAge=3, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=4, stablePsychologicalState=False, timeElapsed=2, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=3, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=2, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=4, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.16623330116271973
+proof_generation_time: 0.11806726455688477
 ****************************************************************************************************
 check rule_2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProvideInfo()
-at time 0: Measure(UserAge=2, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=4, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=True, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=3, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=2, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=3, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=True, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=4, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ProvideInfo()
-at time 0: Measure(UserAge=4, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=3, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=2, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=3, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=4, stablePsychologicalState=False, timeElapsed=2, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.17170929908752441
+proof_generation_time: 0.12119531631469727
 ****************************************************************************************************
 check rule_3
 solving under config: restart False, bcr False, ub False, min False
@@ -38,11 +38,11 @@ vol: 2
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: EventX()
-at time 0: Measure(UserAge=2, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=3, stablePsychologicalState=False, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=True, genderTypeB=True, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=2, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=3, stablePsychologicalState=False, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=True, genderTypeB=True, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.19092130661010742
+proof_generation_time: 0.10631680488586426
 ****************************************************************************************************
 check rule_4
 solving under config: restart False, bcr False, ub False, min False
@@ -57,41 +57,41 @@ at time 0: Measure(UserAge=2, userPayingAttention=False, userDataInformed=False,
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.19285035133361816
+proof_generation_time: 0.12627935409545898
 ****************************************************************************************************
 check rule_5
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserRequestInfo()
-at time 0: ProvideInfo()
-at time 0: Measure(UserAge=8, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=5, informationAvailable=True, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: InformUserandandReferToHumanCarer()
+at time 0: Measure(UserAge=4, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: UserRequestInfo()
 at time 0: InformUserandandReferToHumanCarer()
-at time 0: Measure(UserAge=17, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=14, stablePsychologicalState=False, timeElapsed=16, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=15, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=10, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=11, stablePsychologicalState=False, timeElapsed=12, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=13, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.282987117767334
+proof_generation_time: 0.20527887344360352
 ****************************************************************************************************
 check rule_6
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InstructionFail()
 at time 0: CallSupport()
-at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=21, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=21, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: InstructionFail()
-at time 0: CallSupport()
-at time 0: Measure(UserAge=94, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=93, stablePsychologicalState=False, timeElapsed=21, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: RepeatInstruction()
+at time 0: Measure(UserAge=9, userPayingAttention=False, userDataInformed=True, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=0, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=True, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=2, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.2778046131134033
+proof_generation_time: 0.20887446403503418
 ****************************************************************************************************
 check rule_7
 solving under config: restart False, bcr False, ub False, min False
@@ -99,52 +99,55 @@ find trace
 at time 0: AskRepresentativeForConsent()
 at time 0: PreparingExamination()
 at time 0: EnsureLegalPresence()
-at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AskRepresentativeForConsent()
-at time 0: PreparingExamination()
-at time 0: EnsureLegalPresence()
-at time 0: Measure(UserAge=17, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=75, stablePsychologicalState=False, timeElapsed=77, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=76, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 4
+at time 1: AskRepresentativeForConsent()
+at time 2: AskRepresentativeForConsent()
+at time 2: PreparingExamination()
+at time 2: EnsureLegalPresence()
+at time 2: Measure(UserAge=17, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=10, stablePsychologicalState=False, timeElapsed=12, informationAvailable=False, informationDisclosureNotPermitted=True, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=True, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=11, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=True)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3751864433288574
+proof_generation_time: 0.32615017890930176
 ****************************************************************************************************
 check rule_8
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ConfirmConsent()
 at time 0: PreparingTasks()
-at time 0: Measure(UserAge=8, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ConfirmConsent()
 at time 0: PreparingTasks()
-at time 0: Measure(UserAge=30, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=31, stablePsychologicalState=False, timeElapsed=32, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=33, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=9, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=11, stablePsychologicalState=False, timeElapsed=12, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=10, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.22225236892700195
+proof_generation_time: 0.20923233032226562
 ****************************************************************************************************
 check rule_9
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CheckUnderstanding()
 at time 0: UserUnderstands()
-at time 0: Measure(UserAge=4, userPayingAttention=True, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=True, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=True, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=7, userPayingAttention=True, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=4, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=True, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=True, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: CheckUnderstanding()
 at time 0: UserUnderstands()
-at time 0: Measure(UserAge=54, userPayingAttention=True, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=51, stablePsychologicalState=False, timeElapsed=52, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=53, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 3
+at time 0: Measure(UserAge=7, userPayingAttention=True, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=9, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=10, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 1: UserUnderstands()
+vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.28869199752807617
+proof_generation_time: 0.19119763374328613
 ****************************************************************************************************
 check rule_10
 solving under config: restart False, bcr False, ub False, min False
@@ -155,7 +158,7 @@ at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=4, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 7
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -165,11 +168,11 @@ at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=14, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=16, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=15, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=9, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.9449493885040283
+proof_generation_time: 1.0386378765106201
 ****************************************************************************************************
 check rule_11
 solving under config: restart False, bcr False, ub False, min False
@@ -184,24 +187,27 @@ at time 0: Measure(UserAge=2, userPayingAttention=False, userDataInformed=False,
 vol: 2
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.15736055374145508
+proof_generation_time: 0.16823410987854004
 ****************************************************************************************************
 check rule_12
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ExamineState()
 at time 0: ExaminationContinuable()
-at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=0, stablePsychologicalState=True, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=True, UserUnableToConsent=True)
+at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=True, severityOfState=0, stablePsychologicalState=True, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=True, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=True, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: ExamineState()
 at time 0: ExaminationContinuable()
-at time 0: Measure(UserAge=44, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=True, timeElapsed=43, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=42, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=True, UserUnableToConsent=False)
-vol: 3
+at time 1: ExamineState()
+at time 1: ExaminationContinuable()
+at time 1: Measure(UserAge=11, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=True, severityOfState=0, stablePsychologicalState=True, timeElapsed=10, informationAvailable=True, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=12, bodyPartInvolvedInExam=False, behaviorAggressive=True, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=True, UserUnableToConsent=False)
+at time 2: ExamineState()
+at time 2: Measure(UserAge=14, userPayingAttention=True, userDataInformed=False, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=15, informationAvailable=True, informationDisclosureNotPermitted=True, languagePreferenceAvailable=True, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=True, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=13, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=True, dataUnnecessary=True, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=True)
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3733954429626465
+proof_generation_time: 0.3333315849304199
 ****************************************************************************************************
 check rule_13
 solving under config: restart False, bcr False, ub False, min False
@@ -209,18 +215,20 @@ find trace
 at time 0: AskRepresentativeForConsent()
 at time 0: PreparingExamination()
 at time 0: EnsureLegalPresence()
-at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: AskRepresentativeForConsent()
 at time 0: PreparingExamination()
-at time 0: EnsureLegalPresence()
-at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=32, stablePsychologicalState=False, timeElapsed=33, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=34, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 4
+at time 0: EnsurePrivateSpace()
+at time 0: Measure(UserAge=18, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=11, stablePsychologicalState=True, timeElapsed=10, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=True, directlyToUser=False, userConsentAvalaible=True, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=True, userDirectsOtherwise=True, instructionRepeat=9, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 1: AskRepresentativeForConsent()
+at time 1: EnsurePrivateSpace()
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.3054218292236328
+proof_generation_time: 0.3601503372192383
 ****************************************************************************************************
 check rule_14
 solving under config: restart False, bcr False, ub False, min False
@@ -228,18 +236,18 @@ find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=8, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=61, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=60, stablePsychologicalState=False, timeElapsed=63, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=62, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=10, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=9, stablePsychologicalState=False, timeElapsed=11, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=12, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5199265480041504
+proof_generation_time: 0.6254627704620361
 ****************************************************************************************************
 check rule_15
 solving under config: restart False, bcr False, ub False, min False
@@ -250,21 +258,22 @@ at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 7
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: MeetingUser()
-at time 0: ExamineState()
-at time 0: IdentifyDAISYTrust()
-at time 0: determineThreshold()
-at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=86, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=87, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=88, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 7
+at time 1: MeetingUser()
+at time 1: ExamineState()
+at time 1: IdentifyDAISYTrust()
+at time 1: determineThreshold()
+at time 1: selectDAISYProtocol()
+at time 1: informDaisyAbilities()
+at time 1: Measure(UserAge=14, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=12, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=13, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.9794700145721436
+proof_generation_time: 1.106945276260376
 ****************************************************************************************************
 check rule_16
 solving under config: restart False, bcr False, ub False, min False
@@ -272,35 +281,35 @@ find trace
 at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
-at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=4, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=7, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
-at time 0: Measure(UserAge=70, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=71, stablePsychologicalState=False, timeElapsed=72, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=73, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=9, userPayingAttention=False, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=11, stablePsychologicalState=True, timeElapsed=10, informationAvailable=True, informationDisclosureNotPermitted=True, languagePreferenceAvailable=True, directlyToUser=True, userConsentAvalaible=False, guardianConsentAvalaible=True, medicalEmergency=True, culturalIndicatorA=True, genderTypeB=True, userNameUnknown=True, userDirectsOtherwise=True, instructionRepeat=8, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=True, patientAgeConsidered=True, patientXReligion=True, stablePhysicalState=True, UserUnableToConsent=True)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.30780959129333496
+proof_generation_time: 0.26108527183532715
 ****************************************************************************************************
 check rule_17
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
-at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=5, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=7, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=8, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
-at time 0: Measure(UserAge=56, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=57, stablePsychologicalState=False, timeElapsed=58, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=59, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=10, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=9, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.22562813758850098
+proof_generation_time: 0.2938873767852783
 ****************************************************************************************************
 check rule_18
 solving under config: restart False, bcr False, ub False, min False
@@ -309,36 +318,41 @@ at time 0: ExaminingPatient()
 at time 0: ReferToHumanExaminer()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=True, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=8, userPayingAttention=True, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=5, informationAvailable=True, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=True, userConsentAvalaible=True, guardianConsentAvalaible=True, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=True, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=True, UserUnableToConsent=True)
 vol: 5
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: ExaminingPatient()
-at time 0: ReferToHumanExaminer()
-at time 0: CanEndSession()
-at time 0: CanCallHuman()
-at time 0: Measure(UserAge=16, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=13, stablePsychologicalState=False, timeElapsed=14, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=15, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 5
+at time 1: ExaminingPatient()
+at time 1: ReferToHumanExaminer()
+at time 1: CanEndSession()
+at time 1: CanCallHuman()
+at time 1: Measure(UserAge=11, userPayingAttention=True, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=True, severityOfState=10, stablePsychologicalState=False, timeElapsed=9, informationAvailable=True, informationDisclosureNotPermitted=False, languagePreferenceAvailable=True, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=True, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=8, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=True, dataRelevantToContext=True, dataUnnecessary=True, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=True)
+at time 2: CanEndSession()
+vol: 6
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5427999496459961
+proof_generation_time: 0.7792720794677734
 ****************************************************************************************************
 check rule_19
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: PresentingReport()
 at time 0: ProvideConfidenceLevel()
-at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=4, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=8, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=7, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: PresentingReport()
-at time 0: ProvideConfidenceLevel()
-at time 0: Measure(UserAge=17, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=18, stablePsychologicalState=False, timeElapsed=15, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=16, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 3
+at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=0, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 1: PresentingReport()
+at time 1: ProvideConfidenceLevel()
+at time 1: Measure(UserAge=10, userPayingAttention=False, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=True, severityOfState=11, stablePsychologicalState=True, timeElapsed=12, informationAvailable=True, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=True, medicalEmergency=True, culturalIndicatorA=True, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=9, bodyPartInvolvedInExam=True, behaviorAggressive=True, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=True, UserUnableToConsent=True)
+at time 2: PresentingReport()
+at time 2: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=0, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.31661391258239746
+proof_generation_time: 0.26166439056396484
 ****************************************************************************************************
 check rule_20
 solving under config: restart False, bcr False, ub False, min False
@@ -346,35 +360,40 @@ find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=8, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=92, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=91, stablePsychologicalState=False, timeElapsed=90, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=89, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=11, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=12, stablePsychologicalState=False, timeElapsed=13, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=14, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=True, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.6785774230957031
+proof_generation_time: 0.5537030696868896
 ****************************************************************************************************
 check rule_21
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: TrainDaisy()
 at time 0: CollectingTrainingData()
-at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=True, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 3
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: TrainDaisy()
 at time 0: CollectingTrainingData()
-at time 0: Measure(UserAge=62, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=61, stablePsychologicalState=False, timeElapsed=63, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=60, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 3
+at time 0: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=0, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 1: TrainDaisy()
+at time 1: CollectingTrainingData()
+at time 1: Measure(UserAge=10, userPayingAttention=True, userDataInformed=True, userSensoryNeedsMet=True, urgentNeed=False, severityOfState=11, stablePsychologicalState=False, timeElapsed=8, informationAvailable=True, informationDisclosureNotPermitted=True, languagePreferenceAvailable=True, directlyToUser=False, userConsentAvalaible=True, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=True, genderTypeB=True, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=9, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=True, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=True, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=True, UserUnableToConsent=False)
+at time 2: TrainDaisy()
+at time 2: CollectingTrainingData()
+at time 2: Measure(UserAge=0, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=0, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=True, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=0, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.23493528366088867
+proof_generation_time: 0.24956679344177246
 ****************************************************************************************************
 check rule_22
 solving under config: restart False, bcr False, ub False, min False
@@ -388,24 +407,25 @@ at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=14, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=13, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=True, userConsentAvalaible=True, guardianConsentAvalaible=True, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=True, userDirectsOtherwise=False, instructionRepeat=12, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=True, patientXReligion=False, stablePhysicalState=True, UserUnableToConsent=False)
+at time 0: Measure(UserAge=12, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=13, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=True, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=14, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=True, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 10
 solving under config: restart False, bcr False, ub False, min False
 find trace
-at time 0: MeetingUser()
-at time 0: ExamineState()
-at time 0: ExaminingPatient()
-at time 0: IdentifyDAISYTrust()
-at time 0: determineThreshold()
-at time 0: selectDAISYProtocol()
-at time 0: informDaisyAbilities()
-at time 0: CanEndSession()
-at time 0: CanCallHuman()
-at time 0: Measure(UserAge=61, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=62, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=60, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=True, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 10
+at time 1: MeetingUser()
+at time 1: ExamineState()
+at time 1: ExaminingPatient()
+at time 1: IdentifyDAISYTrust()
+at time 1: determineThreshold()
+at time 1: selectDAISYProtocol()
+at time 1: informDaisyAbilities()
+at time 1: CanEndSession()
+at time 1: CanCallHuman()
+at time 1: Measure(UserAge=32, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=2, stablePsychologicalState=False, timeElapsed=33, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=34, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=True, patientAgeConsidered=True, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 2: CanEndSession()
+vol: 11
 Not Conflicting
 sat_result: sat
-proof_generation_time: 1.7180023193359375
+proof_generation_time: 2.283355951309204
 ****************************************************************************************************
 check rule_23
 solving under config: restart False, bcr False, ub False, min False
@@ -416,7 +436,7 @@ at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 7
 solving under config: restart False, bcr False, ub False, min False
 find trace
@@ -426,11 +446,11 @@ at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=16, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=17, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=15, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=8, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=9, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 7
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.8739838600158691
+proof_generation_time: 1.0003502368927002
 ****************************************************************************************************
 check rule_24
 solving under config: restart False, bcr False, ub False, min False
@@ -451,11 +471,12 @@ at time 0: IdentifyDAISYTrust()
 at time 0: determineThreshold()
 at time 0: selectDAISYProtocol()
 at time 0: informDaisyAbilities()
-at time 0: Measure(UserAge=57, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=59, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=58, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
-vol: 7
+at time 0: Measure(UserAge=14, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=0, stablePsychologicalState=False, timeElapsed=13, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=15, bodyPartInvolvedInExam=False, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=True, stablePhysicalState=False, UserUnableToConsent=False)
+at time 2: selectDAISYProtocol()
+vol: 8
 Not Conflicting
 sat_result: sat
-proof_generation_time: 1.1172311305999756
+proof_generation_time: 1.1839656829833984
 ****************************************************************************************************
 check rule_25
 solving under config: restart False, bcr False, ub False, min False
@@ -463,18 +484,18 @@ find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=5, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=7, stablePsychologicalState=False, timeElapsed=4, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=6, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=7, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=8, stablePsychologicalState=False, timeElapsed=6, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=5, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=45, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=47, stablePsychologicalState=False, timeElapsed=46, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=44, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=13, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=12, stablePsychologicalState=False, timeElapsed=14, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=11, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5287265777587891
+proof_generation_time: 0.5351064205169678
 ****************************************************************************************************
 check rule_26
 solving under config: restart False, bcr False, ub False, min False
@@ -482,16 +503,16 @@ find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=8, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=6, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=7, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=6, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=7, stablePsychologicalState=False, timeElapsed=5, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=4, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 solving under config: restart False, bcr False, ub False, min False
 find trace
 at time 0: ExaminingPatient()
 at time 0: CanEndSession()
 at time 0: CanCallHuman()
-at time 0: Measure(UserAge=40, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=41, stablePsychologicalState=False, timeElapsed=39, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=42, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
+at time 0: Measure(UserAge=9, userPayingAttention=False, userDataInformed=False, userSensoryNeedsMet=False, urgentNeed=False, severityOfState=10, stablePsychologicalState=False, timeElapsed=11, informationAvailable=False, informationDisclosureNotPermitted=False, languagePreferenceAvailable=False, directlyToUser=False, userConsentAvalaible=False, guardianConsentAvalaible=False, medicalEmergency=False, culturalIndicatorA=False, genderTypeB=False, userNameUnknown=False, userDirectsOtherwise=False, instructionRepeat=8, bodyPartInvolvedInExam=True, behaviorAggressive=False, dataNoiseConsidered=False, dataRelevantToContext=False, dataUnnecessary=False, trainingDataRepresentative=False, patientComfortable=False, patientAgeConsidered=False, patientXReligion=False, stablePhysicalState=False, UserUnableToConsent=False)
 vol: 4
 Not Conflicting
 sat_result: sat
-proof_generation_time: 0.5348410606384277
+proof_generation_time: 0.7277982234954834
 ****************************************************************************************************
