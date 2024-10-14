@@ -18,6 +18,17 @@ model_action_mapping = dict()
 # a reference table to keep track of the reference of a node
 text_ref = {}
 
+def return_constant(constant):
+    return lambda c=constant: constant
+
+ret_true = return_constant(True)
+ret_false = return_constant(False)
+
+def class_non_empty(cls):
+    return (lambda c= cls: len(c.snap_shot) > 0)
+
+
+
 
 class Control_Tree():
 
@@ -246,16 +257,16 @@ def get_func_args(func):
     return func.__code__.co_varnames
 
 
-def exist(Action_Class, func, input_subs=None, reference=None):
+def exist(Action_Class, func, input_subs=None, reference=None, should_include_action = ret_false):
     if isinstance(Action_Class, type([])):
         func_vars = list(get_func_args(func))
         # assert len(Action_Class) == len(func_vars)
         assert len(Action_Class) > 0
         if len(Action_Class) == 1:
             if input_subs:
-                return exist(Action_Class[0], func, input_subs=input_subs[0])
+                return exist(Action_Class[0], func, input_subs=input_subs[0], should_include_action= should_include_action)
             else:
-                return exist(Action_Class[0], func)
+                return exist(Action_Class[0], func, should_include_action=should_include_action)
         else:
             if input_subs:
                 cur_input = input_subs[0]
@@ -263,12 +274,12 @@ def exist(Action_Class, func, input_subs=None, reference=None):
             else:
                 cur_input = None
                 input_subs = None
-            new_func = lambda x: exist(Action_Class[1:], lambda *args: func(x, *args), input_subs=input_subs)
-            return exist(Action_Class[0], new_func, input_subs=cur_input)
+            new_func = lambda x: exist(Action_Class[1:], lambda *args: func(x, *args), input_subs=input_subs, should_include_action=should_include_action)
+            return exist(Action_Class[0], new_func, input_subs=cur_input, should_include_action=should_include_action)
     elif isinstance(Action_Class, type):
-        return Exists(Action_Class, _func(func), input_subs=input_subs, reference=reference)
+        return Exists(Action_Class, _func(func), input_subs=input_subs, reference=reference, should_include_action=should_include_action)
     elif isinstance(Action_Class, UnionAction):
-        return OR([Exists(AC, _func(func), input_subs=input_subs) for AC in Action_Class.actions])
+        return OR([Exists(AC, _func(func), input_subs=input_subs, should_include_action=should_include_action) for AC in Action_Class.actions])
     else:
         raise AssertionError
 
@@ -1509,7 +1520,7 @@ class Exists(Operator):
     count = 0
     pending_defs = set()
 
-    def __init__(self, input_type, func, input_subs=None, reference=None):
+    def __init__(self, input_type, func, input_subs=None, reference=None, should_include_action = ret_false):
         super().__init__()
         if not isinstance(func, Function):
             raise illFormedFormulaException("Exists: {} is not a Function".format(func))
@@ -1529,6 +1540,7 @@ class Exists(Operator):
         self.reference = reference
         self.var = Symbol("exists_{}".format(Exists.count))
         self.exclusive_reg = False
+        self.should_include_action = should_include_action
 
     def clear(self):
         super(Exists, self).clear()
@@ -1562,7 +1574,7 @@ class Exists(Operator):
 
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
 
-        if not include_new_act:
+        if not include_new_act and not self.should_include_action():
             if self.act_include is not None:
                 action = self.act_include
             else:
@@ -2719,3 +2731,4 @@ def add_background_theories(Actions, state_action, Rules, bcr=False):
     state_action.extend(get_background_actions())
     Actions.extend(get_background_actions())
     return Rules + get_background_rules(bcr)
+
