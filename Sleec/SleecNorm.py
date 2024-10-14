@@ -6,7 +6,7 @@ from analyzer import check_property_refining, clear_all
 from logic_operator import *
 from proof_reader import check_and_minimize
 from sleecOp import EventRelation
-from sleecParser import isXinstance, read_model_file, mm, parse_definitions, constants, scalar_type, reset_rules, \
+from sleecParser_for_CVC5 import isXinstance, read_model_file, mm, parse_definitions, constants, scalar_type, reset_rules, \
     parse_rules, parse_concerns, get_high_light, find_relative_pos, registered_type, scalar_mask, parse_relations, \
     get_relational_constraints, clear_relational_constraints
 from pysmt.shortcuts import *

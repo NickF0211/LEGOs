@@ -1,0 +1,67 @@
+def_start
+  event A
+  event B
+  event C
+  event D
+  event E
+  event F
+  event G
+  event H
+  measure ba:boolean
+  measure na:numeric
+  measure bb:boolean
+def_end
+
+rule_start
+
+   Rule1 when A then B
+   Rule2 when A and {ba} then B
+   // Rule2 is redundant because of Rule1
+   Rule1_5 when A then B unless {ba}
+
+
+
+   Rule3 when B and ({na} > 50) then C
+   Rule4 when B and ({na} > 100) then C
+   // Rule4 is redundant because of Rule3
+
+   Rule5 when A and ({na} > 50) then C
+   //Rule5 is redundant because of Rule1 and Rule3
+
+   Rule6 when C then D within 5 minutes
+   Rule7 when C then D within 301 seconds
+   //Rule 7 is redundant
+
+   Rule8 when C then D within 250 seconds otherwise D within 51 seconds
+    //Rule 8 is redundant because of rule 6
+
+   Rule9 when C then D within 250 seconds otherwise {D within 40 seconds otherwise {D within 10 seconds}}
+    //Rule 9 is redundant because of rule 6
+
+
+   Rule10 when C then D within 250 seconds otherwise {D within 40 seconds otherwise {D within 10 seconds unless {ba}}}
+
+   Rule11 when C then E within 250 seconds
+   Rule12 when C then D within 250 seconds otherwise {D within 40 seconds otherwise {E otherwise {D within 10 seconds}}}
+    //Rule 12 is redundant because of Rule 11 and Rule 6
+
+    Rule13 when E then F within 5 seconds unless {ba} then G within 10 seconds  unless ({na} > 2) then not G within 20 seconds
+    Rule14 when E and {ba} then G within 10 seconds  unless ({na} > 2) then not G within 10 seconds
+    //Rule 14 is redundant because of rule 13
+
+    Rule15 when E and {ba} then G within 10 seconds  unless ({na} > 3) then not G within 10 seconds
+    //Rule 15 is not redundant
+
+    Rule16 when E and {ba} then G within 10 seconds  unless ({na} > 1) then not G within 10 seconds
+    //Rule 16 is not redundant
+
+    Rule17 when F then G within 5 seconds unless {bb} then H within 10 seconds
+    Rule18 when H then F within 10 seconds
+    Rule19 when H then not F
+
+    Rule20 when F then G eventually
+    // Rule 20 is redundent because of Rule 17,18 and 19
+
+rule_end
+
+

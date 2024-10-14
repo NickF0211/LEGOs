@@ -1,0 +1,68 @@
+analysis_func: <function parse_and_check_concern at 0x7f86bf6b1ee0>
+check concern_1
+solving under config: restart False, bcr False, ub False, min False
+domain size 11
+unsat
+concern case 0 solving time 0.27338147163391113
+concern not raised
+****************************************************************************************************
+check concern_2
+solving under config: restart False, bcr False, ub False, min False
+domain size 10
+unsat
+concern case 1 solving time 0.1729426383972168
+concern not raised
+****************************************************************************************************
+check concern_3
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 2 solving time 0.1153557300567627
+concern not raised
+****************************************************************************************************
+check concern_4
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 3 solving time 0.11798620223999023
+concern not raised
+****************************************************************************************************
+check concern_5
+solving under config: restart False, bcr False, ub False, min False
+domain size 16
+unsat
+concern case 4 solving time 1.1577160358428955
+concern not raised
+****************************************************************************************************
+check concern_6
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 5 solving time 0.10645484924316406
+concern not raised
+****************************************************************************************************
+check concern_7
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 6 solving time 0.1370680332183838
+concern not raised
+****************************************************************************************************
+check concern_8
+solving under config: restart False, bcr False, ub False, min False
+domain size 10
+unsat
+concern case 7 solving time 0.27208542823791504
+concern not raised
+****************************************************************************************************
+check concern_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: CaregiverCanDeactivate()
+at time 0: UserWantsToRemoveSensors()
+at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canPatientDeactivate=True, canCaregiverDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=True, messageOnTime=False, alternateSensorsDeployed=True, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+vol: 4
+concern case 8 solving time 0.5512731075286865
+Concern is raised
+****************************************************************************************************

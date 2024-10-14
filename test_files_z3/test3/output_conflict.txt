@@ -1,0 +1,61 @@
+analysis_func: <function parse_and_check_conflict at 0x7f94bf1aea20>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: A()
+at time 0: B()
+at time 0: D()
+at time 0: Measure(m1=5)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: A()
+at time 0: B()
+at time 0: D()
+at time 0: Measure(m1=13)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.09473156929016113
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: C()
+at time 0: Measure(m1=6)
+at time 10: B()
+at time 10: D()
+at time 10: Measure(m1=5)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: C()
+at time 0: Measure(m1=14)
+at time 10: A()
+at time 10: B()
+at time 10: D()
+at time 10: Measure(m1=26)
+at time 11: D()
+vol: 7
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.1580946445465088
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: B()
+at time 0: D()
+at time 0: Measure(m1=5)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: B()
+at time 0: D()
+at time 0: Measure(m1=7)
+at time 1: D()
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.04398751258850098
+****************************************************************************************************
