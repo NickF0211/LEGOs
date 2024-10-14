@@ -634,12 +634,12 @@ def check_concerns(filename, mode, model, rules, concerns, relations, Action_Map
     Measure = Action_Mapping["Measure"]
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
-                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
-                                 e >= e_first
-                                                                 )),
-                                 exist(E, lambda e_last: forall(E, lambda e, e_last = e_last:
-                                 e <= e_last
-                                                                )),
+                                 exist(E, lambda e_first, E=E: forall(E, lambda e, e_f=e_first:
+                                 e.time >= e_f.time
+                                                                      ), should_include_action=class_non_empty(E)),
+                                 exist(E, lambda e_last, E=E: forall(E, lambda e, e_l=e_last:
+                                 e.time <= e_l.time
+                                                                     ), should_include_action=class_non_empty(E)),
                              )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
@@ -735,12 +735,12 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
 
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
-                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
-                                 e >= e_first
-                                                                 )),
-                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
-                                 e <= e_last
-                                                                )),
+                                 exist(E, lambda e_first, E=E: forall(E, lambda e, e_f=e_first:
+                                 e.time >= e_f.time
+                                                                      ), should_include_action=class_non_empty(E)),
+                                 exist(E, lambda e_last, E=E: forall(E, lambda e, e_l=e_last:
+                                 e.time <= e_l.time
+                                                                     ), should_include_action=class_non_empty(E)),
                              )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
@@ -855,7 +855,7 @@ def check_conflict(filename, mode, model, rules, relations, Action_Mapping, Acti
             trimmed_proof_size = 0
             trimmed_derivation_steps = 0
 
-        if res == 0 and check_proof:            
+        if res == 0 and check_proof:
             if profiling:
                 raw_proof_size = os.path.getsize("proof.txt")
                 raw_derivation_steps = sum(1 for _ in open("proof.txt"))
@@ -971,12 +971,12 @@ def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, m
     Measure = Action_Mapping["Measure"]
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
-                                 exist(E, lambda e_first: forall(E, lambda e, e_first=e_first:
-                                 e >= e_first
-                                                                 )),
-                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
-                                 e <= e_last
-                                                                )),
+                                 exist(E, lambda e_first, E=E: forall(E, lambda e, e_f=e_first:
+                                 e.time >= e_f.time
+                                                                      ), should_include_action=class_non_empty(E)),
+                                 exist(E, lambda e_last, E=E: forall(E, lambda e, e_l=e_last:
+                                 e.time <= e_l.time
+                                                                     ), should_include_action=class_non_empty(E)),
                              )) for E in Actions if E != Measure]
 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
@@ -1243,12 +1243,12 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
-                             exist(E, lambda e_first: forall(E, lambda e, e_first = e_first:
-                                                                       e >= e_first
-                                                                       )),
-                                 exist(E, lambda e_last: forall(E, lambda e, e_last=e_last:
-                                 e <= e_last
-                                                                 )),
+                                 exist(E, lambda e_first, E=E: forall(E, lambda e, e_f=e_first:
+                                 e.time >= e_f.time
+                                                                      ), should_include_action=class_non_empty(E)),
+                                 exist(E, lambda e_last, E=E: forall(E, lambda e, e_l=e_last:
+                                 e.time <= e_l.time
+                                                                     ), should_include_action=class_non_empty(E)),
                              )) for E in Actions if E != Measure]
 
 
@@ -1339,7 +1339,7 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
         if isinstance(res, str):
             sat_result = "sat"
             if to_print:
-                print("Not Redundant")                
+                print("Not Redundant")
             else:
                 output += "Not Redundant\n"
 
@@ -1468,11 +1468,11 @@ def check_red(filename, mode, model, rules, relations, Action_Mapping, Actions, 
         clear_relational_constraints(relations)
         [r.clear() for r in first_inv]
         rule.get_neg_rule().clear()
-        derivation_rule.reset()        
+        derivation_rule.reset()
         print("*" * 100)
         output += "*" * 100 + '\n'
     csv_file.close()
-    if profiling:        
+    if profiling:
         profiling_file.close()
 
     if multi_entry:
