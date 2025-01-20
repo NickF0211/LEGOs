@@ -4,7 +4,7 @@ import time
 from pysmt.fnode import FNode
 from termcolor import colored
 
-from analyzer import check_property_refining, clear_all
+from analyzer import check_property_refining, clear_all, log_fol_formula
 from proof_reader import check_and_minimize
 from type_constructor import create_type, create_action, union
 from sleecOp import WhenRule, happen_within, otherwise, unless, complie_measure, Concern, EventRelation, \
@@ -621,7 +621,7 @@ def parse_negation(node, Action_Mapping, head, measure, is_pos):
 
 
 def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, model_str="", to_print=True,
-                   multi_entry=False):
+                   multi_entry=False, log_z3 = ""):
     Measure = Action_Mapping["Measure"]
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
@@ -645,6 +645,18 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
             output += "check concern_{}\n".format(i + 1)
 
         concern = concerns[i]
+        if log_z3:
+            log_fol_formula(f"{log_z3}_concern_analysis_{i}.smt2", concern.get_concern(), [r.get_rule() for r in rules] + relations_constraint +
+                                          [measure_inv] +
+                                          first_inv, Actions)
+            concern.get_concern().clear()
+            clear_all(Actions)
+            reset_rules(rules)
+            clear_relational_constraints(relations)
+            measure_inv.clear()
+            [r.clear() for r in first_inv]
+            derivation_rule.reset()
+            continue
         res = check_property_refining(concern.get_concern(), set(), [r.get_rule() for r in rules] +
                                       relations_constraint + [measure_inv],
                                       Actions, [], True,
@@ -704,7 +716,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
 
 
 def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
-                   multi_entry=False, profiling=True):
+                   multi_entry=False, profiling=True, log_z3 = ""):
 
     Measure = Action_Mapping["Measure"]
 
@@ -751,6 +763,21 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
             output += "*" * 100 + '\n'
             continue
         rule = rules[i]
+
+        if log_z3:
+            log_fol_formula(f"{log_z3}_conflict_analysis_{i}.smt2", rule.get_premise(),
+                                          [r.get_rule() for r in rules] + relations_constraint +
+                                          [measure_inv] +
+                                          first_inv,
+                                          Actions)
+            rule.get_premise().clear()
+            clear_all(Actions)
+            reset_rules(rules)
+            clear_relational_constraints(relations)
+            measure_inv.clear()
+            [r.clear() for r in first_inv]
+            derivation_rule.reset()
+            continue
 
         if profiling:
             # we want to measure the raw analysis time
@@ -940,7 +967,7 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
 
 def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False,
                    to_print=True,
-                   multi_entry=False, profiling= True):
+                   multi_entry=False, profiling= True, log_z3 =""):
     Measure = Action_Mapping["Measure"]
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
@@ -987,6 +1014,21 @@ def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, m
         #     continue
 
         purpose = purposes[i]
+
+        if log_z3:
+            log_fol_formula(f"{log_z3}_purpose_analysis_{i}.smt2", purpose.get_concern(),
+                                          [r.get_rule() for r in rules] + relations_constraint +
+                                          [measure_inv] +
+                                          first_inv,
+                                          Actions)
+            purpose.get_concern().clear()
+            clear_all(Actions)
+            reset_rules(rules)
+            clear_relational_constraints(relations)
+            measure_inv.clear()
+            [r.clear() for r in first_inv]
+            derivation_rule.reset()
+            continue
 
         if profiling:
             # we want to measure the raw analysis time
@@ -1207,7 +1249,7 @@ def get_measure_inv(Measure, Actions):
 
 
 def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
-              multi_entry=False, profiling=False):
+              multi_entry=False, profiling=False, log_z3=""):
 
     Measure = Action_Mapping["Measure"]
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
@@ -1243,6 +1285,21 @@ def check_red(model, rules, relations, Action_Mapping, Actions, model_str="", ch
 
         rule = rules[i]
         others = rules[0:i] + rules[i + 1:]
+
+        if log_z3:
+            log_fol_formula(f"{log_z3}_redundant_analysis_{i}.smt2", rule.get_neg_rule(), [r.get_rule() for r in others] + relations_constraint +
+                                          [measure_inv] +
+                                          first_inv,
+                                          Actions)
+            rule.get_neg_rule().clear()
+            clear_all(Actions)
+            reset_rules(rules)
+            clear_relational_constraints(relations)
+            measure_inv.clear()
+            [r.clear() for r in first_inv]
+            derivation_rule.reset()
+            continue
+
         if profiling:
             # we want to measure the raw analysis time
             raw_start_time = time.time()
@@ -1557,31 +1614,46 @@ def check_input_concerns(model_str):
 from argparse import ArgumentParser
 
 
-def parse_and_check_conflict(filename):
+def parse_and_check_conflict(filename, z3=False):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
-    res = check_conflict(model, rules, relations, Action_Mapping, Actions, check_proof=False, profiling=True)
+    if z3:
+        log_z3 = os.path.splitext(os.path.basename(filename))[0]
+    else:
+        log_z3 = ""
+
+    res = check_conflict(model, rules, relations, Action_Mapping, Actions, check_proof=False, profiling=True, log_z3=log_z3)
     return res
 
 
-def parse_and_check_red(filename):
+def parse_and_check_red(filename, z3=False):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
-    res = check_red(model, rules, relations, Action_Mapping, Actions, check_proof=False,profiling=True)
+    if z3:
+        log_z3 = os.path.splitext(os.path.basename(filename))[0]
+    else:
+        log_z3 = ""
+    res = check_red(model, rules, relations, Action_Mapping, Actions, check_proof=False,profiling=True, log_z3=log_z3)
     return res
 
 
-def parse_and_check_concern(filename):
+def parse_and_check_concern(filename, z3=False):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
-    res = check_concerns(model, rules, concerns, relations, Action_Mapping, Actions)
+    if z3:
+        log_z3 = os.path.splitext(os.path.basename(filename))[0]
+    else:
+        log_z3 = ""
+    res = check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, log_z3=log_z3)
     return res
+
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--filename', help="SLEEC file to analyze", type=str)
     parser.add_argument('--analysis', help='What the analysis to run: redundancy/conflict/concern', type=str)
+    parser.add_argument("--z3", help= "print raw z3 SMTLIB encoding", action='store_true' )
     args = parser.parse_args()
     supported_mode = {"redundancy": parse_and_check_red, "conflict": parse_and_check_conflict,
                       "concern": parse_and_check_concern}
@@ -1590,7 +1662,7 @@ if __name__ == "__main__":
         print("unsupported analysis mode, please choice one of the analysis mode redundancy/conflict/concern")
         print("running redundancy for default")
     analysis_func = supported_mode.get(analysis, parse_and_check_red)
-    analysis_func(args.filename)
+    analysis_func(args.filename, args.z3)
 #
 #
 # if __name__ == "__main__":

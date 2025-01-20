@@ -272,9 +272,10 @@ import random
 def check_property_refining(property, rules, complete_rules, ACTION, state_action, minimized=True, vol_bound=500,
                             disable_minimization=False, min_solution=False, final_min_solution=False,
                             boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
-                            axioms=None, record_proof=False, ret_model=False, scalar_mask=None, unsat_mode=False):
+                            axioms=None, record_proof=False, ret_model=False, scalar_mask=None, unsat_mode=False, print_z3=""):
     print("solving under config: restart {}, bcr {}, ub {}, min {}".format(restart, boundary_case, universal_blocking,
                                                                            min_solution))
+
     rules = OrderedSet(rules)
     current_min_solution = False
     out_of_bound_warning = False
@@ -534,6 +535,45 @@ def solver_under_eq_assumption(solver, assumption, eq_assumption):
             return False
     return True
 
+
+
+def log_fol_formula(smtlib, property, rules, ACTION):
+    s = Solver("z3", unsat_cores_mode=None, random_seed=43, solver_options={'timeout': 120000})
+    s.add_assertion(fol_encode(property))
+    for r in rules:
+        s.add_assertion(fol_encode(r))
+
+    for Act in ACTION:
+        s.add_assertion(get_fol_invaraint(Act))
+
+    write_smtlib(And(s.assertions), smtlib)
+
+    # satisfying = s.solve()
+    # if satisfying:
+    #     print(f"{smtlib} is SAT")
+    # else:
+    #     print(f"{smtlib} is UNSAT")
+
+    return
+
+def get_fol_invaraint(ACT):
+    return fol_encode(forall(ACT, lambda act: act.constraint))
+
+
+def check_property_fol(property, rules, ACTION):
+    s = Solver("z3", unsat_cores_mode=None, random_seed=43)
+    s.add_assertion(fol_encode(property))
+    for r in rules:
+        s.add_assertion(fol_encode(r))
+
+    for Act in ACTION:
+        s.add_assertion(get_fol_invaraint(Act))
+
+    satisfying = s.solve()
+    if satisfying:
+        print(s.get_model())
+    else:
+        print(satisfying)
 
 def solve_fol(rules, complete_rules, ACTION, state_action, minimized=False, vol_bound=500,
                             disable_minimization=False, min_solution=False, final_min_solution=False,
