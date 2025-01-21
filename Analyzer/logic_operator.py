@@ -1,5 +1,7 @@
 from ordered_set import OrderedSet
 from pysmt.shortcuts import *
+from pysmt.shortcuts import Exists as PExist
+from pysmt.shortcuts import ForAll as PForall
 
 from type_constructor import Action, UnionAction
 
@@ -168,6 +170,12 @@ def encode(formula, assumption=False, include_new_act=False, exception=None, dis
             proof_writer.add_definition(formula, derived=False)
         return formula
 
+def fol_encode(formula):
+    if isinstance(formula, Operator):
+        res = formula.fol_encode()
+        return res
+    else:
+        return formula
 
 def to_string(formula):
     if isinstance(formula, Operator):
@@ -412,6 +420,10 @@ class Operator():
     def to_string(self):
         return ""
 
+    def fol_encode(self):
+        print("unimplemented encoding")
+        return encode(self)
+
 
 class Arth_Operator(Operator):
     def __init__(self):
@@ -522,6 +534,13 @@ class C_NOT(Operator):
         else:
             return to_string(self.arg)
 
+    def fol_encode(self):
+        if self.polarity:
+            result = fol_encode(invert(self.arg))
+        else:
+            result = fol_encode(self.arg)
+
+        return result
 
 def should_use_gate(args):
     for arg in args:
@@ -619,6 +638,9 @@ class Bool_Terminal(Operator):
             proof_writer.add_definition(self.value, derived=False, terminal_obj=self)
         return self.value
 
+    def fol_encode(self):
+        return self.value
+
     def invert(self):
         if self.op:
             return self.op
@@ -650,6 +672,11 @@ class Arth_Expression(Arth_Operator):
         right_result = encode(self.right, assumption=assumption, include_new_act=include_new_act, exception=exception,
                               disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
 
+        return self.operator(left_result, right_result)
+
+    def fol_encode(self):
+        left_result = fol_encode(self.left)
+        right_result = fol_encode(self.right)
         return self.operator(left_result, right_result)
 
     def to_string(self):
@@ -698,6 +725,15 @@ class Compare_Binary_Expression(Operator):
                              disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
         right_result = encode(self.right, assumption=assumption, include_new_act=include_new_act, exception=exception,
                               disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode)
+        if self.polarity:
+            return self.operator(left_result, right_result)
+        else:
+            return Not(self.operator(left_result, right_result))
+
+    def fol_encode(self):
+        left_result = fol_encode(self.left)
+        right_result = fol_encode(self.right)
+
         if self.polarity:
             return self.operator(left_result, right_result)
         else:
@@ -765,6 +801,13 @@ class C_AND(Operator):
         if proof_writer and not self.proof_derived:
             proof_writer.add_and(self)
             self.proof_derived = True
+
+        return And(result_list)
+
+    def fol_encode(self):
+        result_list = []
+        for arg in self.arg_list:
+            result_list.append(fol_encode(arg))
 
         return And(result_list)
 
@@ -846,6 +889,13 @@ class C_OR(Operator):
         self.op = None
         for arg in self.arg_list:
             clear(arg)
+
+    def fol_encode(self):
+        result_list = []
+        for arg in self.arg_list:
+            result_list.append(fol_encode(arg))
+
+        return Or(result_list)
 
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
         result_list = []
@@ -1541,6 +1591,8 @@ class Exists(Operator):
         self.var = Symbol("exists_{}".format(Exists.count))
         self.exclusive_reg = False
         self.should_include_action = should_include_action
+        self.fol_object = None
+
 
     def clear(self):
         super(Exists, self).clear()
@@ -1550,6 +1602,8 @@ class Exists(Operator):
         self.blocking_clause = None
         self.print_statement = None
         self.func.clear()
+        self.fol_object = None
+
 
     def __repr__(self):
         return "Exist_{}".format(self.id)
@@ -1635,6 +1689,15 @@ class Exists(Operator):
         else:
             return base_constraint
 
+    def fol_encode(self):
+        if not self.fol_object:
+            self.fol_object = self.input_type(temp=True, input_subs=self.input_subs)
+        eval_result = self.func.evaulate(self.fol_object)
+        application_res = AND(self.fol_object.fol_presence, eval_result)
+        base_constraint = fol_encode(application_res)
+        quantified = PExist(self.fol_object.named_attr, base_constraint)
+        return quantified
+
     def invert(self):
         if self.op is None:
             self.op = Forall(self.input_type, invert(self.func), reference=self.reference)
@@ -1682,6 +1745,12 @@ class C_Summation(Arth_Operator):
         for arg in self.arg_list:
             starting += (encode(arg, assumption=assumption, include_new_act=include_new_act, exception=exception,
                                 disable=disable, proof_writer=proof_writer, unsat_mode=unsat_mode))
+        return starting
+
+    def fol_encode(self):
+        starting = Int(0)
+        for arg in self.arg_list:
+            starting += (fol_encode(arg))
         return starting
 
     def invert(self):
@@ -2294,6 +2363,8 @@ class Forall(Operator):
         self.proof_hint = None
         self.rid = None
         self.consider_op = False
+        self.fol_object = None
+
 
     def clear(self):
         super(Forall, self).clear()
@@ -2304,6 +2375,18 @@ class Forall(Operator):
         self.proof_hint = None
         self.rid = None
         self.consider_op = False
+        self.fol_object = None
+
+
+    def fol_encode(self):
+        if not self.fol_object:
+            self.fol_object = self.input_type()
+
+        eval_result = self.func.evaulate(self.fol_object)
+        application_res = Implication(self.fol_object.fol_presence, eval_result)
+        base_constraint = fol_encode(application_res)
+        quantified = PForall(self.fol_object.named_attr, base_constraint)
+        return quantified
 
     def encode(self, assumption=False, include_new_act=False, exception=None, disable=None, proof_writer=None, unsat_mode=False):
         constraint = []

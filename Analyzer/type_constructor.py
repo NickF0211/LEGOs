@@ -240,6 +240,10 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
     else:
         sub_action_names = [sub_name for (sub_name, _, _) in sub_actions]
 
+    ### for direct FOL encoding ###
+    fol_func_attributes = [constraint_dict[v][0] for _, v in attributes]
+    fol_function = FunctionType(BOOL, fol_func_attributes)
+
     def __init__(self, temp=False, input_subs=None, print_only=False):
         self.constraint = []
         self.delayed_constraint = []
@@ -357,6 +361,12 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
         self.constraint = Implies(self.presence, And(self.constraint))
         if hasattr(self, "time"):
             add_timed_obj(self.time, self)
+
+        ### FOL ###
+        self.fol_func = Symbol(self.action_name, fol_function)
+        attrs = type(self).attr_order
+        self.named_attr = [getattr(self, attr) for attr in attrs]
+        self.fol_presence = Function(self.fol_func, params=self.named_attr)
 
     def under_constraint(self):
         assert self.under_encoded >= 0
