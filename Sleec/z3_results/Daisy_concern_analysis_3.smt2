@@ -1,0 +1,33 @@
+unsupported
+unsat
+(:added-eqs                 1804
+ :arith-assert-diseq        10
+ :arith-assert-lower        45
+ :arith-assert-upper        40
+ :arith-bound-prop          13
+ :arith-conflicts           2
+ :arith-eq-adapter          32
+ :arith-fixed-eqs           19
+ :arith-num-rows            85
+ :arith-offset-eqs          11
+ :arith-pivots              2
+ :arith-row-summations      9
+ :arith-tableau-max-columns 133
+ :arith-tableau-max-rows    85
+ :binary-propagations       2556
+ :conflicts                 11
+ :decisions                 633
+ :del-clause                27465
+ :eliminated-applications   47
+ :max-generation            3
+ :max-memory                31.97
+ :memory                    22.60
+ :mk-bool-var               14181
+ :mk-clause                 51574
+ :num-allocs                26595357
+ :num-checks                1
+ :propagations              9867
+ :quant-instantiations      629
+ :rlimit-count              386722
+ :time                      0.05
+ :total-time                0.06)
