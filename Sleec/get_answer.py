@@ -7,7 +7,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--dir', help="output directory", type=str)    
     args = parser.parse_args()    
-    path = "/home/mudathir/Desktop/LEGOS/Sleec/z3_results"
+    path = "/home/mudathir/Desktop/LEGOS/Sleec/z3_quantifiers_results"
     files = [
         os.path.join(dp, f)
         for dp, _, filenames in os.walk(path)
