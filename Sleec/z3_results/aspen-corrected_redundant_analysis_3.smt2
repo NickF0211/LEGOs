@@ -1,29 +1,38 @@
 unsupported
 sat
-(:added-eqs                 17
- :arith-assert-lower        2
- :arith-assert-upper        3
- :arith-assume-eqs          1
- :arith-eq-adapter          1
- :arith-num-rows            4
- :arith-pivots              1
- :arith-tableau-max-columns 13
- :arith-tableau-max-rows    4
- :binary-propagations       56
- :conflicts                 1
- :decisions                 199
- :eliminated-applications   26
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                21.27
- :memory                    19.79
- :mk-bool-var               213
- :mk-clause                 7
- :num-allocs                3164000
+(:added-eqs                 634
+ :arith-assert-diseq        58
+ :arith-assert-lower        176
+ :arith-assert-upper        152
+ :arith-assume-eqs          7
+ :arith-bound-prop          11
+ :arith-conflicts           2
+ :arith-eq-adapter          31
+ :arith-fixed-eqs           36
+ :arith-num-rows            235
+ :arith-offset-eqs          41
+ :arith-pivots              54
+ :arith-row-summations      424
+ :arith-tableau-max-columns 458
+ :arith-tableau-max-rows    235
+ :binary-propagations       6426
+ :conflicts                 12
+ :decisions                 20655
+ :del-clause                1764
+ :elim-unconstrained        26
+ :final-checks              17
+ :interface-eqs             7
+ :max-generation            4
+ :max-memory                24.97
+ :memory                    18.64
+ :mk-bool-var               5487
+ :mk-clause                 2248
+ :mk-clause-binary          1795
+ :num-allocs                43793083
  :num-checks                1
- :propagations              59
- :quant-instantiations      11
- :rlimit-count              97609
- :time                      0.01
- :total-time                0.03)
+ :propagations              7188
+ :quant-instantiations      764
+ :restarts                  9
+ :rlimit-count              895856
+ :time                      0.17
+ :total-time                0.18)

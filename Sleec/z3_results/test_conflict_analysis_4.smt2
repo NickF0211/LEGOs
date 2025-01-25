@@ -1,41 +1,39 @@
 unsupported
 sat
-(:added-eqs                 747353
- :arith-assert-diseq        1531676
- :arith-assert-lower        1123354
- :arith-assert-upper        768310
- :arith-assume-eqs          812
- :arith-bound-prop          70744
- :arith-conflicts           3149
- :arith-eq-adapter          42934
- :arith-fixed-eqs           33153
- :arith-gcd-tests           1473
- :arith-num-rows            9352
- :arith-offset-eqs          140328
- :arith-patches             1
- :arith-patches_succ        1
- :arith-pivots              32975
- :arith-row-summations      12895702
- :arith-tableau-max-columns 10795
- :arith-tableau-max-rows    9352
- :binary-propagations       6440771
- :conflicts                 3552
- :decisions                 3858681
- :del-clause                2636352
- :eliminated-applications   10
- :final-checks              839
- :interface-eqs             808
+(:added-eqs                 117805
+ :arith-assert-diseq        58880
+ :arith-assert-lower        50601
+ :arith-assert-upper        43782
+ :arith-assume-eqs          307
+ :arith-bound-prop          5101
+ :arith-conflicts           302
+ :arith-eq-adapter          8025
+ :arith-fixed-eqs           4241
+ :arith-num-rows            3051
+ :arith-offset-eqs          5794
+ :arith-pivots              6107
+ :arith-row-summations      489678
+ :arith-tableau-max-columns 4653
+ :arith-tableau-max-rows    3051
+ :binary-propagations       459965
+ :conflicts                 549
+ :decisions                 436544
+ :del-clause                259130
+ :elim-unconstrained        10
+ :final-checks              316
+ :interface-eqs             307
  :max-generation            10
- :max-memory                264.11
- :memory                    114.07
- :minimized-lits            62
- :mk-bool-var               909522
- :mk-clause                 2738068
- :num-allocs                16709269692.00
+ :max-memory                72.51
+ :memory                    34.05
+ :minimized-lits            7
+ :mk-bool-var               163441
+ :mk-clause                 270275
+ :mk-clause-binary          14910
+ :num-allocs                6747524931.00
  :num-checks                1
- :propagations              14298308
- :quant-instantiations      258941
- :restarts                  31
- :rlimit-count              642115855
- :time                      18.83
- :total-time                18.84)
+ :propagations              646195
+ :quant-instantiations      65038
+ :restarts                  9
+ :rlimit-count              38108624
+ :time                      3.68
+ :total-time                3.69)

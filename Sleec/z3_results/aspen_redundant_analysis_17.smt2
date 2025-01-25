@@ -1,29 +1,38 @@
 unsupported
 sat
-(:added-eqs                 16
- :arith-assert-lower        2
- :arith-assert-upper        3
- :arith-assume-eqs          1
- :arith-eq-adapter          1
- :arith-num-rows            4
- :arith-pivots              1
- :arith-tableau-max-columns 13
- :arith-tableau-max-rows    4
- :binary-propagations       48
- :conflicts                 1
- :decisions                 164
- :eliminated-applications   25
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                21.23
- :memory                    19.76
- :mk-bool-var               204
- :mk-clause                 6
- :num-allocs                2884877
+(:added-eqs                 1866
+ :arith-assert-diseq        220
+ :arith-assert-lower        516
+ :arith-assert-upper        513
+ :arith-assume-eqs          31
+ :arith-bound-prop          75
+ :arith-conflicts           1
+ :arith-eq-adapter          191
+ :arith-fixed-eqs           184
+ :arith-num-rows            398
+ :arith-offset-eqs          68
+ :arith-pivots              202
+ :arith-row-summations      982
+ :arith-tableau-max-columns 719
+ :arith-tableau-max-rows    398
+ :binary-propagations       10184
+ :conflicts                 19
+ :decisions                 31566
+ :del-clause                5674
+ :elim-unconstrained        25
+ :final-checks              45
+ :interface-eqs             31
+ :max-generation            4
+ :max-memory                27.98
+ :memory                    19.21
+ :mk-bool-var               8078
+ :mk-clause                 6655
+ :mk-clause-binary          2607
+ :num-allocs                120675836
  :num-checks                1
- :propagations              49
- :quant-instantiations      11
- :rlimit-count              93270
- :time                      0.01
- :total-time                0.03)
+ :propagations              12812
+ :quant-instantiations      1138
+ :restarts                  13
+ :rlimit-count              1762470
+ :time                      0.33
+ :total-time                0.34)

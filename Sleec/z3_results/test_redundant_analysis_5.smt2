@@ -1,33 +1,33 @@
 unsupported
 unsat
-(:added-eqs                 30091
- :arith-assert-diseq        33820
- :arith-assert-lower        14511
- :arith-assert-upper        10571
- :arith-bound-prop          6773
- :arith-conflicts           41
- :arith-eq-adapter          6157
- :arith-fixed-eqs           1138
- :arith-num-rows            1760
- :arith-offset-eqs          5316
- :arith-pivots              559
- :arith-row-summations      50969
- :arith-tableau-max-columns 2010
- :arith-tableau-max-rows    1760
- :binary-propagations       54572
- :conflicts                 55
- :decisions                 3945
- :del-clause                183173
- :eliminated-applications   10
+(:added-eqs                 1588
+ :arith-assert-lower        240
+ :arith-assert-upper        232
+ :arith-bound-prop          30
+ :arith-conflicts           3
+ :arith-eq-adapter          141
+ :arith-fixed-eqs           110
+ :arith-num-rows            371
+ :arith-offset-eqs          17
+ :arith-pivots              107
+ :arith-row-summations      896
+ :arith-tableau-max-columns 625
+ :arith-tableau-max-rows    371
+ :binary-propagations       1616
+ :conflicts                 12
+ :decisions                 227
+ :del-clause                7800
+ :elim-unconstrained        10
  :max-generation            6
- :max-memory                61.76
- :memory                    34.93
- :mk-bool-var               82503
- :mk-clause                 222380
- :num-allocs                90412611
+ :max-memory                22.01
+ :memory                    18.36
+ :mk-bool-var               5451
+ :mk-clause                 9442
+ :mk-clause-binary          2178
+ :num-allocs                4175405
  :num-checks                1
- :propagations              246247
- :quant-instantiations      19137
- :rlimit-count              2552207
- :time                      0.30
- :total-time                0.32)
+ :propagations              3230
+ :quant-instantiations      1560
+ :rlimit-count              136229
+ :time                      0.03
+ :total-time                0.04)

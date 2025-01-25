@@ -1,29 +1,37 @@
 unsupported
 sat
-(:added-eqs                 14
- :arith-assert-lower        2
- :arith-assert-upper        3
- :arith-assume-eqs          1
- :arith-eq-adapter          1
- :arith-num-rows            4
- :arith-pivots              1
- :arith-tableau-max-columns 10
- :arith-tableau-max-rows    4
- :binary-propagations       52
- :conflicts                 1
- :decisions                 168
- :eliminated-applications   26
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                21.09
- :memory                    19.69
- :mk-bool-var               210
- :mk-clause                 10
- :num-allocs                2670341
+(:added-eqs                 2585
+ :arith-assert-diseq        313
+ :arith-assert-lower        598
+ :arith-assert-upper        788
+ :arith-assume-eqs          36
+ :arith-bound-prop          96
+ :arith-eq-adapter          209
+ :arith-fixed-eqs           224
+ :arith-num-rows            539
+ :arith-offset-eqs          166
+ :arith-pivots              213
+ :arith-row-summations      1630
+ :arith-tableau-max-columns 945
+ :arith-tableau-max-rows    539
+ :binary-propagations       12416
+ :conflicts                 21
+ :decisions                 37789
+ :del-clause                7351
+ :elim-unconstrained        26
+ :final-checks              47
+ :interface-eqs             36
+ :max-generation            5
+ :max-memory                30.08
+ :memory                    19.67
+ :mk-bool-var               10142
+ :mk-clause                 8773
+ :mk-clause-binary          3721
+ :num-allocs                237591117
  :num-checks                1
- :propagations              53
- :quant-instantiations      11
- :rlimit-count              87317
- :time                      0.01
- :total-time                0.03)
+ :propagations              15776
+ :quant-instantiations      1632
+ :restarts                  10
+ :rlimit-count              2353890
+ :time                      0.46
+ :total-time                0.47)

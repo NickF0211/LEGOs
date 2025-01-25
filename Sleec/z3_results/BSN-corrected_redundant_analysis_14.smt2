@@ -1,31 +1,37 @@
 unsupported
 sat
-(:added-eqs                 38
- :arith-assert-lower        10
- :arith-assert-upper        8
- :arith-assume-eqs          3
- :arith-eq-adapter          3
- :arith-fixed-eqs           2
- :arith-num-rows            6
- :arith-pivots              3
- :arith-row-summations      4
- :arith-tableau-max-columns 13
- :arith-tableau-max-rows    6
- :binary-propagations       64
- :conflicts                 1
- :decisions                 236
- :eliminated-applications   36
- :final-checks              4
- :interface-eqs             3
- :max-generation            2
- :max-memory                21.91
- :memory                    20.11
- :mk-bool-var               298
- :mk-clause                 15
- :num-allocs                4726776
+(:added-eqs                 2888
+ :arith-assert-diseq        465
+ :arith-assert-lower        861
+ :arith-assert-upper        629
+ :arith-assume-eqs          36
+ :arith-bound-prop          87
+ :arith-eq-adapter          165
+ :arith-fixed-eqs           155
+ :arith-num-rows            646
+ :arith-offset-eqs          95
+ :arith-pivots              145
+ :arith-row-summations      1154
+ :arith-tableau-max-columns 1185
+ :arith-tableau-max-rows    646
+ :binary-propagations       20502
+ :conflicts                 13
+ :decisions                 124977
+ :del-clause                5365
+ :elim-unconstrained        36
+ :final-checks              52
+ :interface-eqs             36
+ :max-generation            4
+ :max-memory                43.66
+ :memory                    21.01
+ :mk-bool-var               19993
+ :mk-clause                 7038
+ :mk-clause-binary          5918
+ :num-allocs                1151039841
  :num-checks                1
- :propagations              70
- :quant-instantiations      11
- :rlimit-count              169873
- :time                      0.02
- :total-time                0.03)
+ :propagations              23437
+ :quant-instantiations      1805
+ :restarts                  15
+ :rlimit-count              6043044
+ :time                      1.04
+ :total-time                1.05)

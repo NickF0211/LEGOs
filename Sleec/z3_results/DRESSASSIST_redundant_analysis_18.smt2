@@ -1,29 +1,39 @@
 unsupported
 sat
-(:added-eqs                 38
- :arith-assert-lower        2
- :arith-assert-upper        3
- :arith-assume-eqs          1
- :arith-eq-adapter          1
- :arith-num-rows            4
- :arith-pivots              1
- :arith-tableau-max-columns 12
- :arith-tableau-max-rows    4
- :binary-propagations       96
- :conflicts                 1
- :decisions                 379
- :eliminated-applications   56
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                22.56
- :memory                    20.40
- :mk-bool-var               418
- :mk-clause                 7
- :num-allocs                7191897
+(:added-eqs                 1624
+ :arith-assert-diseq        235
+ :arith-assert-lower        511
+ :arith-assert-upper        451
+ :arith-assume-eqs          42
+ :arith-bound-prop          45
+ :arith-conflicts           2
+ :arith-eq-adapter          98
+ :arith-fixed-eqs           68
+ :arith-num-rows            462
+ :arith-offset-eqs          41
+ :arith-pivots              126
+ :arith-row-summations      1486
+ :arith-tableau-max-columns 897
+ :arith-tableau-max-rows    462
+ :binary-propagations       12113
+ :conflicts                 23
+ :decisions                 59755
+ :del-clause                1754
+ :elim-unconstrained        56
+ :final-checks              52
+ :interface-eqs             42
+ :max-generation            4
+ :max-memory                34.19
+ :memory                    20.13
+ :minimized-lits            16
+ :mk-bool-var               11802
+ :mk-clause                 2606
+ :mk-clause-binary          3628
+ :num-allocs                211075179
  :num-checks                1
- :propagations              100
- :quant-instantiations      11
- :rlimit-count              237646
- :time                      0.02
- :total-time                0.04)
+ :propagations              13507
+ :quant-instantiations      1022
+ :restarts                  9
+ :rlimit-count              2349151
+ :time                      0.35
+ :total-time                0.37)

@@ -1,32 +1,38 @@
 unsupported
 sat
-(:added-eqs                 39
- :arith-assert-lower        8
- :arith-assert-upper        8
- :arith-assume-eqs          2
- :arith-bound-prop          1
- :arith-eq-adapter          2
- :arith-fixed-eqs           1
- :arith-num-rows            5
- :arith-pivots              2
- :arith-row-summations      1
- :arith-tableau-max-columns 13
- :arith-tableau-max-rows    5
- :binary-propagations       88
- :conflicts                 1
- :decisions                 306
- :eliminated-applications   56
- :final-checks              3
- :interface-eqs             2
- :max-generation            2
- :max-memory                22.59
- :memory                    20.41
- :mk-bool-var               427
- :mk-clause                 16
- :num-allocs                7044575
+(:added-eqs                 10318
+ :arith-assert-diseq        2180
+ :arith-assert-lower        2834
+ :arith-assert-upper        2869
+ :arith-assume-eqs          118
+ :arith-bound-prop          231
+ :arith-conflicts           14
+ :arith-eq-adapter          427
+ :arith-fixed-eqs           436
+ :arith-num-rows            1151
+ :arith-offset-eqs          370
+ :arith-pivots              413
+ :arith-row-summations      13431
+ :arith-tableau-max-columns 2336
+ :arith-tableau-max-rows    1151
+ :binary-propagations       82782
+ :conflicts                 52
+ :decisions                 466862
+ :del-clause                29123
+ :elim-unconstrained        56
+ :final-checks              138
+ :interface-eqs             118
+ :max-generation            5
+ :max-memory                80.48
+ :memory                    34.50
+ :mk-bool-var               42256
+ :mk-clause                 31961
+ :mk-clause-binary          12877
+ :num-allocs                8316357268.00
  :num-checks                1
- :propagations              91
- :quant-instantiations      11
- :rlimit-count              238805
- :time                      0.02
- :total-time                0.04)
+ :propagations              95662
+ :quant-instantiations      3821
+ :restarts                  19
+ :rlimit-count              18236927
+ :time                      3.34
+ :total-time                3.35)

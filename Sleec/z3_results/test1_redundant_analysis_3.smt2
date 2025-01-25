@@ -1,37 +1,38 @@
 unsupported
 sat
-(:added-eqs                 437
- :arith-assert-diseq        442
- :arith-assert-lower        274
- :arith-assert-upper        235
- :arith-assume-eqs          12
- :arith-bound-prop          92
- :arith-conflicts           7
- :arith-eq-adapter          65
- :arith-fixed-eqs           34
- :arith-num-rows            88
- :arith-offset-eqs          62
- :arith-pivots              81
- :arith-row-summations      1129
- :arith-tableau-max-columns 121
- :arith-tableau-max-rows    88
- :binary-propagations       857
- :conflicts                 12
- :decisions                 488
- :del-clause                49
- :eliminated-applications   5
- :final-checks              15
- :interface-eqs             12
- :max-generation            4
- :max-memory                21.31
- :memory                    19.48
- :mk-bool-var               599
- :mk-clause                 316
- :num-allocs                2292329
+(:added-eqs                 283
+ :arith-assert-diseq        90
+ :arith-assert-lower        186
+ :arith-assert-upper        125
+ :arith-assume-eqs          21
+ :arith-bound-prop          21
+ :arith-conflicts           1
+ :arith-eq-adapter          61
+ :arith-fixed-eqs           39
+ :arith-num-rows            78
+ :arith-offset-eqs          17
+ :arith-pivots              59
+ :arith-row-summations      454
+ :arith-tableau-max-columns 110
+ :arith-tableau-max-rows    78
+ :binary-propagations       277
+ :conflicts                 7
+ :decisions                 223
+ :del-clause                121
+ :elim-unconstrained        5
+ :final-checks              24
+ :interface-eqs             21
+ :max-generation            5
+ :max-memory                19.04
+ :memory                    17.47
+ :mk-bool-var               464
+ :mk-clause                 196
+ :mk-clause-binary          266
+ :num-allocs                1038180
  :num-checks                1
- :propagations              1030
- :quant-instantiations      187
+ :propagations              372
+ :quant-instantiations      160
  :restarts                  2
- :rlimit-count              120948
+ :rlimit-count              73997
  :time                      0.02
- :total-time                0.04)
+ :total-time                0.03)

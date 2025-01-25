@@ -1,29 +1,38 @@
 unsupported
 sat
-(:added-eqs                 5
- :arith-assert-diseq        2
- :arith-assert-lower        2
- :arith-assert-upper        5
- :arith-eq-adapter          2
- :arith-num-rows            4
- :arith-pivots              1
- :arith-tableau-max-columns 10
- :arith-tableau-max-rows    4
- :binary-propagations       11
- :conflicts                 1
- :decisions                 15
- :del-clause                2
- :eliminated-applications   5
- :final-checks              1
- :max-generation            2
- :max-memory                20.31
- :memory                    19.32
- :mk-bool-var               52
- :mk-clause                 3
- :num-allocs                931998
+(:added-eqs                 120
+ :arith-assert-diseq        8
+ :arith-assert-lower        84
+ :arith-assert-upper        48
+ :arith-assume-eqs          7
+ :arith-bound-prop          12
+ :arith-conflicts           1
+ :arith-eq-adapter          29
+ :arith-fixed-eqs           13
+ :arith-num-rows            54
+ :arith-offset-eqs          9
+ :arith-pivots              54
+ :arith-row-summations      349
+ :arith-tableau-max-columns 97
+ :arith-tableau-max-rows    54
+ :binary-propagations       320
+ :conflicts                 5
+ :decisions                 413
+ :del-clause                211
+ :elim-unconstrained        5
+ :final-checks              15
+ :interface-eqs             7
+ :max-generation            3
+ :max-memory                18.88
+ :memory                    17.45
+ :mk-bool-var               477
+ :mk-clause                 275
+ :mk-clause-binary          218
+ :num-allocs                1623532
  :num-checks                1
- :propagations              12
- :quant-instantiations      15
- :rlimit-count              12324
- :time                      0.01
- :total-time                0.02)
+ :propagations              472
+ :quant-instantiations      180
+ :restarts                  7
+ :rlimit-count              96526
+ :time                      0.03
+ :total-time                0.04)

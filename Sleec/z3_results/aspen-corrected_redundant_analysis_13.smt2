@@ -1,29 +1,37 @@
 unsupported
 sat
-(:added-eqs                 17
- :arith-assert-lower        2
- :arith-assert-upper        4
- :arith-assume-eqs          1
- :arith-eq-adapter          1
- :arith-num-rows            5
- :arith-pivots              1
- :arith-tableau-max-columns 16
- :arith-tableau-max-rows    5
- :binary-propagations       45
- :conflicts                 1
- :decisions                 130
- :eliminated-applications   26
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                21.29
- :memory                    19.81
- :mk-bool-var               218
- :mk-clause                 9
- :num-allocs                3176040
+(:added-eqs                 8603
+ :arith-assert-diseq        584
+ :arith-assert-lower        1933
+ :arith-assert-upper        1666
+ :arith-assume-eqs          62
+ :arith-bound-prop          107
+ :arith-eq-adapter          208
+ :arith-fixed-eqs           483
+ :arith-num-rows            1422
+ :arith-offset-eqs          312
+ :arith-pivots              291
+ :arith-row-summations      3322
+ :arith-tableau-max-columns 2913
+ :arith-tableau-max-rows    1422
+ :binary-propagations       92371
+ :conflicts                 25
+ :decisions                 336779
+ :del-clause                16847
+ :elim-unconstrained        26
+ :final-checks              98
+ :interface-eqs             62
+ :max-generation            6
+ :max-memory                107.26
+ :memory                    56.03
+ :mk-bool-var               33494
+ :mk-clause                 19680
+ :mk-clause-binary          10878
+ :num-allocs                136644179033.00
  :num-checks                1
- :propagations              48
- :quant-instantiations      15
- :rlimit-count              97683
- :time                      0.01
- :total-time                0.03)
+ :propagations              101728
+ :quant-instantiations      6308
+ :restarts                  35
+ :rlimit-count              68401029
+ :time                      13.32
+ :total-time                13.33)

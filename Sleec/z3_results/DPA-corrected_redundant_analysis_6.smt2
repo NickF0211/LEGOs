@@ -1,36 +1,38 @@
 unsupported
 sat
-(:added-eqs                 191
- :arith-assert-diseq        69
- :arith-assert-lower        69
- :arith-assert-upper        105
- :arith-assume-eqs          2
- :arith-bound-prop          11
+(:added-eqs                 5906
+ :arith-assert-diseq        1447
+ :arith-assert-lower        1695
+ :arith-assert-upper        1914
+ :arith-assume-eqs          68
+ :arith-bound-prop          350
  :arith-conflicts           6
- :arith-eq-adapter          38
- :arith-fixed-eqs           9
- :arith-num-rows            41
- :arith-offset-eqs          17
- :arith-pivots              34
- :arith-row-summations      99
- :arith-tableau-max-columns 70
- :arith-tableau-max-rows    41
- :binary-propagations       259
- :conflicts                 7
- :decisions                 417
- :del-clause                88
- :eliminated-applications   30
- :final-checks              3
- :interface-eqs             2
- :max-generation            3
- :max-memory                22.15
- :memory                    20.04
- :mk-bool-var               734
- :mk-clause                 944
- :num-allocs                4868019
+ :arith-eq-adapter          356
+ :arith-fixed-eqs           280
+ :arith-num-rows            614
+ :arith-offset-eqs          301
+ :arith-pivots              253
+ :arith-row-summations      3754
+ :arith-tableau-max-columns 999
+ :arith-tableau-max-rows    614
+ :binary-propagations       25136
+ :conflicts                 27
+ :decisions                 93770
+ :del-clause                13564
+ :elim-unconstrained        30
+ :final-checks              82
+ :interface-eqs             68
+ :max-generation            5
+ :max-memory                39.08
+ :memory                    21.52
+ :mk-bool-var               15011
+ :mk-clause                 15333
+ :mk-clause-binary          7091
+ :num-allocs                1052712173
  :num-checks                1
- :propagations              690
- :quant-instantiations      53
- :rlimit-count              164962
- :time                      0.02
- :total-time                0.04)
+ :propagations              32163
+ :quant-instantiations      2086
+ :restarts                  13
+ :rlimit-count              6083410
+ :time                      1.11
+ :total-time                1.13)

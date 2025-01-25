@@ -1,32 +1,38 @@
 unsupported
 sat
-(:added-eqs                 28
- :arith-assert-lower        11
- :arith-assert-upper        9
- :arith-assume-eqs          3
- :arith-bound-prop          1
- :arith-eq-adapter          3
- :arith-fixed-eqs           2
- :arith-num-rows            6
- :arith-pivots              3
- :arith-row-summations      4
- :arith-tableau-max-columns 14
- :arith-tableau-max-rows    6
- :binary-propagations       68
- :conflicts                 1
- :decisions                 222
- :eliminated-applications   30
- :final-checks              4
- :interface-eqs             3
- :max-generation            2
- :max-memory                21.37
+(:added-eqs                 1893
+ :arith-assert-diseq        230
+ :arith-assert-lower        641
+ :arith-assert-upper        623
+ :arith-assume-eqs          23
+ :arith-bound-prop          49
+ :arith-conflicts           4
+ :arith-eq-adapter          265
+ :arith-fixed-eqs           194
+ :arith-num-rows            414
+ :arith-offset-eqs          48
+ :arith-pivots              149
+ :arith-row-summations      733
+ :arith-tableau-max-columns 782
+ :arith-tableau-max-rows    414
+ :binary-propagations       8326
+ :conflicts                 19
+ :decisions                 29611
+ :del-clause                9783
+ :elim-unconstrained        30
+ :final-checks              33
+ :interface-eqs             23
+ :max-generation            4
+ :max-memory                30.56
  :memory                    19.82
- :mk-bool-var               246
- :mk-clause                 16
- :num-allocs                3358730
+ :mk-bool-var               11484
+ :mk-clause                 10649
+ :mk-clause-binary          3418
+ :num-allocs                137738649
  :num-checks                1
- :propagations              73
- :quant-instantiations      11
- :rlimit-count              117457
- :time                      0.01
- :total-time                0.03)
+ :propagations              11547
+ :quant-instantiations      1133
+ :restarts                  9
+ :rlimit-count              1767306
+ :time                      0.32
+ :total-time                0.33)

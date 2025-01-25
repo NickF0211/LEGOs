@@ -1,30 +1,37 @@
 unsupported
 sat
-(:added-eqs                 32
- :arith-assert-lower        4
- :arith-assert-upper        3
- :arith-assume-eqs          1
- :arith-eq-adapter          1
- :arith-num-rows            3
- :arith-pivots              1
- :arith-row-summations      1
- :arith-tableau-max-columns 7
- :arith-tableau-max-rows    3
- :binary-propagations       74
- :conflicts                 1
- :decisions                 289
- :eliminated-applications   47
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                21.92
- :memory                    20.09
- :mk-bool-var               342
- :mk-clause                 4
- :num-allocs                5038804
+(:added-eqs                 11731
+ :arith-assert-diseq        507
+ :arith-assert-lower        1513
+ :arith-assert-upper        1193
+ :arith-assume-eqs          51
+ :arith-bound-prop          107
+ :arith-eq-adapter          119
+ :arith-fixed-eqs           272
+ :arith-num-rows            1169
+ :arith-offset-eqs          281
+ :arith-pivots              286
+ :arith-row-summations      5890
+ :arith-tableau-max-columns 2303
+ :arith-tableau-max-rows    1169
+ :binary-propagations       59300
+ :conflicts                 61
+ :decisions                 303379
+ :del-clause                9185
+ :elim-unconstrained        47
+ :final-checks              68
+ :interface-eqs             51
+ :max-generation            5
+ :max-memory                69.19
+ :memory                    31.41
+ :mk-bool-var               33137
+ :mk-clause                 12560
+ :mk-clause-binary          8900
+ :num-allocs                4069889134
  :num-checks                1
- :propagations              76
- :quant-instantiations      11
- :rlimit-count              160695
- :time                      0.02
- :total-time                0.03)
+ :propagations              66589
+ :quant-instantiations      4451
+ :restarts                  16
+ :rlimit-count              12554091
+ :time                      2.04
+ :total-time                2.06)

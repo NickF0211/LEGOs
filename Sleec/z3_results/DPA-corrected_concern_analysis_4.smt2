@@ -1,33 +1,33 @@
 unsupported
 unsat
-(:added-eqs                 7670
- :arith-assert-diseq        1077
- :arith-assert-lower        444
- :arith-assert-upper        445
- :arith-bound-prop          201
- :arith-conflicts           5
- :arith-eq-adapter          1912
- :arith-fixed-eqs           180
- :arith-num-rows            864
- :arith-offset-eqs          134
- :arith-pivots              104
- :arith-row-summations      1240
- :arith-tableau-max-columns 1030
- :arith-tableau-max-rows    864
- :binary-propagations       2012
- :conflicts                 19
- :decisions                 1341
- :del-clause                193646
- :eliminated-applications   30
+(:added-eqs                 1052
+ :arith-assert-lower        181
+ :arith-assert-upper        158
+ :arith-bound-prop          21
+ :arith-conflicts           3
+ :arith-eq-adapter          120
+ :arith-fixed-eqs           130
+ :arith-num-rows            180
+ :arith-offset-eqs          17
+ :arith-pivots              29
+ :arith-row-summations      176
+ :arith-tableau-max-columns 307
+ :arith-tableau-max-rows    180
+ :binary-propagations       884
+ :conflicts                 9
+ :decisions                 570
+ :del-clause                5890
+ :elim-unconstrained        30
  :max-generation            4
- :max-memory                40.48
- :memory                    25.75
- :mk-bool-var               53574
- :mk-clause                 203731
- :num-allocs                52654528
+ :max-memory                21.38
+ :memory                    18.23
+ :mk-bool-var               2990
+ :mk-clause                 6881
+ :mk-clause-binary          997
+ :num-allocs                3688821
  :num-checks                1
- :propagations              15067
- :quant-instantiations      2449
- :rlimit-count              758080
- :time                      0.12
- :total-time                0.13)
+ :propagations              2328
+ :quant-instantiations      242
+ :rlimit-count              194559
+ :time                      0.02
+ :total-time                0.03)

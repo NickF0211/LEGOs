@@ -1,31 +1,39 @@
 unsupported
 sat
-(:added-eqs                 25
- :arith-assert-lower        6
- :arith-assert-upper        4
- :arith-assume-eqs          2
- :arith-eq-adapter          2
- :arith-fixed-eqs           1
- :arith-num-rows            5
- :arith-pivots              2
- :arith-row-summations      3
- :arith-tableau-max-columns 11
- :arith-tableau-max-rows    5
- :binary-propagations       40
- :conflicts                 1
- :decisions                 141
- :eliminated-applications   26
- :final-checks              3
- :interface-eqs             2
- :max-generation            2
- :max-memory                21.31
- :memory                    19.81
- :mk-bool-var               218
- :mk-clause                 10
- :num-allocs                3254136
+(:added-eqs                 41004
+ :arith-assert-diseq        25013
+ :arith-assert-lower        26459
+ :arith-assert-upper        28122
+ :arith-assume-eqs          955
+ :arith-bound-prop          2819
+ :arith-conflicts           104
+ :arith-eq-adapter          2378
+ :arith-fixed-eqs           3687
+ :arith-num-rows            1847
+ :arith-offset-eqs          3085
+ :arith-pivots              2295
+ :arith-row-summations      156011
+ :arith-tableau-max-columns 2685
+ :arith-tableau-max-rows    1847
+ :binary-propagations       202035
+ :conflicts                 189
+ :decisions                 839185
+ :del-clause                55837
+ :elim-unconstrained        26
+ :final-checks              990
+ :interface-eqs             955
+ :max-generation            6
+ :max-memory                106.29
+ :memory                    55.05
+ :minimized-lits            2
+ :mk-bool-var               51709
+ :mk-clause                 62288
+ :mk-clause-binary          16755
+ :num-allocs                77392495739.00
  :num-checks                1
- :propagations              45
- :quant-instantiations      11
- :rlimit-count              105575
- :time                      0.01
- :total-time                0.03)
+ :propagations              256398
+ :quant-instantiations      8978
+ :restarts                  34
+ :rlimit-count              68085976
+ :time                      12.04
+ :total-time                12.05)

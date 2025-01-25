@@ -1,30 +1,38 @@
 unsupported
 sat
-(:added-eqs                 25
- :arith-assert-lower        6
- :arith-assert-upper        5
- :arith-assume-eqs          1
- :arith-bound-prop          1
- :arith-eq-adapter          1
- :arith-num-rows            4
- :arith-pivots              1
- :arith-tableau-max-columns 10
- :arith-tableau-max-rows    4
- :binary-propagations       68
- :conflicts                 1
- :decisions                 249
- :eliminated-applications   31
- :final-checks              2
- :interface-eqs             1
- :max-generation            2
- :max-memory                21.42
- :memory                    19.87
- :mk-bool-var               247
- :mk-clause                 8
- :num-allocs                3439132
+(:added-eqs                 62083
+ :arith-assert-diseq        3016
+ :arith-assert-lower        5809
+ :arith-assert-upper        5579
+ :arith-assume-eqs          171
+ :arith-bound-prop          574
+ :arith-conflicts           19
+ :arith-eq-adapter          1407
+ :arith-fixed-eqs           1602
+ :arith-num-rows            1407
+ :arith-offset-eqs          465
+ :arith-pivots              1004
+ :arith-row-summations      15820
+ :arith-tableau-max-columns 2314
+ :arith-tableau-max-rows    1407
+ :binary-propagations       114926
+ :conflicts                 154
+ :decisions                 653813
+ :del-clause                215966
+ :elim-unconstrained        31
+ :final-checks              191
+ :interface-eqs             171
+ :max-generation            6
+ :max-memory                76.22
+ :memory                    34.92
+ :mk-bool-var               92535
+ :mk-clause                 220385
+ :mk-clause-binary          13363
+ :num-allocs                30046247000.00
  :num-checks                1
- :propagations              70
- :quant-instantiations      11
- :rlimit-count              119124
- :time                      0.01
- :total-time                0.03)
+ :propagations              193898
+ :quant-instantiations      14032
+ :restarts                  19
+ :rlimit-count              44759218
+ :time                      7.44
+ :total-time                7.45)

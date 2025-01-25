@@ -1,33 +1,33 @@
 unsupported
 unsat
-(:added-eqs                 5666
- :arith-assert-diseq        88
- :arith-assert-lower        263
- :arith-assert-upper        334
- :arith-bound-prop          12
- :arith-conflicts           3
- :arith-eq-adapter          2129
- :arith-fixed-eqs           211
- :arith-num-rows            648
- :arith-offset-eqs          54
- :arith-pivots              15
- :arith-row-summations      331
- :arith-tableau-max-columns 769
- :arith-tableau-max-rows    648
- :binary-propagations       632
- :conflicts                 22
- :decisions                 1093
- :del-clause                164718
- :eliminated-applications   43
- :max-generation            4
- :max-memory                33.23
- :memory                    23.69
- :mk-bool-var               45727
- :mk-clause                 165299
- :num-allocs                38243721
+(:added-eqs                 44
+ :arith-assert-diseq        1
+ :arith-assert-lower        7
+ :arith-assert-upper        13
+ :arith-bound-prop          1
+ :arith-conflicts           1
+ :arith-eq-adapter          6
+ :arith-fixed-eqs           3
+ :arith-num-rows            13
+ :arith-offset-eqs          2
+ :arith-pivots              1
+ :arith-tableau-max-columns 31
+ :arith-tableau-max-rows    13
+ :binary-propagations       115
+ :conflicts                 5
+ :decisions                 212
+ :del-clause                68
+ :elim-unconstrained        43
+ :max-generation            3
+ :max-memory                18.90
+ :memory                    17.80
+ :mk-bool-var               460
+ :mk-clause                 127
+ :mk-clause-binary          261
+ :num-allocs                1354097
  :num-checks                1
- :propagations              3738
- :quant-instantiations      3170
- :rlimit-count              508665
- :time                      0.09
- :total-time                0.11)
+ :propagations              136
+ :quant-instantiations      52
+ :rlimit-count              109924
+ :time                      0.01
+ :total-time                0.03)
