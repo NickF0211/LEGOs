@@ -1,0 +1,577 @@
+analysis_func: <function parse_and_check_conflict at 0x7f4a1a651bd0>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: UserDriving()
+at time 1: EnsureAlertness()
+at time 1: TrackMetrics()
+at time 1: TrackVisionField()
+at time 1: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.0208473205566406
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.28780579566955566
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: TrackMetrics()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: TrackMetrics()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=True, substanceUse=False, commonLanguage=False, userUnderstands=True, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5771346092224121
+****************************************************************************************************
+check rule_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.071516752243042
+****************************************************************************************************
+check rule_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3016223907470703
+****************************************************************************************************
+check rule_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: SensorsConnect()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: SensorsConnect()
+at time 1: Measure(hearRateVariability=0, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=True, informationImportant=True, health=False, hasLicense=False, substanceUse=True, commonLanguage=False, userUnderstands=True, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=True, blindSpot=False, obtainConsent=True, needsAccomodation=True, userImpaired=True, warningSignalOff=False, userGivesControl=True, decisionPoint=True)
+at time 2: InformUser()
+at time 2: RemindUser()
+at time 2: SensorsConnect()
+at time 2: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=False, health=True, hasLicense=True, substanceUse=True, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=True)
+at time 3: SensorsConnect()
+at time 3: Measure(hearRateVariability=2, eyeMovements=2, fullAttentionNeeded=True, properlyPlaced=True, informationImportant=True, health=True, hasLicense=True, substanceUse=False, commonLanguage=True, userUnderstands=True, sameCity=True, rulesFollowed=True, objectNearby=False, userNotice=True, blindSpot=True, obtainConsent=True, needsAccomodation=True, userImpaired=False, warningSignalOff=True, userGivesControl=True, decisionPoint=False)
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.6612069606781006
+****************************************************************************************************
+check rule_7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: SensorsConnect()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: SensorsConnect()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=True, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 1: SensorsConnect()
+at time 1: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=True, informationImportant=False, health=False, hasLicense=True, substanceUse=True, commonLanguage=True, userUnderstands=True, sameCity=False, rulesFollowed=True, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=True, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=True, decisionPoint=True)
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.6745269298553467
+****************************************************************************************************
+check rule_8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: UserDriving()
+at time 1: EnsureAlertness()
+at time 1: TrackMetrics()
+at time 1: TrackVisionField()
+at time 1: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.0895769596099854
+****************************************************************************************************
+check rule_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: FindInformation()
+at time 0: DetermineImportance()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: FindInformation()
+at time 0: DetermineImportance()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.18538284301757812
+****************************************************************************************************
+check rule_10
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: BaselineDiffers()
+at time 0: ConfirmWithUser()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: BaselineDiffers()
+at time 0: ConfirmWithUser()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.26087141036987305
+****************************************************************************************************
+check rule_11
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDriving()
+at time 0: UserWantsControl()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=True, hasLicense=True, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserWantsControl()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 1: UserDriving()
+at time 1: UserWantsControl()
+at time 1: EnsureAlertness()
+at time 1: TrackMetrics()
+at time 1: TrackVisionField()
+at time 1: Measure(hearRateVariability=2, eyeMovements=1, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=False, health=True, hasLicense=True, substanceUse=False, commonLanguage=True, userUnderstands=True, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=True, blindSpot=False, obtainConsent=True, needsAccomodation=True, userImpaired=False, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
+at time 2: UserWantsControl()
+at time 2: TrackVisionField()
+at time 2: Measure(hearRateVariability=1, eyeMovements=2, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=True, rulesFollowed=True, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=True, userImpaired=True, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 11
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.9202420711517334
+****************************************************************************************************
+check rule_12
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: ObtainConsentForUserDrive()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=True, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=True, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=True)
+at time 1: UserEnters()
+at time 1: ObtainConsentForUserDrive()
+at time 1: ShowConsentForm()
+at time 1: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=True, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=True, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=True, decisionPoint=False)
+at time 2: UserEnters()
+at time 2: ShowConsentForm()
+at time 2: Measure(hearRateVariability=2, eyeMovements=2, fullAttentionNeeded=True, properlyPlaced=True, informationImportant=True, health=True, hasLicense=True, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=True, obtainConsent=True, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
+vol: 10
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9197409152984619
+****************************************************************************************************
+check rule_13
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: UserEnters()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=2, fullAttentionNeeded=False, properlyPlaced=True, informationImportant=False, health=True, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=True, objectNearby=False, userNotice=False, blindSpot=True, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=True, userGivesControl=False, decisionPoint=True)
+at time 1: InformUser()
+at time 1: RemindUser()
+at time 1: UserEnters()
+at time 1: ShowConsentForm()
+at time 1: Measure(hearRateVariability=2, eyeMovements=1, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=True, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=True, blindSpot=True, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=False, userGivesControl=True, decisionPoint=False)
+at time 2: UserEnters()
+at time 2: ShowConsentForm()
+at time 2: Measure(hearRateVariability=1, eyeMovements=2, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=True, substanceUse=True, commonLanguage=False, userUnderstands=True, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=True, blindSpot=False, obtainConsent=True, needsAccomodation=False, userImpaired=True, warningSignalOff=False, userGivesControl=True, decisionPoint=True)
+vol: 11
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.2112791538238525
+****************************************************************************************************
+check rule_14
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 1: RemindUser()
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.19761109352111816
+****************************************************************************************************
+check rule_15
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 1: RemindUser()
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.19853758811950684
+****************************************************************************************************
+check rule_16
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=2, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=True, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=2, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 1: RemindUser()
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 2.3953115940093994
+****************************************************************************************************
+check rule_17
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: UserDriving()
+at time 1: EnsureAlertness()
+at time 1: TrackMetrics()
+at time 1: TrackVisionField()
+at time 1: Measure(hearRateVariability=1, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=True, blindSpot=False, obtainConsent=False, needsAccomodation=True, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.3521206378936768
+****************************************************************************************************
+check rule_18
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=True, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=True, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=True, obtainConsent=False, needsAccomodation=True, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.7265162467956543
+****************************************************************************************************
+check rule_19
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3805100917816162
+****************************************************************************************************
+check rule_20
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.10924625396728516
+****************************************************************************************************
+check rule_21
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingSystem()
+at time 0: EnsureAlertIndependence()
+at time 0: CreateConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingSystem()
+at time 0: EnsureAlertIndependence()
+at time 0: CreateConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2919883728027344
+****************************************************************************************************
+check rule_22
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: EnsureAccessibility()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=True, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserEnters()
+at time 0: EnsureAccessibility()
+at time 0: ShowConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=True, blindSpot=False, obtainConsent=True, needsAccomodation=True, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+at time 1: EnsureAccessibility()
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.8444037437438965
+****************************************************************************************************
+check rule_23
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingSystem()
+at time 0: EnsureAlertIndependence()
+at time 0: CreateConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PreparingSystem()
+at time 0: EnsureAlertIndependence()
+at time 0: CreateConsentForm()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.29573845863342285
+****************************************************************************************************
+check rule_24
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: InformUser()
+at time 1: RemindUser()
+at time 1: UserDriving()
+at time 1: EnsureAlertness()
+at time 1: TrackMetrics()
+at time 1: TrackVisionField()
+at time 1: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
+vol: 7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 2: InformUser()
+at time 2: RemindUser()
+at time 2: UserDriving()
+at time 2: EnsureAlertness()
+at time 2: TrackMetrics()
+at time 2: TrackVisionField()
+at time 2: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=True, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=True, userUnderstands=False, sameCity=True, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=True, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
+at time 4: RemindUser()
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 2.5714972019195557
+****************************************************************************************************
+check rule_25
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=True, informationImportant=True, health=True, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=True, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=False)
+vol: 7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: RemindUser()
+at time 0: UserDriving()
+at time 0: EnsureAlertness()
+at time 0: TrackMetrics()
+at time 0: TrackVisionField()
+at time 0: Measure(hearRateVariability=1, eyeMovements=1, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=True, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=True, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=True, warningSignalOff=True, userGivesControl=False, decisionPoint=True)
+at time 1: RemindUser()
+at time 2: RemindUser()
+vol: 9
+Not Conflicting
+sat_result: sat
+proof_generation_time: 2.570119857788086
+****************************************************************************************************
+check rule_26
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemDriving()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=True, decisionPoint=True)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: SystemDriving()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=True, decisionPoint=True)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.1101682186126709
+****************************************************************************************************
+check rule_27
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserCanTurnOffSystem()
+at time 0: UserCanTurnOffMonitoring()
+at time 0: SystemOn()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserCanTurnOffSystem()
+at time 0: UserCanTurnOffMonitoring()
+at time 0: SystemOn()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2985568046569824
+****************************************************************************************************
+check rule_28
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserCanTurnOffSystem()
+at time 0: UserCanTurnOffMonitoring()
+at time 0: SystemOn()
+at time 0: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserCanTurnOffSystem()
+at time 1: UserCanTurnOffSystem()
+at time 1: UserCanTurnOffMonitoring()
+at time 1: SystemOn()
+at time 1: Measure(hearRateVariability=0, eyeMovements=0, fullAttentionNeeded=False, properlyPlaced=False, informationImportant=False, health=False, hasLicense=False, substanceUse=False, commonLanguage=False, userUnderstands=False, sameCity=False, rulesFollowed=False, objectNearby=False, userNotice=False, blindSpot=False, obtainConsent=False, needsAccomodation=False, userImpaired=False, warningSignalOff=False, userGivesControl=False, decisionPoint=False)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.297532320022583
+****************************************************************************************************

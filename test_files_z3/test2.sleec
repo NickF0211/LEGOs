@@ -1,0 +1,17 @@
+def_start
+    event A
+    event B
+    event C
+
+    // measures
+    measure m1: numeric
+def_end
+
+rule_start
+    R1 when A then B within 10 seconds otherwise C within 5 seconds
+    R2 when C then A within 10 seconds otherwise B within 5 seconds
+    R3 when A then not B within 30 seconds
+rule_end
+
+
+

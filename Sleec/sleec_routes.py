@@ -5,7 +5,7 @@ from flask_cors import CORS
 import json
 import subprocess
 import shutil
-from sleecParser import check_input_red, check_input_conflict
+from sleecParser_for_CVC5 import check_input_red, check_input_conflict
 # import signal
 #
 # def handler(signum, frame):

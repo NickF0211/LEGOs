@@ -1,0 +1,74 @@
+analysis_func: <function parse_and_check_concern at 0x7f4285a89120>
+check concern_1
+solving under config: restart False, bcr False, ub False, min False
+domain size 11
+unsat
+concern case 0 solving time 0.4524717330932617
+concern not raised
+****************************************************************************************************
+check concern_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TrackVitals()
+at time 0: UserCanCallEmergency()
+at time 0: Measure(patientDiscomfort=p_moderate, riskLevel=r_low, batteryConsumption=low, numUsersKnown=True, numSampleKnown=True, canDeactivate=True, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+vol: 3
+concern case 1 solving time 1.6893010139465332
+Concern is raised
+****************************************************************************************************
+check concern_3
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 2 solving time 0.1631145477294922
+concern not raised
+****************************************************************************************************
+check concern_4
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 3 solving time 0.19847726821899414
+concern not raised
+****************************************************************************************************
+check concern_5
+solving under config: restart False, bcr False, ub False, min False
+domain size 16
+unsat
+concern case 4 solving time 1.925978183746338
+concern not raised
+****************************************************************************************************
+check concern_6
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 5 solving time 0.22752141952514648
+concern not raised
+****************************************************************************************************
+check concern_7
+solving under config: restart False, bcr False, ub False, min False
+domain size 7
+unsat
+concern case 6 solving time 0.1742079257965088
+concern not raised
+****************************************************************************************************
+check concern_8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DataCollected()
+at time 0: DeleteData()
+at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=False, caregiverResponds=False, dataNeededForTraining=True, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+at time 1: DeleteData()
+vol: 4
+concern case 7 solving time 0.42659664154052734
+Concern is raised
+****************************************************************************************************
+check concern_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUser()
+at time 0: UserWantsToRemoveSensors()
+at time 0: Measure(patientDiscomfort=p_low, riskLevel=r_low, batteryConsumption=low, numUsersKnown=False, numSampleKnown=False, canDeactivate=False, patientIsHome=False, signsImpaired=False, signsDetached=False, isWaterproof=False, hasFallAlertPendant=False, allowsBathroomTracking=False, canCommunicateRegularly=False, authorizedParties=False, emergencyDetected=False, messageOnTime=False, alternateSensorsDeployed=False, timeToFailureKnown=False, anomalyDetected=False, unusualActivity=False, sensorMalfunction=False, sensorMisplacement=False, userResponds=True, caregiverResponds=False, dataNeededForTraining=False, userWantsToStop=False, caregiverConsent=False, seeHealthHistory=False, seeDemographics=False, seeLocation=False, accurateHealthComparison=False)
+vol: 3
+concern case 8 solving time 0.5484156608581543
+Concern is raised
+****************************************************************************************************

@@ -1,0 +1,108 @@
+def_start
+event UserOpenApp
+event UserUseApp
+event RequestUserConsent
+	event RequestGuardianConsent
+	event CheckConsentCapacity
+event DisclosureRequest
+	event DiscloseInformation
+event CheckRecipient
+event ProcessData
+event FollowJurisdictionRules
+event ProvideInstructions
+	event ProvideDemonstration
+event ShowHelpIcon
+event NotifyUser
+event SendReport
+event RequestFileAccess
+event GiveAllTimeAccess
+event NoticeAnomaly
+event RequestReInput
+event UserRequestExplanation
+event ProvideExplanation
+event ProvidingCommunication
+event EnsureSocialNorms
+event NotifcationArrives
+event SendAppropriateNotification
+ 	event EnsureCulturalNorms
+	event NoticeRedFlag
+
+measure userConsent: boolean
+measure userHasConsentCapacity: boolean
+measure guardianConsent: boolean
+measure approvedDataRecipient: boolean
+measure appUseConsent: boolean
+measure dataProcessConsent: boolean //collect, transfer, store, share, disseminate
+measure isFirstTime: boolean
+measure demonstrationRequired: boolean
+measure approvedDoctor: boolean
+measure explanationAvailable: boolean
+measure critical: boolean
+measure culturalIndicatorX: boolean
+measure accessRevoked: boolean
+def_end
+rule_start
+// Legal consent rules:
+// When consent to use app and process data  (collect, transfer, store, share, disseminate)  is not given, app can not be used
+R1 when UserOpenApp and ((not {appUseConsent}) or (not {dataProcessConsent})) then not UserUseApp
+
+// When non-consent then request consent.
+R2 when UserOpenApp and (not {userConsent}) then RequestUserConsent
+
+// When non-consent then request consent.
+R3 when UserOpenApp and {userConsent} then CheckConsentCapacity
+
+// If person-consent does not have capacity (for example under 16,  then request consent from guardian.
+R4 when CheckConsentCapacity and (not {userHasConsentCapacity}) then RequestGuardianConsent
+
+// When disclosing information, check recipient is the approved user.
+R5 when DisclosureRequest then CheckRecipient
+
+// When a non-approved user (i.e. insurance company) request to access data, this will be denied.
+R6 when CheckRecipient and (not {approvedDataRecipient})  then not DiscloseInformation
+
+// Legal Cybersecurity and data protection rules:
+//When data is processed, comply with the data processing rules within the jurisdiction.
+R7 when ProcessData then FollowJurisdictionRules
+
+// Medical rules:
+// When user uses app for the first time, provide clear instructions (including demonstration if required) on how to use the app and the devices provided by the app.  (blood pressure measurer etc.)
+R8 when UserUseApp and {isFirstTime} then ProvideInstructions
+
+R8_1 when UserUseApp and ({isFirstTime} and {demonstrationRequired}) then ProvideDemonstration
+
+// On subsequent access, provide in an icon a help facility to provide/inform instructions.
+R9 when UserUseApp and (not {isFirstTime}) then ShowHelpIcon
+
+// When symptom-checker notices a deterioration or change in symptoms (red flags), notify the user that they have to consult a physician and send a report to the physician.
+R10 when NoticeRedFlag then NotifyUser
+
+R10_1 when NoticeRedFlag then SendReport
+
+// When approved-doctor requests access, grant access to patient file/record at all times unless revoked.
+R11 when RequestFileAccess and {approvedDoctor} then GiveAllTimeAccess unless {accessRevoked}
+
+// When symptom-checker indicates that it is irregular/an anomaly then request re-input (check accuracy)
+R12 when NoticeAnomaly then RequestReInput
+
+// Ethical rule
+// When user requests an explanation, then provide a reasonable explanation in plain language if available.
+R13 when UserRequestExplanation and {explanationAvailable} then ProvideExplanation
+
+// Social rule:
+// When messages or instructions are given, these should be clear, brief, polite, and personalised.
+R14 when ProvidingCommunication then EnsureSocialNorms
+
+// When a critical notification (i.e. message from clinician), send it to the user without delay.
+R15 when NotifcationArrives and {critical} then NotifyUser
+
+// When a non-critical notification (i.e. reminder to submit symptom form)  is sent, do so in accordance with the notification-preference selection indicated in settings
+R16 when NotifcationArrives and (not {critical}) then SendAppropriateNotification
+
+// Cultural rule:
+// When user-cultural-indicator is X, then address user according to the culture-type.
+R17 when ProvidingCommunication and {culturalIndicatorX} then EnsureCulturalNorms
+
+rule_end
+
+

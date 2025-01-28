@@ -1,0 +1,41 @@
+analysis_func: <function parse_and_check_conflict at 0x7f92ff889bd0>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+bounded UNSAT
+solving under config: restart False, bcr False, ub False, min False
+domain size 20
+unsat
+sat_result: unsat
+proof_generation_time: 0.1727917194366455
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: C()
+at time 0: Measure(m1=6)
+at time 10: B()
+at time 10: Measure(m1=0)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: C()
+at time 0: Measure(m1=24)
+at time 10: C()
+at time 10: Measure(m1=23)
+at time 15: B()
+at time 20: B()
+at time 20: Measure(m1=19)
+vol: 7
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.23457860946655273
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+bounded UNSAT
+solving under config: restart False, bcr False, ub False, min False
+domain size 25
+unsat
+sat_result: unsat
+proof_generation_time: 0.3163611888885498
+****************************************************************************************************
