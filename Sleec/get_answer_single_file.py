@@ -2,8 +2,8 @@
 from argparse import ArgumentParser
 import math
     
-#file = "/home/mudathir/Desktop/LEGOS/Sleec/cvc5_quantifiers_result.txt"
-file = "/home/mudathir/Desktop/LEGOS/Sleec/cvc5_quantifiers_result_mbqi.txt"
+#file = "Sleec/cvc5_quantifiers_result.txt"
+file = "Sleec/cvc5_quantifiers_result_mbqi.txt"
 
 (sat, unsat, unknown, error)  = (0,0,0, 0)    
 with open(file) as f:  
