@@ -729,6 +729,7 @@ def get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, mode
                              )) for E in Actions if E != Measure]
     measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
     time_inv = forall(Measure, lambda m, t = bound_time: m.time <= t)
+    action_time_inv = [forall(ACT, lambda act, t = bound_time:  act.time < t ) for ACT in Actions]
     output = ""
     relations_constraint = get_relational_constraints(relations)
     multi_output = []
@@ -750,7 +751,7 @@ def get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, mode
         res = check_property_refining(TRUE(), set(first_inv),
                                       [r.get_rule() for r in rules] + relations_constraint +
                                       [measure_inv, time_inv] +axioms
-                                       +first_inv,
+                                       +first_inv + action_time_inv,
                                       Actions, [], True,
                                       min_solution=False,
                                       final_min_solution=True, restart=False, boundary_case=False,
