@@ -272,7 +272,8 @@ import random
 def check_property_refining(property, rules, complete_rules, ACTION, state_action, minimized=True, vol_bound=500,
                             disable_minimization=False, min_solution=False, final_min_solution=False,
                             boundary_case=False, universal_blocking=False, restart=False, ignore_state_action=False,
-                            axioms=None, record_proof=False, ret_model=False, scalar_mask=None, unsat_mode=False, print_z3=""):
+                            axioms=None, record_proof=False, ret_model=False, scalar_mask=None, unsat_mode=False, print_z3="",
+                            assumptions =None):
     print("solving under config: restart {}, bcr {}, ub {}, min {}".format(restart, boundary_case, universal_blocking,
                                                                            min_solution))
 
@@ -307,6 +308,12 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
     s = Solver("z3", unsat_cores_mode=None, random_seed=43)
     if axioms:
         s.add_assertion(axioms)
+
+    if assumptions == None:
+        assumptions = set()
+    else:
+        assumptions = set(assumptions)
+
 
     prop = encode(property, include_new_act=True, proof_writer=proof_writer, unsat_mode=unsat_mode)
     s.add_assertion(prop)
@@ -360,6 +367,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
         # now update the constraints
         update_underapprox(s)
         over_constraints, over_vars = update_overapprox()
+        over_vars = over_vars.union(assumptions)
         for c in over_constraints:
             if c != TRUE():
                 s.add_assertion(c)
@@ -383,6 +391,7 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
             # Summation.collections = new_summation
 
             constraints, vars = get_temp_act_constraints()
+
             for c in constraints:
                 if c != TRUE():
                     s.add_assertion(c)
@@ -510,10 +519,36 @@ def check_property_refining(property, rules, complete_rules, ACTION, state_actio
 
 
         else:
+            # in case we get UNSAT, we hack the content of assumptions
+            #
             if record_proof:
                 proof_writer.derive_unsat(considered_constraint)
             print("domain size {}".format(str(len(get_all_actions(ACTION)))))
             print("unsat")
+            # if assumption is given, then modify the cotent in the set
+            if assumptions:
+                # in case assumption is given
+
+
+                unsat_core = s.z3.unsat_core()
+                invalid_assumption = [s.converter.back(t) for t in unsat_core]
+                invalid_assumption = [t for t in invalid_assumption if t in assumptions]
+
+                assumptions -= {f for f in set(invalid_assumption)}
+                prefix = TRUE()
+                for i in range(len(invalid_assumption) - 1):
+                    new_symbol1 = FreshSymbol()
+                    constraint1 = AND(invalid_assumption[i], prefix)
+                    s.add_assertion(Iff(new_symbol1, constraint1))
+                    new_symbol2 = FreshSymbol()
+                    prefix = new_symbol1
+                    constraint2 = OR(prefix, invalid_assumption[i + 1])
+                    s.add_assertion(Iff(new_symbol2, constraint2))
+                    assumptions |= {new_symbol2}
+                continue
+                # assumptions.clear()
+                # for t in invalid_assumption:
+                #     assumptions.add(t)
             return 0
     # print(serialize(result))
     print("reaching limit, bounded unsat")

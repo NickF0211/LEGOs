@@ -715,6 +715,76 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
     return concern_raised, output, adj_hl
 
 
+
+def get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, model_str="", to_print=True, multi_entry=False, bound_time =20):
+    Measure = Action_Mapping["Measure"]
+    first_inv = [Implication(exist(E, lambda _: TRUE()),
+                             AND(
+                                 exist(E, lambda e_first, E=E: forall(E, lambda e, e_f=e_first:
+                                 e.time >= e_f.time
+                                                                      ), should_include_action=class_non_empty(E)),
+                                 exist(E, lambda e_last, E=E: forall(E, lambda e, e_l=e_last:
+                                 e.time <= e_l.time
+                                                                     ), should_include_action=class_non_empty(E)),
+                             )) for E in Actions if E != Measure]
+    measure_inv = forall([Measure, Measure], lambda m1, m2: Implication(EQ(m1.time, m2.time), EQ(m1, m2)))
+    time_inv = forall(Measure, lambda m, t = bound_time: m.time <= t)
+    output = ""
+    relations_constraint = get_relational_constraints(relations)
+    multi_output = []
+    # set up assumption literal for premises
+    symbol_to_rule = {}
+    axioms = []
+    premises = [r.get_premise() for r in rules]
+    symbols = []
+    for i in range(len(rules)):
+        rule = rules[i]
+        symbol = Symbol("rule_{}".format(i))
+        symbols.append(symbol)
+        premise = rule.get_premise()
+        axioms.append(Implication(symbol, premise))
+        symbol_to_rule[symbol] = rule
+    current_assumptions = set(symbol_to_rule.keys())
+    while True:
+        assumption_copy = current_assumptions.copy()
+        res = check_property_refining(TRUE(), set(first_inv),
+                                      [r.get_rule() for r in rules] + relations_constraint +
+                                      [measure_inv, time_inv] +axioms
+                                       +first_inv,
+                                      Actions, [], True,
+                                      min_solution=False,
+                                      final_min_solution=True, restart=False, boundary_case=False,
+                                      universal_blocking=False, vol_bound=VOL_BOUND * 5,
+                                      assumptions=assumption_copy,
+                                      ret_model=True)
+        for premise in premises:
+            premise.clear()
+        clear_all(Actions)
+        reset_rules(rules)
+        clear_relational_constraints(relations)
+        measure_inv.clear()
+        [r.clear() for r in first_inv]
+        derivation_rule.reset()
+
+        if res == 0:
+            return 0
+        elif res == 2:
+            print("unknown")
+            return 2
+        else:
+            trace_string, sat_model = res
+            print("triggered_rules")
+            for i in range(len(symbols)):
+                r = symbols[i]
+                if sat_model.get_py_value(r):
+                    target = model.ruleBlock.rules[i]
+                    start, end = target._tx_position, target._tx_position_end
+                    content = model_str[start: end]
+                    print(f"{r}: {content}")
+
+            return trace_string
+
+
 def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False, to_print=True,
                    multi_entry=False, profiling=True, log_z3 = ""):
 
@@ -963,7 +1033,6 @@ def check_conflict(model, rules, relations, Action_Mapping, Actions, model_str="
         return multi_output
     else:
         return conflict_res, output, adj_hl
-
 
 def check_purposes(model, purposes, rules, relations, Action_Mapping, Actions, model_str="", check_proof=False,
                    to_print=True,
@@ -1647,22 +1716,38 @@ def parse_and_check_concern(filename, z3=False):
     res = check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, log_z3=log_z3)
     return res
 
+def parse_and_max_trace(filename, z3=False, tracetime= 20):
+    model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
+                                                                                       read_file=True)
+    model_str = read_model_file(filename)
+    res = get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, model_str= model_str, bound_time=tracetime)
+    if isinstance(res, str):
+        print("final max rule triggering tarce:")
+        print(res)
+    else:
+        print("failed")
 
+    return res
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--filename', help="SLEEC file to analyze", type=str)
     parser.add_argument('--analysis', help='What the analysis to run: redundancy/conflict/concern', type=str)
     parser.add_argument("--z3", help= "print raw z3 SMTLIB encoding", action='store_true' )
+    parser.add_argument("--tracetime", help = "the max time appeared in a solution trace")
     args = parser.parse_args()
     supported_mode = {"redundancy": parse_and_check_red, "conflict": parse_and_check_conflict,
-                      "concern": parse_and_check_concern}
+                      "concern": parse_and_check_concern, "max": parse_and_max_trace}
     analysis = args.analysis
     if analysis not in supported_mode:
         print("unsupported analysis mode, please choice one of the analysis mode redundancy/conflict/concern")
         print("running redundancy for default")
-    analysis_func = supported_mode.get(analysis, parse_and_check_red)
-    analysis_func(args.filename, args.z3)
+    if analysis != max:
+        analysis_func = supported_mode.get(analysis, parse_and_check_red)
+        analysis_func(args.filename, args.z3)
+    else:
+        parse_and_max_trace(args.filename, False, int(args.tracetime))
+
 #
 #
 # if __name__ == "__main__":
