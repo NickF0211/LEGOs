@@ -716,7 +716,7 @@ def check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, m
 
 
 
-def get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, model_str="", to_print=True, multi_entry=False, bound_time =20):
+def get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, target_rule_ids, model_str="", to_print=True, multi_entry=False, bound_time =20):
     Measure = Action_Mapping["Measure"]
     first_inv = [Implication(exist(E, lambda _: TRUE()),
                              AND(
@@ -739,12 +739,14 @@ def get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, mode
     premises = [r.get_premise() for r in rules]
     symbols = []
     for i in range(len(rules)):
-        rule = rules[i]
-        symbol = Symbol("rule_{}".format(i))
-        symbols.append(symbol)
-        premise = rule.get_premise()
-        axioms.append(Implication(symbol, premise))
-        symbol_to_rule[symbol] = rule
+        model_rule_ast_id = model.ruleBlock.rules[i].name
+        if model_rule_ast_id in target_rule_ids:
+            rule = rules[i]
+            symbol = Symbol("rule_{}".format(i))
+            symbols.append(symbol)
+            premise = rule.get_premise()
+            axioms.append(Implication(symbol, premise))
+            symbol_to_rule[symbol] = rule
     current_assumptions = set(symbol_to_rule.keys())
     while True:
         assumption_copy = current_assumptions.copy()
@@ -1717,11 +1719,11 @@ def parse_and_check_concern(filename, z3=False):
     res = check_concerns(model, rules, concerns, relations, Action_Mapping, Actions, log_z3=log_z3)
     return res
 
-def parse_and_max_trace(filename, z3=False, tracetime= 20):
+def parse_and_max_trace(filename, target_rule_ids, z3=False, tracetime= 20):
     model, rules, concerns, purposes, relations, Action_Mapping, Actions = parse_sleec(filename,
                                                                                        read_file=True)
     model_str = read_model_file(filename)
-    res = get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, model_str= model_str, bound_time=tracetime)
+    res = get_max_trigger_trace(model, rules, relations, Action_Mapping, Actions, target_rule_ids, model_str= model_str, bound_time=tracetime)
     if isinstance(res, str):
         print("final max rule triggering tarce:")
         print(res)
@@ -1736,6 +1738,7 @@ if __name__ == "__main__":
     parser.add_argument('--analysis', help='What the analysis to run: redundancy/conflict/concern', type=str)
     parser.add_argument("--z3", help= "print raw z3 SMTLIB encoding", action='store_true' )
     parser.add_argument("--tracetime", help = "the max time appeared in a solution trace")
+    parser.add_argument('--IDs', nargs='*', help='a list of rule IDs to be triggered for max analysis', required=False)
     args = parser.parse_args()
     supported_mode = {"redundancy": parse_and_check_red, "conflict": parse_and_check_conflict,
                       "concern": parse_and_check_concern, "max": parse_and_max_trace}
@@ -1743,11 +1746,13 @@ if __name__ == "__main__":
     if analysis not in supported_mode:
         print("unsupported analysis mode, please choice one of the analysis mode redundancy/conflict/concern")
         print("running redundancy for default")
-    if analysis != max:
+    if analysis != "max":
         analysis_func = supported_mode.get(analysis, parse_and_check_red)
         analysis_func(args.filename, args.z3)
     else:
-        parse_and_max_trace(args.filename, False, int(args.tracetime))
+        if not args.IDs:
+            args.IDs = []
+        parse_and_max_trace(args.filename, set(args.IDs), False, int(args.tracetime), )
 
 #
 #
