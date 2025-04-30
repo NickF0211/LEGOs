@@ -1,0 +1,542 @@
+analysis_func: <function parse_and_check_conflict at 0x7f6b434b5bd0>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CurtainOpenRqt()
+at time 0: CurtainsOpened()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=2, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=9, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=12, numHoursDeployed=13, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CurtainOpenRqt()
+at time 0: CurtainsOpened()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=2, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=20, numTotalInteractions=19, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=16, numHoursDeployed=15, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.40752339363098145
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=True, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=3, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=3, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2923848628997803
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EmotionRecognitionDetected()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=2, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=3, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: EmotionRecognitionDetected()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=2, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=3, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2464456558227539
+****************************************************************************************************
+check rule_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=True, genderTypeB=True, userAdvices=True, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=True, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=3, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=True, genderTypeB=True, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=3, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.30410075187683105
+****************************************************************************************************
+check rule_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=8, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=True, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=True, informationDisclosureNotPermitted=False, userCompetenceIndicator=13, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=True, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=True, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=16, numHoursDeployed=15, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.0308799743652344
+****************************************************************************************************
+check rule_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUserandandReferToHumanCarer()
+at time 0: UserRequestInfo()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=10, numTotalInteractions=8, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=7, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InformUserandandReferToHumanCarer()
+at time 0: UserRequestInfo()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=11, numTotalInteractions=16, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=10, numHoursDeployed=17, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.4653186798095703
+****************************************************************************************************
+check rule_7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=True, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=3, numTotalInteractions=6, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=True, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=4, numTotalInteractions=6, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=True, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=3, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.34266114234924316
+****************************************************************************************************
+check rule_8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdmininisteringMedication()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=2, numTotalInteractions=3, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdmininisteringMedication()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=2, numTotalInteractions=3, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.22609233856201172
+****************************************************************************************************
+check rule_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CollectionStarted()
+at time 0: StoreMinInfo()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=9, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=7, numHoursDeployed=10, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: CollectionStarted()
+at time 0: StoreMinInfo()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=10, numTotalInteractions=16, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=14, numHoursDeployed=13, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.45612192153930664
+****************************************************************************************************
+check rule_10
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=4, numTotalInteractions=3, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=2, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=True, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=3, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=True, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=6, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2746241092681885
+****************************************************************************************************
+check rule_11
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserSaysStop()
+at time 0: AskToFinishFirst()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=10, numTotalInteractions=7, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=1, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=8, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserSaysStop()
+at time 0: AskToFinishFirst()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=15, numTotalInteractions=13, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=1, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=14, numHoursDeployed=8, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5016162395477295
+****************************************************************************************************
+check rule_12
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserInStress()
+at time 0: ShowEmpathy()
+at time 0: OfferHelp()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=4, numTotalInteractions=9, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=10, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserInStress()
+at time 0: ShowEmpathy()
+at time 0: OfferHelp()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=8, numTotalInteractions=14, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=10, numHoursDeployed=12, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5914857387542725
+****************************************************************************************************
+check rule_13
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserInStress()
+at time 0: ShowEmpathy()
+at time 0: OfferHelp()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=8, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=10, numHoursDeployed=11, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserInStress()
+at time 0: ShowEmpathy()
+at time 0: OfferHelp()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=True, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=9, numTotalInteractions=8, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=True, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=12, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5639688968658447
+****************************************************************************************************
+check rule_14
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=3, numTotalInteractions=2, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=2, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=True, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=3, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.27211451530456543
+****************************************************************************************************
+check rule_15
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserExpressDiscomfort()
+at time 0: RobotStop()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=8, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=10, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserExpressDiscomfort()
+at time 0: RobotStop()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=11, numTotalInteractions=14, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=9, numHoursDeployed=7, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.38585662841796875
+****************************************************************************************************
+check rule_16
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PersonAsksforData()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=2, numTotalInteractions=3, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=True, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=True, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=5, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: PersonAsksforData()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=2, numTotalInteractions=3, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=5, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.22419238090515137
+****************************************************************************************************
+check rule_17
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserSelfMedicates()
+at time 0: LogMedication()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=4, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=10, numHoursDeployed=9, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserSelfMedicates()
+at time 0: InformCarer()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=11, numTotalInteractions=12, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=True, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=15, numHoursDeployed=16, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+at time 1: InformCarer()
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.6068320274353027
+****************************************************************************************************
+check rule_18
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=True, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=9, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=True, competentToGrantConsent=False, dressPreferenceTypeA=True, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=True, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=8, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=True, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=True, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=13, numHoursDeployed=10, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9399688243865967
+****************************************************************************************************
+check rule_19
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: KeepLogOfFrequentActivities()
+at time 0: SuggestPerformingActions()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=True, notVisible=True, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=True, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=True, userConfused=True, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=4, numTotalInteractions=8, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=True, userRequiresAdaptiveClothing=True, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=10, numHoursDeployed=7, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: KeepLogOfFrequentActivities()
+at time 0: SuggestPerformingActions()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=0, numTotalInteractions=0, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=0, numHoursDeployed=0, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+at time 1: KeepLogOfFrequentActivities()
+at time 1: SuggestPerformingActions()
+at time 1: Measure(userUnderDressed=True, medicalEmergency=True, userDistressed=0, roomDark=True, notVisible=True, userAssent=True, consentGrantedwithinXmonths=True, competentIndicatorRequired=True, competentToGrantConsent=True, dressPreferenceTypeA=True, genderTypeB=True, userAdvices=False, clothingItemNotFound=True, userConfused=True, buildingFloor=0, theUserHasBeenInformed=True, informationAvailable=True, informationDisclosureNotPermitted=True, userCompetenceIndicator=13, numTotalInteractions=14, userWantsHumanSubsequently=True, userWantsNoHuman=True, withholdingActivityPhysicalHarm=0, consentGranted=True, consentIndicatorRequired=True, consentIndicatorisWithdrawn=True, consentIndicatorisRevoked=True, userRequiresAdaptiveClothing=True, contextuallyObvious=True, sensitiveInformationX=True, riskLevel=0, unauthorizedPersonInRoom=True, medicationRisk=True, minimumFrequency=False, medicationAdverseEffects=True, irrelevant=True, userAdamant=True, clothingChoiceInappropriate=True, numDaysDeployed=17, numHoursDeployed=18, anthropomorphicNecessary=True, anthropomorphicAppearance=True)
+vol: 6
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.7811245918273926
+****************************************************************************************************
+check rule_20
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InteractingWithNonPatients()
+at time 0: DetermineSensitivityLevel()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=12, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=9, numHoursDeployed=8, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InteractingWithNonPatients()
+at time 0: DetermineSensitivityLevel()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=11, numTotalInteractions=13, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=7, numHoursDeployed=9, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.37288594245910645
+****************************************************************************************************
+check rule_21
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DetectUrgentHealthIssue()
+at time 0: InformEmergencyContactAndHealthOrgs()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=8, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=10, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DetectUrgentHealthIssue()
+at time 0: InformEmergencyContactAndHealthOrgs()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=15, numTotalInteractions=14, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=13, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.38979005813598633
+****************************************************************************************************
+check rule_22
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ObtainEmergencyContact()
+at time 0: FirstMeetingUser()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=10, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=9, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ObtainEmergencyContact()
+at time 0: FirstMeetingUser()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=12, numTotalInteractions=13, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=16, numHoursDeployed=17, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3769869804382324
+****************************************************************************************************
+check rule_23
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDiscussingPrivateInfo()
+at time 0: ChangeSubject()
+at time 0: InformUserPrivateInformation()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=5, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDiscussingPrivateInfo()
+at time 0: ChangeSubject()
+at time 0: InformUserPrivateInformation()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=11, numTotalInteractions=16, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=17, numHoursDeployed=12, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.7318167686462402
+****************************************************************************************************
+check rule_24
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserDiscussingPrivateInfo()
+at time 0: DiscardInformation()
+at time 0: ChangeSubject()
+at time 0: InformUserPrivateInformation()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=6, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=True, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=9, numHoursDeployed=5, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 1: UserDiscussingPrivateInfo()
+at time 1: DiscardInformation()
+at time 1: ChangeSubject()
+at time 1: InformUserPrivateInformation()
+at time 1: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=True, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=39, numTotalInteractions=45, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=True, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=True, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=True, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=41, numHoursDeployed=40, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 5
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9888815879821777
+****************************************************************************************************
+check rule_25
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeSubject()
+at time 0: InformUserPrivateInformation()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=10, numTotalInteractions=12, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=6, numHoursDeployed=9, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ChangeSubject()
+at time 0: InformUserPrivateInformation()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=15, numTotalInteractions=12, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=9, numHoursDeployed=14, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.7149462699890137
+****************************************************************************************************
+check rule_26
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DesigningAgent()
+at time 0: InformUserOfLimitations()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=9, numTotalInteractions=11, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=12, numHoursDeployed=5, anthropomorphicNecessary=False, anthropomorphicAppearance=True)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DesigningAgent()
+at time 0: InformUserOfLimitations()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=2, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=0, numTotalInteractions=0, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=1, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=0, numHoursDeployed=0, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+at time 1: DesigningAgent()
+at time 1: InformUserOfLimitations()
+at time 1: Measure(userUnderDressed=True, medicalEmergency=True, userDistressed=1, roomDark=True, notVisible=True, userAssent=True, consentGrantedwithinXmonths=False, competentIndicatorRequired=True, competentToGrantConsent=False, dressPreferenceTypeA=True, genderTypeB=True, userAdvices=True, clothingItemNotFound=True, userConfused=False, buildingFloor=2, theUserHasBeenInformed=True, informationAvailable=True, informationDisclosureNotPermitted=True, userCompetenceIndicator=18, numTotalInteractions=14, userWantsHumanSubsequently=True, userWantsNoHuman=True, withholdingActivityPhysicalHarm=2, consentGranted=False, consentIndicatorRequired=True, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=True, contextuallyObvious=True, sensitiveInformationX=False, riskLevel=2, unauthorizedPersonInRoom=True, medicationRisk=True, minimumFrequency=True, medicationAdverseEffects=True, irrelevant=True, userAdamant=False, clothingChoiceInappropriate=True, numDaysDeployed=17, numHoursDeployed=12, anthropomorphicNecessary=False, anthropomorphicAppearance=True)
+at time 2: DesigningAgent()
+at time 2: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=1, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=0, numTotalInteractions=0, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=1, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=0, numHoursDeployed=0, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5446083545684814
+****************************************************************************************************
+check rule_27
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployingAgent()
+at time 0: ReviewInteraction()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=13, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=4, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DeployingAgent()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=1, roomDark=False, notVisible=True, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=0, numTotalInteractions=0, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=1, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=1, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=3, numHoursDeployed=4, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+at time 1: DeployingAgent()
+at time 1: ReviewInteraction()
+at time 1: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=1, roomDark=False, notVisible=True, userAssent=True, consentGrantedwithinXmonths=True, competentIndicatorRequired=False, competentToGrantConsent=True, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=True, userConfused=False, buildingFloor=1, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=True, userCompetenceIndicator=22, numTotalInteractions=21, userWantsHumanSubsequently=True, userWantsNoHuman=True, withholdingActivityPhysicalHarm=1, consentGranted=True, consentIndicatorRequired=False, consentIndicatorisWithdrawn=True, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=True, sensitiveInformationX=False, riskLevel=1, unauthorizedPersonInRoom=True, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=True, irrelevant=True, userAdamant=False, clothingChoiceInappropriate=True, numDaysDeployed=4, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+at time 2: DeployingAgent()
+at time 2: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=2, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=0, numTotalInteractions=0, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=0, numHoursDeployed=5, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+at time 3: ReviewInteraction()
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.5573379993438721
+****************************************************************************************************
+check rule_28
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=12, numTotalInteractions=9, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=6, numHoursDeployed=10, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=17, numTotalInteractions=15, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=True, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=18, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.2862141132354736
+****************************************************************************************************
+check rule_29
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=3, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=True, clothingChoiceInappropriate=True, numDaysDeployed=6, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: DressingStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=True, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=6, numTotalInteractions=4, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=True, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=True, clothingChoiceInappropriate=True, numDaysDeployed=3, numHoursDeployed=2, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 2
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.28737783432006836
+****************************************************************************************************
+check rule_30
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserHasDifferentCulture()
+at time 0: EnsureDesiredLanguageAvailable()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=10, numTotalInteractions=9, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=6, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: UserHasDifferentCulture()
+at time 0: EnsureDesiredLanguageAvailable()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=9, numTotalInteractions=7, userWantsHumanSubsequently=False, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=False, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=12, numHoursDeployed=8, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.37869906425476074
+****************************************************************************************************
+check rule_31
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=7, numTotalInteractions=0, userWantsHumanSubsequently=True, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=6, numHoursDeployed=4, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RecordFashionBasedOnOccasion()
+at time 0: KeepLogOfFrequentActivities()
+at time 0: InteractionStarted()
+at time 0: Measure(userUnderDressed=False, medicalEmergency=False, userDistressed=0, roomDark=False, notVisible=False, userAssent=False, consentGrantedwithinXmonths=False, competentIndicatorRequired=False, competentToGrantConsent=False, dressPreferenceTypeA=False, genderTypeB=False, userAdvices=False, clothingItemNotFound=False, userConfused=False, buildingFloor=0, theUserHasBeenInformed=False, informationAvailable=False, informationDisclosureNotPermitted=False, userCompetenceIndicator=13, numTotalInteractions=0, userWantsHumanSubsequently=True, userWantsNoHuman=False, withholdingActivityPhysicalHarm=0, consentGranted=False, consentIndicatorRequired=False, consentIndicatorisWithdrawn=False, consentIndicatorisRevoked=False, userRequiresAdaptiveClothing=False, contextuallyObvious=False, sensitiveInformationX=False, riskLevel=0, unauthorizedPersonInRoom=False, medicationRisk=False, minimumFrequency=True, medicationAdverseEffects=False, irrelevant=False, userAdamant=False, clothingChoiceInappropriate=False, numDaysDeployed=11, numHoursDeployed=17, anthropomorphicNecessary=False, anthropomorphicAppearance=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.5592951774597168
+****************************************************************************************************

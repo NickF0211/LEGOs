@@ -1,0 +1,552 @@
+analysis_func: <function parse_and_check_conflict at 0x7f08deb9dbd0>
+check rule_1
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotMoving()
+at time 0: AdjustRoute()
+at time 0: AccountHumanRandomness()
+at time 0: TrackHumanLocation()
+at time 0: MoveAtSafeSpeed()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InquireSafety()
+at time 1: InquireSafety()
+at time 2: RobotMoving()
+at time 2: InquireSafety()
+at time 2: AccountHumanRandomness()
+at time 2: TrackHumanLocation()
+at time 2: MoveAtSafeSpeed()
+at time 2: Measure(humanInRoute=False, humanInRange=False, bumpHuman=True, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.6498987674713135
+****************************************************************************************************
+check rule_2
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotMoving()
+at time 0: AdjustRoute()
+at time 0: AccountHumanRandomness()
+at time 0: TrackHumanLocation()
+at time 0: MoveAtSafeSpeed()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AccountHumanRandomness()
+at time 1: RobotMoving()
+at time 1: AvoidBumping()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: MoveAtSafeSpeed()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 2: MoveAtSafeSpeed()
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.6629464626312256
+****************************************************************************************************
+check rule_3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotMoving()
+at time 0: AvoidBumping()
+at time 0: AccountHumanRandomness()
+at time 0: TrackHumanLocation()
+at time 0: MoveAtSafeSpeed()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: InquireSafety()
+at time 0: TrackHumanLocation()
+at time 0: MoveAtSafeSpeed()
+at time 1: RobotMoving()
+at time 1: InquireSafety()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: MoveAtSafeSpeed()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=True, humanTooClose=False, routeAvailable=False, humanReEnables=True, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 2: InquireSafety()
+vol: 10
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.6845138072967529
+****************************************************************************************************
+check rule_4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotWorking()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotWorking()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=1, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.3938877582550049
+****************************************************************************************************
+check rule_5
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotWorking()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 4
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotWorking()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 4
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.40288853645324707
+****************************************************************************************************
+check rule_6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotStopAction()
+at time 0: HumanSaysStop()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotStopAction()
+at time 0: HumanSaysStop()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.2047882080078125
+****************************************************************************************************
+check rule_7
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 3
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 3
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.19095683097839355
+****************************************************************************************************
+check rule_8
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotMoving()
+at time 0: RobotStopAction()
+at time 0: AdjustRoute()
+at time 0: AccountHumanRandomness()
+at time 0: TrackHumanLocation()
+at time 0: MoveAtSafeSpeed()
+at time 0: Measure(humanInRoute=False, humanInRange=True, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+vol: 7
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotMoving()
+at time 0: AvoidBumping()
+at time 0: AccountHumanRandomness()
+at time 0: TrackHumanLocation()
+at time 0: IncreaseSpeed()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=True, humansPresent=True, obstaclePresent=False)
+at time 1: RobotMoving()
+at time 1: RobotStopAction()
+at time 1: AvoidBumping()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: IncreaseSpeed()
+at time 1: Measure(humanInRoute=False, humanInRange=True, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=True, humansPresent=True, obstaclePresent=False)
+at time 2: RobotMoving()
+at time 2: AvoidBumping()
+at time 2: AccountHumanRandomness()
+at time 2: TrackHumanLocation()
+at time 2: IncreaseSpeed()
+at time 2: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=True, humansPresent=True, obstaclePresent=False)
+vol: 19
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9722573757171631
+****************************************************************************************************
+check rule_9
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotMoving()
+at time 0: AdjustRoute()
+at time 0: AccountHumanRandomness()
+at time 0: TrackHumanLocation()
+at time 0: MoveAtSafeSpeed()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: TrackHumanLocation()
+at time 1: RobotMoving()
+at time 1: AvoidBumping()
+at time 1: AccountHumanRandomness()
+at time 1: TrackHumanLocation()
+at time 1: MoveAtSafeSpeed()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 2: MoveAtSafeSpeed()
+vol: 8
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.7309894561767578
+****************************************************************************************************
+check rule_10
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: ConsiderAppearance()
+at time 1: InformHuman()
+at time 1: AskPermission()
+at time 1: PreparingRobot()
+at time 1: AssignLiability()
+at time 1: ConsiderAppearance()
+at time 1: MinimizeCobotCollaboration()
+at time 1: PrioritizeHumans()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=True, humanTooClose=False, routeAvailable=False, humanReEnables=True, risk=0, efficiency=0, isHumanTask=True, humanConsents=True, accident=True, humansPresent=False, obstaclePresent=False)
+vol: 9
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9414157867431641
+****************************************************************************************************
+check rule_11
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AssignLiability()
+at time 1: InformHuman()
+at time 1: AskPermission()
+at time 1: PreparingRobot()
+at time 1: AssignLiability()
+at time 1: ConsiderAppearance()
+at time 1: MinimizeCobotCollaboration()
+at time 1: PrioritizeHumans()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=True, risk=0, efficiency=0, isHumanTask=False, humanConsents=True, accident=True, humansPresent=True, obstaclePresent=True)
+vol: 9
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9440109729766846
+****************************************************************************************************
+check rule_12
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: AssignLiability()
+at time 1: AdjustRoute()
+at time 1: InformHuman()
+at time 1: PreparingRobot()
+at time 1: AssignLiability()
+at time 1: ConsiderAppearance()
+at time 1: MinimizeCobotCollaboration()
+at time 1: PrioritizeHumans()
+at time 1: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 2: MinimizeCobotCollaboration()
+at time 3: MinimizeCobotCollaboration()
+vol: 12
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.2770652770996094
+****************************************************************************************************
+check rule_13
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=True, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=2, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=True, obstaclePresent=False)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: PrioritizeHumans()
+at time 1: AdjustRoute()
+at time 1: InformHuman()
+at time 1: PreparingRobot()
+at time 1: AssignLiability()
+at time 1: ConsiderAppearance()
+at time 1: MinimizeCobotCollaboration()
+at time 1: PrioritizeHumans()
+at time 1: Measure(humanInRoute=True, humanInRange=True, bumpHuman=True, humanTooClose=False, routeAvailable=True, humanReEnables=True, risk=0, efficiency=0, isHumanTask=False, humanConsents=True, accident=True, humansPresent=True, obstaclePresent=True)
+at time 2: AdjustRoute()
+vol: 11
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9869892597198486
+****************************************************************************************************
+check rule_14
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AssignLiability()
+at time 1: AdjustRoute()
+at time 1: InformHuman()
+at time 1: PreparingRobot()
+at time 1: AssignLiability()
+at time 1: ConsiderAppearance()
+at time 1: MinimizeCobotCollaboration()
+at time 1: PrioritizeHumans()
+at time 1: Measure(humanInRoute=True, humanInRange=True, bumpHuman=True, humanTooClose=True, routeAvailable=True, humanReEnables=True, risk=0, efficiency=0, isHumanTask=True, humanConsents=True, accident=True, humansPresent=False, obstaclePresent=True)
+at time 2: ConsiderAppearance()
+vol: 10
+Not Conflicting
+sat_result: sat
+proof_generation_time: 0.9807369709014893
+****************************************************************************************************
+check rule_15
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: MinimizeCobotCollaboration()
+at time 1: InformHuman()
+at time 1: AskPermission()
+at time 1: PreparingRobot()
+at time 1: AssignLiability()
+at time 1: ConsiderAppearance()
+at time 1: MinimizeCobotCollaboration()
+at time 1: PrioritizeHumans()
+at time 1: Measure(humanInRoute=True, humanInRange=True, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=True, risk=0, efficiency=0, isHumanTask=True, humanConsents=True, accident=True, humansPresent=True, obstaclePresent=True)
+at time 2: PrioritizeHumans()
+vol: 10
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.0326502323150635
+****************************************************************************************************
+check rule_16
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: RobotStopAction()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: ReportIncident()
+at time 0: Measure(humanInRoute=True, humanInRange=True, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=True, humanConsents=False, accident=True, humansPresent=False, obstaclePresent=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: InformHuman()
+at time 0: AskPermission()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=True, risk=0, efficiency=0, isHumanTask=True, humanConsents=False, accident=False, humansPresent=True, obstaclePresent=False)
+at time 1: RobotWorking()
+at time 1: RobotStopAction()
+at time 1: InformHuman()
+at time 1: AskPermission()
+at time 1: ReportIncident()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=True, risk=1, efficiency=1, isHumanTask=True, humanConsents=False, accident=True, humansPresent=True, obstaclePresent=False)
+at time 2: RobotWorking()
+at time 2: RobotStopAction()
+at time 2: InformHuman()
+at time 2: AskPermission()
+at time 2: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=False, humanReEnables=True, risk=0, efficiency=0, isHumanTask=True, humanConsents=False, accident=False, humansPresent=True, obstaclePresent=False)
+vol: 15
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.475620985031128
+****************************************************************************************************
+check rule_17
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: RobotStopAction()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: ReportIncident()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=True, humansPresent=False, obstaclePresent=False)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=True, humanReEnables=True, risk=1, efficiency=2, isHumanTask=False, humanConsents=False, accident=False, humansPresent=True, obstaclePresent=False)
+at time 1: RobotWorking()
+at time 1: RobotStopAction()
+at time 1: AdjustRoute()
+at time 1: InformHuman()
+at time 1: ReportIncident()
+at time 1: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=True, humanReEnables=False, risk=2, efficiency=0, isHumanTask=False, humanConsents=False, accident=True, humansPresent=True, obstaclePresent=True)
+at time 2: RobotWorking()
+at time 2: RobotStopAction()
+at time 2: AdjustRoute()
+at time 2: InformHuman()
+at time 2: ReportIncident()
+at time 2: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=True, humanReEnables=False, risk=0, efficiency=1, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+at time 3: RobotStopAction()
+vol: 17
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.7013769149780273
+****************************************************************************************************
+check rule_18
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=True, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=1, efficiency=1, isHumanTask=False, humanConsents=False, accident=True, humansPresent=True, obstaclePresent=False)
+vol: 8
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: PreparingRobot()
+at time 0: AssignLiability()
+at time 0: ConsiderAppearance()
+at time 0: MinimizeCobotCollaboration()
+at time 0: PrioritizeHumans()
+at time 0: Measure(humanInRoute=True, humanInRange=True, bumpHuman=True, humanTooClose=True, routeAvailable=True, humanReEnables=True, risk=0, efficiency=0, isHumanTask=True, humanConsents=True, accident=False, humansPresent=True, obstaclePresent=False)
+at time 1: AssignLiability()
+vol: 9
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.089040756225586
+****************************************************************************************************
+check rule_19
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: RobotStopAction()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: ReportIncident()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: InformHuman()
+at time 0: AskPermission()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=True, risk=2, efficiency=1, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 1: RobotWorking()
+at time 1: RobotStopAction()
+at time 1: InformHuman()
+at time 1: AskPermission()
+at time 1: ReportIncident()
+at time 1: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=1, efficiency=1, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+at time 2: RobotWorking()
+at time 2: InformHuman()
+at time 2: AskPermission()
+at time 2: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=True, risk=2, efficiency=2, isHumanTask=True, humanConsents=True, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 14
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.5851435661315918
+****************************************************************************************************
+check rule_20
+solving under config: restart False, bcr False, ub False, min False
+merged
+find trace
+at time 0: RobotWorking()
+at time 0: RobotStopAction()
+at time 0: InformHuman()
+at time 0: AskPermission()
+at time 0: ReportIncident()
+at time 0: Measure(humanInRoute=False, humanInRange=False, bumpHuman=False, humanTooClose=True, routeAvailable=False, humanReEnables=False, risk=0, efficiency=0, isHumanTask=False, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+vol: 6
+solving under config: restart False, bcr False, ub False, min False
+find trace
+at time 0: RobotWorking()
+at time 0: AdjustRoute()
+at time 0: InformHuman()
+at time 0: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=1, efficiency=0, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+at time 1: RobotWorking()
+at time 1: RobotStopAction()
+at time 1: AdjustRoute()
+at time 1: InformHuman()
+at time 1: ReportIncident()
+at time 1: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=0, efficiency=0, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=True)
+at time 2: RobotWorking()
+at time 2: AdjustRoute()
+at time 2: InformHuman()
+at time 2: Measure(humanInRoute=True, humanInRange=False, bumpHuman=False, humanTooClose=False, routeAvailable=True, humanReEnables=False, risk=1, efficiency=0, isHumanTask=True, humanConsents=False, accident=False, humansPresent=False, obstaclePresent=False)
+vol: 14
+Not Conflicting
+sat_result: sat
+proof_generation_time: 1.0310323238372803
+****************************************************************************************************

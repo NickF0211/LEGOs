@@ -6,7 +6,7 @@ import idlelib.colorizer as ic
 import idlelib.percolator as ip
 import re
 import tkinter as tk
-from sleecParser import check_input_red, check_input_conflict, check_input_concerns, check_input_purpose
+from sleecParser_for_CVC5 import check_input_red, check_input_conflict, check_input_concerns, check_input_purpose
 from SleecNorm import check_situational_conflict
 import tkinter.scrolledtext as scrolledtext
 
