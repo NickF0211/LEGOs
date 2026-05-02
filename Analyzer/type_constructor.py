@@ -134,7 +134,9 @@ class Action():
 
 
 def create_type(type_name, type_dict=dict(), upper_bound=None, lower_bound=None, var_type=INT, enum=None,
-                customized_func =None):
+                customized_func =None, scalar_mask = None):
+    if scalar_mask is None:
+        scalar_mask = {}
     def num_constraint(var, upper_bound=upper_bound, lower_bound= lower_bound, var_type=var_type):
         if var_type == REAL:
             constructor = Real
@@ -167,7 +169,7 @@ def create_type(type_name, type_dict=dict(), upper_bound=None, lower_bound=None,
     elif var_type == STRING:
         constraint = string_constraint
 
-    type_dict[type_name] = (var_type, constraint)
+    type_dict[type_name] = (var_type, constraint, scalar_mask)
     return type_name
 
 
@@ -284,7 +286,7 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
             setattr(self, "presence", value)
 
         for attr, attr_type in attributes:
-            var_type, type_constraint = constraint_dict.get(attr_type, lambda _: TRUE())
+            var_type, type_constraint, scalar_mask = constraint_dict.get(attr_type, lambda _: TRUE())
             if attr in input_subs:
                 value = input_subs.get(attr)
                 setattr(self, attr, value)
@@ -367,6 +369,20 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
         attrs = type(self).attr_order
         self.named_attr = [getattr(self, attr) for attr in attrs]
         self.fol_presence = Function(self.fol_func, params=self.named_attr)
+
+    def get_masked_value(self, mask, type, value):
+        if mask:
+            type_mask = mask.get(type, None)
+            if type_mask:
+                if value < len(type_mask):
+                    return type_mask[value]
+        else:
+            if type in constraint_dict:
+                _, _, scalar_mask = constraint_dict.get(type)
+                if scalar_mask:
+                    if value in scalar_mask:
+                        return scalar_mask[value]
+        return value
 
     def under_constraint(self):
         assert self.under_encoded >= 0
@@ -499,7 +515,7 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
             return time_s + pars
         else:
             pars = "({})".format(', '.join(
-                ["{}={}".format(attr, str(get_masked_value(mask, attr_type, model.get_py_value(getattr(self, attr)))))
+                ["{}={}".format(attr, str(self.get_masked_value(mask, attr_type, model.get_py_value(getattr(self, attr)))))
                  for attr, attr_type in attributes if attr != "time"]))
             if hasattr(self, "time"):
                 time_s = "at time {time}: {action_name}".format(time=model.get_py_value(self.time),
@@ -576,6 +592,7 @@ def create_action(action_name, attributes, constraint_dict, sub_actions=None, de
         "build_eq_constraint": build_eq_constraint,
         "model_equal": model_equal,
         "under_constraint": under_constraint,
+        "get_masked_value":get_masked_value,
         "inv": [],
         "threshold": 5,
         "increase_ratio": 10
@@ -596,11 +613,4 @@ def get_varaible(var):
             return abstracted_symbol
 
 
-def get_masked_value(mask, type, value):
-    if mask:
-        type_mask = mask.get(type, None)
-        if type_mask:
-            if value < len(type_mask):
-                return type_mask[value]
 
-    return value

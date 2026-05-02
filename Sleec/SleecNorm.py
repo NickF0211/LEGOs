@@ -345,14 +345,37 @@ class TimeWindow:
     def encode(self, event_obj, measure):
         start_time = self.start.encode(measure)
         end_time = self.end.encode(measure)
-        return measure.time + start_time <= event_obj.time <= measure.time + end_time
+        # NOTE: this was previously `measure.time + start_time <= event_obj.time <= measure.time + end_time`
+        # which is a chained comparison. With pysmt-overloaded `<=`, that expression returns only
+        # the second comparison (`event_obj.time <= measure.time + end_time`), silently dropping
+        # the lower bound. Use explicit AND of the two bounds.
+        return AND(measure.time + start_time <= event_obj.time,
+                   event_obj.time <= measure.time + end_time)
+
+    def encode_neg_limited_window(self, event_obj, measure, last_time):
+        start_time = self.start.encode(measure)
+        end_time = self.end.encode(measure)
+        # in case last time happen before the end time
+        boundary_time = measure.time + end_time
+        # Use explicit AND for the inner window bounds — chained comparisons
+        # don't work with pysmt-overloaded `<=` (see note on TimeWindow.encode).
+        within_bound = Implication(
+            boundary_time <= last_time,
+            AND(measure.time + start_time <= event_obj.time,
+                event_obj.time <= boundary_time))
+        outside_bound = Implication(
+            boundary_time > last_time,
+            AND(measure.time + start_time <= event_obj.time,
+                event_obj.time <= last_time))
+        return And(within_bound, outside_bound)
 
     def encode_limited_pos(self, event_obj, measure, last_time):
-        return AND(measure.time + self.end.encode(measure) > last_time, NOT(self.encode(event_obj, measure)))
+        return AND( measure.time + self.end.encode(measure) <= last_time, NOT(self.encode(event_obj, measure)))
 
     def encode_limited_neg(self, event_obj, measure, last_time):
+        # return self.encode_neg_limited_window(event_obj, measure, last_time)
         return And(event_obj.time <= last_time
-                   , self.encode(event_obj, measure))
+                   , self.encode_neg_limited_window(event_obj, measure, last_time))
 
     def is_overlapping(self, other, measure):
         self_end_poke = self.end.poke()
@@ -738,18 +761,21 @@ class NormalizedRule:
                           lambda trigger, cur_measure=cur_measure, exception=exception:
                           Implication(trigger.time <= cur_measure.time,
                                       exist(A_Mapping["Measure"],
-                                            lambda t_measure, cur_measure=cur_measure, exception=exception: Implication(
+                                            lambda t_measure, trigger=trigger, cur_measure=cur_measure, exception=exception: Implication(
                                                 NEQ(exception, t_measure),
-                                                self.oc.encode_limited(t_measure,
-                                                                       cur_measure,
-                                                                       A_Mapping)))))
+                                                AND(EQ(t_measure.time, trigger.time),
+                                                    self.oc.encode_limited(t_measure,
+                                                                           cur_measure,
+                                                                           A_Mapping))))))
         else:
             return forall(A_Mapping[self.triggering_event.expr],
                           lambda trigger: Implication(trigger.time <= cur_measure.time,
                                                       exist(A_Mapping["Measure"],
-                                                            lambda t_measure: self.oc.encode_limited(t_measure,
-                                                                                                     cur_measure,
-                                                                                                     A_Mapping))))
+                                                            lambda t_measure, trigger=trigger: AND(
+                                                                EQ(t_measure.time, trigger.time),
+                                                                self.oc.encode_limited(t_measure,
+                                                                                       cur_measure,
+                                                                                       A_Mapping)))))
 
 
 def certasin_product(prs1: [Conditional_Obligation], prs2: [Conditional_Obligation]):

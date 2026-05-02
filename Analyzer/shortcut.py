@@ -7,13 +7,19 @@ from pysmt.shortcuts import Int, Real, Bool, Symbol, TRUE, FALSE, FreshSymbol
 
 type_dict = {}
 CLASSES = []
+STATE_CLASSES = []
 Constraints = []
 
 
 def create_type(name, upper_bound=None, lower_bound=None, var_type=INT, enum=None,
-                customized_func=None):
-    type_constructor.create_type(name, type_dict, upper_bound, lower_bound, var_type, enum, customized_func)
+                customized_func=None, mask = None):
+    if mask is None:
+        mask = {}
+    type_constructor.create_type(name, type_dict, upper_bound, lower_bound, var_type, enum, customized_func, scalar_mask=mask)
 
+def add_mask(name, mask):
+    _, _, scalar_mask = type_dict[name]
+    scalar_mask.update(mask)
 
 # default type
 create_type("nat", lower_bound=0)
@@ -22,7 +28,15 @@ create_type("time", lower_bound=0)
 create_type("bool", var_type=BOOL)
 
 
+def create_relation(action_name, attributes):
+    return create_action(action_name, attributes)
+
 def create_action(action_name, attributes):
+    for i in range(len(attributes)):
+        attr =  attributes[i]
+        if isinstance(attr, str):
+            attributes[i] = (attr, "nat")
+
     new_class = type_constructor.create_action(action_name, attributes, type_dict)
     CLASSES.append(new_class)
     return new_class
@@ -48,6 +62,11 @@ def add_constraint(constraint):
     Constraints.append(constraint)
 
 
+def add_theories():
+    new_constraints = logic_operator.add_background_theories(CLASSES, STATE_CLASSES, Constraints)
+    Constraints.clear()
+    Constraints.extend(new_constraints)
+
 # solver option
 def solve(formulas, constraint_abstraction=False, vol_bound=500, solution_opt=False,
           proof_mode=False, unsat_mode=False):
@@ -57,9 +76,9 @@ def solve(formulas, constraint_abstraction=False, vol_bound=500, solution_opt=Fa
         rules = []
 
     result = analyzer.check_property_refining(formulas, rules, Constraints,
-                                              CLASSES, [], vol_bound=vol_bound,
+                                              CLASSES, STATE_CLASSES, vol_bound=vol_bound,
                                               min_solution=solution_opt, record_proof=proof_mode,
-                                              unsat_mode=unsat_mode)
+                                              unsat_mode=unsat_mode, boundary_case=True)
     clear()
     analyzer.clear_rules([formulas])
     return result
@@ -69,6 +88,7 @@ def clear(reset_signature=False):
     analyzer.clear_all(CLASSES, Constraints)
     if reset_signature:
         CLASSES.clear()
+        STATE_CLASSES.clear()
         type_dict.clear()
         create_type("nat", lower_bound=0)
         create_type("int")

@@ -4,8 +4,7 @@ from pysmt.shortcuts import Exists as PExist
 from pysmt.shortcuts import ForAll as PForall
 
 from type_constructor import Action, UnionAction
-
-import itertools
+import types
 
 controll_varaible_eq = dict()
 controll_varaible_eq_r = dict()
@@ -1015,10 +1014,21 @@ class Predicate(Operator):
         return to_string(res)
 
 
+def freeze(fn):
+    g = fn.__globals__
+    frozen = {n: g[n] for n in fn.__code__.co_names if n in g}
+    cells = tuple(types.CellType(c.cell_contents) for c in fn.__closure__ or ())
+
+    class _G(dict):
+        def __missing__(self, key):
+            return g[key]  # fall through to real globals for builtins/unfrozen names
+
+    return types.FunctionType(fn.__code__, _G(frozen), fn.__name__, fn.__defaults__, cells)
+
 def _func(procedure):
     func = Function.Function_cache.get(procedure, None)
     if func is None:
-        func = Function(procedure)
+        func = Function((procedure))
         Function.Function_cache[procedure] = func
 
     return func
@@ -2711,8 +2721,7 @@ def next_sum(s, action):
             assert False
         return AND(s.filter_func.evaulate(action),
                    connect_term,
-                   Equals(s.time, action.time)
-
+                   Equals(s.time, action.time) if hasattr(action, 'time') else TRUE()
                    )
     else:
         value1 = s.value_func.evaulate(action)
@@ -2724,8 +2733,7 @@ def next_sum(s, action):
             assert False
         return AND(s.filter_func.evaulate(action), value1 > Int(0),
                    connect_term,
-                   Equals(s.time, action.time)
-
+                   Equals(s.time, action.time) if hasattr(action, 'time') else TRUE()
                    )
 
 
@@ -2756,8 +2764,8 @@ def next_bcr_sum(s, action):
 
         return AND(s.filter_func.evaulate(action),
                    connect_term,
-                   Equals(s.time, action.time),
-                   forall(s.input_type, lambda other: Implication(s.filter_func.evaulate(other), other <= action))
+                   Equals(s.time, action.time) if hasattr(action, 'time') else TRUE(),
+                   forall(s.input_type, lambda other: Implication(s.filter_func.evaulate(other), other <= action)) if hasattr(action, 'time') else TRUE()
                    )
     else:
         value1 = s.value_func.evaulate(action)
@@ -2769,9 +2777,9 @@ def next_bcr_sum(s, action):
             assert False
         return AND(s.filter_func.evaulate(action), value1 > Int(0),
                    connect_term,
-                   Equals(s.time, action.time),
+                   Equals(s.time, action.time) if hasattr(action, 'time') else TRUE(),
                    forall(s.input_type, lambda other: Implication(s.filter_func.evaulate(other),
-                                                                  s.value_func.evaulate(other) <= value1))
+                                                                  s.value_func.evaulate(other) <= value1)) if hasattr(action, 'time') else TRUE()
                    )
 
 

@@ -1,4 +1,5 @@
 from logic_operator import *
+from logic_operator import _SUMObject
 from type_constructor import snap_shot
 from trace_ult import print_trace
 import copy
@@ -23,8 +24,9 @@ def complete_clear_actions(ACTION):
     for ACT in ACTION:
         ACT.collect_list.clear()
         ACT.temp_collection_set = OrderedSet()
-        ACT.syn_collect_list.clear()
-        ACT.additional_constraint.clear()
+        if hasattr(ACT, 'syn_collect_list'):
+            ACT.syn_collect_list.clear()
+            ACT.additional_constraint.clear()
         ACT.snap_shot.clear()
         ACT.EQ_CLASS = [OrderedSet()]
         ACT.Uncollected = OrderedSet()
