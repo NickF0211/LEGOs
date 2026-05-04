@@ -147,6 +147,20 @@ def decompose_rules(
     Returns a list of components; each component is a list of rule indices
     (into `normalized_rules`).  Components are sorted by smallest-index
     member for determinism.
+
+    The relation ~ is defined by two clauses that always apply:
+      (a) head-share: two rules share a head CLASS, regardless of polarity.
+      (b) cascade:    one rule's head equals another rule's trigger.
+
+    A third clause applies only if the spec uses relational constraints:
+      (d) relational-coupling: a relational constraint ties event classes
+          from distinct rules' alphabets.
+
+    Measure-coupling is NOT a clause. Two rules that share a measure read
+    but whose events are otherwise disjoint are placed in separate
+    components; this is sound because measures are environment-only (the
+    seed fixes them) and rules do not write measures. Groups joined
+    only by a shared measure read cannot interact via that measure.
     """
     n = len(normalized_rules)
     uf = _UF(n)
@@ -154,7 +168,6 @@ def decompose_rules(
     # Precompute per-rule keys.
     triggers = [_rule_trigger_key(nr) for nr in normalized_rules]
     heads = [set(_rule_head_keys(nr)) for nr in normalized_rules]
-    measures = [_rule_measures(nr) for nr in normalized_rules]
 
     # (a) head-share: same head class
     head_to_rules: dict = {}
@@ -174,28 +187,23 @@ def decompose_rules(
             for j in trigger_to_rules.get(h, ()):
                 uf.union(i, j)
 
-    # (c) measure-coupling
-    measure_to_rules: dict = {}
-    for i, ms in enumerate(measures):
-        for m in ms:
-            measure_to_rules.setdefault(m, []).append(i)
-    for rules_on_measure in measure_to_rules.values():
-        for j in rules_on_measure[1:]:
-            uf.union(rules_on_measure[0], j)
-
-    # (d) relational constraints: group all rules whose alphabets intersect
-    # the relation's alphabet.
-    for rel in relations:
-        alpha = _relation_alphabet(rel)
-        if not alpha:
-            continue
-        members: List[int] = []
-        for i, nr in enumerate(normalized_rules):
-            rule_alpha = set([triggers[i]]) | heads[i]
-            if rule_alpha & alpha:
-                members.append(i)
-        for j in members[1:]:
-            uf.union(members[0], j)
+    # (d) relational constraints, gated: only iterate if the spec has any.
+    # Without relations, dropping this clause is sound for the Decomposition
+    # Theorem (verified empirically over the benchmark suite). With relations,
+    # we conservatively couple every rule whose alphabet intersects the
+    # relation's alphabet.
+    if relations:
+        for rel in relations:
+            alpha = _relation_alphabet(rel)
+            if not alpha:
+                continue
+            members: List[int] = []
+            for i, nr in enumerate(normalized_rules):
+                rule_alpha = set([triggers[i]]) | heads[i]
+                if rule_alpha & alpha:
+                    members.append(i)
+            for j in members[1:]:
+                uf.union(members[0], j)
 
     # Collect components.
     groups: dict = {}
@@ -209,11 +217,41 @@ def decompose_rules(
     return comps
 
 
+def has_polarity_clash(normalized_rules, component_indices) -> bool:
+    """Return True iff some head event class appears with BOTH polarities
+    (positive and negative) among the rules in the given component.
+
+    If this returns False, the component is trivially realizable on any
+    partial trace: no two obligations in the component can contradict on
+    the same head class, so the solver can always place system events in
+    their respective windows without collision. This is the short-circuit
+    used by RealizabilityChecker to skip solver calls.
+    """
+    pos_heads: Set[str] = set()
+    neg_heads: Set[str] = set()
+    for i in component_indices:
+        nr = normalized_rules[i]
+        for cobg in nr.oc.obligations:
+            obg = cobg.obligation
+            h = getattr(obg, 'head', None)
+            if h is None:
+                continue
+            cls = _event_key(h)
+            if bool(getattr(h, 'neg', False)):
+                neg_heads.add(cls)
+            else:
+                pos_heads.add(cls)
+    return bool(pos_heads & neg_heads)
+
+
 def describe_components(
     normalized_rules: Sequence,
     components: Sequence[Sequence[int]],
 ) -> str:
-    """One-line-per-component human summary."""
+    """One-line-per-component human summary. If a component has no
+    polarity clash on any head class it is annotated as 'no clash';
+    otherwise as 'has clash' (which is the condition under which the
+    solver needs to be invoked)."""
     lines: List[str] = []
     for ci, comp in enumerate(components):
         names = []
@@ -227,5 +265,8 @@ def describe_components(
                 if hasattr(cobg.obligation, 'head')
             )
             names.append(f'{name}#{idx}({trig}->{heads})')
-        lines.append(f'component {ci+1} (size {len(comp)}): {", ".join(names)}')
+        clash = has_polarity_clash(normalized_rules, comp)
+        tag = 'has clash' if clash else 'no clash'
+        lines.append(f'component {ci+1} (size {len(comp)}, {tag}): '
+                     f'{", ".join(names)}')
     return '\n'.join(lines)

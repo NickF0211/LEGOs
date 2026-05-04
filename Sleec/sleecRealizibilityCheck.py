@@ -1278,7 +1278,8 @@ class RealizabilityChecker:
         nr_to_og_idx = [ast_to_og_idx[id(nr.og_rule)] for nr in rules]
 
         if self.decompose:
-            from sleec_decompose import decompose_rules, describe_components
+            from sleec_decompose import (decompose_rules, describe_components,
+                                          has_polarity_clash)
             components = decompose_rules(rules, og_rules, relations)
             if verbose:
                 print(f"[realizability] decomposed into {len(components)} "
@@ -1286,6 +1287,10 @@ class RealizabilityChecker:
                 print(describe_components(rules, components), file=sys.stderr)
         else:
             components = [list(range(len(rules)))]
+            # No decomposition, no short-circuit: set the predicate to always
+            # say "potentially clashes" so the solver is invoked unconditionally.
+            def has_polarity_clash(_rules, _indices):
+                return True
 
         # --- 3. Build the common background (same in every component solve).
         relational_constraints = get_relational_constraints(relations)
@@ -1328,7 +1333,20 @@ class RealizabilityChecker:
         # Short-circuit as soon as any component is UNREALIZABLE.
         overall_status = "realizable"
         culprit_component_idx = None
+        short_circuited: List[int] = []   # 1-based indices of groups realizable by inspection
         for ci, comp in enumerate(components):
+            # Short-circuit: if no head class appears with both + and -
+            # polarities in this group, the group is realizable without
+            # a solver call.  See has_polarity_clash + Theorem in §6.1 of
+            # the paper.
+            if not has_polarity_clash(rules, comp):
+                short_circuited.append(ci + 1)
+                if verbose:
+                    print(f"[realizability] component {ci+1}/{len(components)}: "
+                          f"no polarity clash, realizable by inspection",
+                          file=sys.stderr)
+                continue
+
             # Build per-component rule clauses.
             fol_rules = [measure_inv]
             fol_rules.extend(relational_constraints)
