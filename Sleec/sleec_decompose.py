@@ -20,7 +20,8 @@ Usage:
 
 from __future__ import annotations
 
-from typing import Iterable, List, Sequence, Set, Tuple
+from dataclasses import dataclass, field
+from typing import Iterable, List, Optional, Sequence, Set, Tuple
 
 
 # ------------------------------- Union-Find -------------------------------
@@ -126,13 +127,20 @@ def _rule_measures(nr) -> Set[str]:
 
 
 def _relation_alphabet(rel) -> Set[str]:
-    """Set of event-class keys mentioned by a relational constraint."""
-    keys: Set[str] = set()
-    for attr in ('lhs', 'rhs', 'start_trigger', 'end_trigger'):
-        v = getattr(rel, attr, None)
-        if v is not None:
-            keys.add(_event_key(v))
-    return keys
+    """Set of event-class keys mentioned by a relational constraint.
+
+    Delegates to sleec_event_classification._event_names_in_relation,
+    which handles every supported relation kind under both the textX
+    (`EventRel`, `MeasureRel`, `Causation`, `Effect`, `Forbid`,
+    `UntilEM`, `TimedEM`, `MeasureInv`) and the sleecOp post-parse
+    wrapper (`EventRelation`, `MeasureRelation`, `UntilEMRelation`,
+    `TimedEMRelation`, `Causation`, `Effect`, `Forbid`) class names,
+    and resolves event references whether they are textX nodes (with
+    `.name`), sleecOp wrappers (with `.expr.name`), or
+    dynamically-created action classes (with `.__name__`).
+    """
+    from sleec_event_classification import _event_names_in_relation
+    return set(_event_names_in_relation(rel))
 
 
 # ---------------------------- Decomposition ------------------------------
@@ -215,6 +223,207 @@ def decompose_rules(
     for g in comps:
         g.sort()
     return comps
+
+
+# ============================================================================
+# First-class relations in decomposition
+# ============================================================================
+#
+# decompose_rules above returns rule clusters only. The realizability check
+# also needs to know which relations belong to which cluster, so it can
+# encode only the relevant relations per per-component solve. The richer
+# entry point below adds eligible relations as nodes in the union-find and
+# returns a Decomposition object that pairs rule indices with relation
+# indices per component.
+#
+# Eligibility (matches RealizabilityChecker's relation partitioning):
+#   - SYS_EVENT_AND_MEASURE / MIXED_AND_MEASURE  -> caller errors before
+#     reaching here; we still skip them defensively.
+#   - MIXED_ENV_SYS_EVENTS                       -> skip silently
+#   - everything else                            -> eligible to encode
+#
+# Within the eligible set:
+#   - relations with a non-empty event alphabet    -> become coupling nodes
+#   - relations with empty event alphabet (measure -> stay global, asserted in
+#     -only / MeasureInv)                            every per-component solve
+#
+# Output shape: see Component / Decomposition dataclasses below.
+
+@dataclass
+class Component:
+    """One connected component of the rule-and-relation dependency graph."""
+    rule_indices: List[int]                # indices into normalized_rules
+    relation_indices: List[int]            # indices into the original relations list
+
+    @property
+    def has_relations(self) -> bool:
+        return bool(self.relation_indices)
+
+
+@dataclass
+class Decomposition:
+    """Result of decompose_with_relations.
+
+    components : list of Components (each contains rules and the relations
+                 that couple them; see Component).
+    global_relation_indices : indices of relations that are encoded into
+                 every component's solve. These are typically measure-only
+                 or measure-invariant relations (no event alphabet).
+    skipped_relation_indices : indices of relations the realizability
+                 checker silently skips (mixed env+sys event relations
+                 without a measure). Surfaced for diagnostic display only.
+    """
+    components: List[Component]
+    global_relation_indices: List[int] = field(default_factory=list)
+    skipped_relation_indices: List[int] = field(default_factory=list)
+
+
+def decompose_with_relations(
+    normalized_rules: Sequence,
+    og_rules: Sequence,
+    relations: Sequence,
+    event_classification,
+) -> Decomposition:
+    """Partition rules and eligible relations into components under ~.
+
+    Same coupling rules as `decompose_rules` (clauses (a) head-share and
+    (b) cascade between rules), plus:
+      - each eligible relation with a non-empty event alphabet is a node
+        in the union-find;
+      - it is unioned with every rule whose alphabet (trigger ∪ heads)
+        intersects the relation's alphabet;
+      - relations whose alphabets intersect each other are also unioned
+        (so two relations on the same event classes end up together).
+
+    Eligibility is determined via classify_relation_actors:
+      - SYS_EVENT_AND_MEASURE / MIXED_AND_MEASURE  : skipped here (the
+        checker raises on these before reaching decomposition).
+      - MIXED_ENV_SYS_EVENTS                       : skipped silently.
+      - SYS_ONLY_EVENTS / ENV_ONLY_EVENTS / MEASURE_ONLY /
+        ENV_EVENT_AND_MEASURE / EMPTY              : eligible.
+
+    Among eligible relations, those with empty event alphabet are placed
+    in `global_relation_indices` (measure-only and measure-invariant
+    relations). The rest become nodes and are assigned to the component
+    that contains the rules they touch.
+
+    Args:
+        normalized_rules : list of NormalizedRule.
+        og_rules         : list of WhenRule (for parallelism with decompose_rules).
+        relations        : list of relations from parse_sleec_norm.
+        event_classification : an EventClassification from
+            sleec_event_classification.classify_events_with_annotations.
+            Used to look up event kinds and to call classify_relation_actors.
+    """
+    from sleec_event_classification import (
+        classify_relation_actors, RelationActorKind,
+    )
+
+    n_rules = len(normalized_rules)
+    triggers = [_rule_trigger_key(nr) for nr in normalized_rules]
+    heads = [set(_rule_head_keys(nr)) for nr in normalized_rules]
+    rule_alphabets: List[Set[str]] = [
+        {triggers[i]} | heads[i] for i in range(n_rules)
+    ]
+
+    # Classify each relation and split into eligible-coupling, eligible-global,
+    # and skipped buckets.
+    coupling_rel_indices: List[int] = []
+    coupling_rel_alphabets: List[Set[str]] = []
+    global_rel_indices: List[int] = []
+    skipped_rel_indices: List[int] = []
+    for ri, rel in enumerate(relations):
+        kind = classify_relation_actors(rel, event_classification)
+        if kind in (RelationActorKind.SYS_EVENT_AND_MEASURE,
+                    RelationActorKind.MIXED_AND_MEASURE):
+            # Caller should have errored already; skip defensively.
+            skipped_rel_indices.append(ri)
+            continue
+        if kind == RelationActorKind.MIXED_ENV_SYS_EVENTS:
+            # Deferred to defeasible-proposals work; not encoded.
+            skipped_rel_indices.append(ri)
+            continue
+        alpha = _relation_alphabet(rel)
+        if not alpha:
+            global_rel_indices.append(ri)
+            continue
+        coupling_rel_indices.append(ri)
+        coupling_rel_alphabets.append(alpha)
+
+    # Union-find over (rules + coupling relations).
+    n_coupling = len(coupling_rel_indices)
+    uf = _UF(n_rules + n_coupling)
+
+    # Clause (a): head-share between rules.
+    head_to_rules: dict = {}
+    for i, hs in enumerate(heads):
+        for h in hs:
+            head_to_rules.setdefault(h, []).append(i)
+    for rules_sharing_head in head_to_rules.values():
+        for j in rules_sharing_head[1:]:
+            uf.union(rules_sharing_head[0], j)
+
+    # Clause (b): cascade between rules.
+    trigger_to_rules: dict = {}
+    for j, tg in enumerate(triggers):
+        trigger_to_rules.setdefault(tg, []).append(j)
+    for i, hs in enumerate(heads):
+        for h in hs:
+            for j in trigger_to_rules.get(h, ()):
+                uf.union(i, j)
+
+    # Clause (d-rules): rules sharing alphabet with a coupling relation.
+    for k, rel_alpha in enumerate(coupling_rel_alphabets):
+        rel_node = n_rules + k
+        for i in range(n_rules):
+            if rule_alphabets[i] & rel_alpha:
+                uf.union(rel_node, i)
+
+    # Clause (d-relations): relations sharing alphabet with each other.
+    for k1 in range(n_coupling):
+        for k2 in range(k1 + 1, n_coupling):
+            if coupling_rel_alphabets[k1] & coupling_rel_alphabets[k2]:
+                uf.union(n_rules + k1, n_rules + k2)
+
+    # Collect components.
+    groups_rules: dict = {}
+    groups_rels: dict = {}
+    for i in range(n_rules):
+        root = uf.find(i)
+        groups_rules.setdefault(root, []).append(i)
+    for k in range(n_coupling):
+        root = uf.find(n_rules + k)
+        groups_rels.setdefault(root, []).append(coupling_rel_indices[k])
+
+    # Build Component objects. A component must have at least one rule;
+    # otherwise its relations become global (this is rare in practice -- it
+    # happens only if a relation mentions event classes that no rule touches).
+    component_objs: List[Component] = []
+    extra_globals_from_rule_less: List[int] = []
+    seen_roots: Set[int] = set()
+    # First pass: roots with rules.
+    for root, rule_idxs in groups_rules.items():
+        rel_idxs = sorted(groups_rels.get(root, []))
+        component_objs.append(Component(
+            rule_indices=sorted(rule_idxs),
+            relation_indices=rel_idxs,
+        ))
+        seen_roots.add(root)
+    # Second pass: roots with only relations (no rule). Promote to global.
+    for root, rel_idxs in groups_rels.items():
+        if root not in seen_roots:
+            extra_globals_from_rule_less.extend(rel_idxs)
+
+    # Stable sort: components by smallest rule index.
+    component_objs.sort(key=lambda c: c.rule_indices[0] if c.rule_indices
+                                       else float('inf'))
+
+    return Decomposition(
+        components=component_objs,
+        global_relation_indices=sorted(global_rel_indices
+                                        + extra_globals_from_rule_less),
+        skipped_relation_indices=sorted(skipped_rel_indices),
+    )
 
 
 def has_polarity_clash(normalized_rules, component_indices) -> bool:

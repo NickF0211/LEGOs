@@ -276,6 +276,24 @@ def print_event_roles(model) -> None:
     if unused:
         print(f"  (Environment events never referenced anywhere: {', '.join(sorted(unused))})")
 
+    # Annotation-aware classification: same partition (sys vs env) but
+    # respects user `as system|environment` annotations and propagates
+    # SYSTEM through relations. Surface any conflicts as warnings here;
+    # they only abort when actually running --realizability-check.
+    try:
+        from sleec_event_classification import (
+            classify_events_with_annotations,
+            format_classification, format_conflicts,
+        )
+        ec = classify_events_with_annotations(model)
+        if ec.has_errors or ec.has_warnings:
+            print()
+            print(format_conflicts(ec))
+    except Exception as exc:
+        # Defensive: never let summary printing crash because of the
+        # annotation pass.
+        print(f"\n[event-classification] (skipped: {exc!s})")
+
 
 # ---------------------------------------------------------------------------
 # Rule normalization — decompose each rule into Obligation form via SleecNorm
@@ -642,9 +660,24 @@ class TraceSampler:
         self.verbose = verbose
 
         # --- environment events & measures classification ------------------
-        _, _, responses, _, _ = classify_events(model)
-        self.env_events = [d.name for d in model.definitions
-                           if isXinstance(d, "Event") and d.name not in responses]
+        # Use the annotation-aware classifier. Its output respects
+        # `event X as system|environment` annotations, infers kinds from
+        # rule responses, and propagates SYSTEM through relations. If
+        # the classifier finds hard-error conflicts (e.g. env-annotated
+        # event used as a response), raise EventClassificationError so
+        # the realizability run aborts cleanly.
+        from sleec_event_classification import (
+            classify_events_with_annotations, Kind,
+            EventClassificationError,
+        )
+        ec = classify_events_with_annotations(model)
+        if ec.has_errors:
+            raise EventClassificationError(ec)
+        self.event_classification = ec
+        self.env_events = [
+            d.name for d in model.definitions
+            if isXinstance(d, "Event") and ec.kind.get(d.name) == Kind.ENVIRONMENT
+        ]
         self.bool_measures: List[str] = []
         self.num_measures: List[str] = []
         self.scalar_measures: List[Tuple[str, List[str]]] = []
@@ -688,6 +721,17 @@ class TraceSampler:
 
         # Hard: measure-level relations (project(theta, t) per step).
         self._add_measure_relations()
+
+        # Hard: env-event-only and env+measure relations encoded into the
+        # sampler's z3 Optimize (witness, equal, mutualExclusive,
+        # happenBefore, Causation, Effect, Forbid, UntilEM, TimedEM where
+        # the relevant actor is an env event).
+        from sleec_sampler_relations import add_relation_constraints
+        add_relation_constraints(
+            self.opt, self.model, self.e_vars,
+            self._ctx_at_step, _z3_eval_bool_expr,
+            self.event_classification, self.N, verbose=verbose,
+        )
 
         # Soft: per (env-triggered rule, step), assert the rule's trigger pattern.
         self.rule_soft: List[Tuple[str, int, "z3.BoolRef"]] = []
@@ -805,28 +849,34 @@ class TraceSampler:
         }
 
     def block(self, trace: dict) -> bool:
-        """Add the subsumption-blocking constraint ALO(~trace) for event vars.
+        """Add an At-Least-One blocking constraint that forces the next
+        sampled trace to fire a (rule, step) combination that `trace` did
+        NOT fire.
 
-        Per the bounded-realizability spec: any future sampled trace must
-        trigger at least one environment event occurrence that was NOT present
-        in `trace`. Because the maximizer always picks a maximum-triggering
-        trace, this also blocks every trace that is strictly subsumed by
-        `trace` (i.e. has only a subset of its event occurrences).
+        The complement is computed at the soft-clause level. Each soft
+        clause has the form `env_var(trigger, t) AND condition(rule).at(t)`.
+        Two traces that satisfy the same set of soft clauses are considered
+        equivalent and are NOT enumerated separately. This captures both:
+          - env event presence differences (the previous behavior), AND
+          - measure value differences that flip a rule's condition (new).
 
-        Returns False if the complement is empty (every env event already
-        fired at every step → no way to get "strictly more"), meaning the
-        search is exhausted; in that case no constraint is added.
+        Returns False if every soft clause was already satisfied by `trace`,
+        meaning no further refinement of the rule-firing pattern is possible
+        and the search should stop. In that case no constraint is added.
+
+        Note: rules whose trigger is a system event are not in self.rule_soft,
+        so they neither contribute to the MaxSAT objective nor participate in
+        blocking. (Cascaded firings happen only at Phase II.)
         """
         import z3
-        complement_vars = []
-        fired_map = {(step["t"], e) for step in trace["per_step"] for e in step["events"]}
-        for e in self.env_events:
-            for t in range(1, self.N + 1):
-                if (t, e) not in fired_map:
-                    complement_vars.append(self.e_vars[e][t - 1])
-        if not complement_vars:
+        fired = {(name, t) for (name, t) in trace["rules_fired"]}
+        complement = [
+            clause for (name, t, clause) in self.rule_soft
+            if (name, t) not in fired
+        ]
+        if not complement:
             return False
-        self.opt.add(z3.Or(*complement_vars))
+        self.opt.add(z3.Or(*complement))
         return True
 
 
@@ -887,10 +937,20 @@ class AbstractTraceSampler:
         self.N = N
         self.verbose = verbose
 
-        # Classify events: env events are implicitly on at every step.
-        _, _, responses, _, _ = classify_events(model)
-        self.env_events = [d.name for d in model.definitions
-                           if isXinstance(d, "Event") and d.name not in responses]
+        # Classify events: respect user annotations + propagate SYSTEM
+        # through relations. Errors abort the run.
+        from sleec_event_classification import (
+            classify_events_with_annotations, Kind,
+            EventClassificationError,
+        )
+        ec = classify_events_with_annotations(model)
+        if ec.has_errors:
+            raise EventClassificationError(ec)
+        self.event_classification = ec
+        self.env_events = [
+            d.name for d in model.definitions
+            if isXinstance(d, "Event") and ec.kind.get(d.name) == Kind.ENVIRONMENT
+        ]
 
         # Collect measure declarations.
         self.bool_measures: List[str] = []
@@ -915,6 +975,19 @@ class AbstractTraceSampler:
             name: [z3.Int(f"{name}_{t}") for t in range(1, N + 1)]
             for name, _params in self.scalar_measures
         }
+        # Per-step env-event presence Booleans. Previously this sampler
+        # treated env events as always-on; that was incorrect for any spec
+        # with env-event relations (e.g. mutualExclusive A B between two env
+        # events). Now env presence is a free Boolean per (event, step) and
+        # the MaxSAT objective drives its values: rules only contribute to
+        # the objective when their env trigger is True AND their condition
+        # holds, so the optimizer naturally sets e_vars to True at every
+        # step that helps fire rules. For specs without env-event relations
+        # this reduces to the old "always on" behavior.
+        self.e_vars: Dict[str, List["z3.BoolRef"]] = {
+            e: [z3.Bool(f"{e}_{t}") for t in range(1, N + 1)]
+            for e in self.env_events
+        }
 
         from sleecParser import constants as _constants, scalar_type as _scalar_type
         self._constants = dict(_constants)
@@ -930,6 +1003,18 @@ class AbstractTraceSampler:
 
         # Measure-level invariants (project(theta, t)) per step.
         self._add_measure_relations()
+
+        # Hard: env-event and env+measure relations (witness, equal,
+        # mutualExclusive, happenBefore, Causation, Effect, Forbid,
+        # UntilEM, TimedEM with env-side actors). Sys-only-event and
+        # sys+measure relations are NOT encoded here; the realizability
+        # checker errors on the latter at parse time.
+        from sleec_sampler_relations import add_relation_constraints
+        add_relation_constraints(
+            self.opt, self.model, self.e_vars,
+            self._ctx_at_step, _z3_eval_bool_expr,
+            self.event_classification, self.N, verbose=verbose,
+        )
 
         # Per-rule, per-step abstraction assumption booleans.
         # assumption_vars[(rule_name, step_index)] -> z3.Bool
@@ -1007,8 +1092,11 @@ class AbstractTraceSampler:
                               file=sys.stderr)
                     cond = z3.BoolVal(True)
                 a = z3.Bool(f"assume__{r.name}__{t+1}")
-                # Bind the abstraction assumption to its concrete measure predicate.
-                self.opt.add(a == cond)
+                # Bind the abstraction assumption to (env trigger present at t)
+                # AND (concrete measure condition at t). MaxSAT thus jointly
+                # picks env-event presence and measure values to maximize
+                # rule firings.
+                self.opt.add(a == z3.And(self.e_vars[trig_name][t], cond))
                 # Maximize satisfied assumptions.
                 self.opt.add_soft(a, 1)
                 self.assumption_vars[(r.name, t + 1)] = a
@@ -1030,8 +1118,9 @@ class AbstractTraceSampler:
 
         per_step = []
         for t in range(self.N):
-            # Environment events are implicitly ON at every step.
-            events = set(self.env_events)
+            # Env-event presence is now a free Boolean per (event, step).
+            # Read it from the model.
+            events = {e for e in self.env_events if _b(self.e_vars[e][t])}
             measures: Dict[str, object] = {}
             for m in self.bool_measures:
                 measures[m] = _b(self.m_bool_vars[m][t])
@@ -1279,21 +1368,73 @@ class RealizabilityChecker:
 
         if self.decompose:
             from sleec_decompose import (decompose_rules, describe_components,
-                                          has_polarity_clash)
-            components = decompose_rules(rules, og_rules, relations)
-            if verbose:
-                print(f"[realizability] decomposed into {len(components)} "
-                      f"component(s):", file=sys.stderr)
-                print(describe_components(rules, components), file=sys.stderr)
+                                          has_polarity_clash,
+                                          decompose_with_relations)
         else:
-            components = [list(range(len(rules)))]
-            # No decomposition, no short-circuit: set the predicate to always
-            # say "potentially clashes" so the solver is invoked unconditionally.
-            def has_polarity_clash(_rules, _indices):
-                return True
+            from sleec_decompose import has_polarity_clash  # noqa: F401
 
         # --- 3. Build the common background (same in every component solve).
-        relational_constraints = get_relational_constraints(relations)
+        # Phase II FOL* query for each component is the conjunction of:
+        #   (i) the measure invariant,
+        #  (ii) each rule in the component's encoded form,
+        # (iii) relations belonging to the component (coupling) plus
+        #       relations that are global (measure-only / measure-invariant),
+        #  (iv) the partial-trace assertions.
+        # Relations that mix system events with measures are not yet
+        # supported and abort the run here. See classify_relation_actors.
+        from sleec_event_classification import (
+            classify_events_with_annotations, classify_relation_actors,
+            RelationActorKind, RelationClassificationError,
+        )
+        ec_for_relations = classify_events_with_annotations(_model)
+        offenders = []
+        for rel in relations:
+            actor_kind = classify_relation_actors(rel, ec_for_relations)
+            if actor_kind in (RelationActorKind.SYS_EVENT_AND_MEASURE,
+                              RelationActorKind.MIXED_AND_MEASURE):
+                offenders.append((rel, actor_kind))
+        if offenders:
+            raise RelationClassificationError(offenders=offenders)
+
+        # Decompose rules + relations together.
+        if self.decompose:
+            decomposition = decompose_with_relations(
+                rules, og_rules, relations, ec_for_relations,
+            )
+            components_struct = decomposition.components
+            global_relations = [relations[i]
+                                for i in decomposition.global_relation_indices]
+            if verbose:
+                print(f"[realizability] decomposed into "
+                      f"{len(components_struct)} component(s); "
+                      f"{len(global_relations)} global relation(s)",
+                      file=sys.stderr)
+                # Describe rule clusters using the legacy formatter.
+                legacy = [c.rule_indices for c in components_struct]
+                print(describe_components(rules, legacy), file=sys.stderr)
+        else:
+            # Single monolithic component containing every rule and every
+            # eligible relation. (Measure-only and other empty-alphabet
+            # relations are folded into the same component for simplicity.)
+            from sleec_decompose import Component
+            kept_rel_indices = []
+            for ri, rel in enumerate(relations):
+                kind = classify_relation_actors(rel, ec_for_relations)
+                # Skip MIXED_ENV_SYS_EVENTS (deferred); other eligible kinds keep.
+                if kind in (RelationActorKind.SYS_EVENT_AND_MEASURE,
+                            RelationActorKind.MIXED_AND_MEASURE,
+                            RelationActorKind.MIXED_ENV_SYS_EVENTS):
+                    continue
+                kept_rel_indices.append(ri)
+            components_struct = [Component(
+                rule_indices=list(range(len(rules))),
+                relation_indices=kept_rel_indices,
+            )]
+            global_relations = []
+
+        # Encode the global relations once; reused in every per-component solve.
+        global_relational_constraints = get_relational_constraints(global_relations)
+
         # Build the trace assertions once; they are asserted in every
         # per-component solve. (Environment events and measure snapshots
         # must be visible inside every component query so that triggers
@@ -1333,34 +1474,42 @@ class RealizabilityChecker:
         # Short-circuit as soon as any component is UNREALIZABLE.
         overall_status = "realizable"
         culprit_component_idx = None
-        short_circuited: List[int] = []   # 1-based indices of groups realizable by inspection
-        for ci, comp in enumerate(components):
-            # Short-circuit: if no head class appears with both + and -
-            # polarities in this group, the group is realizable without
-            # a solver call.  See has_polarity_clash + Theorem in §6.1 of
-            # the paper.
-            if not has_polarity_clash(rules, comp):
+        short_circuited: List[int] = []   # 1-based indices realizable by inspection
+        for ci, comp in enumerate(components_struct):
+            comp_rule_indices = comp.rule_indices
+            comp_relation_indices = comp.relation_indices
+            # Short-circuit only when the component carries no relations.
+            # Relations can introduce UNSAT that polarity-clash cannot see
+            # (e.g., mutualExclusive between two positive sys heads).
+            if (not comp.has_relations and
+                    not has_polarity_clash(rules, comp_rule_indices)):
                 short_circuited.append(ci + 1)
                 if verbose:
-                    print(f"[realizability] component {ci+1}/{len(components)}: "
-                          f"no polarity clash, realizable by inspection",
+                    print(f"[realizability] component {ci+1}/"
+                          f"{len(components_struct)}: no polarity clash, "
+                          "realizable by inspection",
                           file=sys.stderr)
                 continue
 
+            # Encode this component's relations + always-on global ones.
+            comp_relations = [relations[i] for i in comp_relation_indices]
+            comp_relational_constraints = get_relational_constraints(comp_relations)
+
             # Build per-component rule clauses.
             fol_rules = [measure_inv]
-            fol_rules.extend(relational_constraints)
+            fol_rules.extend(global_relational_constraints)
+            fol_rules.extend(comp_relational_constraints)
             if self.mode == "strong":
                 # Strong mode uses per-WhenRule encoding. Deduplicate the
                 # og_rules indices because multiple normalized rules may
                 # share the same og_rule (primary + defeater branches).
-                og_idx_set = sorted({nr_to_og_idx[i] for i in comp})
+                og_idx_set = sorted({nr_to_og_idx[i] for i in comp_rule_indices})
                 for og_idx in og_idx_set:
                     fol_rules.append(og_rules[og_idx].get_rule())
             else:
                 fol_rules.append(c_measure.presence)
                 fol_rules.extend(get_blocked_axioms(Action_Mapping, c_measure))
-                for idx in comp:
+                for idx in comp_rule_indices:
                     fol_rules.append(
                         rules[idx].encode_limited(c_measure, Action_Mapping)
                     )
@@ -1404,10 +1553,10 @@ class RealizabilityChecker:
                 culprit_rules=[],
                 system_events_schedule={},
             )
-        # unrealizable; optionally narrow culprit to the failing component.
+        # unrealizable; narrow culprit to the failing component's rule names.
         culprit_names = (
             [getattr(rules[i].og_rule, "name", "?")
-             for i in components[culprit_component_idx]]
+             for i in components_struct[culprit_component_idx].rule_indices]
             if culprit_component_idx is not None else all_rule_names
         )
         return RealizabilityVerdict(
@@ -1574,10 +1723,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "traces, blocking each with ALO(~p_trace) between "
                              "calls (default 1).")
     parser.add_argument("--abstract", action="store_true",
-                        help="Use the per-rule abstraction sampler (one Bool "
-                             "assumption per (rule, step), bound to the rule's "
-                             "measure condition via Iff). Env events are "
-                             "implicitly on; ALO is over assumptions.")
+                        help="(deprecated, no-op) AbstractTraceSampler is "
+                             "now the default; this flag is accepted for "
+                             "backward compatibility with existing scripts.")
+    parser.add_argument("--legacy-sampler", action="store_true",
+                        help="Use the legacy TraceSampler (per-step SSA over "
+                             "env events + measures, no per-rule abstraction "
+                             "Booleans). Default is AbstractTraceSampler.")
     parser.add_argument("--realizability-check", action="store_true",
                         help="With --sample N, after producing each partial "
                              "trace run the SLEEC bounded realizability check "
@@ -1622,8 +1774,18 @@ def main(argv: Optional[List[str]] = None) -> int:
         if args.k < 1:
             print("error: --k K must be >= 1", file=sys.stderr)
             return 2
-        sampler_cls = AbstractTraceSampler if args.abstract else TraceSampler
-        sampler = sampler_cls(model, args.sample, verbose=not args.quiet)
+        sampler_cls = TraceSampler if args.legacy_sampler else AbstractTraceSampler
+        try:
+            sampler = sampler_cls(model, args.sample, verbose=not args.quiet)
+        except Exception as exc:
+            # Surface event-classification conflicts cleanly without a traceback.
+            if type(exc).__name__ == "EventClassificationError":
+                from sleec_event_classification import format_conflicts
+                print("\nrealizability run aborted: event classification "
+                      "produced conflicts.\n", file=sys.stderr)
+                print(format_conflicts(exc.classification), file=sys.stderr)
+                return 2
+            raise
 
         # If the user asked for a realizability check, construct the checker
         # once (it parses via SleecNorm, which is slow; don't redo per trace).
@@ -1645,16 +1807,26 @@ def main(argv: Optional[List[str]] = None) -> int:
                 break
             print_sampled_trace(trace, index=i if args.k > 1 else None)
             if rz_checker is not None:
-                verdict = rz_checker.check(trace, verbose=not args.quiet)
+                try:
+                    verdict = rz_checker.check(trace, verbose=not args.quiet)
+                except Exception as exc:
+                    if type(exc).__name__ == "RelationClassificationError":
+                        print("\nrealizability run aborted: unsupported "
+                              "relation kind.\n", file=sys.stderr)
+                        print(str(exc), file=sys.stderr)
+                        return 2
+                    raise
                 print_realizability_result(trace, verdict,
                                             index=i if args.k > 1 else None)
                 if verdict.status != "realizable":
                     any_unrealizable = True
             if i < args.k:
                 if not sampler.block(trace):
-                    saturation_msg = ("every assumption is already active"
-                                      if args.abstract else
-                                      "trace triggered every env event at every step")
+                    saturation_msg = (
+                        "trace triggered every env event at every step"
+                        if args.legacy_sampler
+                        else "every (rule, step) firing is already saturated"
+                    )
                     print(f"\n[sampler] (trace #{i}: {saturation_msg}; "
                           "complement is empty, exhausting here)")
                     break

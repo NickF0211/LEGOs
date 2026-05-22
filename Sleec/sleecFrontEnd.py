@@ -439,6 +439,38 @@ def check_realizability():
         render()
 
     except Exception as exc:
+        # Friendly handling for the two known "expected" diagnostic exceptions:
+        # show only the message body, no traceback.
+        cls_name = type(exc).__name__
+        if cls_name == "EventClassificationError":
+            from sleec_event_classification import format_conflicts
+            new_text.insert(
+                tk.INSERT,
+                "Event-classification conflict — the realizability check "
+                "cannot proceed.\n\n",
+                "hl",
+            )
+            new_text.insert(
+                tk.INSERT,
+                format_conflicts(exc.classification) + "\n\n"
+                "Adjust the affected `event NAME as system|environment` "
+                "annotations or rule body, then retry.\n",
+            )
+            return
+        if cls_name == "RelationClassificationError":
+            new_text.insert(
+                tk.INSERT,
+                "Unsupported relation kind — the realizability check "
+                "cannot proceed.\n\n",
+                "hl",
+            )
+            new_text.insert(tk.INSERT, str(exc) + "\n\n"
+                "Relations that couple system events with measure "
+                "expressions are not yet supported by the realizability "
+                "check. Either remove the relation or restrict the event "
+                "to environment.\n")
+            return
+        # Unexpected exception — show the traceback for debugging.
         import traceback
         tb = traceback.format_exc()
         new_text.insert(

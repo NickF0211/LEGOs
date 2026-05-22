@@ -12,7 +12,11 @@ Definition:
 ;
 
 Event:
-    "event" name=ID
+    "event" name=ID ("as" kind=EventKind)?
+;
+
+EventKind:
+    "system" | "environment"
 ;
 
 Measure:
