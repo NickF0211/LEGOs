@@ -68,6 +68,7 @@ def build_timeline(
     culprit_names: Set[str],
     *,
     col_width: int = 8,
+    verdict_status: Optional[str] = None,
 ) -> Tuple[str, List[Span]]:
     """Build a textual grid + highlight spans.
 
@@ -80,6 +81,15 @@ def build_timeline(
         culprit_names: set of rule names belonging to the failing
             dependency-graph component (empty if realizable).
         col_width: characters per time-step column.
+        verdict_status: optional verdict produced by the realizability
+            checker. Used to tailor the wording of the per-conflict
+            explanation lines:
+              - "unrealizable" -> "this conflict is realized in the verdict"
+              - "realizable"   -> "the solver scheduled around this"
+              - None           -> no parenthetical (the timeline's
+                                  "Reading:" legend already explains ⚠)
+            Only affects the explanation text; structural output is the
+            same regardless of value.
     """
     N = trace["N"]
     per_step = trace["per_step"]
@@ -160,8 +170,47 @@ def build_timeline(
         buf.append(text)
         spans.append((start, start + len(text), tag))
 
-    row_label_w = 22
-    col_w = col_width
+    # Compute row_label_w dynamically: every label needs to fit
+    # within "PREFIX  LABEL  " (prefix is "ENV ", "SYS ", or "WARN").
+    # Without this, a long event name (e.g., callEmergencyServices, 21
+    # chars) overflows the label slot and runs straight into the first
+    # cell, breaking column alignment.
+    candidate_labels: List[str] = []
+    candidate_labels.extend(f"ENV  {e}" for e in env_events)
+    candidate_labels.extend(
+        f"ENV  {m}" for m in (bool_measures + num_measures
+                              + scalar_measures))
+    candidate_labels.extend(f"SYS  {cls}" for cls in head_classes_pos)
+    candidate_labels.extend(f"SYS  ¬{cls}" for cls in head_classes_neg)
+    # The conflict-row label depends on whether the verdict is known.
+    # UNREAL specs: the conflict is proven. REAL specs: the solver dodged
+    # what would otherwise be a conflict. Without a verdict: it's a
+    # potential clash flagged by static analysis.
+    if verdict_status == "unrealizable":
+        conflict_row_label = "CONFLICT (proven)"
+        conflict_word = "conflict"
+    elif verdict_status == "realizable":
+        conflict_row_label = "(avoided) WARN"
+        conflict_word = "potential conflict"
+    else:
+        conflict_row_label = "WARN potential conflict"
+        conflict_word = "potential conflict"
+    candidate_labels.append(conflict_row_label)
+    if candidate_labels:
+        row_label_w = max(len(s) for s in candidate_labels) + 2
+    else:
+        row_label_w = 22
+    # Cell width: at minimum col_width, but stretch to fit the widest
+    # rule cluster like "[R1,R2,R3]" (avoids ellipsis-cropping unless a
+    # cell really is huge).
+    widest_cell = 4  # minimum: "[R3] "
+    for cell_set in cells.values():
+        names = list(dict.fromkeys(cell_set))
+        # Length of "[R1,R2,...]" string before any truncation.
+        rendered_len = 2 + sum(len(n) for n in names) + max(0, len(names) - 1)
+        if rendered_len > widest_cell:
+            widest_cell = rendered_len
+    col_w = max(col_width, widest_cell + 1)  # +1 for visual separator
 
     def header(title: str) -> None:
         emit(f"\n-- {title} --\n")
@@ -171,7 +220,8 @@ def build_timeline(
         for t in range(1, max_time + 1):
             mark_over = t > N
             # Put a · around times past the horizon so reader sees the overshoot.
-            col = f"t={t}".rjust(col_w - 1) + (" " if not mark_over else "·")
+            col_label = f"t={t}{'·' if mark_over else ''}"
+            col = col_label.ljust(col_w)
             emit(col)
         emit("\n")
 
@@ -194,7 +244,7 @@ def build_timeline(
                 step["t"] == t and ev in step.get("events", set())
                 for step in per_step
             )
-            cell = " ●".center(col_w) if present else " ".center(col_w)
+            cell = "● ".ljust(col_w) if present else " " * col_w
             emit(cell)
         emit("\n")
 
@@ -216,7 +266,7 @@ def build_timeline(
                         else:
                             val = str(v)[:col_w - 2]
                     break
-            emit(val.center(col_w))
+            emit(val.ljust(col_w) if val else " " * col_w)
         emit("\n")
 
     ruler()
@@ -228,7 +278,7 @@ def build_timeline(
         for t in range(1, max_time + 1):
             occupants = cells.get((cls, False, t), [])
             if not occupants:
-                emit(" ".center(col_w))
+                emit(" " * col_w)
             else:
                 # Render [R1,R2] truncated to fit col_w.
                 tag_cell(emit, emit_tagged, occupants, culprit_names, col_w)
@@ -241,7 +291,7 @@ def build_timeline(
         for t in range(1, max_time + 1):
             occupants = cells.get((cls, True, t), [])
             if not occupants:
-                emit(" ".center(col_w))
+                emit(" " * col_w)
             else:
                 tag_cell(emit, emit_tagged, occupants, culprit_names, col_w)
         emit("\n")
@@ -255,17 +305,17 @@ def build_timeline(
     conflict_classes = head_classes_pos & head_classes_neg
     if conflict_classes:
         ruler()
-        emit("WARN potential conflict  ".ljust(row_label_w))
+        emit(conflict_row_label.ljust(row_label_w))
         for t in range(1, max_time + 1):
             conflicts_here = [
                 cls for cls in conflict_classes
                 if cells.get((cls, False, t)) and cells.get((cls, True, t))
             ]
             if conflicts_here:
-                label = "⚠".center(col_w)
+                label = "⚠ ".ljust(col_w)
                 emit_tagged(label, "conflict")
             else:
-                emit(" ".center(col_w))
+                emit(" " * col_w)
         emit("\n")
         # Explanation lines.
         for cls in sorted(conflict_classes):
@@ -276,9 +326,19 @@ def build_timeline(
             })
             if not conflicting_times:
                 continue
-            emit(f"     potential conflict on {cls} @ t ∈ "
-                 f"{_range_str(conflicting_times)}  "
-                 f"(may be avoidable)\n")
+            # Tailor the explanation to the verdict status (if known).
+            # When the verdict is not provided, drop the parenthetical
+            # entirely — the timeline's "Reading:" legend already explains
+            # what ⚠ means, and a generic "may or may not" hedge here adds
+            # nothing.
+            if verdict_status == "unrealizable":
+                tail = "  (this conflict is realized; see UNREALIZABLE verdict above)"
+            elif verdict_status == "realizable":
+                tail = "  (the solver scheduled around this; see REALIZABLE verdict above)"
+            else:
+                tail = ""
+            emit(f"     {conflict_word} on {cls} @ t ∈ "
+                 f"{_range_str(conflicting_times)}{tail}\n")
 
     return "".join(buf), spans
 

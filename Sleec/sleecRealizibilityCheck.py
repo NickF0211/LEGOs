@@ -1516,7 +1516,7 @@ class RealizabilityChecker:
 
             query = AND(fol_rules + trace_assertions)
             if verbose:
-                print(f"[realizability] component {ci+1}/{len(components)}: "
+                print(f"[realizability] component {ci+1}/{len(components_struct)}: "
                       f"{len(fol_rules)} rule clauses, "
                       f"{len(trace_assertions)} trace assertions, "
                       f"horizon N={self.N}", file=sys.stderr)

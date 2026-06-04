@@ -163,61 +163,34 @@ def _range_str(ts):
 
 
 def _summarize_trace(trace):
-    """Compact trace summary for the top-of-output view.
-
-    If every step carries the same env events and the same measure
-    valuations, collapse to a single 't=1..N: <events> | <measures>' line.
-    Otherwise fall back to per-step listing.
-    """
+    """Trace summary for the top-of-output view. Always spells out
+    every step explicitly (no collapsing of identical steps), so the
+    user can see exactly what happens at each time point."""
     per_step = trace.get("per_step", [])
     if not per_step:
         return "(empty trace)"
-    # Canonical signature per step.
-    sigs = []
-    for step in per_step:
-        ev = tuple(sorted(step.get("events", [])))
-        ms = tuple(sorted(step.get("measures", {}).items()))
-        sigs.append((ev, ms))
-    uniform = all(s == sigs[0] for s in sigs)
-    N = len(per_step)
 
-    def _fmt_step(events, measures):
-        ev_str = ", ".join(events) if events else "(no env event)"
+    def _events_str(events):
+        return ", ".join(events) if events else "(no env event)"
+
+    def _measures_str(measures):
+        if not measures:
+            return "(none declared)"
         m_pairs = []
         for m, v in measures:
             if isinstance(v, bool):
                 m_pairs.append(f"{m}={'T' if v else 'F'}")
             else:
                 m_pairs.append(f"{m}={v}")
-        m_str = ", ".join(m_pairs)
-        sep = "  | " if m_str else ""
-        return f"{ev_str}{sep}{m_str}"
+        return ", ".join(m_pairs)
 
-    if uniform:
-        ev, ms = sigs[0]
-        # Split the events and measures onto their own lines so the
-        # measure valuations are visible even when the env event list
-        # is long.
-        ev_str = ", ".join(ev) if ev else "(no env event)"
-        m_pairs = []
-        for m, v in ms:
-            if isinstance(v, bool):
-                m_pairs.append(f"{m}={'T' if v else 'F'}")
-            else:
-                m_pairs.append(f"{m}={v}")
-        lines = [f"  t=1..{N}  (all steps identical)"]
-        lines.append(f"    env events:  {ev_str}")
-        if m_pairs:
-            lines.append(f"    measures:    {', '.join(m_pairs)}")
-        else:
-            lines.append("    measures:    (none declared)")
-        return "\n".join(lines)
-    # Non-uniform: per-step.
     out = []
     for step in per_step:
         ev = sorted(step.get("events", []))
         ms = sorted(step.get("measures", {}).items())
-        out.append(f"  t={step['t']}: {_fmt_step(ev, ms)}")
+        out.append(f"  t={step['t']}")
+        out.append(f"    env events:  {_events_str(ev)}")
+        out.append(f"    measures:    {_measures_str(ms)}")
     return "\n".join(out)
 
 
@@ -335,43 +308,64 @@ def check_realizability():
         #    --- Details --- -> timeline -> decomposition -> full firings.
 
         # 3a. Verdict banner (top of output).
-        header_bar = "=" * 72 + "\n"
+        header_bar = "═" * 72 + "\n"
         if verdict.status == "realizable":
             append(header_bar)
             append(f"  REALIZABLE  (N={N})\n")
             append(header_bar)
-            append("\nEvery sampled partial trace admits an extension that "
-                   "satisfies all SLEEC rules within their time bounds.\n")
-            append(f"\nComponents checked: {len(component_info)}  "
-                   f"({', '.join(f'G{ci}' for ci, _ in component_info)})\n")
+            append("\n")
+            append("What this means\n")
+            append("───────────────\n")
+            append(
+                "On the worst environment trace we could craft within N="
+                f"{N} steps, the system can still satisfy every rule that\n"
+                "fires. This is NOT a proof of realizability for all "
+                "horizons or environments outside our sample — it's a\n"
+                "strong sanity check at the configured bound.\n"
+            )
         else:
             banner = "!" * 72 + "\n"
             append(banner, "hl")
             append(f"  UNREALIZABLE  (N={N})\n", "hl")
             append(banner, "hl")
             append("\n")
+            append("What this means\n")
+            append("───────────────\n")
+            append(
+                "We found an environment behavior (shown below) for which\n"
+                "the system CANNOT satisfy every triggered rule. Two or "
+                "more rules\ngive contradictory orders about the same "
+                "event in the same time window.\n"
+            )
+            append("\n")
 
-            # 3b. "Why" paragraph + inline culprit rule sources.
-            # _append_culprit_source_block renders the header, clash-head
-            # summary line, and each rule's source with tagged sub-spans.
+            # 3b. The conflict block: clashing head + culprit rules + fix hint.
+            append("The conflict\n")
+            append("────────────\n")
             _append_culprit_source_block(
                 append, cur_text, _rules, failing_names
             )
             # Cite the failing component.
             if failing_component_idx is not None:
-                append("\nFailing rules: {")
+                append("Failing rules: {")
                 for i, name in enumerate(sorted(failing_names)):
                     if i:
                         append(", ")
                     append(name, "culprit_rule")
-                append(f"}}  (component G{failing_component_idx} of "
+                append(f"}}    (group G{failing_component_idx} of "
                        f"{len(component_info)})\n")
 
         # 3c. Compact partial-trace summary (single section, not repeated).
-        append("\n── Partial trace that "
-               + ("triggered the clash" if verdict.status == "unrealizable"
-                  else "was analyzed")
-               + f" (N={N}) ──\n")
+        if verdict.status == "unrealizable":
+            append("\nEnvironment trace that exposes the bug\n")
+            append("──────────────────────────────────────\n")
+            append("(events / measure values asserted at each step; the "
+                   "system\nhas no choice but to face this trace.)\n")
+        else:
+            append("\nEnvironment trace analyzed\n")
+            append("──────────────────────────\n")
+            append("(events / measure values our adversarial sampler picked "
+                   "to\nstress-test the rules at this horizon.)\n")
         compact = _summarize_trace(trace)
         # Tag culprit trigger events in the compact summary.
         _append_with_two_tag_highlights(
@@ -384,7 +378,10 @@ def check_realizability():
         # 3d. Fired rules summary (grouped by rule).
         fires = trace.get("rules_fired") or []
         if fires:
-            append("\nRules fired on this trace:\n")
+            append("\nTriggered rules on this trace\n")
+            append("─────────────────────────────\n")
+            append("(rules whose trigger event AND condition both hold at "
+                   "least once on this trace)\n")
             grouped = _summarize_firings(fires)
             for line in grouped:
                 # Tag rule names in each line if culprit.
@@ -396,22 +393,44 @@ def check_realizability():
 
         # 3e. Details section (below the fold).
         append("\n" + "─" * 72 + "\n")
-        append("── Details  (timeline, decomposition, full firings) ──\n")
+        append("Details — timeline, decomposition\n")
         append("─" * 72 + "\n")
+        if verdict.status == "unrealizable":
+            append("(Skip if you only need the verdict and the conflict "
+                   "above. These\nsections show the per-step obligation "
+                   "map and the rule-dependency\ngraph the analyzer "
+                   "used.)\n")
+        else:
+            append("(Skip if you only need the verdict above. These "
+                   "sections show the\nper-step obligation map and the "
+                   "rule-dependency graph the analyzer\nused.)\n")
 
         # 3e-i. Obligation timeline.
+        append("\nObligation timeline\n")
+        append("───────────────────\n")
+        append("Reading: each column = one time step. ENV rows = events / "
+               "measure values\nfrom the trace. SYS rows = events the system "
+               "would have to place; cells\ncontain the rules that demand or "
+               "forbid that event there. ⚠ marks a step where\nthe same event "
+               "is both required and forbidden by some rule.\n")
         try:
             from sleec_timeline import build_timeline
             tl_text, tl_spans = build_timeline(
                 _rules, trace, failing_names, col_width=8,
+                verdict_status=verdict.status,
             )
             _append_with_spans(append, tl_text, tl_spans)
         except Exception as _e:
             append(f"\n[timeline render skipped: {_e}]\n")
 
         # 3e-ii. Decomposition breakdown.
-        append("\n\n-- Rule decomposition --\n")
-        append(f"Spec decomposes into {len(component_info)} component(s):\n")
+        append("\n\nRule decomposition\n")
+        append("──────────────────\n")
+        append("(Rules that share a head event, a cascade, or a relation "
+               "are grouped\ntogether. Each group is checked independently. "
+               "Smaller groups = faster\nchecks and clearer fault localization.)\n")
+        append(f"Spec decomposes into {len(component_info)} "
+               f"{'group' if len(component_info) == 1 else 'groups'}:\n")
         for ci, names in component_info:
             marker = "  <-- failing" if ci == failing_component_idx else ""
             append(f"  G{ci} ({len(names)} rule"
@@ -424,17 +443,7 @@ def check_realizability():
                 else:
                     append(name)
             append("}" + marker + "\n")
-
-        # 3e-iii. Full triggered-rule list (step-by-step).
-        if fires:
-            append("\n-- Full firing list --\n")
-            for name, t in fires:
-                line = f"  - {name} @ t={t}\n"
-                _append_with_two_tag_highlights(
-                    append, line,
-                    rule_names=failing_names,
-                    event_names=set(),
-                )
+        append("\n")
 
         render()
 
@@ -532,15 +541,15 @@ def _append_culprit_source_block(append, model_str, rules, failing_names):
                 pos_heads.add(cls)
     clash_heads = pos_heads & neg_heads
 
-    append("\n-- Culprit rules (source form) --\n")
     if clash_heads:
-        append("Head event(s) with both required and forbidden obligations: ")
+        append("The same event is both required and forbidden: ")
         for i, h in enumerate(sorted(clash_heads)):
             if i:
                 append(", ")
             append(h, "conflict")
         append("\n\n")
 
+    append("The rules involved (verbatim from your spec):\n\n")
     for rule_node in seen_nodes:
         s = rule_node._tx_position
         e = rule_node._tx_position_end
