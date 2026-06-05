@@ -1,0 +1,12 @@
+def_start
+    event callEmergencyServices
+    event leaveRoom
+    event emergencyArrived
+    measure userDeaf: boolean
+def_end
+
+rule_start
+    R1 when callEmergencyServices then leaveRoom within 5 seconds
+    R2 when emergencyArrived and {userDeaf} then not leaveRoom within 5 seconds
+    R3 when emergencyArrived then callEmergencyServices within 0 seconds
+rule_end

@@ -1,0 +1,16 @@
+// Corner case: self-referential mutualExclusive A A.
+// Semantics: forall t. NOT (A@t AND A@t) = NOT(A@t) = A is always absent.
+// Sampler should produce a trace with A=False at every step.
+
+def_start
+    event A
+    event Resp as system
+def_end
+
+rule_start
+    R1 when A then Resp within 0 seconds
+rule_end
+
+relation_start
+    mutualExclusive A A
+relation_end

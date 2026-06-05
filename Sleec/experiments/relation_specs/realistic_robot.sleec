@@ -1,0 +1,38 @@
+// Realistic: robot safety chain.
+//
+// Env events: BatteryLow, ObstacleDetected, OperatorCommand, AreaClear
+// Sys events: Stop, Recharge, Resume, AvoidObstacle
+//
+// Domain assumptions captured as relations:
+//  - happenBefore BatteryLow Recharge: can't be in recharge mode without
+//    prior battery-low event. (Recharge is a sys event though, so this is
+//    sys-side and skipped by sampler. We cover it anyway.)
+//  - happenBefore ObstacleDetected AreaClear: can't claim clear before any
+//    obstacle observation. (env-env)
+//  - mutualExclusive ObstacleDetected AreaClear: obstacles don't co-occur
+//    with clarity announcements. (env-env)
+//  - until E1 then m holds for some measure invariant in critical mode.
+
+def_start
+    event BatteryLow
+    event ObstacleDetected
+    event OperatorCommand
+    event AreaClear
+    event Stop as system
+    event Recharge as system
+    event Resume as system
+    event AvoidObstacle as system
+    measure inCritical: boolean
+def_end
+
+rule_start
+    R1 when BatteryLow then Stop within 0 seconds
+    R2 when ObstacleDetected then AvoidObstacle within 0 seconds
+    R3 when OperatorCommand and {inCritical} then Stop within 1 seconds
+rule_end
+
+relation_start
+    mutualExclusive ObstacleDetected AreaClear
+    happenBefore ObstacleDetected AreaClear
+    when BatteryLow then {inCritical} until OperatorCommand
+relation_end

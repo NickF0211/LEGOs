@@ -1,0 +1,9 @@
+def_start
+    event A  event B
+    event C  event D
+    measure shared: boolean
+def_end
+rule_start
+    R1 when A and {shared} then B within 5 seconds
+    R2 when C and {shared} then D within 5 seconds
+rule_end

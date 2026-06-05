@@ -1,0 +1,41 @@
+// Realistic: home alarm system.
+// Env events: ArmSystem, Disarm, MotionDetected, RecoverFromBreach
+// Sys events: AlarmTriggered, CallSecurity, ResetSystem
+// Measures: armed (bool), securityCalled (bool)
+//
+// Rules:
+//   R1: motion in armed state => alarm
+//   R2: alarm => call security within 5s
+//   R3: disarm => no alarm in same step (negative obligation)
+//   R4: recover => reset system within 3s
+// Relations:
+//   - mutualExclusive ArmSystem Disarm (can't arm and disarm same step)
+//   - happenBefore ArmSystem RecoverFromBreach (recovery needs prior arm)
+//   - causation ArmSystem {armed} (armed measure tracks arm event)
+//   - forbid Disarm {armed} (after disarm, armed becomes false)
+
+def_start
+    event ArmSystem
+    event Disarm
+    event MotionDetected
+    event RecoverFromBreach
+    event AlarmTriggered as system
+    event CallSecurity as system
+    event ResetSystem as system
+    measure armed: boolean
+    measure securityCalled: boolean
+def_end
+
+rule_start
+    R1 when MotionDetected and {armed} then AlarmTriggered within 0 seconds
+    R2 when AlarmTriggered then CallSecurity within 5 seconds
+    R3 when Disarm then not AlarmTriggered within 0 seconds
+    R4 when RecoverFromBreach then ResetSystem within 3 seconds
+rule_end
+
+relation_start
+    mutualExclusive ArmSystem Disarm
+    happenBefore ArmSystem RecoverFromBreach
+    causation ArmSystem {armed}
+    forbid Disarm {armed}
+relation_end

@@ -1,0 +1,12 @@
+// includes E {m}: E@t implies m=True at t.
+def_start
+    event E
+    event Resp as system
+    measure m: boolean
+def_end
+rule_start
+    R1 when E then Resp within 0 seconds
+rule_end
+relation_start
+    includes E {m}
+relation_end

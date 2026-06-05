@@ -1,0 +1,7 @@
+def_start
+    event A  event B  event C
+def_end
+rule_start
+    R1 when A then B within 3 seconds
+    R2 when B then C within 3 seconds
+rule_end

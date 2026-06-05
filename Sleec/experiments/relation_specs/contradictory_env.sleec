@@ -1,0 +1,16 @@
+// Stress test: mutually exclusive AND equal — sampler must pick A=B=False
+// at every step (the only model satisfying both). No rule firings, but the
+// sampler should still produce a (trivial) trace.
+def_start
+    event A
+    event B
+    event Resp as system
+def_end
+rule_start
+    R1 when A then Resp within 0 seconds
+    R2 when B then Resp within 0 seconds
+rule_end
+relation_start
+    mutualExclusive A B
+    equal A B
+relation_end

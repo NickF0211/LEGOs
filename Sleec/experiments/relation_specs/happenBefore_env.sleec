@@ -1,0 +1,12 @@
+// happenBefore A B: every B preceded by some A.
+def_start
+    event A
+    event B
+    event Resp as system
+def_end
+rule_start
+    R1 when B then Resp within 0 seconds
+rule_end
+relation_start
+    happenBefore A B
+relation_end

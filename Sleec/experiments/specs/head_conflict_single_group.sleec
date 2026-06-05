@@ -1,0 +1,7 @@
+def_start
+    event A  event B
+def_end
+rule_start
+    R1 when A then B within 5 seconds
+    R2 when A then not B within 5 seconds
+rule_end

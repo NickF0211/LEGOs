@@ -1,0 +1,13 @@
+// UntilEM: when E1 then m holds until E2.
+def_start
+    event E1
+    event E2
+    event Resp as system
+    measure m: boolean
+def_end
+rule_start
+    R1 when E1 then Resp within 0 seconds
+rule_end
+relation_start
+    when E1 then {m} until E2
+relation_end

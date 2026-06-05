@@ -1,0 +1,14 @@
+def_start
+    event A1  event B1
+    event A2  event B2
+    event A3  event B3
+    event A4  event B4
+    event A5  event B5
+def_end
+rule_start
+    R1 when A1 then B1 within 5 seconds
+    R2 when A2 then B2 within 5 seconds
+    R3 when A3 then B3 within 5 seconds
+    R4 when A4 then B4 within 5 seconds
+    R5 when A5 then B5 within 5 seconds
+rule_end

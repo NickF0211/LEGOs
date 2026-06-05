@@ -1,0 +1,27 @@
+// Realistic-style UNREAL spec: env-side relation feeds two contradictory
+// sys obligations.
+//
+//   - mutualExclusive Sense Sleep (env-env)
+//   - witness Wake Sense (env-env): every Wake coincides with Sense.
+//   - R1: Wake => GoActive within 0
+//   - R2: Sense => not GoActive within 0
+//
+// On any trace where Wake fires (which by witness forces Sense), R1 demands
+// GoActive AND R2 forbids it. Phase II should report UNREAL.
+
+def_start
+    event Wake
+    event Sense
+    event Sleep
+    event GoActive as system
+def_end
+
+rule_start
+    R1 when Wake then GoActive within 0 seconds
+    R2 when Sense then not GoActive within 0 seconds
+rule_end
+
+relation_start
+    witness Wake Sense
+    mutualExclusive Sense Sleep
+relation_end

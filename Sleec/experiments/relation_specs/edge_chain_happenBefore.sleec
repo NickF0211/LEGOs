@@ -1,0 +1,21 @@
+// Corner case: chain of three happenBefore relations. C must be preceded
+// by B which must be preceded by A. So at t=1: no B, no C. At t=2: maybe
+// B (if A at t=1) but no C. At t=3: maybe C (if B at t=2 and A at t=1).
+
+def_start
+    event A
+    event B
+    event C
+    event Resp as system
+def_end
+
+rule_start
+    R1 when A then Resp within 0 seconds
+    R2 when B then Resp within 0 seconds
+    R3 when C then Resp within 0 seconds
+rule_end
+
+relation_start
+    happenBefore A B
+    happenBefore B C
+relation_end

@@ -1,0 +1,16 @@
+// causation E {m}: m=True at t implies E@t.
+// We add a second rule that fires when m=True, so MaxSAT has an
+// incentive to set m=True. The relation must then force E@t whenever
+// m@t is True.
+def_start
+    event E
+    event Resp as system
+    measure m: boolean
+def_end
+rule_start
+    R1 when E then Resp within 0 seconds
+    R2 when E and {m} then Resp within 0 seconds
+rule_end
+relation_start
+    causation E {m}
+relation_end

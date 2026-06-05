@@ -1,0 +1,13 @@
+// equal A B: A iff B at every step.
+def_start
+    event A
+    event B
+    event Resp as system
+def_end
+rule_start
+    R1 when A then Resp within 0 seconds
+    R2 when B then Resp within 0 seconds
+rule_end
+relation_start
+    equal A B
+relation_end

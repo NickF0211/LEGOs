@@ -1,0 +1,29 @@
+// Combination: every encodable env-side relation kind in one spec.
+// Tests that the sampler handles 7 simultaneous constraints without
+// contradiction.
+
+def_start
+    event Wake
+    event Sleep
+    event Sense
+    event Recover
+    event Resp as system
+    measure m: boolean
+    measure n: boolean
+def_end
+
+rule_start
+    R1 when Wake then Resp within 0 seconds
+    R2 when Sense then Resp within 0 seconds
+    R3 when Wake and {m} then Resp within 0 seconds
+rule_end
+
+relation_start
+    witness Wake Sense
+    mutualExclusive Wake Sleep
+    happenBefore Wake Recover
+    causation Wake {m}
+    includes Sense {n}
+    forbid Sleep {m}
+    when Wake then {n} until Sleep
+relation_end

@@ -1,0 +1,12 @@
+// witness A B: every A coincides with some B (env-env).
+def_start
+    event A
+    event B
+    event Resp as system
+def_end
+rule_start
+    R1 when A then Resp within 0 seconds
+rule_end
+relation_start
+    witness A B
+relation_end

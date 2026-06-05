@@ -1,0 +1,10 @@
+def_start
+    event A  event B
+    event C  event D
+    event E  event F
+def_end
+rule_start
+    R1 when A then B within 5 seconds
+    R2 when C then D within 5 seconds
+    R3 when E then F within 5 seconds
+rule_end
