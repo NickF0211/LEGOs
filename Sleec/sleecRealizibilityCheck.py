@@ -1747,6 +1747,20 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "Decomposition Theorem, if every component is "
                              "realizable on the seed then so is the whole spec. "
                              "Off by default.")
+    parser.add_argument("--check-conflict", action="store_true",
+                        help="Check the spec for consistency conflicts "
+                             "(rule pairs whose conjunction is unsatisfiable). "
+                             "Does not need --sample. Mutually exclusive with "
+                             "--realizability-check.")
+    parser.add_argument("--check-redundancy", action="store_true",
+                        help="Check the spec for redundant rules (rules whose "
+                             "removal does not change the spec's semantics). "
+                             "Does not need --sample.")
+    parser.add_argument("--check-situational", action="store_true",
+                        help="Check the spec for situational conflicts "
+                             "(measure valuations under which two or more "
+                             "rules require contradictory responses). Does "
+                             "not need --sample.")
     args = parser.parse_args(argv)
 
     if not os.path.isfile(args.filename):
@@ -1766,6 +1780,39 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     if args.normalize:
         print_normalized_rules(read_model_file(args.filename))
+
+    # Standalone consistency / redundancy / situational checks.
+    # Each operates on the spec text directly and does not require --sample.
+    if args.check_conflict or args.check_redundancy or args.check_situational:
+        from sleecParser import check_input_conflict, check_input_red
+        from SleecNorm import check_situational_conflict
+        spec_text = read_model_file(args.filename)
+        ran_any = False
+        if args.check_conflict:
+            print("\n" + "=" * 72)
+            print("CONSISTENCY CONFLICT CHECK")
+            print("=" * 72)
+            check_input_conflict(spec_text)
+            ran_any = True
+        if args.check_redundancy:
+            print("\n" + "=" * 72)
+            print("REDUNDANCY CHECK")
+            print("=" * 72)
+            check_input_red(spec_text)
+            ran_any = True
+        if args.check_situational:
+            # SleecNorm uses a global pysmt env; reset before invocation so a
+            # prior parse_sleec() in this same run doesn't leave stale symbols.
+            _reset_sleecnorm_state()
+            print("\n" + "=" * 72)
+            print("SITUATIONAL CONFLICT CHECK")
+            print("=" * 72)
+            check_situational_conflict(spec_text)
+            ran_any = True
+        # If only static checks were requested (no --sample, no
+        # --realizability-check), exit cleanly here.
+        if ran_any and args.sample is None and not args.realizability_check:
+            return 0
 
     if args.sample is not None:
         if args.sample < 1:

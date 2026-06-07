@@ -88,7 +88,23 @@ python3 sleecRealizibilityCheck.py demo.sleec --sample 5 --realizability-check
 | `--decompose` | Partition rules into dependency components and check each independently. |
 | `--weak` | Use bounded-weak semantics (strong is the default). |
 | `--legacy-sampler` | Use the legacy `TraceSampler` instead of the default `AbstractTraceSampler`. |
+| `--check-conflict` | Run the static **consistency-conflict** check (rule pairs with unsatisfiable conjunction). No `--sample` needed. |
+| `--check-redundancy` | Run the static **redundancy** check (rules whose removal does not change the spec semantics). No `--sample` needed. |
+| `--check-situational` | Run the static **situational-conflict** check (measure valuations under which two or more rules require contradictory responses). No `--sample` needed. |
 | `--quiet` | Suppress solver chatter. |
+
+The four "static check" flags (`--check-conflict`, `--check-redundancy`,
+`--check-situational`) replace the GUI buttons of the same names and
+are the CLI alternative when the GUI is unavailable. They can be
+combined freely — e.g.:
+
+```bash
+python3 sleecRealizibilityCheck.py demo.sleec --check-conflict --check-redundancy --check-situational
+```
+
+Each emits a banner followed by the underlying analyzer's diagnostic
+output. Exit code is `0` even when conflicts/redundancies are found
+(the diagnostic is informational); `2` only on parse / file errors.
 
 Exit codes: `0` = REALIZABLE, `1` = UNREALIZABLE on at least one trace,
 `2` = aborted (event-classification or relation-classification error).
