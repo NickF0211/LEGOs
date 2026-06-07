@@ -168,6 +168,11 @@ class TestRealizabilityCLI(unittest.TestCase):
             "--weak",
             "--legacy-sampler",
             "--quiet",
+            "--check-conflict",
+            "--check-redundancy",
+            "--check-situational",
+            "--check-concern",
+            "--check-purpose",
         ]
         for flag in readme_flags:
             self.assertIn(flag, r.stdout,
@@ -188,6 +193,28 @@ class TestRealizabilityCLI(unittest.TestCase):
         self.assertIn("t=1", r.stdout,
             "expected per-step lines starting at t=1")
         self.assertNotIn("Traceback", r.stderr)
+
+    def test_static_checks_demo_combined(self):
+        """All five static-check flags should run without crash on
+        demo.sleec, even when combined in a single invocation. Each
+        underlying check_input_* function internally re-parses the
+        spec; the dispatch must reset module-level state between calls
+        so the second/third/etc. parse doesn't hit stale type-constructor
+        state."""
+        r = _run("demo.sleec",
+                 "--check-conflict", "--check-redundancy",
+                 "--check-concern", "--check-purpose",
+                 "--check-situational", "--quiet")
+        self.assertEqual(r.returncode, 0,
+            f"expected exit 0; got {r.returncode}\n"
+            f"stderr: {r.stderr[-600:]}")
+        self.assertNotIn("Traceback", r.stderr)
+        for banner in ("CONSISTENCY CONFLICT CHECK", "REDUNDANCY CHECK",
+                       "CONCERN CHECK", "PURPOSE CHECK",
+                       "SITUATIONAL CONFLICT CHECK"):
+            self.assertIn(banner, r.stdout,
+                f"expected banner {banner!r} in stdout when all five "
+                f"static checks are requested")
 
 
 if __name__ == "__main__":

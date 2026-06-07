@@ -91,20 +91,34 @@ python3 sleecRealizibilityCheck.py demo.sleec --sample 5 --realizability-check
 | `--check-conflict` | Run the static **consistency-conflict** check (rule pairs with unsatisfiable conjunction). No `--sample` needed. |
 | `--check-redundancy` | Run the static **redundancy** check (rules whose removal does not change the spec semantics). No `--sample` needed. |
 | `--check-situational` | Run the static **situational-conflict** check (measure valuations under which two or more rules require contradictory responses). No `--sample` needed. |
+| `--check-concern` | Run the static **concern** check against `concern_start ... concern_end`. Reports concerns the rules fail to address. No `--sample` needed. |
+| `--check-purpose` | Run the static **purpose** check against `purpose_start ... purpose_end`. Reports purposes the rules fail to satisfy (i.e. rules that block intended behavior). No `--sample` needed. |
 | `--quiet` | Suppress solver chatter. |
 
-The four "static check" flags (`--check-conflict`, `--check-redundancy`,
-`--check-situational`) replace the GUI buttons of the same names and
-are the CLI alternative when the GUI is unavailable. They can be
-combined freely — e.g.:
+The five "static check" flags above replace the corresponding GUI
+buttons (check redundancy / check conflicts / check concern / check
+purpose / check situational conflict) and are the CLI alternative when
+the GUI is unavailable. They can be combined freely — e.g.:
 
 ```bash
-python3 sleecRealizibilityCheck.py demo.sleec --check-conflict --check-redundancy --check-situational
+python3 sleecRealizibilityCheck.py demo.sleec \
+    --check-conflict --check-redundancy --check-situational \
+    --check-concern --check-purpose
 ```
 
+| GUI button | CLI flag | Underlying check |
+|---|---|---|
+| check conflicts | `--check-conflict` | Two rules can never be jointly satisfied |
+| check redundancy | `--check-redundancy` | A rule is implied by the others (could be removed) |
+| check concern | `--check-concern` | Spec violates a declared `concern_start` clause |
+| check purpose | `--check-purpose` | Spec blocks a declared `purpose_start` behavior |
+| check situational conflict | `--check-situational` | Some measure valuation forces contradictory responses |
+| check realizability (bounded strong) | `--realizability-check --sample N` | Adversarial environment can force a violation within horizon N |
+
 Each emits a banner followed by the underlying analyzer's diagnostic
-output. Exit code is `0` even when conflicts/redundancies are found
-(the diagnostic is informational); `2` only on parse / file errors.
+output. Exit code is `0` even when conflicts/redundancies/concerns are
+found (the diagnostic is informational); `2` only on parse / file
+errors.
 
 Exit codes: `0` = REALIZABLE, `1` = UNREALIZABLE on at least one trace,
 `2` = aborted (event-classification or relation-classification error).

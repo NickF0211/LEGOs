@@ -1761,6 +1761,16 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "(measure valuations under which two or more "
                              "rules require contradictory responses). Does "
                              "not need --sample.")
+    parser.add_argument("--check-concern", action="store_true",
+                        help="Check the spec against its declared concerns "
+                             "(concern_start ... concern_end block). Reports "
+                             "concerns that the rules fail to address. "
+                             "Does not need --sample.")
+    parser.add_argument("--check-purpose", action="store_true",
+                        help="Check the spec against its declared purposes "
+                             "(purpose_start ... purpose_end block). Reports "
+                             "purposes that the rules fail to satisfy. "
+                             "Does not need --sample.")
     args = parser.parse_args(argv)
 
     if not os.path.isfile(args.filename):
@@ -1783,8 +1793,14 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     # Standalone consistency / redundancy / situational checks.
     # Each operates on the spec text directly and does not require --sample.
-    if args.check_conflict or args.check_redundancy or args.check_situational:
-        from sleecParser import check_input_conflict, check_input_red
+    # Each underlying check_input_* call internally re-parses the spec, which
+    # collides with the type-constructor state already populated by the
+    # parse_sleec() at the top of main(). Reset module state before every
+    # invocation so the re-parse starts from a clean slate.
+    if (args.check_conflict or args.check_redundancy or args.check_situational
+            or args.check_concern or args.check_purpose):
+        from sleecParser import (check_input_conflict, check_input_red,
+                                 check_input_concerns, check_input_purpose)
         from SleecNorm import check_situational_conflict
         spec_text = read_model_file(args.filename)
         ran_any = False
@@ -1792,21 +1808,35 @@ def main(argv: Optional[List[str]] = None) -> int:
             print("\n" + "=" * 72)
             print("CONSISTENCY CONFLICT CHECK")
             print("=" * 72)
+            _reset_sleecnorm_state()
             check_input_conflict(spec_text)
             ran_any = True
         if args.check_redundancy:
             print("\n" + "=" * 72)
             print("REDUNDANCY CHECK")
             print("=" * 72)
+            _reset_sleecnorm_state()
             check_input_red(spec_text)
             ran_any = True
-        if args.check_situational:
-            # SleecNorm uses a global pysmt env; reset before invocation so a
-            # prior parse_sleec() in this same run doesn't leave stale symbols.
+        if args.check_concern:
+            print("\n" + "=" * 72)
+            print("CONCERN CHECK")
+            print("=" * 72)
             _reset_sleecnorm_state()
+            check_input_concerns(spec_text)
+            ran_any = True
+        if args.check_purpose:
+            print("\n" + "=" * 72)
+            print("PURPOSE CHECK")
+            print("=" * 72)
+            _reset_sleecnorm_state()
+            check_input_purpose(spec_text)
+            ran_any = True
+        if args.check_situational:
             print("\n" + "=" * 72)
             print("SITUATIONAL CONFLICT CHECK")
             print("=" * 72)
+            _reset_sleecnorm_state()
             check_situational_conflict(spec_text)
             ran_any = True
         # If only static checks were requested (no --sample, no
