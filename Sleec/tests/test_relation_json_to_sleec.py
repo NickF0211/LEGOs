@@ -139,17 +139,48 @@ class TestConvertEmissions(unittest.TestCase):
         self.assertIn("no recognised", warnings[0])
 
     def test_event_and_measure_declarations_collected(self):
+        # In full-spec mode the converter emits def_start declarations.
         doc = _doc(
             {"event1": "Hello", "event2": "World", "witness": True,
              "justification": ""},
             {"measure1": "a", "measure2": "b", "implies": True,
              "justification": ""},
         )
-        text, _ = r2s.convert(doc)
+        text, _ = r2s.convert(doc, full_spec=True)
         self.assertIn("event Hello", text)
         self.assertIn("event World", text)
         self.assertIn("measure a: boolean", text)
         self.assertIn("measure b: boolean", text)
+
+    def test_default_mode_emits_only_relation_block(self):
+        """Default mode: just relation_start ... relation_end. No
+        def_start, no rule_start, no header banner."""
+        doc = _doc(
+            {"event1": "A", "event2": "B", "witness": True,
+             "justification": ""},
+            {"measure1": "m1", "measure2": "m2", "implies": True,
+             "justification": ""},
+        )
+        text, _ = r2s.convert(doc)
+        self.assertIn("relation_start", text)
+        self.assertIn("relation_end", text)
+        self.assertIn("witness A B", text)
+        self.assertIn("measure imply {m1} {m2}", text)
+        self.assertNotIn("def_start", text)
+        self.assertNotIn("rule_start", text)
+        self.assertNotIn("R_placeholder", text)
+        self.assertNotIn("Source name", text)  # banner is full-spec only
+
+    def test_full_spec_mode_emits_complete_file(self):
+        doc = _doc(
+            {"event1": "A", "event2": "B", "witness": True,
+             "justification": ""},
+        )
+        text, _ = r2s.convert(doc, full_spec=True)
+        self.assertIn("def_start", text)
+        self.assertIn("rule_start", text)
+        self.assertIn("R_placeholder", text)
+        self.assertIn("relation_start", text)
 
 
 class TestRoundTripThroughAnalyzer(unittest.TestCase):
@@ -167,8 +198,11 @@ class TestRoundTripThroughAnalyzer(unittest.TestCase):
         with open(json_path, "w") as f:
             json.dump(doc, f)
         # Convert via subprocess so we exercise main() too.
+        # Round-trip tests use --full-spec because the analyzer needs a
+        # complete file with def_start + rule_start blocks.
         rc = subprocess.run(
-            [sys.executable, _TOOL, json_path, "-o", sleec_path, "--quiet"],
+            [sys.executable, _TOOL, json_path, "-o", sleec_path,
+             "--full-spec", "--quiet"],
             capture_output=True, text=True, timeout=10).returncode
         self.assertEqual(rc, 0, "converter exit 0 expected on clean input")
         # Now run the SLEEC checker over the generated spec.

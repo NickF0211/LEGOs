@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 """
 relation_json_to_sleec.py — convert a sleecvalDef-style relation.json
-into a valid SLEEC spec.
+into a SLEEC relation block.
+
+By default emits ONLY the relation_start ... relation_end block as a
+clean snippet to paste into an existing .sleec file. With --full-spec
+it wraps the snippet in a complete .sleec file (def_start declarations
++ a single placeholder rule) so it can be fed straight to the analyzer
+in isolation.
 
 Source format (one entry per Relationship):
     Event-event entries:    {"event1": "...", "event2": "...", "<flag>": <bool>, ...}
@@ -35,6 +41,7 @@ orders are de-duplicated.
 
 Usage:
     python3 relation_json_to_sleec.py INPUT.json [-o OUTPUT.sleec]
+    python3 relation_json_to_sleec.py INPUT.json --full-spec -o OUTPUT.sleec
 
 Exit codes:
     0  conversion succeeded
@@ -117,10 +124,19 @@ def render_relation(flag: str, a: str, b: str) -> str:
 def convert(
     rel_doc: dict,
     *,
-    placeholder_event: str = "RelOnlyPlaceholder",
     source_path: str = "<stdin>",
+    full_spec: bool = False,
+    placeholder_event: str = "RelOnlyPlaceholder",
 ) -> Tuple[str, List[str]]:
-    """Convert a parsed relation.json document to a SLEEC spec string.
+    """Convert a parsed relation.json document.
+
+    By default emits ONLY the relation_start ... relation_end block as a
+    snippet, suitable for pasting into an existing SLEEC spec.
+
+    With full_spec=True, wraps that snippet in a complete .sleec file
+    (def_start declarations + a single placeholder rule + the relation
+    block), so the output can be fed directly to the analyzer in
+    isolation. This is mainly for self-testing.
 
     Returns (sleec_text, warnings).
     """
@@ -212,12 +228,24 @@ def convert(
                 f"entry #{idx} ({flag} {a} {b}): outcome {outcome!r} is "
                 f"neither true nor false; emitted as comment")
 
-    # ----- assemble the SLEEC spec -----
+    # ----- emit the relation block (snippet) -----
+    block_lines = []
+    if emitted_lines:
+        block_lines.append("relation_start")
+        block_lines.extend(emitted_lines)
+        block_lines.append("relation_end")
+    else:
+        # No live or commented relations were produced.
+        block_lines.append("// (no relations emitted from this relation.json)")
+
+    if not full_spec:
+        # Snippet mode — just the block, plus a trailing newline.
+        return "\n".join(block_lines) + "\n", warnings
+
+    # ----- full-spec mode: wrap in def_start + rule_start -----
     spec_name = rel_doc.get("name", "unknown")
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Pick a real event for the placeholder rule trigger. SLEEC requires
-    # at least one rule, and the trigger must be a declared event.
     if events:
         placeholder_trigger = sorted(events)[0]
     else:
@@ -237,7 +265,6 @@ def convert(
     out.append(f"// adds no semantic constraint beyond what the relations express.")
     out.append("")
 
-    # def_start
     out.append("def_start")
     for e in sorted(events):
         out.append(f"    event {e}")
@@ -246,25 +273,12 @@ def convert(
     out.append("def_end")
     out.append("")
 
-    # rule_start (placeholder)
     out.append("rule_start")
     out.append(f"    R_placeholder when {placeholder_trigger} then {placeholder_trigger}")
     out.append("rule_end")
     out.append("")
 
-    # relation_start
-    if emitted_lines:
-        out.append("relation_start")
-        for line in emitted_lines:
-            if line.startswith("//") or line.startswith("    //"):
-                out.append(line)
-            else:
-                out.append(line)
-        out.append("relation_end")
-    else:
-        out.append("// (no relations emitted; relation block omitted because SLEEC")
-        out.append("//  requires relations+=Relation+ — at least one — inside it.)")
-
+    out.extend(block_lines)
     out.append("")
     return "\n".join(out), warnings
 
@@ -275,10 +289,18 @@ def convert(
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Convert a sleecvalDef relation.json to a SLEEC spec.")
+        description="Convert a sleecvalDef relation.json into a SLEEC "
+                    "relation_start ... relation_end snippet (default), or "
+                    "into a complete .sleec spec with --full-spec.")
     parser.add_argument("input", help="Path to a relation.json file.")
     parser.add_argument("-o", "--output", default=None,
-                        help="Output .sleec path (default: stdout).")
+                        help="Output path (default: stdout).")
+    parser.add_argument("--full-spec", action="store_true",
+                        help="Emit a complete .sleec file instead of just the "
+                             "relation_start ... relation_end block. Wraps "
+                             "the block in def_start declarations + a single "
+                             "placeholder rule, so the output can be fed "
+                             "directly to sleecRealizibilityCheck.py.")
     parser.add_argument("-q", "--quiet", action="store_true",
                         help="Suppress warnings on stderr.")
     args = parser.parse_args(argv)
@@ -295,7 +317,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 2
 
     try:
-        text, warnings = convert(doc, source_path=args.input)
+        text, warnings = convert(doc, source_path=args.input,
+                                 full_spec=args.full_spec)
     except ValueError as e:
         print(f"error: {e}", file=sys.stderr)
         return 2
