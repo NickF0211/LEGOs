@@ -21,6 +21,7 @@ def read_model_file(file_path):
 
 
 def check_concern():
+    _rlz._reset_sleecnorm_state()  # clean slate; see comment in check_realizability
     cur_text = aText.get("1.0", 'end-1c')
     result, response, hl = check_input_concerns(cur_text)
     new_text.delete('1.0', 'end-1c')
@@ -30,6 +31,7 @@ def check_concern():
 
 
 def check_situational():
+    _rlz._reset_sleecnorm_state()  # clean slate; see comment in check_realizability
     cur_text = aText.get("1.0", 'end-1c')
     result, response, hl = check_situational_conflict(cur_text)
     new_text.delete('1.0', 'end-1c')
@@ -51,6 +53,7 @@ def check_situational():
 
 
 def check_redundancy():
+    _rlz._reset_sleecnorm_state()  # clean slate; see comment in check_realizability
     cur_text = aText.get("1.0", 'end-1c')
     result, response, hl = check_input_red(cur_text)
     new_text.delete('1.0', 'end-1c')
@@ -71,6 +74,7 @@ def check_redundancy():
 
 
 def check_conflict():
+    _rlz._reset_sleecnorm_state()  # clean slate; see comment in check_realizability
     cur_text = aText.get("1.0", 'end-1c')
     result, response, hl = check_input_conflict(cur_text)
     new_text.delete('1.0', 'end-1c')
@@ -91,6 +95,7 @@ def check_conflict():
 
 
 def check_purpose():
+    _rlz._reset_sleecnorm_state()  # clean slate; see comment in check_realizability
     cur_text = aText.get("1.0", 'end-1c')
     result, response, hl = check_input_purpose(cur_text)
     new_text.delete('1.0', 'end-1c')
@@ -249,6 +254,13 @@ def check_realizability():
                 new_text.insert(tk.INSERT, text, tag)
 
     try:
+        # Reset analyzer global state from any prior GUI action so the
+        # parse below starts from a clean slate. Without this, a prior
+        # parse_sleec call (e.g. from clicking another button first)
+        # can leave stale type_constructor state and the next parse
+        # crashes with KeyError on a scalar-measure name like 'needLevel'.
+        _rlz._reset_sleecnorm_state()
+
         # Parse the current editor text.
         from sleecParser import parse_sleec
         model, *_ = parse_sleec(cur_text, read_file=False)
