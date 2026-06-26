@@ -21,7 +21,8 @@ Usage
     python3 compute_max_bound.py SPEC.sleec [--decompose] [-v]
 
     --decompose   Compute a per-component bound for each decomposition
-                  component and report the max and sum.
+                  component and report the maximum across components
+                  (the single horizon that is sound for the whole spec).
     -v            Show per-component breakdown components (rule deadlines,
                   relation counts, etc.).
 """
@@ -226,7 +227,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("filename", help="Path to a .sleec spec file.")
     ap.add_argument(
         "--decompose", action="store_true",
-        help="Compute the bound per component and report the max + sum.",
+        help="Compute the bound per component and report the max "
+             "across components (the horizon that suffices for the "
+             "whole spec under the Decomposition Theorem).",
     )
     ap.add_argument(
         "-v", "--verbose", action="store_true",
@@ -277,7 +280,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(f"# {args.filename}: {len(normalized_rules)} rule(s) "
           f"-> {len(decomp.components)} component(s)")
 
-    max_bound, sum_bound = 0, 0
+    max_bound = 0
     any_eventually = False
     for i, comp in enumerate(decomp.components, 1):
         comp_nr = [normalized_rules[idx] for idx in comp.rule_indices]
@@ -288,14 +291,12 @@ def main(argv: Optional[List[str]] = None) -> int:
                       prefix=f"  Component {i:2d} ({len(comp_nr):3d} rule(s)): ")
         if result["has_eventually"]:
             any_eventually = True
-            max_bound, sum_bound = INF, INF
+            max_bound = INF
         else:
             max_bound = max(max_bound, result["b_max"])
-            sum_bound = sum_bound + result["b_max"]
 
     print()
     print(f"  per-component max:  {_fmt(max_bound)}")
-    print(f"  per-component sum:  {_fmt(sum_bound)}")
     return 1 if any_eventually else 0
 
 
