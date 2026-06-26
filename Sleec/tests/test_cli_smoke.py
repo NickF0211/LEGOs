@@ -217,5 +217,60 @@ class TestRealizabilityCLI(unittest.TestCase):
                 f"static checks are requested")
 
 
+class TestAutoBoundFlag(unittest.TestCase):
+    """The --auto-bound flag: exponential-escalation realizability search
+    that reports UNREAL on first counterexample, REALIZABLE on reaching
+    B_max with no counterexample, or INCONCLUSIVE on budget exhaustion."""
+
+    def test_auto_bound_certifies_realizable_spec(self):
+        """A spec known to be realizable (witness_env.sleec; B_max=2)
+        must be certified REALIZABLE in a few iterations."""
+        path = os.path.join(SLEEC_DIR, "experiments", "relation_specs",
+                            "witness_env.sleec")
+        if not os.path.isfile(path):
+            self.skipTest("witness_env.sleec not in repo")
+        r = _run(path, "--auto-bound", "--quiet")
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        self.assertIn("REALIZABLE", r.stdout)
+        self.assertIn("Completeness Theorem", r.stdout)
+        self.assertNotIn("Traceback", r.stderr)
+
+    def test_auto_bound_reports_unrealizable(self):
+        """demo.sleec is known UNREALIZABLE; auto-bound must surface it
+        and exit 1 (matching --realizability-check's exit code)."""
+        path = os.path.join(SLEEC_DIR, "demo.sleec")
+        r = _run(path, "--auto-bound", "--quiet")
+        self.assertEqual(r.returncode, 1, msg=r.stderr)
+        self.assertIn("UNREALIZABLE", r.stdout)
+
+    def test_auto_bound_with_decompose(self):
+        """--decompose works with --auto-bound and uses per-component B_max
+        as the certification target (much smaller than monolithic)."""
+        path = os.path.join(SLEEC_DIR, "experiments", "specs",
+                            "three_disjoint.sleec")
+        if not os.path.isfile(path):
+            self.skipTest("three_disjoint.sleec not in repo")
+        r = _run(path, "--auto-bound", "--decompose", "--quiet")
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        self.assertIn("REALIZABLE", r.stdout)
+        # Three_disjoint has 3 components, each B_max=7, so search horizon
+        # is 7, not 343 (the monolithic bound).
+        self.assertIn("N=7", r.stdout)
+
+    def test_auto_bound_with_max_iters_zero_is_inconclusive(self):
+        """--max-iters 0 forces an immediate INCONCLUSIVE (no iter ran)."""
+        path = os.path.join(SLEEC_DIR, "demo.sleec")
+        r = _run(path, "--auto-bound", "--max-iters", "0", "--quiet")
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        self.assertIn("INCONCLUSIVE", r.stdout)
+
+    def test_auto_bound_rejects_sample_combination(self):
+        """--auto-bound and --sample are mutually exclusive."""
+        path = os.path.join(SLEEC_DIR, "demo.sleec")
+        r = _run(path, "--auto-bound", "--sample", "5", "--quiet")
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("mutually exclusive", r.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()

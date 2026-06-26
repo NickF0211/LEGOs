@@ -1701,6 +1701,200 @@ def print_realizability_result(trace: dict, verdict: "RealizabilityVerdict",
 # CLI
 # ---------------------------------------------------------------------------
 
+def _auto_bound_search(args) -> int:
+    """Exponential-escalation realizability search.
+
+    Starts at T_max, doubles the horizon each iteration. Stops when:
+    (a) a counterexample surfaces (return UNREALIZABLE),
+    (b) the B_max completeness threshold is reached with no counter-
+        example (return REALIZABLE — unbounded certified),
+    (c) the iteration cap (--max-iters) or horizon cap (--max-horizon)
+        is hit (return INCONCLUSIVE).
+
+    With --decompose, the per-iteration check uses the same per-
+    component decomposition as RealizabilityChecker, and the
+    certification target is the maximum across per-component B_max.
+    """
+    import sys as _sys
+    import importlib.util as _ilu
+
+    # Load the bound-detector module.
+    _tools_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "tools")
+    _spec = _ilu.spec_from_file_location(
+        "compute_max_bound",
+        os.path.join(_tools_dir, "compute_max_bound.py"),
+    )
+    _cmb = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_cmb)
+
+    _reset_sleecnorm_state()
+    from SleecNorm import parse_sleec_norm
+    from sleec_decompose import decompose_with_relations
+    from sleec_event_classification import classify_events_with_annotations
+
+    with open(args.filename) as _f:
+        spec_text = _f.read()
+
+    model_n, normalized_rules, _AM, _Actions, og_rules, _concerns, relations = \
+        parse_sleec_norm(spec_text, read_file=False)
+
+    # Compute T_max and B_max (per the bound algorithm).
+    if args.decompose:
+        ec = classify_events_with_annotations(model_n)
+        decomp = decompose_with_relations(
+            normalized_rules, og_rules, relations, ec
+        )
+        comp_results = []
+        for comp in decomp.components:
+            comp_nr = [normalized_rules[i] for i in comp.rule_indices]
+            comp_rel = [relations[i] for i in comp.relation_indices]
+            global_rel = [relations[i] for i in decomp.global_relation_indices]
+            comp_results.append(_cmb.compute_b_max(comp_nr, comp_rel + global_rel))
+        has_eventually = any(r["has_eventually"] for r in comp_results)
+        if has_eventually:
+            T_max_eff = max(r["T_max"] for r in comp_results
+                            if not r["has_eventually"]) if any(
+                            not r["has_eventually"] for r in comp_results) else 1
+            B_max_global = _cmb.INF
+        else:
+            T_max_eff = max(r["T_max"] for r in comp_results)
+            B_max_global = max(r["b_max"] for r in comp_results)
+    else:
+        r = _cmb.compute_b_max(normalized_rules, relations)
+        has_eventually = r["has_eventually"]
+        T_max_eff = r["T_max"] if not has_eventually else 1
+        B_max_global = r["b_max"]
+
+    # Determine the effective ceiling for the search.
+    if args.max_horizon is not None:
+        ceiling = args.max_horizon
+        ceiling_label = f"--max-horizon={args.max_horizon}"
+    elif has_eventually:
+        ceiling = 1000
+        ceiling_label = "default cap (spec uses `eventually`, no finite B_max)"
+    else:
+        ceiling = B_max_global
+        ceiling_label = "B_max"
+
+    B_start = max(int(T_max_eff), 1)
+
+    if not args.quiet:
+        print(f"# auto-bound search on {args.filename}")
+        print(f"#   T_max = {T_max_eff}s,  starting horizon = {B_start}")
+        if has_eventually:
+            print(f"#   B_max = infinity (spec uses `eventually`)")
+        else:
+            print(f"#   B_max = {B_max_global:,}")
+        print(f"#   ceiling = {ceiling:,} ({ceiling_label})")
+        print(f"#   max iters = {args.max_iters}")
+        if args.decompose:
+            print(f"#   decomposition: ON ({len(decomp.components)} components)")
+        else:
+            print(f"#   decomposition: OFF")
+        print()
+
+    # Read spec for the realizability checker (it expects the model_str arg).
+    model_p, _r, _c, _p, _rels, _AM, _Actions = parse_sleec(args.filename, read_file=True)
+
+    # Search loop.
+    B = B_start
+    iters = 0
+    last_real_at = None
+    last_verdict = None
+
+    while iters < args.max_iters:
+        # Cap: never exceed the ceiling; if last iter was below ceiling, do
+        # one final iter at exactly the ceiling (to certify if applicable).
+        if B > ceiling:
+            if last_real_at is not None and last_real_at == ceiling:
+                # Already did the ceiling check.
+                break
+            B = ceiling  # Final pass exactly at the ceiling.
+
+        iters += 1
+        _reset_sleecnorm_state()
+
+        sampler_cls = TraceSampler if args.legacy_sampler else AbstractTraceSampler
+        try:
+            sampler = sampler_cls(model_p, B, verbose=False)
+        except Exception as exc:
+            if type(exc).__name__ == "EventClassificationError":
+                from sleec_event_classification import format_conflicts
+                print("\nauto-bound aborted: event classification conflicts",
+                      file=_sys.stderr)
+                print(format_conflicts(exc.classification), file=_sys.stderr)
+                return 2
+            raise
+
+        trace = sampler.next_trace()
+        if trace is None:
+            if not args.quiet:
+                print(f"  iter {iters:2d}  N={B:,}  -> empty trace "
+                      f"(no valid env behavior); treating as REALIZABLE")
+            last_real_at = B
+            last_verdict = "realizable"
+            B = B * 2
+            continue
+
+        try:
+            checker = RealizabilityChecker(
+                model_p, N=B, model_str=spec_text,
+                mode="weak" if args.weak else "strong",
+                decompose=args.decompose,
+            )
+            verdict = checker.check(trace, verbose=False)
+        except Exception as exc:
+            if type(exc).__name__ == "RelationClassificationError":
+                print("\nauto-bound aborted: relation classification conflict",
+                      file=_sys.stderr)
+                print(exc, file=_sys.stderr)
+                return 2
+            raise
+
+        last_verdict = verdict.status
+
+        if not args.quiet:
+            print(f"  iter {iters:2d}  N={B:,}  -> {verdict.status.upper()}")
+
+        if verdict.status == "unrealizable":
+            print()
+            print(f"!!! UNREALIZABLE at horizon N={B:,} "
+                  f"(after {iters} iter(s)). Spec is unbounded-unrealizable "
+                  f"by monotonicity.")
+            return 1
+
+        last_real_at = B
+
+        # If we just checked exactly at the ceiling and got REAL,
+        # certification (or budget exhaustion) decided.
+        if B == ceiling:
+            break
+
+        B = B * 2
+
+    # End of search loop. Decide the final verdict.
+    print()
+    if last_real_at is None:
+        print(f"[auto-bound] INCONCLUSIVE — no successful iteration completed")
+        return 0
+    if not has_eventually and last_real_at >= B_max_global:
+        print(f"[auto-bound] REALIZABLE — REAL at horizon N={last_real_at:,} "
+              f">= B_max={B_max_global:,}. Spec is unbounded-realizable "
+              f"by the Completeness Theorem.")
+        return 0
+    # Either we capped before reaching B_max, or has_eventually.
+    reason = (
+        f"REAL at horizon N={last_real_at:,}, but stopped at "
+        f"{'horizon cap' if args.max_horizon else 'iteration cap'} "
+        f"before {'B_max' if not has_eventually else 'a finite B_max '
+                                                     '(none exists)'}"
+    )
+    print(f"[auto-bound] INCONCLUSIVE — {reason}. Bounded analysis is "
+          f"sound for unrealizability only at this horizon.")
+    return 0
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="SLEEC realizability analysis.")
     parser.add_argument("filename", help="Path to a .sleec file")
@@ -1777,6 +1971,25 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "--decompose, the bound is computed per component "
                              "and reported with per-component max and sum. "
                              "B_max is infinite if the spec uses `eventually`.")
+    parser.add_argument("--auto-bound", action="store_true",
+                        help="Run bounded realizability with auto-chosen "
+                             "horizons. Starts at T_max, doubles each "
+                             "iteration. Reports UNREAL as soon as a counter-"
+                             "example surfaces; reports REAL (unbounded "
+                             "certified) once a REAL verdict is observed at "
+                             "B_max; reports INCONCLUSIVE if budget is hit "
+                             "first. With --decompose, the realizability "
+                             "check uses per-component decomposition "
+                             "internally and uses the per-component max B_max "
+                             "as the certification horizon. Mutually "
+                             "exclusive with --sample.")
+    parser.add_argument("--max-horizon", type=int, default=None, metavar="N",
+                        help="Cap the auto-bound search at horizon N "
+                             "(default: B_max from the spec or 1000 if "
+                             "B_max=infinity).")
+    parser.add_argument("--max-iters", type=int, default=20, metavar="K",
+                        help="Maximum number of solver calls in the "
+                             "auto-bound search (default: 20).")
     args = parser.parse_args(argv)
 
     if not os.path.isfile(args.filename):
@@ -1800,6 +2013,14 @@ def main(argv: Optional[List[str]] = None) -> int:
         if not args.quiet:
             argv_for_tool.append("-v")
         return _cmb.main(argv_for_tool)
+
+    # --auto-bound mode: realizability search with auto-chosen horizons.
+    if args.auto_bound:
+        if args.sample is not None:
+            print("error: --auto-bound and --sample are mutually exclusive "
+                  "(auto-bound picks the horizon itself)", file=sys.stderr)
+            return 2
+        return _auto_bound_search(args)
 
     # Reuse the parser already in sleecParser.py.
     model, rules, concerns, purposes, relations, action_mapping, actions = parse_sleec(
