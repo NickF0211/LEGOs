@@ -1771,11 +1771,35 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "(purpose_start ... purpose_end block). Reports "
                              "purposes that the rules fail to satisfy. "
                              "Does not need --sample.")
+    parser.add_argument("--max-bound", action="store_true",
+                        help="Compute and print the realizability completeness "
+                             "threshold B_max for this spec, then exit. With "
+                             "--decompose, the bound is computed per component "
+                             "and reported with per-component max and sum. "
+                             "B_max is infinite if the spec uses `eventually`.")
     args = parser.parse_args(argv)
 
     if not os.path.isfile(args.filename):
         print(f"error: file not found: {args.filename}", file=sys.stderr)
         return 2
+
+    # Standalone --max-bound mode: compute and print B_max, then exit.
+    if args.max_bound:
+        import importlib.util as _ilu
+        _tools_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  "tools")
+        _spec = _ilu.spec_from_file_location(
+            "compute_max_bound",
+            os.path.join(_tools_dir, "compute_max_bound.py"),
+        )
+        _cmb = _ilu.module_from_spec(_spec)
+        _spec.loader.exec_module(_cmb)
+        argv_for_tool = [args.filename]
+        if args.decompose:
+            argv_for_tool.append("--decompose")
+        if not args.quiet:
+            argv_for_tool.append("-v")
+        return _cmb.main(argv_for_tool)
 
     # Reuse the parser already in sleecParser.py.
     model, rules, concerns, purposes, relations, action_mapping, actions = parse_sleec(
