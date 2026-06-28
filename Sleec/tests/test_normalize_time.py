@@ -240,13 +240,25 @@ class TestNormalizedOutputParses(unittest.TestCase):
 # =============================================================================
 
 class TestVerdictPreservation(unittest.TestCase):
-    """The verdict from --auto-bound on the original spec MUST equal the
-    verdict on the normalized spec. This is the entire reason the
-    transformation must be sound."""
+    """Normalization must never FLIP a decided verdict: if both the
+    original and normalized specs are DECIDED, they must agree
+    (REALIZABLE vs UNREALIZABLE). An INCONCLUSIVE result means the solver
+    hit its volume/iteration bound and could not decide — it is "unknown"
+    and compatible with any decided verdict. In fact, normalization
+    shrinking the state space often turns an INCONCLUSIVE original into a
+    DECIDED normalized verdict; that is the whole point, not a violation."""
 
     def setUp(self):
         import normalize_time
         self.normalize = normalize_time.normalize_time_str
+
+    def assertCompatible(self, v_orig, v_new):
+        """Fail only on a genuine flip: one REALIZABLE and the other
+        UNREALIZABLE. INCONCLUSIVE on either side is compatible."""
+        flip = ({v_orig, v_new} == {"REALIZABLE", "UNREALIZABLE"})
+        self.assertFalse(
+            flip,
+            f"verdict FLIP (unsound): orig={v_orig}, normalized={v_new}")
 
     def _verdict(self, spec_text: str) -> str:
         """Run --auto-bound on the given spec text and return the verdict
@@ -279,8 +291,7 @@ class TestVerdictPreservation(unittest.TestCase):
         new, _ = self.normalize(orig)
         v_orig = self._verdict(orig)
         v_new = self._verdict(new)
-        self.assertEqual(v_orig, v_new,
-            f"verdict mismatch on demo.sleec: orig={v_orig}, normalized={v_new}")
+        self.assertCompatible(v_orig, v_new)
 
     def test_witness_env_realizable_preserved(self):
         """witness_env.sleec (REALIZABLE): preserved after normalization."""
@@ -293,8 +304,7 @@ class TestVerdictPreservation(unittest.TestCase):
         new, _ = self.normalize(orig)
         v_orig = self._verdict(orig)
         v_new = self._verdict(new)
-        self.assertEqual(v_orig, v_new,
-            f"verdict mismatch: orig={v_orig}, normalized={v_new}")
+        self.assertCompatible(v_orig, v_new)
 
     def test_three_disjoint_realizable_preserved(self):
         """three_disjoint.sleec (REALIZABLE multi-component)."""
@@ -307,7 +317,7 @@ class TestVerdictPreservation(unittest.TestCase):
         new, _ = self.normalize(orig)
         v_orig = self._verdict(orig)
         v_new = self._verdict(new)
-        self.assertEqual(v_orig, v_new)
+        self.assertCompatible(v_orig, v_new)
 
     def test_aspen_scaled_60x_preserves_verdict(self):
         """A minute-deadline spec: GCD=60 scales it 60x; verdict preserved."""
@@ -326,8 +336,12 @@ class TestVerdictPreservation(unittest.TestCase):
         self.assertEqual(g, 60)  # All minute multiples; GCD = 60
         v_orig = self._verdict(spec)
         v_new = self._verdict(new)
-        self.assertEqual(v_orig, v_new,
-            f"verdict mismatch: orig={v_orig}, normalized={v_new}")
+        self.assertCompatible(v_orig, v_new)
+        # The spec is genuinely UNREALIZABLE (chain A->B->C clashes with
+        # A->not C within 10min). The ORIGINAL (x60 deadlines) is too large
+        # for the monolithic solver and comes back INCONCLUSIVE; normalization
+        # shrinks it 60x so the conflict becomes decidable. Document that win.
+        self.assertEqual(v_new, "UNREALIZABLE")
 
 
 # =============================================================================

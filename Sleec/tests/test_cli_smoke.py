@@ -244,18 +244,23 @@ class TestAutoBoundFlag(unittest.TestCase):
         self.assertIn("UNREALIZABLE", r.stdout)
 
     def test_auto_bound_with_decompose(self):
-        """--decompose works with --auto-bound and uses per-component B_max
-        as the certification target (much smaller than monolithic)."""
+        """--decompose works with --auto-bound and runs INDEPENDENT
+        per-component searches (each component has its own T_max,
+        B_max, and iteration budget)."""
         path = os.path.join(SLEEC_DIR, "experiments", "specs",
                             "three_disjoint.sleec")
         if not os.path.isfile(path):
             self.skipTest("three_disjoint.sleec not in repo")
-        r = _run(path, "--auto-bound", "--decompose", "--quiet")
+        # Run with verbose so we can see the per-component trace.
+        r = _run(path, "--auto-bound", "--decompose")
         self.assertEqual(r.returncode, 0, msg=r.stderr)
         self.assertIn("REALIZABLE", r.stdout)
-        # Three_disjoint has 3 components, each B_max=7, so search horizon
-        # is 7, not 343 (the monolithic bound).
-        self.assertIn("N=7", r.stdout)
+        # The output must mention multiple components (3 in three_disjoint).
+        self.assertIn("Component 1/3", r.stdout)
+        self.assertIn("Component 2/3", r.stdout)
+        self.assertIn("Component 3/3", r.stdout)
+        # And the per-component certification message.
+        self.assertIn("all 3 component(s) certified", r.stdout)
 
     def test_auto_bound_with_max_iters_zero_is_inconclusive(self):
         """--max-iters 0 forces an immediate INCONCLUSIVE (no iter ran)."""

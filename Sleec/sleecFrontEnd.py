@@ -199,6 +199,49 @@ def _summarize_trace(trace):
     return "\n".join(out)
 
 
+
+def _render_minimum_witness(append, witness, *, heading=True):
+    """Render the FOL*-proof-derived minimum unrealizability witness:
+    the smallest env trace (events + measure values per timestep) that
+    is sufficient to expose the conflict. Sourced from the MINIMIZED
+    proof (the UNSAT core returned by check_and_minimize)."""
+    if witness is None:
+        return
+    env_events = getattr(witness, "env_events", {}) or {}
+    measures = getattr(witness, "measures", {}) or {}
+    if not env_events and not measures:
+        return
+
+    def _val_str(v):
+        if isinstance(v, bool):
+            return "T" if v else "F"
+        return str(v)
+
+    if heading:
+        append("Triggering environment (minimized)\n")
+        append("──────────────────────────────────\n")
+    times = sorted(set(env_events.keys()) | set(measures.keys()))
+    for t in times:
+        evs = env_events.get(t, []) or []
+        vals = measures.get(t, {}) or {}
+        append(f"  t={t}\n")
+        append("    events:   ")
+        if evs:
+            first = True
+            for ev in evs:
+                if not first:
+                    append(", ")
+                append(ev, "trigger_event")
+                first = False
+            append("\n")
+        else:
+            append("(none required)\n")
+        if vals:
+            kvs = sorted(vals.items())
+            append("    measures: "
+                   f"{', '.join(f'{k}={_val_str(v)}' for k, v in kvs)}\n")
+
+
 def _summarize_firings(rules_fired):
     """Group 'rules_fired' list by rule and list time ranges.
 
@@ -321,6 +364,25 @@ def check_realizability():
 
         # 3a. Verdict banner (top of output).
         header_bar = "═" * 72 + "\n"
+        if verdict.status == "inconclusive":
+            bar = "?" * 72 + "\n"
+            append(bar)
+            append(f"  INCONCLUSIVE / UNKNOWN  (N={N})\n")
+            append(bar)
+            append("\n")
+            append("What this means\n")
+            append("───────────────\n")
+            append(
+                "The solver hit its volume/iteration bound before it could "
+                "decide\nthis trace. This is NOT a conflict and NOT a proof "
+                "of unrealizability —\nthe result is simply unknown at this "
+                "configuration.\n\n"
+                "Try re-running with rule decomposition enabled (each "
+                "component is\nsmaller and far more likely to resolve), or "
+                "raise the bound.\n"
+            )
+            render()
+            return
         if verdict.status == "realizable":
             append(header_bar)
             append(f"  REALIZABLE  (N={N})\n")
@@ -341,121 +403,91 @@ def check_realizability():
             append(f"  UNREALIZABLE  (N={N})\n", "hl")
             append(banner, "hl")
             append("\n")
-            append("What this means\n")
-            append("───────────────\n")
-            append(
-                "We found an environment behavior (shown below) for which\n"
-                "the system CANNOT satisfy every triggered rule. Two or "
-                "more rules\ngive contradictory orders about the same "
-                "event in the same time window.\n"
+
+            # ---- Crisp, upfront: the two things that matter ----
+            # 1) Rules involved (minimized to the proof's unsat core),
+            #    rendered verbatim with trigger/conflict highlights.
+            #    _append_culprit_source_block emits the clashing-head line
+            #    ("X is both required and forbidden") then each rule source.
+            append("Rules involved (minimized)\n")
+            append("──────────────────────────\n")
+            _wit = getattr(verdict, "witness", None)
+            _proof_spans = getattr(_wit, "highlights", None) if _wit else None
+            _append_culprit_source_block(
+                append, cur_text, _rules, failing_names,
+                proof_spans=_proof_spans,
             )
             append("\n")
 
-            # 3b. The conflict block: clashing head + culprit rules + fix hint.
-            append("The conflict\n")
-            append("────────────\n")
-            _append_culprit_source_block(
-                append, cur_text, _rules, failing_names
-            )
-            # Cite the failing component.
-            if failing_component_idx is not None:
-                append("Failing rules: {")
-                for i, name in enumerate(sorted(failing_names)):
-                    if i:
-                        append(", ")
-                    append(name, "culprit_rule")
-                append(f"}}    (group G{failing_component_idx} of "
-                       f"{len(component_info)})\n")
+            # 2) The minimized triggering environment (from the unsat proof).
+            _render_minimum_witness(append, getattr(verdict, "witness", None))
+            append("\n")
 
-        # 3c. Compact partial-trace summary (single section, not repeated).
-        if verdict.status == "unrealizable":
-            append("\nEnvironment trace that exposes the bug\n")
-            append("──────────────────────────────────────\n")
-            append("(events / measure values asserted at each step; the "
-                   "system\nhas no choice but to face this trace.)\n")
-        else:
+            # 3) One-line caveat: other conflicts may remain.
+            if failing_component_idx is not None and len(component_info) > 1:
+                append("Note: other independent conflicts may remain — "
+                       "re-check after fixing.\n")
+
+        # ---- Supplementary detail (REALIZABLE verdict only). ----
+        # For UNREALIZABLE we keep only the essentials above. The full
+        # trace / timeline / decomposition are diagnostic noise once the
+        # minimized rules + environment are shown.
+        if verdict.status == "realizable":
             append("\nEnvironment trace analyzed\n")
             append("──────────────────────────\n")
             append("(events / measure values our adversarial sampler picked "
                    "to\nstress-test the rules at this horizon.)\n")
-        compact = _summarize_trace(trace)
-        # Tag culprit trigger events in the compact summary.
-        _append_with_two_tag_highlights(
-            append, compact,
-            rule_names=set(),
-            event_names=culprit_triggers,
-        )
-        append("\n")
+            compact = _summarize_trace(trace)
+            _append_with_two_tag_highlights(
+                append, compact, rule_names=set(), event_names=culprit_triggers,
+            )
+            append("\n")
 
-        # 3d. Fired rules summary (grouped by rule).
-        fires = trace.get("rules_fired") or []
-        if fires:
-            append("\nTriggered rules on this trace\n")
-            append("─────────────────────────────\n")
-            append("(rules whose trigger event AND condition both hold at "
-                   "least once on this trace)\n")
-            grouped = _summarize_firings(fires)
-            for line in grouped:
-                # Tag rule names in each line if culprit.
-                _append_with_two_tag_highlights(
-                    append, line + "\n",
-                    rule_names=failing_names,
-                    event_names=set(),
-                )
-
-        # 3e. Details section (below the fold).
-        append("\n" + "─" * 72 + "\n")
-        append("Details — timeline, decomposition\n")
-        append("─" * 72 + "\n")
-        if verdict.status == "unrealizable":
-            append("(Skip if you only need the verdict and the conflict "
-                   "above. These\nsections show the per-step obligation "
-                   "map and the rule-dependency\ngraph the analyzer "
-                   "used.)\n")
-        else:
+            append("\n" + "─" * 72 + "\n")
+            append("Details — timeline, decomposition\n")
+            append("─" * 72 + "\n")
             append("(Skip if you only need the verdict above. These "
                    "sections show the\nper-step obligation map and the "
                    "rule-dependency graph the analyzer\nused.)\n")
 
-        # 3e-i. Obligation timeline.
-        append("\nObligation timeline\n")
-        append("───────────────────\n")
-        append("Reading: each column = one time step. ENV rows = events / "
-               "measure values\nfrom the trace. SYS rows = events the system "
-               "would have to place; cells\ncontain the rules that demand or "
-               "forbid that event there. ⚠ marks a step where\nthe same event "
-               "is both required and forbidden by some rule.\n")
-        try:
-            from sleec_timeline import build_timeline
-            tl_text, tl_spans = build_timeline(
-                _rules, trace, failing_names, col_width=8,
-                verdict_status=verdict.status,
-            )
-            _append_with_spans(append, tl_text, tl_spans)
-        except Exception as _e:
-            append(f"\n[timeline render skipped: {_e}]\n")
+            append("\nObligation timeline\n")
+            append("───────────────────\n")
+            append("Reading: each column = one time step. ENV rows = events / "
+                   "measure values\nfrom the trace. SYS rows = events the system "
+                   "would have to place; cells\ncontain the rules that demand or "
+                   "forbid that event there. ⚠ marks a step where\nthe same event "
+                   "is both required and forbidden by some rule.\n")
+            try:
+                from sleec_timeline import build_timeline
+                tl_text, tl_spans = build_timeline(
+                    _rules, trace, failing_names, col_width=8,
+                    verdict_status=verdict.status,
+                )
+                _append_with_spans(append, tl_text, tl_spans)
+            except Exception as _e:
+                append(f"\n[timeline render skipped: {_e}]\n")
 
-        # 3e-ii. Decomposition breakdown.
-        append("\n\nRule decomposition\n")
-        append("──────────────────\n")
-        append("(Rules that share a head event, a cascade, or a relation "
-               "are grouped\ntogether. Each group is checked independently. "
-               "Smaller groups = faster\nchecks and clearer fault localization.)\n")
-        append(f"Spec decomposes into {len(component_info)} "
-               f"{'group' if len(component_info) == 1 else 'groups'}:\n")
-        for ci, names in component_info:
-            marker = "  <-- failing" if ci == failing_component_idx else ""
-            append(f"  G{ci} ({len(names)} rule"
-                   f"{'s' if len(names) != 1 else ''}): {{")
-            for i, name in enumerate(names):
-                if i:
-                    append(", ")
-                if name in failing_names:
-                    append(name, "culprit_rule")
-                else:
-                    append(name)
-            append("}" + marker + "\n")
-        append("\n")
+            append("\n\nRule decomposition\n")
+            append("──────────────────\n")
+            append("(Rules that share a head event, a cascade, or a relation "
+                   "are grouped\ntogether. Each group is checked independently. "
+                   "Smaller groups = faster\nchecks and clearer fault "
+                   "localization.)\n")
+            append(f"Spec decomposes into {len(component_info)} "
+                   f"{'group' if len(component_info) == 1 else 'groups'}:\n")
+            for ci, names in component_info:
+                marker = "  <-- failing" if ci == failing_component_idx else ""
+                append(f"  G{ci} ({len(names)} rule"
+                       f"{'s' if len(names) != 1 else ''}): {{")
+                for i, name in enumerate(names):
+                    if i:
+                        append(", ")
+                    if name in failing_names:
+                        append(name, "culprit_rule")
+                    else:
+                        append(name)
+                append("}" + marker + "\n")
+            append("\n")
 
         render()
 
@@ -500,7 +532,8 @@ def check_realizability():
         )
 
 
-def _append_culprit_source_block(append, model_str, rules, failing_names):
+def _append_culprit_source_block(append, model_str, rules, failing_names,
+                                 proof_spans=None):
     """Mirror check_situational_conflict's output pattern: embed the source
     text of every culprit rule verbatim, then tag sub-spans (trigger and
     response) so the user sees exactly which part of which rule is at
@@ -520,6 +553,13 @@ def _append_culprit_source_block(append, model_str, rules, failing_names):
         All normalized rules (from parse_sleec_norm).
     failing_names : set[str]
         Names of rules in the failing dependency-graph component.
+    proof_spans : list[(start, end)], optional
+        Absolute source spans the MINIMIZED proof referenced
+        (witness.highlights). When provided, ONLY these spans are
+        highlighted — the exact atoms (events, measures, deadlines) the
+        proof used — instead of the structural trigger/condition/response
+        spans. A span whose text is a clashing head event is tagged
+        'conflict' (bright red); all others 'trigger_event' (yellow).
     """
     if not failing_names:
         return
@@ -577,40 +617,45 @@ def _append_culprit_source_block(append, model_str, rules, failing_names):
         cond_span = sub_span(getattr(rule_node, "condition", None))
         resp_span = sub_span(getattr(rule_node, "response", None))
 
-        # Emit the rule text with sub-span highlights:
-        # - Trigger  -> 'trigger_event' (pale yellow)
-        # - Condition -> 'trigger_event' (same; the condition involves the
-        #    same environment observation as the trigger)
-        # - Response -> 'culprit_rule' (bold red), except occurrences of a
-        #    clash_head word inside the response, which are tagged
-        #    'conflict' (bright red).
         import re
         chunks = []  # list of (rel_start, rel_end, tag) relative to rule_src
 
-        if trig_span:
-            chunks.append((trig_span[0], trig_span[1], "trigger_event"))
-        if cond_span:
-            chunks.append((cond_span[0], cond_span[1], "trigger_event"))
-        if resp_span:
-            # Default: whole response as culprit_rule.
-            rs, re_ = resp_span
-            # Inside the response, locate each occurrence of a clash_head word.
-            if clash_heads:
-                pattern = r"\b(" + "|".join(
-                    re.escape(h) for h in sorted(clash_heads, key=len, reverse=True)
-                ) + r")\b"
-                last = rs
-                for m in re.finditer(pattern, rule_src[rs:re_]):
-                    ms = rs + m.start()
-                    me = rs + m.end()
-                    if ms > last:
-                        chunks.append((last, ms, "culprit_rule"))
-                    chunks.append((ms, me, "conflict"))
-                    last = me
-                if last < re_:
-                    chunks.append((last, re_, "culprit_rule"))
-            else:
-                chunks.append((rs, re_, "culprit_rule"))
+        if proof_spans:
+            # Proof-driven: highlight ONLY the atoms the minimized proof
+            # referenced and that fall within this rule's source span.
+            # Clash-head occurrences -> 'conflict' (red); others -> yellow.
+            for (ps, pe) in proof_spans:
+                if ps >= s and pe <= e and pe > ps:
+                    txt = model_str[ps:pe].strip().strip("{}")
+                    tag = "conflict" if txt in clash_heads else "trigger_event"
+                    chunks.append((ps - s, pe - s, tag))
+        else:
+            # Structural fallback (no proof spans available):
+            # - Trigger  -> 'trigger_event' (pale yellow)
+            # - Condition -> 'trigger_event'
+            # - Response -> 'culprit_rule', clash-head words -> 'conflict'.
+            if trig_span:
+                chunks.append((trig_span[0], trig_span[1], "trigger_event"))
+            if cond_span:
+                chunks.append((cond_span[0], cond_span[1], "trigger_event"))
+            if resp_span:
+                rs, re_ = resp_span
+                if clash_heads:
+                    pattern = r"\b(" + "|".join(
+                        re.escape(h) for h in sorted(clash_heads, key=len, reverse=True)
+                    ) + r")\b"
+                    last = rs
+                    for m in re.finditer(pattern, rule_src[rs:re_]):
+                        ms = rs + m.start()
+                        me = rs + m.end()
+                        if ms > last:
+                            chunks.append((last, ms, "culprit_rule"))
+                        chunks.append((ms, me, "conflict"))
+                        last = me
+                    if last < re_:
+                        chunks.append((last, re_, "culprit_rule"))
+                else:
+                    chunks.append((rs, re_, "culprit_rule"))
 
         # Sort and merge; tolerate overlap by preferring later chunks (conflict wins).
         chunks = sorted(chunks, key=lambda c: (c[0], c[1]))

@@ -1200,10 +1200,17 @@ class AbstractTraceSampler:
 
 @dataclass
 class RealizabilityVerdict:
-    status: str            # "realizable", "partially_realizable", "unrealizable"
+    # "realizable", "partially_realizable", "unrealizable", "inconclusive"
+    status: str
     selected_rules: List[str]
     culprit_rules: List[str]
     system_events_schedule: Dict[int, Set[str]]
+    # Optional FOL*-proof-derived minimum witness for UNREALIZABLE verdicts.
+    # When present, this is the result of running ``check_and_minimize`` on
+    # the LEGOS+ proof and extracting which source rules, env events at
+    # which times, and measure values were essential for the contradiction.
+    # ``culprit_rules`` is set from ``witness.rules`` when available.
+    witness: "object" = None  # type: ignore[assignment]
 
     def __str__(self) -> str:
         if self.status == "realizable":
@@ -1212,7 +1219,11 @@ class RealizabilityVerdict:
             return (f"PARTIALLY REALIZABLE: {len(self.selected_rules)} of "
                     f"{len(self.selected_rules) + len(self.culprit_rules)} rule(s) "
                     f"selected; culprit(s): {', '.join(self.culprit_rules)}.")
+        if self.status == "inconclusive":
+            return ("INCONCLUSIVE: the solver hit its volume/iteration bound "
+                    "before deciding this trace (no conflict found).")
         return "UNREALIZABLE: even the empty rule set cannot realize this trace."
+
 
 
 def _reset_sleecnorm_state() -> None:
@@ -1259,6 +1270,43 @@ def _reset_sleecnorm_state() -> None:
         pass
 
 
+
+def _extract_proof_witness(model, id_to_source, trace):
+    """Run ``proof_reader.check_and_minimize`` on the FOL* proof emitted
+    by the most recent UNSAT realizability check, then build a
+    structured :class:`Witness` by mapping the UNSAT core's input ids
+    back to source rules (via ``id_to_source``) and projecting the
+    sampled ``trace`` onto the culprit rules' trigger/condition symbols.
+
+    This mirrors ``check_situational_conflict``'s structured
+    UNSAT-core attribution — no regex on proof text.
+
+    Returns ``None`` on any failure — callers must treat the result as
+    advisory and fall back to component-grain reporting.
+    """
+    if id_to_source is None:
+        return None
+    try:
+        from proof_reader import check_and_minimize
+        from sleecParser import get_high_light
+        import sleec_proof_witness as _spw
+        # check_property_refining writes proof.txt to cwd. Minimise it.
+        unsat_core, derivation = check_and_minimize(
+            "proof.txt", "simplified.txt"
+        )
+        # Proof-driven highlights: exact source spans of the atoms the
+        # minimized derivation referenced (events, measures, deadlines).
+        try:
+            highlights = get_high_light(derivation)
+        except Exception:
+            highlights = []
+        return _spw.build_witness(
+            model, unsat_core, id_to_source, trace, highlights=highlights
+        )
+    except Exception:
+        return None
+
+
 class RealizabilityChecker:
     """Bounded-weak realizability check over SLEEC FOL* semantics.
 
@@ -1299,7 +1347,8 @@ class RealizabilityChecker:
     """
 
     def __init__(self, model, N: int, *, model_str: Optional[str] = None,
-                 mode: str = "strong", decompose: bool = False):
+                 mode: str = "strong", decompose: bool = False,
+                 record_proof: bool = True):
         if N < 1:
             raise ValueError("N must be >= 1")
         if not model_str:
@@ -1314,6 +1363,11 @@ class RealizabilityChecker:
         self.model_str = model_str
         self.mode = mode
         self.decompose = decompose
+        # When True, the FOL* proof is recorded on each component solve so
+        # an UNREALIZABLE verdict can carry a minimum witness. Recording +
+        # minimisation add overhead, so callers that only need the verdict
+        # (e.g. the auto-bound horizon-escalation search) set this False.
+        self.record_proof = record_proof
 
     def check(self, trace: dict, *, verbose: bool = False) -> RealizabilityVerdict:
         """Run the bounded realizability check against `trace`.
@@ -1474,6 +1528,8 @@ class RealizabilityChecker:
         # Short-circuit as soon as any component is UNREALIZABLE.
         overall_status = "realizable"
         culprit_component_idx = None
+        culprit_id_to_source = None   # set on the failing component
+        inconclusive_components: List[int] = []  # 1-based: bound-limited
         short_circuited: List[int] = []   # 1-based indices realizable by inspection
         for ci, comp in enumerate(components_struct):
             comp_rule_indices = comp.rule_indices
@@ -1495,44 +1551,80 @@ class RealizabilityChecker:
             comp_relations = [relations[i] for i in comp_relation_indices]
             comp_relational_constraints = get_relational_constraints(comp_relations)
 
-            # Build per-component rule clauses.
-            fol_rules = [measure_inv]
-            fol_rules.extend(global_relational_constraints)
-            fol_rules.extend(comp_relational_constraints)
+            # Build the query in the SAME shape as
+            # check_situational_conflict so the FOL* proof's input ids
+            # map cleanly back to source rules:
+            #   * property (proof id 0) = structural backbone + the
+            #     sampled trace assertions (the "situation").
+            #   * complete_rules (ids 1..N) = one element per SLEEC rule
+            #     encoding, then per relational constraint.
+            # We record id_to_source[k] for each so the UNSAT core can be
+            # attributed structurally (no proof-text parsing).
+            structural = [measure_inv]
+            structural.extend(global_relational_constraints)
+            structural.extend(comp_relational_constraints)
+
+            complete_rules = []
+            id_to_source = {}   # proof input id -> ("rule"|"relation", name)
+
             if self.mode == "strong":
                 # Strong mode uses per-WhenRule encoding. Deduplicate the
                 # og_rules indices because multiple normalized rules may
                 # share the same og_rule (primary + defeater branches).
                 og_idx_set = sorted({nr_to_og_idx[i] for i in comp_rule_indices})
                 for og_idx in og_idx_set:
-                    fol_rules.append(og_rules[og_idx].get_rule())
+                    complete_rules.append(og_rules[og_idx].get_rule())
+                    name = (rule_nodes[og_idx].name
+                            if og_idx < len(rule_nodes) else "?")
+                    # property is id 0; complete_rules[k] is id k+1.
+                    id_to_source[len(complete_rules)] = ("rule", name)
             else:
-                fol_rules.append(c_measure.presence)
-                fol_rules.extend(get_blocked_axioms(Action_Mapping, c_measure))
+                structural.append(c_measure.presence)
+                structural.extend(get_blocked_axioms(Action_Mapping, c_measure))
                 for idx in comp_rule_indices:
-                    fol_rules.append(
+                    complete_rules.append(
                         rules[idx].encode_limited(c_measure, Action_Mapping)
                     )
+                    name = getattr(rules[idx].og_rule, "name", "?")
+                    id_to_source[len(complete_rules)] = ("rule", name)
 
-            query = AND(fol_rules + trace_assertions)
+            # Relational constraints are attributable too (kept after rules,
+            # matching check_situational_conflict's ordering).
+            for rc in comp_relational_constraints:
+                complete_rules.append(rc)
+                id_to_source[len(complete_rules)] = ("relation", "relation")
+
+            property_part = AND(structural + trace_assertions)
             if verbose:
                 print(f"[realizability] component {ci+1}/{len(components_struct)}: "
-                      f"{len(fol_rules)} rule clauses, "
+                      f"{len(complete_rules)} rule clauses, "
                       f"{len(trace_assertions)} trace assertions, "
                       f"horizon N={self.N}", file=sys.stderr)
             res = check_property_refining(
-                query, set(), set(),
+                property_part, [], complete_rules,
                 Actions, [], True,
                 min_solution=False, final_min_solution=True,
                 restart=False, boundary_case=False,
                 universal_blocking=False, vol_bound=200,
                 ret_model=True, scalar_mask=scalar_mask,
+                record_proof=self.record_proof,
             )
-            if not isinstance(res, tuple):
-                # UNSAT on this component ⇒ whole spec unrealizable.
+            if isinstance(res, tuple):
+                continue  # SAT: this component is realizable at the bound.
+            if res == 0:
+                # Genuine UNSAT (a real rule conflict) ⇒ the whole spec is
+                # unrealizable (Decomposition Theorem). Definitive: short-circuit.
                 overall_status = "unrealizable"
                 culprit_component_idx = ci
-                break  # short-circuit
+                culprit_id_to_source = id_to_source
+                break
+            # res == 2 ("bounded UNSAT": the satisfying model's volume
+            # exceeded vol_bound) or res == -1 (action-iteration budget
+            # exhausted). The solver could NOT decide this component within
+            # its budget — this is INCONCLUSIVE, not a conflict. Record it
+            # and keep scanning: a later component may still yield a genuine
+            # UNSAT (a definitive unrealizable answer).
+            inconclusive_components.append(ci + 1)
 
         # --- 5. Clean up global state mutated by check_property_refining. ----
         try:
@@ -1545,6 +1637,13 @@ class RealizabilityChecker:
             pass  # best-effort cleanup
 
         # --- 6. Interpret. ---------------------------------------------------
+        # Aggregate per-component outcomes:
+        #   * any genuine UNSAT (res==0)  -> unrealizable (already set, broke)
+        #   * else any inconclusive comp  -> inconclusive (bound-limited)
+        #   * else                        -> realizable
+        if overall_status != "unrealizable" and inconclusive_components:
+            overall_status = "inconclusive"
+
         all_rule_names = [getattr(nr.og_rule, "name", "?") for nr in rules]
         if overall_status == "realizable":
             return RealizabilityVerdict(
@@ -1553,17 +1652,39 @@ class RealizabilityChecker:
                 culprit_rules=[],
                 system_events_schedule={},
             )
-        # unrealizable; narrow culprit to the failing component's rule names.
-        culprit_names = (
-            [getattr(rules[i].og_rule, "name", "?")
-             for i in components_struct[culprit_component_idx].rule_indices]
-            if culprit_component_idx is not None else all_rule_names
+        if overall_status == "inconclusive":
+            # The solver could not decide one or more components within the
+            # volume/iteration budget on THIS trace. Not a conflict — UNKNOWN.
+            return RealizabilityVerdict(
+                status="inconclusive",
+                selected_rules=[],
+                culprit_rules=[],
+                system_events_schedule={},
+            )
+        # UNREAL: extract a structured minimum witness from the FOL* unsat
+        # proof — the same machinery check_situational_conflict uses. The
+        # UNSAT core's input ids map back to source rules via
+        # culprit_id_to_source; the env witness is derived structurally
+        # from the culprit rules' trigger/condition ASTs. If extraction
+        # fails for any reason, fall back to the failing-component's rules.
+        witness = (
+            _extract_proof_witness(_model, culprit_id_to_source, trace)
+            if self.record_proof else None
         )
+        if witness is not None and witness.rules:
+            culprit_names = witness.rules
+        else:
+            culprit_names = (
+                [getattr(rules[i].og_rule, "name", "?")
+                 for i in components_struct[culprit_component_idx].rule_indices]
+                if culprit_component_idx is not None else all_rule_names
+            )
         return RealizabilityVerdict(
             status="unrealizable",
             selected_rules=[],
             culprit_rules=culprit_names,
             system_events_schedule={},
+            witness=witness,
         )
 
     # ----------------------------------------------------------------------
@@ -1672,28 +1793,46 @@ def print_realizability_result(trace: dict, verdict: "RealizabilityVerdict",
               "violated before the horizon.")
         return
 
-    # Unrealizable / partially_realizable: show the offending trace clearly.
+    if verdict.status == "inconclusive":
+        print(f"\n[realizability{tag}] INCONCLUSIVE (UNKNOWN) — the solver hit "
+              "its volume/iteration bound before deciding this trace. This is "
+              "NOT a conflict and NOT a proof of unrealizability; the search "
+              "continues with other traces. Try --decompose or a larger bound.")
+        return
+
+    # Unrealizable / partially_realizable.
     N = trace.get("N", "?")
+    w = getattr(verdict, "witness", None)
+    has_witness = w is not None and (
+        getattr(w, "env_events", {}) or getattr(w, "measures", {}))
+
+    def _vs(v):
+        return ("T" if v else "F") if isinstance(v, bool) else str(v)
+
     print("\n" + "!" * 72)
-    print(f"!!! UNREALIZABLE PARTIAL TRACE{tag}  (N={N})")
+    print(f"!!! UNREALIZABLE{tag}  (N={N})")
     print("!" * 72)
-    print("The SLEEC rules forbid this partial trace — no bounded extension "
-          "exists.\n")
-    for step in trace["per_step"]:
-        t = step["t"]
-        events = sorted(step.get("events", ()))
-        events_str = ", ".join(events) if events else "(no env event)"
-        measure_pairs = []
-        for m, v in sorted(step.get("measures", {}).items()):
-            if isinstance(v, bool):
-                measure_pairs.append(f"{m}={'T' if v else 'F'}")
-            else:
-                measure_pairs.append(f"{m}={v}")
-        measures_str = ", ".join(measure_pairs)
-        sep = "  | " if measures_str else ""
-        print(f"  t={t}: {events_str}{sep}{measures_str}")
+
+    # ---- Essentials only: clash + minimized rules + minimized trace ----
+    if getattr(w, "conflict_events", None):
+        print(f"Conflict: {', '.join(w.conflict_events)} is both required "
+              "and forbidden.\n")
+
     if verdict.culprit_rules:
-        print(f"\nRules involved: {', '.join(verdict.culprit_rules)}")
+        print(f"Rules involved (minimized): "
+              f"{', '.join(verdict.culprit_rules)}")
+
+    if has_witness:
+        print("\nTriggering environment (minimized):")
+        times = sorted(set(w.env_events.keys()) | set(w.measures.keys()))
+        for t in times:
+            evs = w.env_events.get(t, []) or []
+            vals = w.measures.get(t, {}) or {}
+            print(f"  t={t}")
+            print(f"    events:   {', '.join(evs) if evs else '(none required)'}")
+            if vals:
+                mstr = ", ".join(f"{k}={_vs(v)}" for k, v in sorted(vals.items()))
+                print(f"    measures: {mstr}")
     print("!" * 72)
 
 
@@ -1701,24 +1840,9 @@ def print_realizability_result(trace: dict, verdict: "RealizabilityVerdict",
 # CLI
 # ---------------------------------------------------------------------------
 
-def _auto_bound_search(args) -> int:
-    """Exponential-escalation realizability search.
-
-    Starts at T_max, doubles the horizon each iteration. Stops when:
-    (a) a counterexample surfaces (return UNREALIZABLE),
-    (b) the B_max completeness threshold is reached with no counter-
-        example (return REALIZABLE — unbounded certified),
-    (c) the iteration cap (--max-iters) or horizon cap (--max-horizon)
-        is hit (return INCONCLUSIVE).
-
-    With --decompose, the per-iteration check uses the same per-
-    component decomposition as RealizabilityChecker, and the
-    certification target is the maximum across per-component B_max.
-    """
-    import sys as _sys
+def _load_compute_bound_module():
+    """Load the compute_max_bound module from tools/ in process."""
     import importlib.util as _ilu
-
-    # Load the bound-detector module.
     _tools_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                               "tools")
     _spec = _ilu.spec_from_file_location(
@@ -1727,90 +1851,86 @@ def _auto_bound_search(args) -> int:
     )
     _cmb = _ilu.module_from_spec(_spec)
     _spec.loader.exec_module(_cmb)
+    return _cmb
+
+
+def _load_decompose_module():
+    """Load the decompose_to_sleec module from tools/ in process."""
+    import importlib.util as _ilu
+    _tools_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "tools")
+    _spec = _ilu.spec_from_file_location(
+        "decompose_to_sleec",
+        os.path.join(_tools_dir, "decompose_to_sleec.py"),
+    )
+    _dts = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_dts)
+    return _dts
+
+
+def _search_one(spec_text: str, *, args, label_prefix: str = "") -> dict:
+    """Run an exponential-escalation realizability search on a single
+    (sub-)spec, parsed fresh from spec_text.
+
+    Returns a dict:
+        verdict : 'UNREALIZABLE' | 'REALIZABLE' | 'INCONCLUSIVE' | 'ERROR'
+        horizon : last horizon at which we got a verdict
+        iters   : number of solver calls used
+        T_max   : T_max of the (sub-)spec
+        B_max   : B_max of the (sub-)spec (INF if uses eventually)
+    """
+    import sys as _sys
+
+    _cmb = _load_compute_bound_module()
 
     _reset_sleecnorm_state()
     from SleecNorm import parse_sleec_norm
-    from sleec_decompose import decompose_with_relations
-    from sleec_event_classification import classify_events_with_annotations
 
-    with open(args.filename) as _f:
-        spec_text = _f.read()
-
-    model_n, normalized_rules, _AM, _Actions, og_rules, _concerns, relations = \
+    _, normalized_rules, _AM, _Actions, og_rules, _concerns, relations = \
         parse_sleec_norm(spec_text, read_file=False)
 
-    # Compute T_max and B_max (per the bound algorithm).
-    if args.decompose:
-        ec = classify_events_with_annotations(model_n)
-        decomp = decompose_with_relations(
-            normalized_rules, og_rules, relations, ec
-        )
-        comp_results = []
-        for comp in decomp.components:
-            comp_nr = [normalized_rules[i] for i in comp.rule_indices]
-            comp_rel = [relations[i] for i in comp.relation_indices]
-            global_rel = [relations[i] for i in decomp.global_relation_indices]
-            comp_results.append(_cmb.compute_b_max(comp_nr, comp_rel + global_rel))
-        has_eventually = any(r["has_eventually"] for r in comp_results)
-        if has_eventually:
-            T_max_eff = max(r["T_max"] for r in comp_results
-                            if not r["has_eventually"]) if any(
-                            not r["has_eventually"] for r in comp_results) else 1
-            B_max_global = _cmb.INF
-        else:
-            T_max_eff = max(r["T_max"] for r in comp_results)
-            B_max_global = max(r["b_max"] for r in comp_results)
-    else:
-        r = _cmb.compute_b_max(normalized_rules, relations)
-        has_eventually = r["has_eventually"]
-        T_max_eff = r["T_max"] if not has_eventually else 1
-        B_max_global = r["b_max"]
+    # Compute T_max and B_max for this (sub-)spec.
+    r = _cmb.compute_b_max(normalized_rules, relations)
+    has_eventually = r["has_eventually"]
+    T_max = r["T_max"] if not has_eventually else 1
+    B_max = r["b_max"]
 
-    # Determine the effective ceiling for the search.
+    # Determine ceiling.
     if args.max_horizon is not None:
         ceiling = args.max_horizon
         ceiling_label = f"--max-horizon={args.max_horizon}"
     elif has_eventually:
         ceiling = 1000
-        ceiling_label = "default cap (spec uses `eventually`, no finite B_max)"
+        ceiling_label = "default cap (`eventually`, no finite B_max)"
     else:
-        ceiling = B_max_global
+        ceiling = B_max
         ceiling_label = "B_max"
 
-    B_start = max(int(T_max_eff), 1)
+    B_start = max(int(T_max), 1)
 
     if not args.quiet:
-        print(f"# auto-bound search on {args.filename}")
-        print(f"#   T_max = {T_max_eff}s,  starting horizon = {B_start}")
-        if has_eventually:
-            print(f"#   B_max = infinity (spec uses `eventually`)")
-        else:
-            print(f"#   B_max = {B_max_global:,}")
-        print(f"#   ceiling = {ceiling:,} ({ceiling_label})")
-        print(f"#   max iters = {args.max_iters}")
-        if args.decompose:
-            print(f"#   decomposition: ON ({len(decomp.components)} components)")
-        else:
-            print(f"#   decomposition: OFF")
-        print()
+        Bmax_str = "infinity" if has_eventually else f"{B_max:,}"
+        print(f"{label_prefix}T_max={T_max}s, B_max={Bmax_str}, "
+              f"ceiling={ceiling:,} ({ceiling_label}), "
+              f"start={B_start}, max iters={args.max_iters}")
 
-    # Read spec for the realizability checker (it expects the model_str arg).
-    model_p, _r, _c, _p, _rels, _AM, _Actions = parse_sleec(args.filename, read_file=True)
+    # Parse again for the realizability checker (it wants the textX
+    # model from parse_sleec).
+    _reset_sleecnorm_state()
+    model_p, _r, _c, _p, _rels, _AM2, _Actions2 = parse_sleec(
+        spec_text, read_file=False)
 
-    # Search loop.
     B = B_start
     iters = 0
     last_real_at = None
-    last_verdict = None
 
     while iters < args.max_iters:
-        # Cap: never exceed the ceiling; if last iter was below ceiling, do
-        # one final iter at exactly the ceiling (to certify if applicable).
+        # Honor the ceiling: if B already past it, do one final pass
+        # exactly AT the ceiling (so we can certify), then stop.
         if B > ceiling:
-            if last_real_at is not None and last_real_at == ceiling:
-                # Already did the ceiling check.
+            if last_real_at == ceiling:
                 break
-            B = ceiling  # Final pass exactly at the ceiling.
+            B = ceiling
 
         iters += 1
         _reset_sleecnorm_state()
@@ -1821,19 +1941,21 @@ def _auto_bound_search(args) -> int:
         except Exception as exc:
             if type(exc).__name__ == "EventClassificationError":
                 from sleec_event_classification import format_conflicts
-                print("\nauto-bound aborted: event classification conflicts",
+                print(f"{label_prefix}ABORT: event classification conflicts",
                       file=_sys.stderr)
                 print(format_conflicts(exc.classification), file=_sys.stderr)
-                return 2
+                return {"verdict": "ERROR", "horizon": B, "iters": iters,
+                        "T_max": T_max, "B_max": B_max}
             raise
 
         trace = sampler.next_trace()
         if trace is None:
             if not args.quiet:
-                print(f"  iter {iters:2d}  N={B:,}  -> empty trace "
-                      f"(no valid env behavior); treating as REALIZABLE")
+                print(f"{label_prefix}  iter {iters:2d}  N={B:,}  "
+                      f"-> empty trace (REAL by vacuity)")
             last_real_at = B
-            last_verdict = "realizable"
+            if B == ceiling:
+                break
             B = B * 2
             continue
 
@@ -1841,57 +1963,192 @@ def _auto_bound_search(args) -> int:
             checker = RealizabilityChecker(
                 model_p, N=B, model_str=spec_text,
                 mode="weak" if args.weak else "strong",
-                decompose=args.decompose,
+                decompose=False,  # per-(sub-)spec; no further decomposition.
+                record_proof=False,  # escalation search: verdict only, no witness.
             )
             verdict = checker.check(trace, verbose=False)
         except Exception as exc:
             if type(exc).__name__ == "RelationClassificationError":
-                print("\nauto-bound aborted: relation classification conflict",
+                print(f"{label_prefix}ABORT: relation classification conflict",
                       file=_sys.stderr)
                 print(exc, file=_sys.stderr)
-                return 2
+                return {"verdict": "ERROR", "horizon": B, "iters": iters,
+                        "T_max": T_max, "B_max": B_max}
             raise
 
-        last_verdict = verdict.status
-
         if not args.quiet:
-            print(f"  iter {iters:2d}  N={B:,}  -> {verdict.status.upper()}")
+            print(f"{label_prefix}  iter {iters:2d}  N={B:,}  "
+                  f"-> {verdict.status.upper()}")
 
         if verdict.status == "unrealizable":
-            print()
-            print(f"!!! UNREALIZABLE at horizon N={B:,} "
-                  f"(after {iters} iter(s)). Spec is unbounded-unrealizable "
-                  f"by monotonicity.")
-            return 1
+            return {"verdict": "UNREALIZABLE", "horizon": B, "iters": iters,
+                    "T_max": T_max, "B_max": B_max}
 
-        last_real_at = B
-
-        # If we just checked exactly at the ceiling and got REAL,
-        # certification (or budget exhaustion) decided.
-        if B == ceiling:
+        if verdict.status == "inconclusive":
+            # Bound-limited UNKNOWN (volume/iteration budget). Escalating the
+            # HORIZON does NOT resolve a volume-bound unknown — it only makes
+            # the query larger and slower. Stop escalating; the end-of-loop
+            # logic reports INCONCLUSIVE (never a false REALIZABLE/UNREAL).
             break
 
+        last_real_at = B
+        if B == ceiling:
+            break
         B = B * 2
 
-    # End of search loop. Decide the final verdict.
-    print()
+    # End of loop — no UNREAL surfaced. Decide REAL vs INCONCLUSIVE.
     if last_real_at is None:
-        print(f"[auto-bound] INCONCLUSIVE — no successful iteration completed")
+        return {"verdict": "INCONCLUSIVE", "horizon": 0, "iters": iters,
+                "T_max": T_max, "B_max": B_max}
+    if not has_eventually and last_real_at >= B_max:
+        return {"verdict": "REALIZABLE", "horizon": last_real_at,
+                "iters": iters, "T_max": T_max, "B_max": B_max}
+    return {"verdict": "INCONCLUSIVE", "horizon": last_real_at, "iters": iters,
+            "T_max": T_max, "B_max": B_max}
+
+
+def _auto_bound_search(args) -> int:
+    """Exponential-escalation realizability search.
+
+    Without --decompose: monolithic search on the whole spec.
+    With --decompose:   one independent search per component, each
+                        with its own T_max and B_max, each capped by
+                        its own --max-iters budget.
+
+    Stops a component on:
+    (a) a counterexample (-> UNREALIZABLE; whole spec is UNREALIZABLE
+        by the Decomposition Theorem -- early-exit out of the loop),
+    (b) the component's B_max reached with no counterexample
+        (-> REALIZABLE for this component),
+    (c) iteration cap or --max-horizon hit first (-> INCONCLUSIVE).
+
+    Aggregate verdict (with --decompose):
+        any UNREALIZABLE component  -> spec UNREALIZABLE
+        all REALIZABLE components   -> spec REALIZABLE (certified)
+        otherwise                   -> spec INCONCLUSIVE
+    """
+    with open(args.filename) as _f:
+        spec_text = _f.read()
+
+    # Monolithic mode.
+    if not args.decompose:
+        if not args.quiet:
+            print(f"# auto-bound search on {args.filename}")
+            print(f"#   decomposition: OFF")
+            print()
+        result = _search_one(spec_text, args=args, label_prefix="")
+        return _report_single(result)
+
+    # Decomposed mode: independent per-component searches.
+    _reset_sleecnorm_state()
+    from SleecNorm import parse_sleec_norm
+    from sleec_decompose import decompose_with_relations
+    from sleec_event_classification import classify_events_with_annotations
+
+    model_n, normalized_rules, _AM, _Actions, og_rules, _concerns, relations = \
+        parse_sleec_norm(spec_text, read_file=False)
+    ec = classify_events_with_annotations(model_n)
+    decomp = decompose_with_relations(
+        normalized_rules, og_rules, relations, ec
+    )
+
+    # Need the full model (parse_sleec) to call _build_component_spec.
+    _reset_sleecnorm_state()
+    model_full, _r, _c, _p, _rels, _AM2, _Actions2 = parse_sleec(
+        args.filename, read_file=True)
+
+    _dts = _load_decompose_module()
+
+    if not args.quiet:
+        print(f"# auto-bound search on {args.filename}")
+        print(f"#   decomposition: ON ({len(decomp.components)} components)")
+        print(f"#   each component searches independently with its own "
+              f"T_max / B_max / iteration budget")
+        print()
+
+    per_component = []
+    for i, component in enumerate(decomp.components, 1):
+        if not args.quiet:
+            n_rules = len(component.rule_indices)
+            n_rels = len(component.relation_indices)
+            print(f"== Component {i}/{len(decomp.components)}  "
+                  f"({n_rules} rule(s), {n_rels} relation(s)) ==")
+
+        comp_spec_text = _dts._build_component_spec(
+            model=model_full,
+            spec_text=spec_text,
+            component=component,
+            global_relation_indices=decomp.global_relation_indices,
+            relations=relations,
+            normalized_rules=normalized_rules,
+        )
+
+        result = _search_one(comp_spec_text, args=args, label_prefix="  ")
+        result["component_index"] = i
+        per_component.append(result)
+
+        if not args.quiet:
+            print(f"  [component {i}] verdict: {result['verdict']}  "
+                  f"(horizon {result['horizon']:,}, "
+                  f"{result['iters']} iter(s))")
+            print()
+
+        # Early-exit on first UNREAL.
+        if result["verdict"] == "UNREALIZABLE":
+            print(f"!!! UNREALIZABLE — component {i} of "
+                  f"{len(decomp.components)} is unrealizable at horizon "
+                  f"N={result['horizon']:,}. By the Decomposition Theorem, "
+                  f"the whole spec is unbounded-unrealizable.")
+            return 1
+        if result["verdict"] == "ERROR":
+            return 2
+
+    # All components completed without UNREAL.
+    realized = [r for r in per_component if r["verdict"] == "REALIZABLE"]
+    inconclusive = [r for r in per_component if r["verdict"] == "INCONCLUSIVE"]
+
+    if not inconclusive:
+        print(f"[auto-bound] REALIZABLE — all {len(realized)} component(s) "
+              f"certified (each reached its own B_max with REAL). By "
+              f"Decomposition + Completeness, the spec is "
+              f"unbounded-realizable.")
         return 0
-    if not has_eventually and last_real_at >= B_max_global:
-        print(f"[auto-bound] REALIZABLE — REAL at horizon N={last_real_at:,} "
-              f">= B_max={B_max_global:,}. Spec is unbounded-realizable "
+    print(f"[auto-bound] INCONCLUSIVE — "
+          f"{len(realized)}/{len(per_component)} component(s) certified, "
+          f"{len(inconclusive)} component(s) hit the budget without "
+          f"certification (still REAL at the budget horizon). Bounded "
+          f"analysis is sound for unrealizability only.")
+    if not args.quiet:
+        for r in inconclusive:
+            print(f"  Component {r['component_index']}: "
+                  f"REAL at N={r['horizon']:,}, B_max={r['B_max']:,}, "
+                  f"used {r['iters']} iter(s)")
+    return 0
+
+
+def _report_single(result: dict) -> int:
+    """Render the result of a single monolithic search."""
+    print()
+    if result["verdict"] == "ERROR":
+        return 2
+    if result["verdict"] == "UNREALIZABLE":
+        print(f"!!! UNREALIZABLE at horizon N={result['horizon']:,} "
+              f"(after {result['iters']} iter(s)). Spec is "
+              f"unbounded-unrealizable by monotonicity.")
+        return 1
+    if result["verdict"] == "REALIZABLE":
+        print(f"[auto-bound] REALIZABLE — REAL at N={result['horizon']:,} "
+              f">= B_max={result['B_max']:,}. Spec is unbounded-realizable "
               f"by the Completeness Theorem.")
         return 0
-    # Either we capped before reaching B_max, or has_eventually.
-    reason = (
-        f"REAL at horizon N={last_real_at:,}, but stopped at "
-        f"{'horizon cap' if args.max_horizon else 'iteration cap'} "
-        f"before {'B_max' if not has_eventually else 'a finite B_max '
-                                                     '(none exists)'}"
-    )
-    print(f"[auto-bound] INCONCLUSIVE — {reason}. Bounded analysis is "
-          f"sound for unrealizability only at this horizon.")
+    # INCONCLUSIVE
+    if result["horizon"] == 0:
+        print(f"[auto-bound] INCONCLUSIVE — no successful iteration completed")
+        return 0
+    print(f"[auto-bound] INCONCLUSIVE — REAL at N={result['horizon']:,}, "
+          f"stopped before reaching B_max="
+          f"{result['B_max'] if result['B_max'] != float('inf') else 'infinity'}. "
+          f"Bounded analysis is sound for unrealizability only.")
     return 0
 
 
@@ -2121,6 +2378,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             )
 
         any_unrealizable = False
+        any_inconclusive = False
         for i in range(1, args.k + 1):
             trace = sampler.next_trace()
             if trace is None:
@@ -2140,8 +2398,13 @@ def main(argv: Optional[List[str]] = None) -> int:
                     raise
                 print_realizability_result(trace, verdict,
                                             index=i if args.k > 1 else None)
-                if verdict.status != "realizable":
+                if verdict.status == "unrealizable":
                     any_unrealizable = True
+                elif verdict.status == "inconclusive":
+                    # UNKNOWN for this trace is NOT a conflict: keep the
+                    # status and keep searching other partial traces — a
+                    # different trace may still expose a genuine conflict.
+                    any_inconclusive = True
             if i < args.k:
                 if not sampler.block(trace):
                     saturation_msg = (
@@ -2153,9 +2416,24 @@ def main(argv: Optional[List[str]] = None) -> int:
                           "complement is empty, exhausting here)")
                     break
 
-        # Exit with non-zero if we found any unrealizable trace, useful for CI.
-        if any_unrealizable:
-            return 1
+        # Overall verdict across all sampled traces:
+        #   * any genuine unrealizable trace -> UNREALIZABLE (definitive, exit 1)
+        #   * else any inconclusive trace    -> INCONCLUSIVE  (unknown, exit 3)
+        #   * else                           -> REALIZABLE    (within sample, exit 0)
+        if args.realizability_check:
+            if any_unrealizable:
+                print("\n[realizability] OVERALL: UNREALIZABLE — a genuine "
+                      "conflict was found on at least one trace.")
+                return 1
+            if any_inconclusive:
+                print("\n[realizability] OVERALL: INCONCLUSIVE — no conflict "
+                      "found, but the solver hit its volume/iteration bound on "
+                      "at least one trace (try --decompose, or raise the "
+                      "bound). NOT a proof of unrealizability.")
+                return 3
+            print("\n[realizability] OVERALL: REALIZABLE across all sampled "
+                  "traces at this horizon.")
+            return 0
 
     if args.check:
         model_str = read_model_file(args.filename)
