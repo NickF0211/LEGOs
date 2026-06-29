@@ -396,6 +396,7 @@ class TestEndToEndWitness(unittest.TestCase):
             checker = srlc.RealizabilityChecker(
                 model, N=N, model_str=spec_text,
                 mode="strong", decompose=decompose,
+                record_proof=True,  # these tests exercise the proof witness
             )
             return checker.check(trace, verbose=False)
         finally:

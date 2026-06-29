@@ -1348,7 +1348,7 @@ class RealizabilityChecker:
 
     def __init__(self, model, N: int, *, model_str: Optional[str] = None,
                  mode: str = "strong", decompose: bool = False,
-                 record_proof: bool = True):
+                 record_proof: bool = False):
         if N < 1:
             raise ValueError("N must be >= 1")
         if not model_str:
@@ -1363,10 +1363,14 @@ class RealizabilityChecker:
         self.model_str = model_str
         self.mode = mode
         self.decompose = decompose
-        # When True, the FOL* proof is recorded on each component solve so
-        # an UNREALIZABLE verdict can carry a minimum witness. Recording +
-        # minimisation add overhead, so callers that only need the verdict
-        # (e.g. the auto-bound horizon-escalation search) set this False.
+        # When True, the FOL* proof is recorded on each component solve so an
+        # UNREALIZABLE verdict can carry a minimum witness (sharp culprit
+        # rules + minimized triggering environment + source highlights).
+        # Recording + proof minimisation are costly, so this is OFF by
+        # default: callers that only need the verdict (the common case, and
+        # the auto-bound escalation search) pay nothing. When False, an
+        # UNREALIZABLE verdict reports the failing component's rules and the
+        # full sampled trace, with no proof-derived minimization/highlight.
         self.record_proof = record_proof
 
     def check(self, trace: dict, *, verbose: bool = False) -> RealizabilityVerdict:
@@ -1813,16 +1817,14 @@ def print_realizability_result(trace: dict, verdict: "RealizabilityVerdict",
     print(f"!!! UNREALIZABLE{tag}  (N={N})")
     print("!" * 72)
 
-    # ---- Essentials only: clash + minimized rules + minimized trace ----
-    if getattr(w, "conflict_events", None):
-        print(f"Conflict: {', '.join(w.conflict_events)} is both required "
-              "and forbidden.\n")
-
-    if verdict.culprit_rules:
-        print(f"Rules involved (minimized): "
-              f"{', '.join(verdict.culprit_rules)}")
-
     if has_witness:
+        # ---- Proof diagnosis: clash + minimized rules + minimized trace ----
+        if getattr(w, "conflict_events", None):
+            print(f"Conflict: {', '.join(w.conflict_events)} is both required "
+                  "and forbidden.\n")
+        if verdict.culprit_rules:
+            print(f"Rules involved (minimized): "
+                  f"{', '.join(verdict.culprit_rules)}")
         print("\nTriggering environment (minimized):")
         times = sorted(set(w.env_events.keys()) | set(w.measures.keys()))
         for t in times:
@@ -1833,6 +1835,23 @@ def print_realizability_result(trace: dict, verdict: "RealizabilityVerdict",
             if vals:
                 mstr = ", ".join(f"{k}={_vs(v)}" for k, v in sorted(vals.items()))
                 print(f"    measures: {mstr}")
+    else:
+        # ---- No proof: failing-component rules + full trace, no highlight ----
+        if verdict.culprit_rules:
+            print(f"Rules involved (failing component): "
+                  f"{', '.join(verdict.culprit_rules)}")
+        print("\nEnvironment trace (full):")
+        for step in trace["per_step"]:
+            t = step["t"]
+            events = sorted(step.get("events", ()))
+            events_str = ", ".join(events) if events else "(no env event)"
+            measure_pairs = [f"{m}={_vs(v)}"
+                             for m, v in sorted(step.get("measures", {}).items())]
+            measures_str = ", ".join(measure_pairs)
+            sep = "  | " if measures_str else ""
+            print(f"  t={t}: {events_str}{sep}{measures_str}")
+        print("\n(enable --proof-diagnosis for the minimized culprit rules + "
+              "triggering environment)")
     print("!" * 72)
 
 
@@ -2198,6 +2217,15 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "Decomposition Theorem, if every component is "
                              "realizable on the seed then so is the whole spec. "
                              "Off by default.")
+    parser.add_argument("--proof-diagnosis", action="store_true",
+                        help="For an UNREALIZABLE verdict, record the FOL* "
+                             "proof and extract a minimum witness: the sharp "
+                             "culprit rules (unsat core), the minimized "
+                             "triggering environment, and source highlights. "
+                             "Costly (proof recording + minimisation), so OFF "
+                             "by default; without it, the verdict is reported "
+                             "with the failing component's rules and the full "
+                             "trace, no highlight.")
     parser.add_argument("--check-conflict", action="store_true",
                         help="Check the spec for consistency conflicts "
                              "(rule pairs whose conjunction is unsatisfiable). "
@@ -2375,6 +2403,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 model_str=read_model_file(args.filename),
                 mode="weak" if args.weak else "strong",
                 decompose=args.decompose,
+                record_proof=args.proof_diagnosis,
             )
 
         any_unrealizable = False

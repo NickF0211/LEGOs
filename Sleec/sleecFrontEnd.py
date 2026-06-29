@@ -258,6 +258,12 @@ def _summarize_firings(rules_fired):
     return out
 
 
+# Proof-based diagnosis (FOL* unsat witness + source highlights) is costly
+# (proof recording + minimisation). OFF by default; set True to enable the
+# minimized culprit rules and highlighted triggering environment in the GUI.
+GUI_PROOF_DIAGNOSIS = False
+
+
 def check_realizability():
     """Prompt for horizon N, sample a partial trace, run the bounded-strong
     realizability check with per-component decomposition, and render the
@@ -334,8 +340,12 @@ def check_realizability():
             return
 
         # 2. Run the realizability check.
+        #    Proof diagnosis (FOL* witness + source highlights) is costly, so
+        #    it is OFF by default. Flip GUI_PROOF_DIAGNOSIS to True to get the
+        #    minimized culprit rules + highlighted triggering environment.
         checker = _rlz.RealizabilityChecker(
             model, N=N, model_str=cur_text, decompose=True,
+            record_proof=GUI_PROOF_DIAGNOSIS,
         )
         verdict = checker.check(trace, verbose=False)
 
@@ -404,28 +414,41 @@ def check_realizability():
             append(banner, "hl")
             append("\n")
 
-            # ---- Crisp, upfront: the two things that matter ----
-            # 1) Rules involved (minimized to the proof's unsat core),
-            #    rendered verbatim with trigger/conflict highlights.
-            #    _append_culprit_source_block emits the clashing-head line
-            #    ("X is both required and forbidden") then each rule source.
-            append("Rules involved (minimized)\n")
-            append("──────────────────────────\n")
             _wit = getattr(verdict, "witness", None)
-            _proof_spans = getattr(_wit, "highlights", None) if _wit else None
-            _append_culprit_source_block(
-                append, cur_text, _rules, failing_names,
-                proof_spans=_proof_spans,
-            )
-            append("\n")
+            _has_witness = _wit is not None and (
+                getattr(_wit, "env_events", {}) or getattr(_wit, "measures", {}))
 
-            # 2) The minimized triggering environment (from the unsat proof).
-            _render_minimum_witness(append, getattr(verdict, "witness", None))
-            append("\n")
+            if _has_witness:
+                # ---- Proof diagnosis: minimized rules (highlighted) +
+                #      minimized triggering environment. ----
+                append("Rules involved (minimized)\n")
+                append("──────────────────────────\n")
+                _append_culprit_source_block(
+                    append, cur_text, _rules, failing_names,
+                    proof_spans=getattr(_wit, "highlights", None),
+                )
+                append("\n")
+                _render_minimum_witness(append, _wit)
+                append("\n")
+            else:
+                # ---- No proof: failing-component rules + full trace, no
+                #      highlight. (Enable proof diagnosis for the minimized
+                #      witness.) ----
+                append("Rules involved (failing component)\n")
+                append("──────────────────────────────────\n")
+                _append_culprit_source_block(
+                    append, cur_text, _rules, failing_names, proof_spans=None,
+                )
+                append("\n")
+                append("Environment trace (full)\n")
+                append("────────────────────────\n")
+                append(_summarize_trace(trace))
+                append("\n\n(enable proof diagnosis for the minimized culprit "
+                       "rules + triggering environment)\n")
 
-            # 3) One-line caveat: other conflicts may remain.
+            # One-line caveat: other conflicts may remain.
             if failing_component_idx is not None and len(component_info) > 1:
-                append("Note: other independent conflicts may remain — "
+                append("\nNote: other independent conflicts may remain — "
                        "re-check after fixing.\n")
 
         # ---- Supplementary detail (REALIZABLE verdict only). ----
